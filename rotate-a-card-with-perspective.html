@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+<title>rotate a card with perspective</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<style type="text/css">
+body{
+ -webkit-transform-style : preserve-3d;
+ -moz-transform-style    : preserve-3d;
+ transform-style         : preserve-3d;
+ -webkit-perspective : 2500px;
+ -moz-perspective    : 2500px;
+ perspective         : 2500px;
+}
+div{boxsizing:border-box;}
+@keyframes key1 {
+ 0%   { background-color:yellow;}
+ 50%  { transform : translate3d(0px,0,0px) rotateY( 90deg ) ; background-color:yellow; }
+ 51%  { transform : translate3d(0px,0,0px) rotateY( 91deg ) ; background-color:blue;   }
+ 100% { transform : translate3d(0px,0,0px) rotateY( 180deg ) ; background-color:blue;  }
+}
+@keyframes key2 {
+ 0%   { transform : translate3d(0px,0,0px) rotateY( 180deg ) ; background-color:blue;  }
+ 50%  { transform : translate3d(0px,0,0px) rotateY( 90deg ) ; background-color:blue;   }
+ 51%  { transform : translate3d(0px,0,0px) rotateY( 91deg ) ; background-color:yellow; }
+ 100% { background-color:yellow; }
+}
+@keyframes key3 {
+ 0%   { transform : translate3d(0px,0,0px) rotateY( 0deg ) ; background-color:yellow; }
+ 49%  { transform : translate3d(60px,0,110px) rotateY( 89.9deg ) ; background-color:yellow;}
+ 51%  { transform : translate3d(60px,0,110px) rotateY( 90.1deg ) ; background-color:blue;  }
+ 100% { transform : translate3d(0px,0,0px) rotateY( 180deg ) ; background-color:blue;   }
+}
+@keyframes key4 {
+ 0%   { transform : translate3d(0px,0,0px) rotateY( 180deg )  ;  background-color:blue;    }
+ 49%  { transform : translate3d(60px,0,110px) rotateY( 89.9deg ) ; background-color:blue;   }
+ 51%  { transform : translate3d(60px,0,110px) rotateY( 90.1deg ) ; background-color:yellow; }
+ 100% { transform : translate3d(0px,0,0px) rotateY( 0deg ) ; background-color:yellow; }
+}
+#divBox{
+ transform-origin: center center 0px; 
+ animation-iteration-count: 1;
+ animation-direction: alternate;
+ animation-fill-mode:forwards;
+ animation-timing-function:linear;
+ animation-timing-function:linear;
+ transition-property: transform;
+ -moz-transform-origin: center center 0px; 
+ -moz-animation-iteration-count: 1;
+ -moz-animation-direction: alternate;
+ -moz-animation-fill-mode:forwards;
+ -moz-animation-timing-function:linear;
+ -moz-animation-timing-function:linear;
+ -moz-transition-property: transform;
+}
+.box1{animation: key1 0.3s;}
+.box2{animation: key2 0.3s;}
+.box3{animation: key3 0.3s;}
+.box4{animation: key4 0.3s;}
+
+button{min-height:40px;border-radius:5px;}
+</style>
+</head>
+<body>
+<br />
+<br />
+<div style="width:152px;height:152px;border:1px red solid;">
+ <div class="" id="divBox" style="width:150px;height:150px;border:1px blue solid;background-color:yellow;">
+  Hello
+ </div>
+</div>
+<br />
+<br />
+<button onclick="setClass('box1')" >rotate flat 1</button>
+<button onclick="setClass('box2')" >rotate flat 2</button>
+<button onclick="setClass('box3')" >rotate perspective 1</button>
+<button onclick="setClass('box4')" >rotate perspective 2</button>
+<script>
+function setClass(n){
+ var a=document.getElementById('divBox');
+ a.className=n;
+}
+</script>
+</body>
+</html>
