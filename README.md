@@ -1,3 +1,2 @@
 # my-public
-My public repository
-my public tests
+My public repository for my public tests
