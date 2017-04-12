@@ -12,30 +12,30 @@ body{
  -webkit-transform-style : preserve-3d;
  -moz-transform-style    : preserve-3d;
  transform-style         : preserve-3d;
- -webkit-perspective : 2500px; // try 500 px, default perspective is "flat"
- -moz-perspective    : 2500px; // try 500 px
- perspective         : 2500px; // try 500 px
+ -webkit-perspective : 2500px; /* try 500 px, default perspective is "flat" */
+ -moz-perspective    : 2500px;
+ perspective         : 2500px;
 }
 div{boxsizing:border-box;}
-@keyframes key1 { // flat transform
+@keyframes key1 { /* flat transform */
  0%   { background-color:yellow;}
  50%  { transform : translate3d(0px,0,0px) rotateY( 90deg ) ; background-color:yellow; }
  51%  { transform : translate3d(0px,0,0px) rotateY( 91deg ) ; background-color:blue;   }
  100% { transform : translate3d(0px,0,0px) rotateY( 180deg ) ; background-color:blue;  }
 }
-@keyframes key2 { // flat transform reverse
+@keyframes key2 { /* flat transform reverse */
  0%   { transform : translate3d(0px,0,0px) rotateY( 180deg ) ; background-color:blue;  }
  50%  { transform : translate3d(0px,0,0px) rotateY( 90deg ) ; background-color:blue;   }
  51%  { transform : translate3d(0px,0,0px) rotateY( 91deg ) ; background-color:yellow; }
  100% { background-color:yellow; }
 }
-@keyframes key3 { // perspective transform ( note the 110px for z value )
+@keyframes key3 { /* perspective transform ( note the 110px for z value ) */
  0%   { transform : translate3d(0px,0,0px) rotateY( 0deg ) ; background-color:yellow; }
  49%  { transform : translate3d(60px,0,110px) rotateY( 89.9deg ) ; background-color:yellow;}
  51%  { transform : translate3d(60px,0,110px) rotateY( 90.1deg ) ; background-color:blue;  }
  100% { transform : translate3d(0px,0,0px) rotateY( 180deg ) ; background-color:blue;   }
 }
-@keyframes key4 { // perspective transform reverse
+@keyframes key4 { /* perspective transform reverse */
  0%   { transform : translate3d(0px,0,0px) rotateY( 180deg )  ;  background-color:blue;    }
  49%  { transform : translate3d(60px,0,110px) rotateY( 89.9deg ) ; background-color:blue;   }
  51%  { transform : translate3d(60px,0,110px) rotateY( 90.1deg ) ; background-color:yellow; }
