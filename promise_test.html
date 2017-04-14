@@ -1,0 +1,164 @@
+<html>
+ <head>
+  <meta charset="UTF-8" />
+  <title>my promise €</title>
+<style type="text/css">
+body{color:blue;border:5px red solid;margin:0;}
+h1{border:5px green outset;text-align:center;}
+</style>  
+ </head>
+ <body>
+  <h1 id="hello1">hello €</h1>
+<script type="text/javascript">
+
+function get(obj) {
+  // Return a new promise.
+  return new Promise(function(resolve, reject) {
+    var req = new XMLHttpRequest();
+    req.timeout = 3000; // 3 secondes
+    req.open('POST', obj.url , true);
+    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    req.onload = function (er) { 
+     try{
+      var returnValue=JSON.parse(req.responseText);
+      console.log('Resolve the promise with the response text');
+      resolve({response:returnValue,req:req,obj:obj});
+     }catch(er){
+      reject({response:er,req:req,obj:obj});
+     }
+    }
+    req.onabort = function (er) { 
+     reject({response:'abort error',req:req,er:er,obj:obj}); 
+    }
+    req.ontimeout = function (er) { 
+     reject({response:'error timeout',req:req,er:er,obj:obj}); 
+    }
+    req.onerror = function (er) { 
+     reject({response:'error unknown',req:req,er:er,obj:obj}); 
+    }
+    // Handle network errors
+    req.onerror = function(er) {
+      console.log('one error here !!! ',er);
+      reject({response:'unknown error',req:req,obj:obj});
+    };
+    try{
+     console.log('Make the request on obj.url='+obj.url);
+     req.send('data='+encodeURIComponent(JSON.stringify(obj.data)));
+    }catch(er){
+     console.log('catch error on send, err=',er);
+     reject({response:'cannot send data',req:req,obj:obj});
+    }
+  });
+}
+
+var myCall1={ url:'getData.php', data:{sleeptime:1}}; // 1 secondes
+var myCall2={ url:'getData.php', data:{sleeptime:2}}; // 2 secondes
+// no need, the timeout for the ajax request is 3 seconds var myCall3={ url:'getData.php', data:{sleeptime:3}}; // 3 secondes
+var myCall4={ url:'getData.php', data:{sleeptime:4}}; // 4 secondes
+var myCall5={ url:'getData.php', data:{sleeptime:5}}; // 5 secondes
+
+/*
+//========================================
+// Test single : 1 one OK and the other one ko
+//========================================
+
+get(myCall1).then(function(data) {
+  console.log("Success!", data);
+}, function(error) {
+  console.error("Failed!", error);
+});
+
+
+get(myCall4).then(function(response) {
+  console.log("Success!", response);
+}, function(error) {
+  console.error("Failed!", error);
+});
+//========================================
+*/
+
+
+/*
+//========================================
+// Test 2 all OK
+//========================================
+Promise.all([get(myCall1), get(myCall1)]).then( // note here 2 times myCall1
+ function(results) {
+  console.log(results)
+ }
+).catch(function(error) {
+ console.log('Error on promise.all, error=' error);
+});
+//========================================
+*/
+
+
+/*
+//========================================
+// Test 3 one OK and one KO
+//========================================
+Promise.all([get(myCall1), get(myCall4)]).then(  // note here myCall1 and myCall4
+ function(results) {
+  console.log(results)
+ }
+).catch(function(error) {
+ console.log('Error on promise.all, error=', error);
+	// One or more promises was rejected
+});
+//========================================
+*/
+
+/*
+//========================================
+// Test 4 two KO
+//========================================
+Promise.all([get(myCall4), get(myCall5)]).then(  // note here myCall1 and myCall2
+ function(results) {
+  console.log(results)
+ }
+).catch(function(error) {
+ console.log('Error on promise.all, error=', error);
+	// One or more promises was rejected
+});
+//========================================
+*/
+
+//========================================
+// Test 5 race : two OK
+//========================================
+/*
+Promise.race([get(myCall1), get(myCall2)]).then(function(one) {
+	console.log('Then: ', one); // log here
+}).catch(function(one, two) {
+	console.log('Catch: ', one , two);
+});
+//========================================
+*/
+
+/*
+//========================================
+// Test 6 race : one OK and one KO
+//========================================
+Promise.race([get(myCall1), get(myCall2)]).then(function(one) {
+	console.log('Then: ', one); // log here
+}).catch(function(one, two) {
+	console.log('Catch: ', one , two);
+});
+//========================================
+*/
+
+
+
+//========================================
+// Test 7 race : two KO with the 5 seconds before
+//========================================
+Promise.race([get(myCall5), get(myCall4)]).then(function(one) {
+	console.log('Then: ', one);
+}).catch(function( any) {
+	console.log('Catch: ', any );
+});
+//========================================
+
+</script>  
+ </body>
+</html>
