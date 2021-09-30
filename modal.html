@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>ma page</title>
+<meta name="description" content="ma page" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+<meta name="theme-color" content="#99D9EA" />
+<meta name="mobile-web-app-capable" content="yes" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="icon" sizes="192x192" href="192x192-min.png" />
+<link rel="apple-touch-icon" href="192x192-min.png" />
+<meta name="msapplication-square310x310logo" content="310x310-min.png" />
+-->
+<style>
+*{
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ box-sizing: border-box;
+ margin:0;
+ padding:0;
+}
+html{
+ height: 100%; /* pour faire fonctionner le background gradiant sur une page qui ne remplit pas entièrement la hauteur du navigateur */
+}
+body{
+ background-color:#cdf2ff;
+ color:#005063;
+ font-family: arial, sans-serif;
+ font-size:16px;
+ -webkit-user-select:none;
+ -moz-user-select:none;
+ -ms-user-select:none;
+ user-select:none;
+ -webkit-text-size-adjust:100%;
+ -ms-text-size-adjust:100%;
+ text-size-adjust:100%;
+/* width:100%; */
+/* position:absolute; */
+ touch-action:manipulation;
+ overflow:scroll;
+ height:100%;
+ background:linear-gradient(to bottom,#beedff 0%, #7eddff 100%);
+ background-repeat: no-repeat; /* pour faire fonctionner le background gradiant sur une page qui ne remplit pas entièrement la hauteur du navigateur */
+ background-attachment: fixed; /* pour faire fonctionner le background gradiant sur une page qui ne remplit pas entièrement la hauteur du navigateur */
+}
+*{scrollbar-width:thin;}
+*{scrollbar-color: #34d3f7 #bfe8ff;}
+*::-webkit-scrollbar {width: 8px;height: 8px;background:#bfe8ff;}
+*::-webkit-scrollbar-thumb {background-color: #34d3f7;}
+*::-webkit-scrollbar-corner{background-color: #34d3f7;}
+*::-webkit-resizer{background-color: #34d3f7;}
+#main{
+}
+a{
+ display:inline-block;
+ font-size:1.5em;
+ line-height:1.5em;
+ text-decoration:none;
+ border:1px #eee outset;
+ padding:0 1px;
+ min-width:2em;
+ margin:5px;
+ border-radius:5px;
+ box-shadow:0px 0px 4px #aaa;
+ color:#006c84;
+ background:linear-gradient(to bottom,#beedff 0%, #7eddff 100%);
+}
+
+a:visited{color:#005063;}
+
+h2{
+ margin-top:0.8rem;
+}
+.clsdiv1{
+ width:30px;
+ height:30px;
+ border:1px red solid;
+ background:yellow;
+ display:inline-block;
+}
+a.closePopup1{
+ position: fixed;
+ top: 0px;
+ right: 0px;
+ display: block;
+ margin: 0;
+ min-width: 40px;
+ min-height: 40px;
+ line-height: 38px;
+ background: red;
+ text-align: center;
+ font-size: 40px;
+ border-radius: 20px;
+ text-shadow: white 0px 2px 3px;
+ box-shadow: 0px 0px 4px #000;
+}
+div.clspopContent1{
+ position: absolute;
+ overflow: scroll;
+ top: 0px;
+ left: 0px;
+ display: none;
+ width: 100px;
+ height: 100px;
+ padding: 5px;
+ box-shadow: 0px 0px 10px #000;
+ background: linear-gradient(to bottom,#beedff 0%, #7eddff 100%);
+}
+#popupbox{
+ background: linear-gradient(to bottom,#beedff 0%, #7eddff 100%);
+}
+</style>
+</head>
+<body>
+<div id="main">
+  <div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div>
+  <div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div>
+  <div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div>
+  <div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div>
+  <div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div>
+  <div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div>
+  <div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div>
+  <div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div>
+  <div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div><div class="clsdiv1"></div>
+  <a href="javascript:o1.showPopup1('')">pop</a>
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  <a href="javascript:o1.showPopup1('')">pop</a>
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+  hello <br /> world <br />
+</div>  
+<script>
+var glob_head=document.getElementsByTagName('head')[0];
+var glob_body=document.getElementsByTagName('body')[0];
+var glob_main=document.getElementById('main')
+var isTouchDevice=(('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+
+//======================================================================================================================
+function myObject1(par){
+ "use strict";
+ var objName=par.objName;
+ var dkW=0,dkH=0,globalScrollWidth1=0;
+ var popUp1=null,popCont1=null;
+ var marginPopup1=30; // default and minimum : 30
+ var popupDisplayed=false;
+ //=====================================================================================================================
+ function _closePopup1(arg){
+  popUp1.style.display='none';
+  glob_body.style.overflow='scroll';
+  popCont1.style.display='none';
+  if(!isTouchDevice){
+   glob_body.style.marginRight='0px';
+  }
+  popCont1.innerHTML='';
+  var lstA=glob_main.getElementsByTagName('a');
+  for(var i=0;i<lstA.length;i++){
+   lstA[i].tabIndex=null;
+  }
+  
+  popupDisplayed=false;
+ }
+ //=====================================================================================================================
+ function _showPopup1(arg){
+
+  if(window.scrollY){
+   popUp1.style.top=(window.scrollY)+'px';
+   popCont1.style.top=(window.scrollY+marginPopup1)+'px';
+  }else{
+    if(document.body && (document.body.clientWidth || document.body.clientHeight)){ // IE
+     popUp1.style.top=(document.documentElement.scrollTop)+'px';
+     popCont1.style.top=(document.documentElement.scrollTop+marginPopup1)+'px';
+    }else{
+     alert('raah');
+    }
+  }
+  
+  var t='<div id="popupbox" >';
+  t+='<a class="closePopup1" id="closePopup1" href="javascript:o1.closePopup1();">&times;</a>'
+  for(var i=0;i<50;i++){
+   t+='hello popup '+i+'<br />';
+  }
+  t+='<a href="javascript:o1.closePopup1();">&times; close me &times;</a>'
+  t+='</div>'
+  popCont1.innerHTML=t;
+  popUp1.style.display='block';
+  popCont1.style.display='block';
+  glob_body.style.overflow='hidden';
+  
+  document.getElementById('closePopup1').style.top=(marginPopup1-30)+'px';
+  document.getElementById('closePopup1').style.right=(marginPopup1-30)+'px';
+  if(!isTouchDevice){
+   glob_body.style.marginRight=globalScrollWidth1+'px';
+  }
+  var lstA=glob_main.getElementsByTagName('a');
+  for(var i=0;i<lstA.length;i++){
+   lstA[i].tabIndex=-1;
+  }
+  
+  popupDisplayed=true;
+ }
+ //=====================================================================================================================
+ function getScrollWidth(){ //setup globalScrollWidth1
+  var div=document.createElement("div");
+  div.style.width='100px';
+  div.style.height='100px';
+  div.style.overflow='auto';
+  div.style.opacity=1; //0.01;
+  glob_body.appendChild(div);
+  var bag=document.createElement("div");
+  
+  bag.style.width='101px';
+  bag.style.height='101px';
+  bag.style.overflow='auto';
+  div.appendChild(bag);
+  div.scrollTop=100;
+  
+  globalScrollWidth1=div.scrollTop-1; // ATTENTION : recupère la hauteur de la barre
+  div.removeChild(bag);
+  glob_body.removeChild(div);
+ }
+ //=====================================================================================================================
+ function getPageSize(){
+  if(typeof(window.innerWidth)==='number'){
+   dkW=window.innerWidth;
+   dkH=window.innerHeight;
+  }else{
+   if(document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+    dkW=document.documentElement.clientWidth;
+    dkH=document.documentElement.clientHeight;
+   }else{
+    if(document.body && (document.body.clientWidth || document.body.clientHeight)){
+     dkW=document.body.clientWidth;
+     dkH=document.body.clientHeight;
+    }
+   }
+  }
+  
+ }
+ //==============================================================================================
+ function redim1(obj){
+  
+  popUp1.style.display='none';
+  popCont1.style.display='none';
+  getPageSize();
+  getScrollWidth();
+  console.log('redim1',dkW,dkH,globalScrollWidth1);
+  
+  popUp1.style.width=(dkW)+'px';
+  popUp1.style.height=(dkH)+'px';
+  popCont1.style.width=(dkW-2*marginPopup1)+'px';
+  popCont1.style.height=(dkH-2*marginPopup1)+'px';
+  popCont1.style.left=(marginPopup1)+'px';
+  if(window.scrollY){
+   popUp1.style.top=(window.scrollY)+'px';
+   popCont1.style.top=(window.scrollY+marginPopup1)+'px';
+  }else{
+   popUp1.style.top=(document.documentElement.scrollTop)+'px';
+   popCont1.style.top=(document.documentElement.scrollTop+marginPopup1)+'px';
+  }
+  if(popupDisplayed){
+   popUp1.style.display='block';
+   popCont1.style.display='block';
+  }
+  
+ }
+ //==============================================================================================
+ function init(){
+ 
+  popUp1=document.createElement('div');
+  popUp1.id='popUp1';
+  popUp1.style.position='absolute';
+  popUp1.style.overflow='hidden';
+  popUp1.style.top='0px';
+  popUp1.style.left='0px';
+  popUp1.style.opacity=0.90;
+  popUp1.style.textAlign='center';
+  popUp1.style.backgroundColor='#bfe8ff';
+  popUp1.style.display='none';
+  popUp1.style.WebkitOverflowScrolling='touch'; // pour ios
+  glob_body.appendChild(popUp1);
+ 
+  popCont1=document.createElement('div');
+  popCont1.id='popCont1';
+  popCont1.className='clspopContent1';
+  popCont1.style.top=marginPopup1+'px';
+  popCont1.style.left=marginPopup1+'px';
+  popCont1.style.display='none';
+  glob_body.appendChild(popCont1);
+ 
+ 
+  window.addEventListener('resize', function(){setTimeout(redim1,300);}, false);
+  redim1({});
+ }
+ init(par);
+ return {
+  closePopup1:function(a){_closePopup1(a);},
+  showPopup1:function(a){_showPopup1(a);},
+  nop:function(){},
+ };
+}
+var o1=new myObject1({objName:'o1'});
+</script>
+</body>
+</html>
