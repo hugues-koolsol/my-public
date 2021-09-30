@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>javascript box centered</title>
+<style>
+*,*:before,*:after {box-sizing:border-box;}
+body{
+ background:white;
+ width:100%;
+ height:100%;
+ margin:0;
+ padding:0;
+ overflow:hidden;
+}
+#main{
+ background:lightgreen;
+ width:100%;
+ height:100%;
+ top:0;
+ left:0;
+ border:2px red solid;
+ border-radius:10px;
+ overflow:hidden;
+}
+#centered{
+ display:none;
+ border:2px white outset;
+ border-radius:10px;
+ background:yellow;
+ position:absolute;
+ box-shadow: 0px 0px 10px yellowgreen;
+}
+</style>  
+</head>
+<body>
+ <div id="main">
+  <div id="centered"></div>
+ </div>
+  
+<script>
+var gbl_body=document.body;
+var gbl_main=document.getElementById('main');
+var gbl_html=document.documentElement;
+var gbl_centered=document.getElementById('centered');
+var gbl_obj1=null;
+
+function myObject1(o){
+
+ function redim1(){
+  if(navigator.userAgent.indexOf('MSIE')>=0){
+//  var height=Math.max( gbl_body.scrollHeight, gbl_body.offsetHeight, gbl_html.clientHeight, gbl_html.scrollHeight, gbl_html.offsetHeight ); 
+//  var width =Math.max( gbl_body.scrollWidth , gbl_body.offsetWidth , gbl_html.clientWidth , gbl_html.scrollWidth , gbl_html.offsetWidth  ); 
+   var height=Math.max(                                                 gbl_html.clientHeight,                        gbl_html.offsetHeight ); 
+   var width =Math.max(                          gbl_body.offsetWidth , gbl_html.clientWidth ,                        gbl_html.offsetWidth  ); 
+  }else{
+   var height=Math.max( gbl_html.clientHeight); 
+   var width =Math.max( gbl_html.clientWidth ); 
+  }
+//  console.log(width,height,navigator.userAgent);
+  gbl_main.style.width=width+'px';
+  gbl_main.style.height=height+'px';
+  gbl_centered.style.width=parseInt(width/2)+'px';
+  gbl_centered.style.left=parseInt(width/4)+'px';
+  gbl_centered.style.height=parseInt(height/2)+'px';
+  gbl_centered.style.top=parseInt(height/4)+'px';
+  gbl_centered.style.display='block';
+ }
+ function build_all(){
+  redim1();
+ }
+ function debounce(func, wait, immediate) {
+  var timeout;
+  return function() {
+   var context = this, args = arguments;
+   var later = function(){
+    timeout = null;
+    if(!immediate) func.apply(context, args);
+   };
+   var callNow = immediate && !timeout;
+   clearTimeout(timeout);
+   timeout = setTimeout(later, wait);
+   if(callNow) func.apply(context, args);
+  };
+ };
+ // Usage
+ var myEfficientFn = debounce(function() {
+  redim1(); // All the taxing stuff you do
+ }, 250);
+ window.addEventListener('resize', myEfficientFn);
+ 
+
+ if(String(document.location).indexOf('http://localhost')!==0 && String(document.location).indexOf('file://')!==0){
+  window.oncontextmenu=function(e){e.preventDefault();e.stopPropagation();return false;}; 
+ }
+ build_all();
+ return {
+  nop       : function(){/*nothing to do*/}
+ }; 
+
+}
+gbl_obj1=new myObject1({objName:'gbl_obj1'});
+  </script>
+</body>
+</html>
