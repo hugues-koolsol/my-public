@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+ <head>
+  <meta charset="utf-8" />
+  <title>title</title>
+  <link rel="stylesheet" href="" />
+  <style type="text/css">
+  </style>
+ </head>
+ <body>
+  <table border="1">
+   <tr>
+    <th>myTextArea1</th>
+    <th>debugZone</th>
+   </tr>
+   <tr>
+    <td>
+     <textarea id="myTextArea1" rows="10" cols="10" style="padding:3px;">a
+b
+c
+d
+e</textarea>
+    </td>
+    <td style="width:5rem;">
+     <div id="debugZone"></div>
+    </td>     
+   </tr>
+  </table>
+ 
+ <p>WITH CHROME AND EDGE</p>
+ <p>1°) select "bcd" =&gt; 2 : <span style="color:lime;">OK</span></p>
+ <p>2°) click before "e" =&gt; 8 : <span style="color:lime;">OK</span></p>
+ <p>3°) select "bcd" =&gt; 2 : <span style="color:lime;">OK</span></p>
+ <p>4°) click before "c" =&gt; 2 : <span style="color:red;">KO, it should be 4</span></p>
+ <p>5°) click again before "c" =&gt; 4 : <span style="color:lime;">OK</span></p>
+ <p style="color:blue;">How can I reset the selectionStart when I click inside the current selection like in FIREFOX ?</p>
+<script>
+document.getElementById('myTextArea1').onclick=function(e){
+ var dz=document.getElementById('debugZone');
+ dz.innerHTML='';
+ var t='<span style="font-size:0.5em;">'+(parseInt(performance.now()*10,10)/10)+'</span><br />';
+ t+='<span style="font-size:2rem;">'+this.selectionStart+'</span>';
+ dz.innerHTML=t;
+}
+</script>  
+ <p>The script is :</p>
+<pre>
+document.getElementById('myTextArea1').onclick=function(e){
+ var dz=document.getElementById('debugZone');
+ dz.innerHTML='';
+ var t='&lt;span style="font-size:0.5em;"&gt;'+(parseInt(performance.now()*10,10)/10)+'&lt;/span&gt;&lt;br /&gt;';
+ t+='&lt;span style="font-size:2rem;"&gt;'+this.selectionStart+'&lt;/span&gt;';
+ dz.innerHTML=t;
+}
+</pre>
+ </body>
+</html>
