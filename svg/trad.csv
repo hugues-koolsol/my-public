@@ -1,0 +1,97 @@
+actif,cle,fr,en
+1,arbre,édition l'arbre DOM,edit DOM tree
+1,selection,sélection de type tracé ou d'une forme,path type or shape selection
+1,deplacer,deplacer,move
+1,chemin,chemin,path
+1,selelts,selectionner les éléments,select items
+1,selptselts,selectionner les points des éléments,select the points of the elements
+1,seltranselts,selectionner transformations des éléments,select element transformations
+1,selgrps,selectionner les groupes,select groups
+1,seleltsdefs,Editer les éléments dans les définitions,Edit elements in definitions
+1,selptseltsdefs,Editer les points des éléments dans les définitions,Edit element points in definitions
+1,seltranseltsdefs,Editer les transformations des éléments dans les définitions,Edit element transformations in definitions
+1,selgrpsdefs,Editer les groupes dans les définitions,Edit groups in definitions
+1,aimpix,aimanter au pixel,snap to pixel
+1,gerpar,gérer les paramètres,manage settings
+1,supp_et_recharge,supprimer et recharger,delete and reload
+1,coultrait,couleur de trait,stroke color
+1,integrmodifman,intégrer modification manuelle,integrate manual modification
+1,annuler,annuler,cancel
+1,pousser_vers_le_haut,pousser vers le haut,push up
+1,pousser_vers_le_bas,pousser vers le bas,push down
+1,dupliquer_element,dupliquer element,duplicate element
+1,dupliquer_groupe,dupliquer groupe,duplicate group
+1,afficher_les_poignées_voisines,afficher les poignées voisines,show neighboring handles
+1,supprimer_élément,supprimer élément,delete element
+1,supprimer_groupe,supprimer groupe,delete group
+1,aller_en_0_0,aller en 0 0,go to 0 0
+1,aller_en_50_50,aller en 50 50,go in 50 50
+1,selectionner_le_groupe_en_cours,selectionner le groupe en cours,select the current group
+1,exporter_le_svg,exporter le svg,export svg
+1,importer_un_svg,importer un svg,import svg
+1,opérations_spéciales,opérations spéciales,special operations
+1,groupe_courant,groupe courant,current group
+1,racine,racine,root
+1,rechercher,rechercher,search
+1,entrez_un_nom_de_tag_ici,entrez un nom de tag ici,enter a tag name here
+1,reconstruire_le_svg_et_fermer,Reconstruire le svg et fermer,Rebuild svg and close
+1,enregistrer_la_modification,Enregistrer la modification,Save change
+1,nouvelle_propriete_définie_manuellement,nouvelle propriete définie manuellement,new property set manually
+1,entrez_un_nom,entrez un nom,enter a name
+1,entrez_une_valeur,entrez une valeur,enter a value
+1,insérer,insérer,insert
+1,Largeur_du_menu_gauche,Largeur du menu gauche,Left menu width
+1,Hauteur_minimal_des_boutons_à_gauche,Hauteur minimal des boutons à gauche,Minimum height of buttons on the left
+1,Hauteur_du_menu_haut,Hauteur du menu haut,Top menu height
+1,Largeur_minimal_des_boutons_en_haut,Largeur minimal des boutons en haut,Minimum width of buttons at the top
+1,Intervalles_entre_les_boutons,Intervalles entre les boutons,Intervals between buttons
+1,Largeur_du_scroll,Largeur du scroll,Scroll width
+1,Rayon_des_poignées,Rayon des poignées,Handle radius
+1,Taille_des_textes,Taille des textes,Text size
+1,Utilisation,Utilisation,Use
+1,Optimisation_des_tracés_chemin,Optimisation des tracés chemin,Path route optimization
+1,Diviseur_de_déplacement,Diviseur de déplacement,Displacement divider
+1,Diviseur_de_pixel,Diviseur de pixel,pixel divider
+1,liens_divers,liens divers,miscellaneous links
+1,Réinitialiser_le_programme_et_recharger_la_page,Réinitialiser le programme et recharger la page,Reset the program and reload the page
+1,Réinitialiser,Réinitialiser,Reset
+1,Opérations_spéciales,Opérations spéciales,Special operations
+1,arrondir_tous_les_chemins,arrondir tous les chemins,round all the paths
+1,tous_les_chemins_en_absolu,tous les chemins en absolu,all paths in absolute
+1,decomposer_les_M_des_chemins,decomposer les M des chemins,decompose the M of the paths
+1,insérer_une_étoile,insérer une étoile,insert a star
+1,nombre_de_branches,nombre de branches,number of branches
+1,pourcentage_arrondi,"pourcentage d'arrondi ( 100% = cercle, 0% = pointes )","rounding percentage ( 100% = circle, 0% = spikes )"
+1,angle_initial,angle initial,original angle
+1,Redimentionner_tous_les_éléments_du_groupe,Redimentionner tous les éléments du groupe,Resize all group items
+1,modif_prop_grp_et_elts,Modifier les propriétés d'un groupe et  de tous les éléments du groupe,Modify the properties of a group and all elements of the group
+1,Propriétés_du_groupe,Propriétés du groupe,Group properties
+1,Propriétés_des_éléments_du_groupe,Propriétés des éléments du groupe,Group element properties
+1,Appliquer,Appliquer,Apply
+1,Sélectionnez_un_mode_de_tracé_ou_une_forme_prédéfinie,Sélectionnez un mode de tracé ou une forme prédéfinie,Select a drawing mode or preset shape
+1,Modes_de_tracé,Modes de tracé,Draw Modes
+1,Formes_prédéfinies,Formes prédéfinies,Preset shapes
+1,Importer_de_l_url,Importer de l'url,Import from url
+1,importer_en_écrasant,importer en écrasant,import by overwriting
+1,importer_en_ajoutant,importer en ajoutant,import by adding
+1,Gérer_l_opacité,Gérer l'opacité,Manage opacity
+1,Gérer_l_épaisseur_du_trait,Gérer l'épaisseur du trait,Manage line thickness
+1,ajouter_point_avant,ajouter point avant,add dot before
+1,ajouter_point_apres,ajouter point après,add dot after
+1,supprimer_point,supprimer point,delete point
+1,relatif,relatif,relative
+1,absolu,absolu,absolute
+1,simplifier_ce_chemin,simplifier ce chemin,simplify this path
+1,H_ou_V_en_L,H ou V en L,H or V to L
+1,X_en_C,X en C,X to C
+1,supp_attr_gra_grp,supprimer attributs graphiques du groupe,remove graphic attributes from group
+1,Modifier_propriétés_du_groupe,Modifier propriétés du groupe,Edit group properties
+1,redimentionner_les_éléments_du_groupe,redimentionner les éléments du groupe,resize group items
+1,redimentionner_élément,redimentionner l'élément,resize element
+1,selectionner_le_groupe,selectionner le groupe,select group
+1,sous_le,sous le,under the
+1,actuel,actuel,current
+1,Certain,Certain,Sure
+1,Il_y_a,Il y a ,There are
+1,chemins_à_transformer_voulez_vous_continuer,"chemins à transformer, voulez vous continuer","paths to convert, do you want to continue"
+1,svg_vide,le svg est vide,the svg is empty
