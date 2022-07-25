@@ -5351,15 +5351,38 @@ function myObj1(initObj1){
 
   var pt1=refZnDessin.createSVGPoint();  
   pt1=pt0.matrixTransform(globalElementTransformScale.matriceDeplacementPoint);
+  
+  
   var newPointX=globalElementTransformScale.elementStart.x+pt1.x/_dssvg.parametres.diviseurDeplacement;
   var newPointY=globalElementTransformScale.elementStart.y+pt1.y/_dssvg.parametres.diviseurDeplacement;
 		globalGeneralReferencePointControleClique.setAttribute('cx', newPointX );
 		globalGeneralReferencePointControleClique.setAttribute('cy', newPointY );
 
+  if(globEchelle.dataInit.t0.indices.scale<globEchelle.dataInit.t0.indices.rotate){
+//   console.log('pt1=',pt1,'globEchelle.dataInit=',globEchelle.dataInit);
+   var matrix = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix();
+   matrix=matrix.rotate(globEchelle.dataInit.angle);
+   var pt2=refZnDessin.createSVGPoint();  
+   pt2=pt1.matrixTransform(matrix);
+//   console.log('pt2=',pt2);
+//   var dx2=globEchelle.dataInit.dx2;
+//   var dy2=globEchelle.dataInit.dy2;
+//   var dx2=globEchelle.dataInit.dx2+pt2.x;
+//   var dy2=globEchelle.dataInit.dy2+pt2.y;
+//   var dx2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt9[0],globalElementTransformScale.init.pt9[1],globEchelle.dataInit.dx2+pt2.x,globEchelle.dataInit.dy2);
+//   var dy2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt8[0],globalElementTransformScale.init.pt8[1],globEchelle.dataInit.dx2,globEchelle.dataInit.dy2+pt2.y);
+//   var dx2=globEchelle.dataInit.pt10[0]+pt2.x;
+//   var dy2=globEchelle.dataInit.pt10[1]+pt2.y;
+   var dx2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt9[0],globalElementTransformScale.init.pt9[1],globEchelle.dataInit.pt10[0]+pt2.x,globEchelle.dataInit.pt10[1]+pt2.y);
+   var dy2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt8[0],globalElementTransformScale.init.pt8[1],globEchelle.dataInit.pt10[0]+pt2.x,globEchelle.dataInit.pt10[1]+pt2.y);
+  }else{
+   var dy2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt8[0],globalElementTransformScale.init.pt8[1],newPointX,newPointY);
+   var dx2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt9[0],globalElementTransformScale.init.pt9[1],newPointX,newPointY);
+  }
+
+
 //  console.log(globalElementTransformScale.init);
 
-  var dy2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt8[0],globalElementTransformScale.init.pt8[1],newPointX,newPointY);
-  var dx2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt9[0],globalElementTransformScale.init.pt9[1],newPointX,newPointY);
   
 //  console.log( 'dx2 = ' , dx2 , 'globalElementTransformScale.init.dx2=' , globalElementTransformScale.init.dx2 , ' dy2 = ' , dy2 , 'globalElementTransformScale.init.dy2=' , globalElementTransformScale.init.dy2 );
   
@@ -5534,9 +5557,7 @@ function myObj1(initObj1){
   globEchelle.dataInit=JSON.parse(globalGeneralReferencePointControleClique.getAttribute('data-init'));
 //  console.log('globEchelle.dataInit=',globEchelle.dataInit);
   
-  // hugues
   globEchelle.angle=parseFloat(globalGeneralReferencePointControleClique.getAttribute('data-angle'));
-//  globEchelle.dxdy=JSON.parse(globalGeneralReferencePointControleClique.getAttribute('data-dxdy')).map(Number);
   
   globEchelle.ref=document.querySelectorAll('[data-elem="'+_dssvg.idArbreCourant+' ce"]')[0];
   globEchelle.centreX=arrdi10000(globEchelle.ref.cx.animVal.value);
@@ -5551,8 +5572,6 @@ function myObj1(initObj1){
  
   globEchelle.deltaxInit=initMouseDownObj.x - globEchelle.centreX;
   globEchelle.deltayInit=initMouseDownObj.y - globEchelle.centreY;
-//  console.log('globEchelle.deltaxInit=',globEchelle.deltaxInit);
-//  console.log('globEchelle.deltayInit=',globEchelle.deltayInit);
 
   
   
@@ -5920,15 +5939,15 @@ function myObj1(initObj1){
 //      console.log('t0=',t0);
       
 
+      // centre de l'échelle
       var toto=refZnDessin.getScreenCTM().inverse().multiply(lst[i].parentNode.getScreenCTM()).inverse();
       var pt7=pt6.matrixTransform(toto);
-      var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-action':'felementTransformEchelle3', 'data-type':'toRemove','data-elem':''+idarbre1+' ce',cx:pt7.x,cy:pt7.y,r:rayonPoint/5,style:'fill:lightgreen;opacity:1;stroke:green;stroke-width:'+(1/4/_dssvg.zoom1)+';'});
+      var dot    = ajouteElemDansElem(refZnDessin,'circle',{ 'data-type':'toRemove','data-elem':''+idarbre1+' ce',cx:pt7.x,cy:pt7.y,r:rayonPoint/5,style:'fill:lightgreen;opacity:1;stroke:green;stroke-width:'+(1/4/_dssvg.zoom1)+';'});
 
       var cx=pt7.x
       var cy=pt7.y;
 
 
-//      console.log('lst[i].getScreenCTM()=',lst[i].getScreenCTM()); // hugues
       var tr=matrixToFnt(lst[i].getScreenCTM());
 //      var angle0=tr.angle;
       var angle0=t0.tab[t0.indices.rotate][1][0];
@@ -5974,8 +5993,7 @@ function myObj1(initObj1){
 
       var line  = ajouteElemDansElem(refZnDessin,'path',{ 'data-type':'toRemove','data-elem':''+idarbre1+'',d:'M '+cx+' '+cy+' L '+pt9.x+' '+pt9.y+'',style:'fill:lightgreen;opacity:0.9;stroke:green;stroke-width:'+(1/_dssvg.zoom1/1)+';'});
       
-      // hugues
-      var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-action':'felementTransformEchelle3','data-init':'{"angle":'+angle1+',"dx2":'+dx2+',"dy2":'+dy2+',"facteurx":'+facteurx+',"facteury":'+facteury+',"cx":'+cx+',"cy":'+cy+',"t0":'+JSON.stringify(t0)+',"pt8":['+pt8.x+','+pt8.y+'],"pt9":['+pt9.x+','+pt9.y+']}','data-type':'toRemove','data-elem':''+idarbre1+' se',cx:pt10.x,cy:pt10.y,r:rayonPoint,style:'fill:lightgreen;opacity:0.9;stroke:green;stroke-width:'+(1/_dssvg.zoom1)+';'});
+      var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-action':'felementTransformEchelle3','data-init':'{"angle":'+angle1+',"dx2":'+dx2+',"dy2":'+dy2+',"facteurx":'+facteurx+',"facteury":'+facteury+',"cx":'+cx+',"cy":'+cy+',"t0":'+JSON.stringify(t0)+',"pt8":['+pt8.x+','+pt8.y+'],"pt9":['+pt9.x+','+pt9.y+'],"pt10":['+pt10.x+','+pt10.y+']}','data-type':'toRemove','data-elem':''+idarbre1+' se',cx:pt10.x,cy:pt10.y,r:rayonPoint,style:'fill:lightgreen;opacity:0.9;stroke:green;stroke-width:'+(1/_dssvg.zoom1)+';'});
       dot.addEventListener('mousedown'  ,mouseDownElementTransformScale3,'dot');
       dot.addEventListener('touchstart' ,touchDownElementTransformScale3,'dot');
       
@@ -5984,9 +6002,11 @@ function myObj1(initObj1){
       //===============================================================================================
       // pour angle de la rotation
       
-      var t0=convertirTransformEnTableau(transform0,['rotate']);
+      var t0=convertirTransformEnTableau(transform0,['rotate','skewx']);
 //      console.log('t0=',t0);
       var angleRot=t0.tab[t0.indices.rotate][1][0];
+      var angleSkewx=t0.tab[t0.indices.skewx][1][0];
+//      console.log( ' angleSkewx=' , angleSkewx );
       
       
       
@@ -6007,9 +6027,8 @@ function myObj1(initObj1){
       
 
       // pour angle skewx
-      var angleSkewx=tabSkew[0];
-      var posx=pt5.x+(150/_dssvg.zoom1)*Math.cos((angleRot+90)/180*Math.PI);
-      var posy=pt5.y+(150/_dssvg.zoom1)*Math.sin((angleRot+90)/180*Math.PI);
+      var posx=pt5.x+(150/_dssvg.zoom1)*Math.cos((angleRot+90-angleSkewx)/180*Math.PI);
+      var posy=pt5.y+(150/_dssvg.zoom1)*Math.sin((angleRot+90-angleSkewx)/180*Math.PI);
       var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-type':'toRemove','data-elem':''+idarbre1+' sk',cx:posx,cy:posy,r:rayonPoint,style:'fill:#2196f3;opacity:0.5;stroke:red;stroke-width:'+(1/_dssvg.zoom1)+';','data-action':'fElementTransformSkewx'});
       dot.addEventListener( 'mousedown'  , mouseDownSkewxTransformElement , 'dot' );
       dot.addEventListener( 'touchstart' , touchDownSkewxTransformElement , 'dot' );
