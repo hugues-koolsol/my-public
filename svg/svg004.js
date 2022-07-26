@@ -1,3 +1,4 @@
+// traiter les todo
 "use strict";
 var trad={};
 //========================================================================================================
@@ -155,7 +156,6 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function selectionneGroupeActif(e){
-//  console.log('e=',e, e.target.value );
   groupeActif.matrice     = null;
   groupeActif.transform   = null;
   if(e.target.value==='0'){
@@ -194,16 +194,8 @@ function myObj1(initObj1){
    lst[i].addEventListener('click',selectionneGroupeActif,'button');
   }
 
-  
-
   showPopUp('popGroupeActif1');  
-  
-  
-  
  }
- 
- 
- 
  
  //========================================================================================================
  function touchDownParPourcentageArrondi(e){
@@ -321,23 +313,27 @@ function myObj1(initObj1){
   var contentOfPopup='<h3>'+trad['insérer_une_étoile']+'</h3>';
   
   contentOfPopup+='<div >';
-  contentOfPopup+='<label for="parNombreDeBranches">'+trad['nombre_de_branches']+' : </label>';
   contentOfPopup+='<div id="parNombreDeBranchesValeur" style="display:inline-block;min-width:2rem;">8</div>';
-  contentOfPopup+='<input id="parNombreDeBranches" type="range" min="3" max="30" step="1" value="8" />';
+  contentOfPopup+='<label for="parNombreDeBranches"> : '+trad['nombre_de_branches']+'</label>';
+  contentOfPopup+='<div>';
+   contentOfPopup+='<input id="parNombreDeBranches" type="range" min="3" max="30" step="1" value="8" style="width:95%;min-width:200px;max-width:500px;" />';
+  contentOfPopup+='</div>';
   contentOfPopup+='</div>';
   
 
   contentOfPopup+='<div >';
-  contentOfPopup+='<label for="parPourcentageArrondi">'+trad['pourcentage_arrondi']+' : </label>';
   contentOfPopup+='<div id="parPourcentageArrondiValeur" style="display:inline-block;min-width:2rem;">30</div>';
-  contentOfPopup+='<input id="parPourcentageArrondi" type="range" min="0" max="100" step="1" value="30" />';
+  contentOfPopup+='<label for="parPourcentageArrondi"> : '+trad['pourcentage_arrondi']+'</label>';
+  contentOfPopup+='<div>';
+  contentOfPopup+='<input id="parPourcentageArrondi" type="range" min="0" max="100" step="1" value="30" style="width:95%;min-width:200px;max-width:500px;" />';
+  contentOfPopup+='</div>';
   contentOfPopup+='</div>';
   
 
   contentOfPopup+='<div >';
-  contentOfPopup+='<label for="parAngleInitial">'+trad['angle_initial']+' : </label>';
   contentOfPopup+='<div id="parAngleInitialValeur" style="display:inline-block;min-width:2rem;">0</div>';
-  contentOfPopup+='<input id="parAngleInitial" type="range" min="0" max="90" step="1" value="0" />';
+  contentOfPopup+='<label for="parAngleInitial"> : '+trad['angle_initial']+'</label>';
+  contentOfPopup+='<input id="parAngleInitial" type="range" min="0" max="90" step="1" value="0" style="width:95%;min-width:200px;max-width:500px;" />';
   contentOfPopup+='</div>';
   
 
@@ -465,11 +461,9 @@ function myObj1(initObj1){
  
  //========================================================================================================
  function changeEchelle(e){
-//  console.log(e.target);
   var numArbre=parseInt(e.target.getAttribute('data-groupe'),10);
   var ech=parseFloat(e.target.getAttribute('data-echelle'));
   var jso=JSON.parse(e.target.getAttribute('data-jso'));
-//  console.log('jso=',jso); // {action: 'redimElt1', numArbre: 3}   return;
   
   
   function recupElements(id,tab){
@@ -487,9 +481,7 @@ function myObj1(initObj1){
   }else{
    recupElements(numArbre,tabElts);
   }
-//    console.log('tabElts=',tabElts);
   for(var i=0;i<tabElts.length;i++){
-//     console.log('_dssvg.arbre0[i]=', _dssvg.arbre0[tabElts[i][1]]);
    if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='rect'){
     _dssvg.arbre0[tabElts[i][1]].data.attributes.x=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.x*ech);
     _dssvg.arbre0[tabElts[i][1]].data.attributes.y=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.y*ech);
@@ -519,7 +511,6 @@ function myObj1(initObj1){
    }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='path'){
     var tt=_dssvg.arbre0[tabElts[i][1]].data.attributes.d;
     var obj=getPointsFromSvgPath(tt);
-//      console.log('obj.tabOri=',obj.tabOri);
     var tutu='';
     for(var j=0;j<obj.tabOri.length;j++){
      if(obj.tabOri[j][0].toUpperCase()==='A'){
@@ -601,7 +592,6 @@ function myObj1(initObj1){
     }
    }
   }
-//  console.log('propsGroupe=',propsGroupe,'propsElements=',propsElements);
   var idArbre1=parseInt(document.getElementById('idArbre1').value,10);
   var indC=recupereIndiceArbre(idArbre1);
   var nouvellesProprietesGroupe={};
@@ -617,13 +607,9 @@ function myObj1(initObj1){
   for(var i in propsGroupe){
    nouvellesProprietesGroupe[i]=propsGroupe[i];
   }
-//  console.log('nouvellesProprietesGroupe=',nouvellesProprietesGroupe);
   _dssvg.arbre0[indC].data.attributes=JSON.parse(JSON.stringify(nouvellesProprietesGroupe));
 
-  
-
   // B) pour les éléments inclus dans le groupe
-  
   
   function boucleElementsEnfants(idParent,tableauIndicesElementsEnfants){
    for(var i=0;i<_dssvg.arbre0.length;i++){
@@ -639,7 +625,6 @@ function myObj1(initObj1){
   var idParent=idArbre1;
   var tableauIndicesElementsEnfants=[];
   boucleElementsEnfants(idParent,tableauIndicesElementsEnfants);
-//  console.log('tableauIndicesElementsEnfants=',tableauIndicesElementsEnfants);
   for(var j=0;j<tableauIndicesElementsEnfants.length;j++){
    var nouvellesProprietesElementsDuGroupe={};
 
@@ -657,7 +642,6 @@ function myObj1(initObj1){
    for(var i in propsElements){
     nouvellesProprietesElementsDuGroupe[i]=propsElements[i];
    }
-//   console.log('nouvellesProprietesElementsDuGroupe=',nouvellesProprietesElementsDuGroupe);
    _dssvg.arbre0[indC].data.attributes=JSON.parse(JSON.stringify(nouvellesProprietesElementsDuGroupe));
   }
   closePopup();
@@ -667,7 +651,6 @@ function myObj1(initObj1){
  //========================================================================================================
  function popupPropEltsGrp1(jso){
   var lstAttribs=['id','style','fill','fill-opacity','fill-rule','stroke','stroke-width','opacity','transform','line-cap','enable-background','filter','stroke-linecap','stroke-linejoin','stroke-miterlimit','stroke-dasharray'];
-//  console.log('jso=',jso);
   var contentOfPopup='<h3>'+trad['modif_prop_grp_et_elts']+'</h3>';
   contentOfPopup+='<style>'
   contentOfPopup+='.table1{border:1px blue outset;margin:10px 3px 0px 3px;width:80%;}';
@@ -921,7 +904,6 @@ function myObj1(initObj1){
  //========================================================================================================
  function selectionnePoigneePoisine(e){
   e.stopPropagation();
-//  console.log(e.target,e);
   var brancheSelectionne=e.target.getAttribute('data-elem');
   if(brancheSelectionne){
    etatPoigneesVoisines1=false;
@@ -972,7 +954,6 @@ function myObj1(initObj1){
        if(pt0.x>=_dssvg.viewBoxInit[0] && pt0.x<=_dssvg.viewBoxInit[0]+_dssvg.viewBoxInit[2] &&
           pt0.y>=_dssvg.viewBoxInit[1] && pt0.y<=_dssvg.viewBoxInit[1]+_dssvg.viewBoxInit[3]
        ){
- //       console.log('pt0=',pt0.x,pt0.y);
         var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-action':'selectionnePoigneePoisine','data-type':'toRemove','data-poigneevoisine':true,'data-elem':''+numArbre,cx:pt0.x,cy:pt0.y,r:rayonPoint,style:'fill:brown;stroke:red;stroke-width:'+(1/_dssvg.zoom1)+';'});
         dot.addEventListener('mousedown',selectionnePoigneePoisine,'dot');
         dot.addEventListener('touchstart',selectionnePoigneePoisine,'dot');
@@ -987,7 +968,6 @@ function myObj1(initObj1){
        if(pt0.x>=_dssvg.viewBoxInit[0] && pt0.x<=_dssvg.viewBoxInit[0]+_dssvg.viewBoxInit[2] &&
           pt0.y>=_dssvg.viewBoxInit[1] && pt0.y<=_dssvg.viewBoxInit[1]+_dssvg.viewBoxInit[3]
        ){
- //       console.log('pt0=',pt0.x,pt0.y);
         var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-action':'selectionnePoigneePoisine','data-type':'toRemove','data-poigneevoisine':true,'data-elem':''+numArbre,cx:pt0.x,cy:pt0.y,r:rayonPoint,style:'fill:brown;stroke:red;stroke-width:'+(1/_dssvg.zoom1)+';'});
         dot.addEventListener('mousedown',selectionnePoigneePoisine,'dot');
         dot.addEventListener('touchstart',selectionnePoigneePoisine,'dot');
@@ -1161,7 +1141,6 @@ function myObj1(initObj1){
     var indC=recupereIndiceArbre(numArbre);
     var d=_dssvg.arbre0[indC].data.attributes.d;
     var tt=simplifierUnChemin(d,parseFloat(obj['stroke-width']));
-//    console.log('lst[i].tagName',lst[i].tagName , 'numArbre=',numArbre , 'obj[stroke-width]=',parseFloat(obj['stroke-width']),'indC=',indC,'tt=',tt);
     _dssvg.arbre0[indC].data.attributes.d=tt;
    }
   }
@@ -1172,10 +1151,6 @@ function myObj1(initObj1){
  function simplifierUnChemin(tt,strw){
   var nouveauChemin=tt;
   var obj=getPointsFromSvgPath(tt);
-  //obj.tabOri;
-  //obj.tabAbs;
-//      console.log('obj.tabAbs=' , obj.tabAbs );
-//      console.log('avant obj.tabPts=' , JSON.parse(JSON.stringify(obj.tabPts)) );
   var lesSegments=[];
   var eltSeg=[];
   for(var i=0;i<obj.tabPts.length;i++){
@@ -1190,12 +1165,9 @@ function myObj1(initObj1){
   if(eltSeg.length>0){
    lesSegments.push(JSON.parse(JSON.stringify(eltSeg)));
   }
-//      console.log('lesSegments=',lesSegments);
-  // m 120.16969,606.23331 -0.0509,-1.40234 m 2.03238,-1.70722 4.97914,0 3.15005,0 c 0.35583,0 0.71295,0.0358 1.06697,0 0.36884,-0.0373 0.72031,-0.1707 1.08111,-0.25587 0.36081,-0.0852 0.7329,-0.10995 1.10362,-0.10995 l 1.11776,0 c 0.0781,0 0.1563,0.003 0.23436,-2.8e-4 0.039,-0.002 0.0781,-0.005 0.11613,-0.0143 0.038,-0.009 0.075,-0.0237 0.10678,-0.0465 0.0549,-0.0394 0.0913,-0.10267 0.10142,-0.16954 0.0101,-0.0669 -0.005,-0.13669 -0.0394,-0.1951 -0.0341,-0.0584 -0.0863,-0.10549 -0.14615,-0.13693 -0.0599,-0.0314 -0.12727,-0.0476 -0.19484,-0.0505 -0.13514,-0.006 -0.26789,0.0395 -0.38819,0.1014 -0.12029,0.0619 -0.2313,0.14024 -0.34899,0.20693 -0.30919,0.1752 -0.66119,0.26715 -1.0153,0.29709 -0.35412,0.0299 -0.71116,-5.1e-4 -1.06177,-0.0585 -0.70122,-0.11606 -1.38286,-0.3419 -2.08914,-0.42159 -0.65692,-0.0741 -1.32166,-0.0203 -1.9815,-0.061 -0.76404,-0.0472 -1.5376,-0.22036 -2.28633,-0.061 -0.47736,0.1016 -0.91506,0.33315 -1.35497,0.54453 -0.4399,0.21139 -0.90111,0.40799 -1.38862,0.43103 -0.47865,0.0226 -0.94772,-0.12363 -1.40167,-0.2771 -0.45395,-0.15346 -0.91381,-0.31758 -1.39276,-0.33263 -0.15073,-0.005 -0.30482,0.006 -0.44486,0.0621 -0.07,0.028 -0.1359,0.0672 -0.19127,0.1184 -0.0554,0.0512 -0.10001,0.11455 -0.12597,0.18534 -0.034,0.0926 -0.0349,0.19558 -0.0114,0.29136 0.0236,0.0958 0.0708,0.18469 0.1298,0.2637 0.11807,0.15804 0.28053,0.2758 0.43085,0.40353 0.15033,0.12774 0.29522,0.27486 0.35784,0.46192 0.0313,0.0935 0.0404,0.19565 0.0173,0.29154 -0.0231,0.0959 -0.08,0.18482 -0.16235,0.23905 -0.0856,0.0563 -0.19419,0.0724 -0.29501,0.0542 -0.10082,-0.0181 -0.19405,-0.0685 -0.27263,-0.13419 -0.15715,-0.13144 -0.25486,-0.31826 -0.36385,-0.49173 -0.0545,-0.0867 -0.11301,-0.17161 -0.18405,-0.24542 -0.071,-0.0738 -0.15533,-0.13654 -0.25127,-0.17243 -0.0959,-0.0359 -0.20419,-0.0435 -0.30109,-0.0103 -0.0485,0.0166 -0.0936,0.0432 -0.13059,0.0787 -0.037,0.0355 -0.0656,0.0798 -0.0813,0.12854 -0.023,0.0713 -0.0178,0.14807 -0.0225,0.22283 -0.002,0.0374 -0.007,0.0749 -0.0193,0.11034 -0.012,0.0355 -0.0315,0.069 -0.0597,0.0936 -0.0298,0.0261 -0.0674,0.041 -0.1015,0.061 -0.0806,0.0472 -0.14262,0.12526 -0.17047,0.21443 -0.0279,0.0892 -0.0213,0.18862 0.0181,0.27334
   var tt='';
   for(var indSeg=0;indSeg<lesSegments.length;indSeg++){
    var leSegment=lesSegments[indSeg];
-//       console.log('avant le segment =',JSON.parse(JSON.stringify(leSegment)));
    var goon=10000;
    var imin=leSegment.length-1
    while(goon-- > 0){
@@ -1325,9 +1297,7 @@ function myObj1(initObj1){
     }
    }
    maxId+=1;
-//   console.log('maxId=',maxId);
    elem.id=maxId;
-//   console.log(elem)
    _dssvg.arbre0.push(elem);
    _dssvg.idArbreCourant=maxId;
    globalIndiceArbre=recupereIndiceArbre(_dssvg.idArbreCourant);
@@ -1381,8 +1351,6 @@ function myObj1(initObj1){
    tt=tt.substr(pos0+9);
    var pos0=tt.indexOf('"');
    var tab=tt.substr(0,pos0).trim().replace(/ /g,',').replace(/,,/g,',').replace(/,,/g,',').replace(/,,/g,',').split(',').map(Number);
-//   console.log('tab=',tab);
-   
    
    if(tab.length===4 && ajouterRetrancher.fonction=='moinsUnGauche'){
     var deb='<svg viewBox="'+(tab[0]-1)+' '+(tab[1])+'  '+(tab[2])+' '+(tab[3])+'">';
@@ -1419,7 +1387,6 @@ function myObj1(initObj1){
  //========================================================================================================
  function traiteBtnExportSvg(e){
   e.stopPropagation();
-//  console.log(e.target.id);
   var contenu=construireSvgPourExport({'fonction':e.target.id});
   remplacerContenuBtns(contenu);
  }
@@ -1439,10 +1406,7 @@ function myObj1(initObj1){
    return;
   }
   
-  
-  
   var contentOfPopup='<h3>'+trad['exporter_le_svg']+'</h3>';
-//  console.log(_dssvg.arbre0[0].data.sizes);
   
   contentOfPopup+='<textarea id="sourceSvg" rows="3" style="min-height:30vh;"></textarea>';
 
@@ -1573,7 +1537,6 @@ function myObj1(initObj1){
  //========================================================================================================
  function nettoyageDonnees(){
   for(var i=0;i<_dssvg.arbre0.length;i++){
-//   console.log(_dssvg.arbre0[i].data.nodeName);
    if(_dssvg.arbre0[i].data.nodeName==='path'){
     var obj=getPointsFromSvgPath(_dssvg.arbre0[i].data.attributes.d);
     var valeursExtremesTrouvees=false;
@@ -1592,20 +1555,13 @@ function myObj1(initObj1){
       if(obj.tabPts[j][2] <-1000000){
        obj.tabPts[j][2]=0;
       }
-//      console.log('obj=',obj);
      }
     }
     if(valeursExtremesTrouvees===true){
      var leChemin=obj.tabPts.join(' ');
-//     console.log('obj=' , obj , 'leChemin=',leChemin);
      var obj2=recuperePropsCouleurs(_dssvg.arbre0[i].id); // obj
-//     console.log('obj2=',obj2);
      var tt=simplifierUnChemin(leChemin,parseFloat(obj2['stroke-width']));
-//     console.log('tt=',tt,'obj=',obj);
      _dssvg.arbre0[i].data.attributes.d=tt;
-     
-     
-     
     }
    }
   }
@@ -1665,34 +1621,24 @@ function myObj1(initObj1){
  //========================================================================================================
  function importerEnAjoutant(){
   var NouveauContenu=document.getElementById('contenuSvg').value;
-//  console.log('NouveauContenu=',NouveauContenu.substr(0,1000))
   var pos1=NouveauContenu.toLowerCase().indexOf('<svg');
-//  console.log('pos1=',pos1);
-//  return;
   if(pos1>=0){
    NouveauContenu=NouveauContenu.substr(pos1);
    var pos2=NouveauContenu.indexOf('>');
-//   console.log('contenu=',contenu.substr(0,1000));
    NouveauContenu=NouveauContenu.substr(pos2+1);
   }
   var ancienContenu=refZnDessin.innerHTML;
   NouveauContenu=ancienContenu+NouveauContenu;
   refZnDessin.innerHTML=NouveauContenu;
-  //<defs><pattern id="star" viewBox="0,0,10,10" width="10%" height="10%"><polygon points="0,0 2,5 0,10 5,8 10,10 8,5 10,0 5,2"></polygon></pattern></defs>
   finirImport();
  }
  //========================================================================================================
  function importerSvgEtFermer(){
-  
   var contenu=document.getElementById('contenuSvg').value;
-//  console.log('contenu=',contenu.substr(0,1000))
   var pos1=contenu.toLowerCase().indexOf('<svg');
-//  console.log('pos1=',pos1);
-//  return;
   if(pos1>=0){
    contenu=contenu.substr(pos1);
    var pos2=contenu.indexOf('>');
-//   console.log('contenu=',contenu.substr(0,1000));
    refZnDessin.innerHTML=contenu.substr(pos2+1);
   }else{
    refZnDessin.innerHTML=contenu;
@@ -1741,24 +1687,12 @@ function myObj1(initObj1){
   // zzvin.svg , zzSimplificationChemin.svg zzSVG_Logo-svgomg.svg zzsagami_single-svgomg.svg zztest-car-lite.svg
   contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="0 0  0 0"><defs><pattern id="star" viewBox="0,0,10,10" width="10%" height="10%"><polygon points="0,0 2,5 0,10 5,8 10,10 8,5 10,0 5,2"></polygon></pattern></defs><circle cx="50" cy="50" r="50" fill="url(#star)"></circle><circle cx="180" cy="50" r="40" fill="none" stroke-width="20" stroke="url(#star)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
   contentOfPopup+=' <br /><br /><button id="test19"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="-28.9289 -24.9948  170.6555 150.0684"><defs><clipPath id="cp" transform="rotate(10)"><path transform="translate(3 3)" d="M 22.9695 18.0532 C 14.1526 18.0532 -3.4807 35.199 -10.093 39.4856 C -14.5013 42.3431 -5.6849 52.3449 -5.6849 53.7739 C -5.6849 55.2027 -5.6849 56.6317 -5.6849 56.6317 C 3.132 62.347 14.1526 65.2046 22.9695 102.3543 C 31.7859 69.4911 56.0316 75.2063 75.8691 102.3543 C 75.8691 62.347 91.2982 63.7758 133.1773 68.0622 C 95.7067 46.6297 58.2361 25.1973 139.7899 19.482 C 97.9108 20.9107 53.8278 19.482 108.9316 -11.9526 C 86.89 -19.0967 22.9695 10.909 20.765 -23.3831 " style="stroke:rgb(0, 0, 0);fill:blanchedalmond;stroke-width:0;stroke-opacity:1;fill-opacity:1;opacity:1;"></path></clipPath></defs><rect x="3" y="4" width="70" height="66" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#cp)" style="stroke:rgb(0, 0, 0);fill:rosybrown;stroke-width:1;stroke-opacity:1;fill-opacity:0.5;opacity:1;"></rect></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test19 clipPath</button>';
-  contentOfPopup+=' <br /><br /><button id="test18"  class="butEnabled butMenuHaut" onclick="'+global_variable_name+'.chargerTest(\'zzvin.svg\')">test18 vin</button>';
   contentOfPopup+=' <br /><br /><button id="test17"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="0 -1  442.2656 377.5"><defs><filter id="filtered-3" height="220%"><feFlood flood-color="#551C0B" result="COLOR-outline"></feFlood><feMorphology operator="dilate" radius="0.3" in="SourceAlpha" result="OUTLINE_10"></feMorphology><feComposite operator="in" in="COLOR-outline" in2="OUTLINE_10" result="OUTLINE_20"></feComposite><feGaussianBlur stdDeviation="4" in="SourceAlpha" result="LIGHTING-EFFECTS_10"></feGaussianBlur><feSpecularLighting surfaceScale="5" specularConstant="0.5" specularExponent="7.5" lighting-color="#white" in="LIGHTING-EFFECTS_10" result="LIGHTING-EFFECTS_20"><fePointLight x="750" y="-50" z="300"></fePointLight></feSpecularLighting><feComposite in2="SourceAlpha" operator="in" in="LIGHTING-EFFECTS_20" result="LIGHTING-EFFECTS_30"></feComposite><feComposite operator="arithmetic" k1="0" k2="1" k3="1" k4="0" in="SourceGraphic" in2="LIGHTING-EFFECTS_30" result="LIGHTING-EFFECTS_40"></feComposite><feComponentTransfer in="LIGHTING-EFFECTS_40" result="COLOR-EFFECTS_10"><feFuncR type="gamma" offset="-1.3" amplitude="10" exponent="4.84"></feFuncR><feFuncB type="gamma" offset="-1.3" amplitude="10.1" exponent="40.84"></feFuncB></feComponentTransfer><feMerge><feMergeNode in="OUTLINE_20"></feMergeNode><feMergeNode in="COLOR-EFFECTS_10"></feMergeNode></feMerge></filter></defs><text filter="url(#filtered-3)" x="20" y="140" font-size="140" stroke="#EF7349" fill="#EF7349">BLOP!</text><g fill="transparent" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke="#EF7349"><path filter="url(#filtered-3)" d="M 387 226 C 382.55 226 344.7 277.28 329 292 C 286.38 331.96 230.33 371 170 371 "></path><path filter="url(#filtered-3)" stroke-width="20" stroke="#EF7349" fill="transparent" d=" M 342.5 289.5 C 317.46 321.54 239.49 367.5 212.5 376.5 "></path></g></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test17 filtres 2</button>';
   contentOfPopup+=' <br /><br /><button id="test16"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<defs><filter id="MyFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="200" height="120"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"></feGaussianBlur><feOffset in="blur" dx="4" dy="4" result="offsetBlur"></feOffset><feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.75" specularExponent="20" lighting-color="#bbbbbb" result="specOut"><fePointLight x="-5000" y="-10000" z="20000"></fePointLight></feSpecularLighting><feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"></feComposite><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint"></feComposite><feMerge><feMergeNode in="offsetBlur"></feMergeNode><feMergeNode in="litPaint"></feMergeNode></feMerge></filter></defs><g filter="url(#MyFilter)"><path fill="none" stroke="#D90000" stroke-width="10" d=" M 50 66 c -50 0 -50 -60 0 -60 h 100 c 50 0 50 60 1 60  z"></path><path fill="#D90000" d="M60,56 c-30,0 -30,-40 0,-40 h80 c30,0 30,40 0,40z"></path><g fill="#FFFFFF" stroke="black" font-size="45" font-family="Verdana"><text x="52" y="52">SVG</text></g></g></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test16 filtres</button>';
   contentOfPopup+=' <br /><br /><button id="test15"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<defs> <linearGradient id="a" x1="0" y1="0" x2="100"  y2="100" gradientUnits="userSpaceOnUse"> <stop offset="0" stop-color="blue"/> <stop offset="0.3333" stop-color="white"/> <stop offset="0.6666" stop-color="white"/> <stop offset="1" stop-color="red"/></linearGradient></defs><rect fill="url(#a)" x="0" y="0" width="100" height="100"/>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test15 linear gradient</button>';
   contentOfPopup+=' <br /><br /><button id="test14"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="0 0  7.14109992980957 15.984700202941895"><defs><radialGradient id="a" cx="3.9321" cy="2.3306" r="3.0394" gradientUnits="userSpaceOnUse" ><stop offset="0" stop-color="#e7e7e7"></stop><stop offset="1" stop-color="#565656"></stop></radialGradient></defs><ellipse cx="3.8754" cy="8.3128" rx="3.2657" ry="7.6719" stroke="rgb(0, 0, 0)" fill="transparent" style="stroke:rgb(0, 0, 0);fill:url(#a);stroke-width:0.1;stroke-opacity:1;fill-opacity:1;"></ellipse></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test14 radial gradient</button>';
-  contentOfPopup+=' <br /><br /><button id="test13"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<path stroke="rgb(0, 0, 0)" fill="transparent" d="M 51.393 27.646 c 0.147 2.032 0.08 4.08 -0.203 6.097 a 34.012 34.012 0 0 1 -0.762 3.78 c -0.257 0.995 -0.55 1.982 -0.762 2.988 c -0.17 0.81 -0.286 1.63 -0.457 2.439 c -0.146 0.689 -0.332 1.372 -0.407 2.073 c -0.022 0.205 -0.035 0.414 -0.101 0.61 c -0.018 0.05 -0.039 0.1 -0.045 0.155 a 0.217 0.217 0 0 0 0.005 0.08 m -37.547 -17.925 a 10.986 10.986 0 0 0 -4.827 -3.537 c -0.158 -0.06 -0.32 -0.12 -0.488 -0.133 a 0.773 0.773 0 0 0 -0.253 0.018 a 0.551 0.551 0 0 0 -0.224 0.115 a 0.555 0.555 0 0 0 -0.158 0.243 a 0.782 0.782 0 0 0 -0.036 0.289 m 12.854 -13.231 a 45.446 45.446 0 0 0 1.778 -2.134 c 0.212 -0.27 0.422 -0.545 0.66 -0.792 c 0.488 -0.506 1.087 -0.89 1.626 -1.342 c 0.26 -0.217 0.506 -0.45 0.762 -0.67 c 1.653 -1.424 3.765 -2.341 5.945 -2.44 c 0.762 -0.033 1.529 0.03 2.286 -0.06 c 0.119 -0.014 0.24 -0.032 0.356 0 c 0.075 0.02 0.143 0.062 0.199 0.116 " style="stroke:rgb(0, 0, 0);fill:transparent;stroke-width:0.1;stroke-opacity:1;fill-opacity:1;"></path><path stroke="rgb(0, 0, 0)" fill="transparent" d="M51.39,27.65c-0.19,5.85 -3.09,12.5 -2.73,18.22    M11.11,27.94c-1.8,-1.32 -5.71,-5.22 -5.99,-3    M17.98,11.71c2.69,-3.23 8.92,-10.06 13.61,-7.32    " style="stroke:rgb(0, 0, 0);fill:transparent;stroke-width:0.1;stroke-opacity:1;fill-opacity:1;"></path>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test13 simplification chemin</button>';
-  contentOfPopup+=' <br /><br /><button id="test12"  class="butEnabled butMenuHaut" onclick="'+global_variable_name+'.chargerTest(\'zzSimplificationChemin.svg\')">test12 simplification chemin</button>';
-  contentOfPopup+=' <br /><br /><button id="test11"  class="butEnabled butMenuHaut" onclick="'+global_variable_name+'.chargerTest(\'zzSVG_Logo-svgomg.svg\')">test11 logo SVG</button>';
-  contentOfPopup+=' <br /><br /><button id="test10"  class="butEnabled butMenuHaut" onclick="'+global_variable_name+'.chargerTest(\'zzPlates_tect2_fr-svgomg.svg\')">test10 plaques tectoniques</button>';
-  contentOfPopup+=' <br /><br /><button id="test09"  class="butEnabled butMenuHaut" onclick="'+global_variable_name+'.chargerTest(\'zzsagami_single-svgomg.svg\')">test09 sagami_single.svg</button>';
-  contentOfPopup+=' <br /><br /><button id="test08"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<defs data-idarbre1="1"><radialGradient data-idarbre1="2" id="a" cx="22.682" cy="-15.034" r="3.243" gradientTransform="matrix(1 0 0 2.37143 0 19.952)" gradientUnits="userSpaceOnUse"><stop data-idarbre1="3" offset="0" stop-color="#e7e7e7"></stop><stop data-idarbre1="4" offset="1" stop-color="#565656"></stop></radialGradient><radialGradient data-idarbre1="5" id="c" cx="25.501" cy="30.67" r="15.188" gradientTransform="matrix(1.55222 0 0 .6192 -14.018 5.14)" gradientUnits="userSpaceOnUse"><stop data-idarbre1="6" offset="0"></stop><stop data-idarbre1="7" offset="1" stop-color="#5e5e5e"></stop></radialGradient><radialGradient data-idarbre1="8" xlink:href="#a" id="f" cx="22.682" cy="-15.034" r="3.243" gradientTransform="matrix(1 0 0 2.37143 0 19.952)" gradientUnits="userSpaceOnUse"></radialGradient><radialGradient data-idarbre1="9" xlink:href="#a" id="g" cx="22.682" cy="-15.034" r="3.243" gradientTransform="matrix(1 0 0 2.37143 0 19.952)" gradientUnits="userSpaceOnUse"></radialGradient><radialGradient data-idarbre1="10" xlink:href="#c" id="i" cx="25.501" cy="30.67" r="15.188" gradientTransform="matrix(29.1164 0 0 11.61495 -339.17 200.348)" gradientUnits="userSpaceOnUse"></radialGradient><linearGradient data-idarbre1="11" id="b" x1="11.685" x2="10.783" y1="33.647" y2="35.871" gradientTransform="matrix(1.04306 0 0 1.04306 -1.034 -1.279)" gradientUnits="userSpaceOnUse"><stop data-idarbre1="12" offset="0" stop-color="#96d2e2"></stop><stop data-idarbre1="13" offset="1" stop-color="#1d5868"></stop></linearGradient><linearGradient data-idarbre1="14" id="d"><stop data-idarbre1="15" offset="0" stop-color="#666"></stop><stop data-idarbre1="16" offset="1" stop-color="#ababab" stop-opacity="0"></stop></linearGradient><linearGradient data-idarbre1="17" xlink:href="#b" id="h" x1="11.685" x2="10.783" y1="33.647" y2="35.871" gradientTransform="matrix(19.56562 0 0 19.56562 -95.62 79.961)" gradientUnits="userSpaceOnUse"></linearGradient><linearGradient data-idarbre1="18" xlink:href="#d" id="j" x1="22.901" x2="21.304" y1="27.156" y2="16.709" gradientTransform="matrix(19.56562 0 0 19.56562 -95.62 79.961)" gradientUnits="userSpaceOnUse"></linearGradient><linearGradient data-idarbre1="19" xlink:href="#d" id="k" x1="9.65" x2="20.748" y1="29.287" y2="18.285" gradientTransform="matrix(19.56562 0 0 19.56562 -95.62 79.961)" gradientUnits="userSpaceOnUse"></linearGradient><filter data-idarbre1="20" id="e" color-interpolation-filters="sRGB"><feGaussianBlur data-idarbre1="21" stdDeviation=".573"></feGaussianBlur></filter></defs><g data-idarbre1="22" transform="translate(151.895 -274.138)"><g data-idarbre1="26" color="#000"><path data-idarbre1="27" d="M681.793 507.108c-24.166 0-43.832 46.613-43.832 103.922 0 48.01 13.85 88.19 32.52 100.035 16.26 12.253 34.928 12.54 54.082 9.544 23.367-2.147 42.064-47.629 42.064-103.569 0-57.309-19.664-103.922-43.832-103.922-18.117 10.33-23.59 3.623-41.004-6.01z" enable-background="accumulate"></path><path data-idarbre1="28" fill="url(#f)" d="M27.058-14.548a3.243 7.691 0 1 1-6.487 0 3.243 7.691 0 1 1 6.487 0z" enable-background="accumulate" transform="translate(561 716) rotate(0)  scale(7 7) skewX(0)"></path></g><g data-idarbre1="29" color="#000"><path data-idarbre1="30" d="M381.365 696.173c-28.51 0-51.712 54.995-51.712 122.608 0 56.643 16.34 104.045 38.367 118.022 19.183 14.455 41.207 14.794 63.805 11.26 27.57-2.534 49.627-56.193 49.627-122.191 0-67.614-23.2-122.608-51.712-122.608-21.376 12.187-27.833 4.275-48.377-7.09z" enable-background="accumulate"></path><path data-idarbre1="31" fill="url(#g)" d="M27.058-14.548a3.243 7.691 0 1 1-6.487 0 3.243 7.691 0 1 1 6.487 0z" enable-background="accumulate" transform="translate(239 942) rotate(0)  scale(8 8) skewX(0)"></path></g></g>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test08 pneus</button>';
-  contentOfPopup+=' <br /><br /><button id="test07"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<g data-idarbre1="29" transform=""><g data-idarbre1="1" transform="translate(0 0 ) "><rect data-idarbre1="2" x="1" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform=""></rect><rect data-idarbre1="3" x="5" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-90 6 10 ) "></rect><rect data-idarbre1="4" x="5" y="5" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(90 6 6 ) "></rect><rect data-idarbre1="5" x="9" y="5" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(45 10 6 ) "></rect><rect data-idarbre1="6" x="9" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-45 10 10 ) "></rect><rect data-idarbre1="7" x="9" y="1" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-180 10 2 ) "></rect></g><g data-idarbre1="8" transform="scale(1 -1 ) translate(0 0 ) "><rect data-idarbre1="9" x="1" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform=""></rect><rect data-idarbre1="10" x="5" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-90 6 10 ) "></rect><rect data-idarbre1="11" x="5" y="5" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(90 6 6 ) "></rect><rect data-idarbre1="12" x="9" y="5" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(45 10 6 ) "></rect><rect data-idarbre1="13" x="9" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-45 10 10 ) "></rect><rect data-idarbre1="14" x="9" y="1" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-180 10 2 ) "></rect></g><g data-idarbre1="15" transform="scale(-1 -1 ) translate(0 0 ) "><rect data-idarbre1="16" x="1" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform=""></rect><rect data-idarbre1="17" x="5" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-90 6 10 ) translate(0 0 ) "></rect><rect data-idarbre1="18" x="5" y="5" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(90 6 6 ) translate(0 0 ) "></rect><rect data-idarbre1="19" x="9" y="5" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(45 10 6 ) "></rect><rect data-idarbre1="20" x="9" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-45 10 10 ) translate(0 0 ) "></rect><rect data-idarbre1="21" x="9" y="1" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-180 10 2 ) "></rect></g><g data-idarbre1="22" transform="scale(-1 1 ) translate(0 0 ) "><rect data-idarbre1="23" x="1" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform=""></rect><rect data-idarbre1="24" x="5" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-90 6 10 ) "></rect><rect data-idarbre1="25" x="5" y="5" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(90 6 6 ) "></rect><rect data-idarbre1="26" x="9" y="5" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(45 10 6 ) "></rect><rect data-idarbre1="27" x="9" y="9" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-45 10 10 ) "></rect><rect data-idarbre1="28" x="9" y="1" width="2" height="2" stroke="black" stroke-width="1" fill="transparent" transform="rotate(-180 10 2 ) "></rect></g></g>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test07 etude translate</button>';
-  contentOfPopup+=' <br /><br /><button id="test06"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<g transform="rotate(90 0 0 ) "><polyline points=" 2 2  0 0  -3 4  4 5  4 -1  0 -4  0 -4 " stroke="black" stroke-width="1" fill="transparent" transform="translate(0 -1 ) rotate(0 0 1 ) "></polyline></g>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test05 scale pour rotate translate element dans un groupe</button>';
-  contentOfPopup+=' <br /><br /><button id="test05"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<polyline data-idarbre1="1" points=" 2 2  0 0  -3 4  4 5  4 -1  0 -4  0 -4 " stroke="black" stroke-width="1" fill="transparent" transform="rotate(-173 0 0 ) translate(-4 -5 ) scale(1 1 ) "></polyline>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test05 scale pour rotate translate element</button>';
   contentOfPopup+=' <br /><br /><button id="test04"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="0 4  554.4265 390.0948"><g transform="   "><g transform="translate(200,0) scale(2) "><rect x="50" y="50" width="30" height="30" stroke="black" fill="transparent" stroke-width="5" transform=" rotate(45 50 50) "></rect><g transform="translate(100,0)"><rect x="50" y="50" width="30" height="30" stroke="black" fill="blue" stroke-width="5" transform=" rotate(45 50 50) "></rect></g></g><g transform=""><rect x="6" y="27" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"></rect><rect x="60" y="10" rx="5" ry="10" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"></rect><circle cx="25" cy="75" r="20" stroke="red" fill="transparent" stroke-width="5"></circle><ellipse cx="75" cy="75" rx="20" ry="5" stroke="red" fill="transparent" stroke-width="5"></ellipse><line x1="10" x2="50" y1="110" y2="150" stroke="orange" stroke-width="5"></line><polyline points="60 110 65 120 70 115 75 130 80 125 85 140 90 135 95 150 100 145" stroke="orange" fill="transparent" stroke-width="5"></polyline><polygon points="50 160 55 180 70 180 60 190 65 205 50 195 35 205 40 190 30 180 45 180" stroke="green" fill="transparent" stroke-width="5"></polygon><path d="M20,230 Q40,205 50,230 T90,230" fill="none" stroke="blue" stroke-width="5"></path><path d="M 40,260   A 40,60  0 1 0 60,260" fill="none" stroke="blue" stroke-width="5"></path></g></g></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test04 petits éléments</button>';
   contentOfPopup+=' <br /><br /><button id="test03"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<path d=" M 21 10 L 20 64 L 21 121 M 97 16 Q 66 46 100 63 Q 133 88 105 114 T 105 166 T 103 221 T 106 275 M 180 16 M 230 13 C 176 63 183 106 228 48 C 273 74 278 122 228 86 C 179 149 180 188 228 125 C 285 159 278 183 229 161 M 327 33 L 370 78  L 341 137 L 342 208 H 395 V 251 H 338 V 302 M 526 36 A 50 40 0 1 0 529 79 V 134 A 50 25 -120 0 1 533 185 A 50 25 120 1 0 534 236 V 288 A 20 30 21.6783 1 1 537 350 A 20 47.4513 30 0 0 533 409" style="stroke:black;stroke-width:1;fill:transparent;"></path>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test03 chemin complet</button>';
-  contentOfPopup+=' <br /><br /><button id="test02"  class="butEnabled butMenuHaut" onclick="'+global_variable_name+'.chargerTest(\'zztest-car-lite.svg\')">test02 car lite</button>';
-  contentOfPopup+=' <br /><br /><button id="test01"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<path d="M 12 12L 22 22" style="stroke:black;stroke-width:1;fill:transparent;" />')+'\';'+global_variable_name+'.importerSvgEtFermer();">test01 ligne simple</button>';
   contentOfPopup+='</div>';
 
   popupValue.innerHTML=contentOfPopup;
@@ -1932,16 +1866,11 @@ function myObj1(initObj1){
    console.warn('e1=',e1,'e=',e);
   }
   p=p.matrixTransform(refZnDessin.getScreenCTM().inverse());
-//  p.x=arrdi10000(p.x);
-//  p.y=arrdi10000(p.y);
   p.x=Math.round(p.x*10)/10;
   p.y=Math.round(p.y*10)/10;
-//  console.log('_dssvg.viewBoxInit=' , _dssvg.viewBoxInit)
   return {
    x:(e.clientX-decalageX)/_dssvg.zoom1+_dssvg.viewBoxInit[0],
    y:(e.clientY-decalageY)/_dssvg.zoom1+_dssvg.viewBoxInit[1],
-//   ex:e.clientX,
-//   ey:e.clientY,
    sx:p.x,
    sy:p.y,
   }
@@ -2006,7 +1935,6 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function touchDownZoneDessin(e){
-//  console.log('e.touches[0]=',e.touches[0]);
   actionDownZoneDessin(e.touches[0]);
  }
  //========================================================================================================
@@ -2015,7 +1943,6 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function actionDownZoneDessin(e){
-//  console.log('actionDownZoneDessin ecran_appuye=',ecran_appuye);
   divlag1.innerHTML='';
   var modificationViewB=false;
   if(ecran_appuye===false){
@@ -2028,13 +1955,9 @@ function myObj1(initObj1){
    divlag1.innerHTML='<span>md0Z='+_dssvg.zoom1+'</span>,<span>sx='+initPosxy.sx+ '</span>,<span>sy=' + initPosxy.sy+'</span>';
 
    globalClickDessin.mouseStart=refZnDessin.createSVGPoint();
-//   globalClickDessin.mouseStart.x = e.clientX; // position de la souris dans la fenetre du navigateur
-//   globalClickDessin.mouseStart.y = e.clientY; // position de la souris dans la fenetre du navigateur
-
    globalClickDessin.mouseStart.x = initPosxy.sx;
    globalClickDessin.mouseStart.y = initPosxy.sy;
 
-//    console.log('globalClickDessin.mouseStart=',globalClickDessin.mouseStart);
    if(refZnDessin!==groupeActif.refGroupe){ //groupeActif.idDansArbre!==0){
     // on se demande pourquoi il faut refaire ceci mais sans, ça ne marche plus au deuxième trait
     groupeActif.refGroupe=document.querySelectorAll('[data-idarbre1="'+groupeActif.idDansArbre+'"]')[0];
@@ -2043,25 +1966,19 @@ function myObj1(initObj1){
     
    var tm=refZnDessin.getScreenCTM().inverse().multiply(groupeActif.refGroupe.getScreenCTM());
     
-//    console.log('md corrigé globalClickDessin.mouseStart=',globalClickDessin.mouseStart);
     
    groupeActif.transform='matrix('+tm.a+','+tm.b+','+tm.c+','+tm.d+','+tm.e+','+tm.f+')' ;//  0,0)'; // '+tm.e+','+tm.f+')' ; //,0,0)';
    globalClickDessin.matriceRacineInverse=tm.inverse(); //groupeActif.refGroupe.getScreenCTM().inverse(); 
-//   console.log( 'md avant transformation, globalClickDessin.mouseStart=' , globalClickDessin.mouseStart );
    globalClickDessin.mouseStart=globalClickDessin.mouseStart.matrixTransform(globalClickDessin.matriceRacineInverse);
    globalClickDessin.mouseStart.x=arrdi10000(globalClickDessin.mouseStart.x);
    globalClickDessin.mouseStart.y=arrdi10000(globalClickDessin.mouseStart.y);
-//   console.log( 'md apres transformation, globalClickDessin.mouseStart=' , globalClickDessin.mouseStart );
    
    if(_dssvg.mode_en_cours==='setModeSaisieRectangle1'){
 
     ecran_appuye=true;
     modificationViewB=false;
     
-//    console.log('globalClickDessin.mouseStart.x=',globalClickDessin.mouseStart.x);
-    
     globalClickDessin.pointsTraces=[[globalClickDessin.mouseStart.x , globalClickDessin.mouseStart.y]];
-    
     
     globalClickDessin.tempchild=document.createElementNS("http://www.w3.org/2000/svg",'rect');
     globalClickDessin.tempchild.setAttribute('data-type','toRemove');
@@ -2257,7 +2174,6 @@ function myObj1(initObj1){
      enCoursDeSelectionSansClickSurElement=true;
     }
    }else if(_dssvg.mode_en_cours==='setModeSaisieGroupe1' || 'setModeSaisieDefsGrp1'===_dssvg.mode_en_cours){
-//    console.log('modificationViewB=',modificationViewB);
     if(modificationViewB===true){
      enCoursDeSelectionSansClickSurElement=true;
     }
@@ -2280,14 +2196,12 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function touchMoveZoneDessin(e){
-//  console.log('touchMoveZoneDessin');
   e.stopPropagation();
   e.preventDefault();
   moveZoneDessin(e.touches[0]);
  }
  //========================================================================================================
  function mouseMoveZoneDessin(e){
-//  console.log('mouseMoveZoneDessin');
   e.stopPropagation();
   e.preventDefault();
   moveZoneDessin(e);
@@ -2295,8 +2209,6 @@ function myObj1(initObj1){
  var enCoursDeSelectionSansClickSurElement=false;
  //========================================================================================================
  function moveZoneDessin(e){
-//  console.log('moveZoneDessin',enCoursDeSelectionSansClickSurElement , ecran_appuye , e.clientX , _dssvg.mode_en_cours);
-//  var pos=positionSouris(e);
   globalDernierePositionSouris=positionSouris(e);
   
   
@@ -2308,14 +2220,10 @@ function myObj1(initObj1){
     var newX=Math.round((_dssvg.viewBoxInit[0]+initPosxy.x-globalDernierePositionSouris.x)*10)/(10);
     var newY=Math.round((_dssvg.viewBoxInit[1]+initPosxy.y-globalDernierePositionSouris.y)*10)/(10);
    }
-//   console.log('newX=',newX , 'newy=',newY,'_dssvg.aimanterPixel1='+_dssvg.aimanterPixel1)
    _dssvg.viewBoxInit[0]=newX;
    _dssvg.viewBoxInit[1]=newY;
-//   refZnDessin.setAttribute('viewBox',(newX)+' '+(newY)+' '+(_dssvg.viewBoxInit[2])+' '+(_dssvg.viewBoxInit[3])+' ')
    setAttributeViewBox();  
-   
    divLag1Pour({t:'viewBox',l:'vb1z'});
-   
    return;
    
   }
@@ -2409,7 +2317,6 @@ function myObj1(initObj1){
       for(var i=1;i<globalClickDessin.pointsTraces.length;i++){
        tt+=globalClickDessin.pointsTraces[i].join(' ')+' ';
       }
-//      console.log('tt=',tt);
       globalClickDessin.tempchild.setAttribute('points' , tt );
       defTimeoutPolygon=setTimeout( timeOutPolygon , 500 );
      }
@@ -2444,7 +2351,6 @@ function myObj1(initObj1){
       for(var i=1;i<globalClickDessin.pointsTraces.length;i++){
        tt+=globalClickDessin.pointsTraces[i].join(' ')+' ';
       }
-//      console.log('tt=',tt);
       globalClickDessin.tempchild.setAttribute('points' , tt );
       defTimeoutPolyline=setTimeout( timeOutPolyline , 500 );
      }
@@ -2558,10 +2464,8 @@ function myObj1(initObj1){
       var newX=Math.round((_dssvg.viewBoxInit[0]+initPosxy.x-globalDernierePositionSouris.x)*10)/(10);
       var newY=Math.round((_dssvg.viewBoxInit[1]+initPosxy.y-globalDernierePositionSouris.y)*10)/(10);
      }
-  //   console.log('newX=',newX , 'newy=',newY,'_dssvg.aimanterPixel1='+_dssvg.aimanterPixel1)
      _dssvg.viewBoxInit[0]=newX;
      _dssvg.viewBoxInit[1]=newY;
-//     refZnDessin.setAttribute('viewBox',(newX)+' '+(newY)+' '+(_dssvg.viewBoxInit[2])+' '+(_dssvg.viewBoxInit[3])+' ')
      setAttributeViewBox();  
      divLag1Pour({t:'viewBox',l:'vb2z'});
      
@@ -2631,7 +2535,7 @@ function myObj1(initObj1){
     }
    }
   }
-//         console.log('dx=',dx,'dy=',dy);
+
   if(ttemp[0]==ttemp[0].toLowerCase()){
    // rien à faire
   }else if(ttemp[0]=='C'){
@@ -2679,7 +2583,6 @@ function myObj1(initObj1){
   }else if(ttemp[0]=='Z'){
   }else{
    console.warn('%ctraiter ttemp[0]=','color:purple;',ttemp[0])
-   todo();
   }
   return ttemp.join(' ');  
  }
@@ -2689,7 +2592,6 @@ function myObj1(initObj1){
 //  console.log('traiterAction txt=',txt);
   try{
    var jso=JSON.parse(txt);
-//   console.log('jso=',jso);
    if('supptransform1'===jso.action){
     var supTr=supptransform1(jso.numArbre,jso.numTransform);
     if(supTr.statut===true){
@@ -2698,8 +2600,6 @@ function myObj1(initObj1){
     afficheArbre0({prendreTout:false});
     return supTr.statut;
    }else if('pointEnAbsolu'===jso.action || 'pointEnRelatif'===jso.action || 'largeArc'===jso.action || 'sweepFlag'===jso.action ){
-    // console.log('jso=',jso);
-    // {action: 'pointEnAbsolu', numArbre: 23, indicePoint: 1, nouvPoint: 'C -31 1127 -61 1120 -58 1089'}
     if(globalSelectionPoints.tabOriginal!==null && globalSelectionPoints.tabAbsolu!==null){
      globalSelectionPoints.tabOriginal[jso.indicePoint]=jso.nouvPoint.split(' ');
      var tt='';
@@ -2723,7 +2623,6 @@ function myObj1(initObj1){
      for(var i=0;i<globalSelectionPoints.tabAbsolu.length;i++){
       tt+=''+globalSelectionPoints.tabAbsolu[i].join(' ')+'   ';
      }
-//     console.log('tt=',tt);
      var indA=recupereIndiceArbre(jso.numArbre);
      _dssvg.arbre0[indA].data.attributes['d']=tt;
      if(globalGeneralSvgReferenceElement){
@@ -2737,17 +2636,10 @@ function myObj1(initObj1){
    }else if('cheminCompletEnRelatif'===jso.action){
     if(globalSelectionPoints.tabOriginal!==null && globalSelectionPoints.tabAbsolu!==null){
      var tt='';
-     // M 10,10    20 20 30 30 M 50,60 q 80,-60 100,15 T 200,75   250 75   300 75   350 75 t 50 0 50 0 
-     // m 10 9                 m 40 51   q 30 -120 50 -45   t 50 0   t 50 0   t 50 0   t 50 0   t -300 -75   t -350 -75   
-     // m 10 10 l 20 20 l 30 30 m 10 0 
-//     console.log( 'avant on a :     m 10 10 l 20 20 l 30 30 m 10 0 ');
      for(var i=0;i<globalSelectionPoints.tabOriginal.length;i++){
-//      var obj=recupRelatifVersAbsolu(i , globalSelectionPoints.tabOriginal , globalSelectionPoints.tabAbsolu , jso.numArbre );
       var nouvelleChaine=recupCheminVersRelatif(i , globalSelectionPoints.tabOriginal , globalSelectionPoints.tabAbsolu , jso.numArbre );
       tt+=nouvelleChaine+'   ';
-//      console.log('nouvelleChaine=' , nouvelleChaine ); //, 'obj=',obj);
      }
-//     console.log('tt=',tt);
      var indA=recupereIndiceArbre(jso.numArbre);
      _dssvg.arbre0[indA].data.attributes['d']=tt;
      if(globalGeneralSvgReferenceElement){
@@ -2839,7 +2731,6 @@ function myObj1(initObj1){
     if(globalSelectionPoints.tabOriginal!==null){
      var nto=[];
      var tt='';
-//     console.log('globalSelectionPoints.tabOriginal=' , globalSelectionPoints.tabOriginal );
      var pDebPrec={x:null,y:null};
      for(var i=0;i<globalSelectionPoints.tabOriginal.length;i+=1){
       if(i===jso.indicePoint){
@@ -2856,7 +2747,6 @@ function myObj1(initObj1){
        tt+='  '+ globalSelectionPoints.tabOriginal[i].join(' ')+ ' ';
       }
      }
- //     console.log('tt=',tt);
      var indA=recupereIndiceArbre(jso.numArbre);
      _dssvg.arbre0[indA].data.attributes['d']=tt;
      if(globalGeneralSvgReferenceElement){
@@ -2871,11 +2761,9 @@ function myObj1(initObj1){
     }
    }else if('ajouterPointChemin'===jso.action){
     
-    // {"action":"ajouterPointChemin","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"typePointChemin":"'+typePointChemin[i]+'"}
     if(globalSelectionPoints.tabOriginal!==null){
      var nto=[];
      var tt='';
-//     console.log('globalSelectionPoints.tabOriginal=' , globalSelectionPoints.tabOriginal );
      for(var i=0;i<globalSelectionPoints.tabOriginal.length;i+=1){
       tt+='  '+ globalSelectionPoints.tabOriginal[i].join(' ')+ ' ';
       if(i===jso.indicePoint){
@@ -2902,7 +2790,6 @@ function myObj1(initObj1){
        }
       }
      }
-//     console.log('tt=',tt);
      var indA=recupereIndiceArbre(jso.numArbre);
      _dssvg.arbre0[indA].data.attributes['d']=tt;
      if(globalGeneralSvgReferenceElement){
@@ -2910,12 +2797,10 @@ function myObj1(initObj1){
       var obj=getPointsFromSvgPath(tt);
       globalSelectionPoints.tabOriginal=obj.tabOri;
       globalSelectionPoints.tabAbsolu=obj.tabAbs;
-//      globalIndicePoint+=1;
      }
      afficheArbre0({init:false});
     }
    }else if('strokeElement'===jso.action || 'fillElement'===jso.action){
-//    console.log('jso=',jso);
     colorPickerData.numArbre=jso.numArbre;
     colorPickerData.value=jso.valeur;
     colorPickerData.id=null;
@@ -2924,7 +2809,6 @@ function myObj1(initObj1){
     
    }else if('stroke-width' === jso.action){
     
-//    console.log('jso=',jso);
     strokeData.numArbre=jso.numArbre;
     strokeData.value=jso.valeur;
     strokeData.context=''+jso.action+'';
@@ -2932,7 +2816,6 @@ function myObj1(initObj1){
     
    }else if('stroke-opacity' === jso.action || 'fill-opacity' === jso.action){
     
-//    console.log('jso=',jso);
     strokeData.numArbre=jso.numArbre;
     strokeData.value=jso.valeur;
     strokeData.context=''+jso.action+'';
@@ -2986,7 +2869,6 @@ function myObj1(initObj1){
     
    }else if('suppAttribGra1'===jso.action){
     var indA=recupereIndiceArbre(jso.numArbre);
-//    console.log( '_dssvg.arbre0[indA].data.attributes=' , _dssvg.arbre0[indA].data.attributes );
     for( n in _dssvg.arbre0[indA].data.attributes){
      if(n==='style' || n==='fill' || n==='fill-opacity' || n==='stroke' || n==='stroke-width' || n==='stroke-opacity'  || n==='stroke-linecap'  || n==='stroke-linejoin' ){
       _dssvg.arbre0[indA].data.attributes[n]='';
@@ -3006,12 +2888,10 @@ function myObj1(initObj1){
     afficheArbre0({init:false});
     
    }else if('popupPropEltsGrp1'===jso.action){
-    //    lstAttribs=['id','style','fill','fill-opacity','fill-rule','stroke','stroke-width','opacity','transform','line-cap','enable-background','filter','stroke-linecap','stroke-linejoin','stroke-miterlimit','stroke-dasharray'];
     popupPropEltsGrp1(jso);
 
     
    }else if('selectionnerGroupeDessous1'===jso.action){
-//        t+='<button class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"selectionnerGroupeDessous1"  ,"idAutre":'+idAutre+',"idCourant":'+_dssvg.idArbreCourant+'}')+'">selectionner le groupe '+idAutre+' sous le '+_dssvg.idArbreCourant+' actuel</button>';
     _dssvg.idArbreCourant=parseInt(jso.idAutre,10);
     afficheArbre0({init:false});
     var lst=document.querySelectorAll('[data-elem="'+jso.idCourant+' hg"]'); // 
@@ -3028,10 +2908,8 @@ function myObj1(initObj1){
     
     if(globalGeneralSvgReferenceElement){
      var tt=globalGeneralSvgReferenceElement.getAttribute('d');
-     if(tt){ // M 0 0 h 30 v 30 h -30 v -15 z m 5 5 h 20 v 20 h -20 z
-//      console.log('avant tt=' , tt);
+     if(tt){
       var obj=getPointsFromSvgPath(tt);
-//      console.log('obj=',obj);
       tt='';
       for(var i=0;i<obj.tabAbs.length;i++){
        if(obj.tabAbs[i][0]==='H' || obj.tabAbs[i][0]==='V' ){
@@ -3040,8 +2918,6 @@ function myObj1(initObj1){
         tt+=' '+obj.tabAbs[i].join(' ');
        }
       }
-//      console.log('final tt=' , tt);
-      
       globalGeneralSvgReferenceElement.setAttribute('d',tt);
       var indA=recupereIndiceArbre(jso.numArbre);
       _dssvg.arbre0[indA].data.attributes['d']=tt;
@@ -3058,7 +2934,6 @@ function myObj1(initObj1){
     var tt=globalGeneralSvgReferenceElement.getAttribute('d');
     if(tt && jso.indicePoint>0){
      var obj=getPointsFromSvgPath(tt);
-//     console.log('obj=',obj);
      obj.tabOri[jso.indicePoint]=['C',obj.tabPts[jso.indicePoint-1][1],obj.tabPts[jso.indicePoint-1][2],obj.tabPts[jso.indicePoint][1],obj.tabPts[jso.indicePoint][2],obj.tabPts[jso.indicePoint][1],obj.tabPts[jso.indicePoint][2] ]
      tt='';
      for(var i=0;i<obj.tabOri.length;i++){
@@ -3085,7 +2960,7 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function changeOpacity(e){
-//  console.log('e=',e.target , parseFloat(e.target.getAttribute('data-ajouterRetrancher')) );
+
   if(e.target.getAttribute('data-ajouterRetrancher')){
    var nouvelleValeur=Math.round( (parseFloat( dogid('parOpacityValeur').getAttribute('data-valeur') ) + parseFloat(e.target.getAttribute('data-ajouterRetrancher')) )*1000)/1000 ;
    if(nouvelleValeur>=0 && nouvelleValeur<=1){
@@ -3153,7 +3028,7 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function changeStrokeWidth(e){
-//  console.log('e=',e.target , parseFloat(e.target.getAttribute('data-ajouterRetrancher')) );
+
   if(e.target.getAttribute('data-ajouterRetrancher')){
    var nouvelleValeur=Math.round( (parseFloat( dogid('parStrokeValeur').getAttribute('data-valeur') ) + parseFloat(e.target.getAttribute('data-ajouterRetrancher')) )*1000)/1000 ;
    if(nouvelleValeur>=0 && nouvelleValeur<=100){
@@ -3261,7 +3136,7 @@ function myObj1(initObj1){
    }
   }
 
-//  console.log('pointsOriginaux apres=',JSON.parse(JSON.stringify(pointsOriginaux)).length , JSON.parse(JSON.stringify(pointsOriginaux)) );
+
   var imin=pointsOriginaux.length-1
   while(goon-- > 0){
    points=JSON.parse(JSON.stringify(pointsOriginaux)); // points=draw_state.elementsToDraw2[ind].ptList;
@@ -3282,7 +3157,7 @@ function myObj1(initObj1){
     goon=0;
    }
   }
-//  console.log('pointsOriginaux apres=',JSON.parse(JSON.stringify(pointsOriginaux)).length , JSON.parse(JSON.stringify(pointsOriginaux)) );
+
   tabReduit=[];
   for(var i=0;i<pointsOriginaux.length;i++){
    if(i===0){
@@ -3291,7 +3166,7 @@ function myObj1(initObj1){
     tabReduit.push(['C',pointsOriginaux[i-1][5],pointsOriginaux[i-1][6]   ,  pointsOriginaux[i][1],pointsOriginaux[i][2]   ,  pointsOriginaux[i][3],pointsOriginaux[i][4]    ]);
    }
   }
-//  console.log( ' tabReduit=' , tabReduit );
+
   return tabReduit;
   
  } 
@@ -3308,7 +3183,7 @@ function myObj1(initObj1){
   var delta=0;
   var points=[];
   var pointsOriginaux=[]
-//  var points=draw_state.elementsToDraw2[ind].ptList;
+
   for(var i=0;i<tabOri.length;i++){
    if(i==0){
     pointsOriginaux.push(['p',null , null , tabOri[i][1] , tabOri[i][2] , tabOri[i+1][1] , tabOri[i+1][2] ]);
@@ -3318,8 +3193,6 @@ function myObj1(initObj1){
     pointsOriginaux.push(['p',tabOri[i][3] , tabOri[i][4] , tabOri[i][5] , tabOri[i][6] , tabOri[i+1][1] , tabOri[i+1][2] ]);
    }
   }
-//  [["M",42,64],["C",97,64,152.12,65.22,207,69],["C",224.01,70.17,241.01,70.11,258,71],["C",268.63,71.56,282.27,74.15,293,72],["C",311.3,68.34,331.24,62,350,62]];
-//  console.log('pointsOriginaux avant=',JSON.parse(JSON.stringify(pointsOriginaux)).length , JSON.parse(JSON.stringify(pointsOriginaux)) );
   points=JSON.parse(JSON.stringify(pointsOriginaux));
   var imin=pointsOriginaux.length-1
   while(goon-- > 0){
@@ -3360,7 +3233,7 @@ function myObj1(initObj1){
     goon=0;
    }
   }
-//  console.log('pointsOriginaux apres=',JSON.parse(JSON.stringify(pointsOriginaux)).length , JSON.parse(JSON.stringify(pointsOriginaux)) );
+
   tabReduit=[];
   for(var i=0;i<pointsOriginaux.length;i++){
    if(i===0){
@@ -3369,7 +3242,7 @@ function myObj1(initObj1){
     tabReduit.push(['C',pointsOriginaux[i-1][5],pointsOriginaux[i-1][6]   ,  pointsOriginaux[i][1],pointsOriginaux[i][2]   ,  pointsOriginaux[i][3],pointsOriginaux[i][4]    ]);
    }
   }
-//  console.log( ' tabReduit=' , tabReduit );
+
   return tabReduit;
  }
  
@@ -3386,9 +3259,9 @@ function myObj1(initObj1){
    }
   }
   maxId+=1;
-  // {"id":1,"parentId":0,"isOpen":1,"data":{"label":"path","level":0,"type":"node","nodeName":"path","text":"","attributes":{"data-type":"toRemove","d":"M 10.25,10.25 L 41.5,36","stroke":"black","stroke-width":"1","fill":"transparent"},"nodeRef":{}}}'
+
   globalClickDessin.tempchild.setAttribute('data-idarbre1',maxId);
-//  console.log('avant '+_dssvg.arbre0.length+' _dssvg.arbre0=',JSON.parse(JSON.stringify(_dssvg.arbre0)));
+
   var attrs={
    'data-idarbre1':maxId      
   };
@@ -3400,7 +3273,7 @@ function myObj1(initObj1){
     }
    }
   }
-//  console.log('attrs=',attrs);
+
   var obj1={
    id:maxId,parentId:(parentId===null?0:parentId),isOpen:1,
    data:{
@@ -3425,8 +3298,6 @@ function myObj1(initObj1){
   }
   return maxId;
   
-  
-//  console.log('apres '+_dssvg.arbre0.length+' _dssvg.arbre0=',JSON.parse(JSON.stringify(_dssvg.arbre0)));
  }
  
  //========================================================================================================
@@ -3441,8 +3312,6 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function actionFinMouseUpOuTouchEndFenetre(e){
-//  console.log('_dssvg.mode_en_cours=',_dssvg.mode_en_cours);
-//  console.log('mouse up fenetre, ecran_appuye=',ecran_appuye,' _dssvg.mode_en_cours=',_dssvg.mode_en_cours,'globalDernierePositionSouris=',globalDernierePositionSouris ); //,'e=',e)
   try{clearTimeout(defTimeoutPolyline);}catch(e){}
   try{clearTimeout(defTimeoutPolygon);}catch(e){}
   if(e && e.target && e.target.nodeName.toLowerCase()==='button'){
@@ -3500,34 +3369,22 @@ function myObj1(initObj1){
     }else if(_dssvg.mode_en_cours==='setModeSaisieChemin1'){
      
      var listePoints=simplifySvgPath(globalClickDessin.pointsTraces , {tolerance:2.5,precision:2} ); // la tolérance = 0.5 pixels {tolerance:2.5,precision:5}
-//     console.log('listePoints=',listePoints);
+
      var obj=getPointsFromSvgPath(listePoints.path);
      if(_dssvg.parametres.optimisationChemin===0){
      }else if(_dssvg.parametres.optimisationChemin===1){
-//      obj.tabAbs=[["M",42,64],["C", 97,64  ,  152,65  ,  207,69 ],["C",  241,70  ,  274,70  , 324,71 ]]; //,["C",268.63,71.56,282.27,74.15,293,72],["C",311.3,68.34,331.24,62,350,62]];
-//      
-//       [
-//        ["p" , null,null ,  42,64 ,   97,64   ],
-//        ["p" ,  152, 65  , 207,69 ,  224,70   ],
-//        ["p" ,  241, 70   ,258,71 , null,null ]
-//       ]
-//       
-//      console.log('avant simplifieChemin2, obj=',obj.tabAbs,JSON.stringify(obj.tabAbs));
       if(obj.tabAbs.length>2){
        obj.tabAbs=simplifieChemin3(obj.tabAbs);
       }
-//      console.log('apres simplifieChemin2, obj=',obj.tabAbs,JSON.stringify(obj.tabAbs));
+
      }else{
       if(obj.tabAbs.length>2){
        obj.tabAbs=simplifieChemin3(obj.tabAbs);
-//       console.log('obj.tabAbs=',obj.tabAbs)
        obj.tabAbs=simplifieChemin4(obj.tabAbs);
       }
      }
      
 
-     
-//     console.log('obj=', obj );
      var tt='';
      for(var i=0;i<obj.tabAbs.length;i++){
       tt+=obj.tabAbs[i][0] + ' ';
@@ -3546,7 +3403,6 @@ function myObj1(initObj1){
      
     }else if('setModeSaisieSelElt1'===_dssvg.mode_en_cours || 'setModeSaisieDefsElt1'===_dssvg.mode_en_cours ){
      
-//     console.log('fin de move');
      removeListeners();
      
     }else if('setModeSaisieEditionPoin1'===_dssvg.mode_en_cours || 'setModeSaisieDefsPtE1'===_dssvg.mode_en_cours ){
@@ -3592,7 +3448,7 @@ function myObj1(initObj1){
     afficheArbre0({prendreTout:false});
     
    }
-   ecran_appuye=false;   
+   ecran_appuye=false;
   }
   enCoursDeSelectionSansClickSurElement=false;
  }
@@ -3983,52 +3839,68 @@ function myObj1(initObj1){
   
     contentOfPopup+='<legend>interface</legend>';
   
-    contentOfPopup+='<div >';
-    contentOfPopup+='<label for="parLargeurMenuGauche">'+trad['Largeur_du_menu_gauche']+' : </label>';
-    contentOfPopup+='<div id="parLargeurMenuGaucheValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.largeurMenuGauche+'</div>';
-    contentOfPopup+='<input id="parLargeurMenuGauche" type="range" min="30" max="44" step="2" value="'+_dssvg.parametres.largeurMenuGauche+'" />';
+    contentOfPopup+='<div>';
+     contentOfPopup+='<div id="parLargeurMenuGaucheValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.largeurMenuGauche+'</div>';
+     contentOfPopup+='<label for="parLargeurMenuGauche"> : '+trad['Largeur_du_menu_gauche']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parLargeurMenuGauche" type="range" min="30" max="44" step="2" value="'+_dssvg.parametres.largeurMenuGauche+'" style="width:80%;min-width:200px;max-width:500px;" />';
+     contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
-    contentOfPopup+='<div >';
-    contentOfPopup+='<label for="parHauteurMinBtnMenuGau">'+trad['Hauteur_minimal_des_boutons_à_gauche']+' : </label>';
-    contentOfPopup+='<div style="display:inline-block;"><div id="parHauteurMinBtnMenuGauValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.hauteurMinBtnMenuGau+'</div>';
-    contentOfPopup+='<input id="parHauteurMinBtnMenuGau" type="range" min="20" max="36" step="4" value="'+_dssvg.parametres.hauteurMinBtnMenuGau+'" />';
-    contentOfPopup+='</div></div>';
+    contentOfPopup+='<div>';
+     contentOfPopup+='<div id="parHauteurMinBtnMenuGauValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.hauteurMinBtnMenuGau+'</div>';
+     contentOfPopup+='<label for="parHauteurMinBtnMenuGau"> : '+trad['Hauteur_minimal_des_boutons_à_gauche']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parHauteurMinBtnMenuGau" type="range" min="20" max="36" step="4" value="'+_dssvg.parametres.hauteurMinBtnMenuGau+'" style="width:80%;min-width:200px;max-width:500px;" />';
+     contentOfPopup+='</div>';
+    contentOfPopup+='</div>';
     
-    contentOfPopup+='<div >';
-    contentOfPopup+='<label for="parHauteurMenuHaut">'+trad['Hauteur_du_menu_haut']+' : </label>';
-    contentOfPopup+='<div id="parHauteurMenuHautValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.hauteurMenuHaut+'</div>';
-    contentOfPopup+='<input id="parHauteurMenuHaut" type="range" min="30" max="44" step="2" value="'+_dssvg.parametres.hauteurMenuHaut+'" />';
+    contentOfPopup+='<div>';
+     contentOfPopup+='<div id="parHauteurMenuHautValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.hauteurMenuHaut+'</div>';
+     contentOfPopup+='<label for="parHauteurMenuHaut"> : '+trad['Hauteur_du_menu_haut']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parHauteurMenuHaut" type="range" min="30" max="44" step="2" value="'+_dssvg.parametres.hauteurMenuHaut+'" style="width:80%;min-width:200px;max-width:500px;" />';
+     contentOfPopup+='</div>';
+    contentOfPopup+='</div>';
+
+    contentOfPopup+='<div>';
+     contentOfPopup+='<div id="parLargeurMinBtnMenuHauValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.largeurMinBtnMenuHau+'</div>';
+     contentOfPopup+='<label for="parLargeurMinBtnMenuHau"> : '+trad['Largeur_minimal_des_boutons_en_haut']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parLargeurMinBtnMenuHau" type="range" min="20" max="36" step="4" value="'+_dssvg.parametres.largeurMinBtnMenuHau+'" style="width:80%;min-width:200px;max-width:500px;" />';
+     contentOfPopup+='</div>';
     contentOfPopup+='</div>';
 
     contentOfPopup+='<div >';
-    contentOfPopup+='<label for="parLargeurMinBtnMenuHau">'+trad['Largeur_minimal_des_boutons_en_haut']+' : </label>';
-    contentOfPopup+='<div id="parLargeurMinBtnMenuHauValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.largeurMinBtnMenuHau+'</div>';
-    contentOfPopup+='<input id="parLargeurMinBtnMenuHau" type="range" min="20" max="36" step="4" value="'+_dssvg.parametres.largeurMinBtnMenuHau+'" />';
-    contentOfPopup+='</div>';
-
-    contentOfPopup+='<div >';
-    contentOfPopup+='<label for="parIntervalleEntreBtns">'+trad['Intervalles_entre_les_boutons']+' : </label>';
-    contentOfPopup+='<div id="parIntervalleEntreBtnsValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.intervalleEntreBtns+'</div>';
-    contentOfPopup+='<input id="parIntervalleEntreBtns" type="range" min="0" max="20" step="2" value="'+_dssvg.parametres.intervalleEntreBtns+'" />';
+     contentOfPopup+='<div id="parIntervalleEntreBtnsValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.intervalleEntreBtns+'</div>';
+     contentOfPopup+='<label for="parIntervalleEntreBtns"> : '+trad['Intervalles_entre_les_boutons']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parIntervalleEntreBtns" type="range" min="0" max="20" step="2" value="'+_dssvg.parametres.intervalleEntreBtns+'" style="width:80%;min-width:200px;max-width:500px;" />';
+     contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
     contentOfPopup+='<div >';
-    contentOfPopup+='<label for="parLargeurScrollSize">'+trad['Largeur_du_scroll']+' : </label>';
-    contentOfPopup+='<div id="parLargeurScrollValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.scroll_size+'</div>';
-    contentOfPopup+='<input id="parLargeurScrollSize" type="range" min="0" max="20" step="5" value="'+_dssvg.parametres.scroll_size+'" />';
+     contentOfPopup+='<div id="parLargeurScrollValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.scroll_size+'</div>';
+     contentOfPopup+='<label for="parLargeurScrollSize"> : '+trad['Largeur_du_scroll']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parLargeurScrollSize" type="range" min="0" max="20" step="5" value="'+_dssvg.parametres.scroll_size+'" style="width:80%;min-width:200px;max-width:500px;" />';
+     contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
     contentOfPopup+='<div >';
-    contentOfPopup+='<label for="parRayonReference">'+trad['Rayon_des_poignées']+' : </label>';
-    contentOfPopup+='<div id="parRayonReferenceValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.rayonReference+'</div>';
-    contentOfPopup+='<input id="parRayonReference" type="range" min="10" max="22" step="2" value="'+_dssvg.parametres.rayonReference+'" />';
+     contentOfPopup+='<div id="parRayonReferenceValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.rayonReference+'</div>';
+     contentOfPopup+='<label for="parRayonReference"> : '+trad['Rayon_des_poignées']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parRayonReference" type="range" min="10" max="22" step="2" value="'+_dssvg.parametres.rayonReference+'" style="width:80%;min-width:200px;max-width:500px;" />';
+     contentOfPopup+='</div>';
     contentOfPopup+='</div>';
 
     contentOfPopup+='<div >';
-    contentOfPopup+='<label for="parTaillePolice">'+trad['Taille_des_textes']+' : </label>';
-    contentOfPopup+='<div id="parTaillePoliceValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.taillePolice+'</div>';
-    contentOfPopup+='<input id="parTaillePolice" type="range" min="14" max="24" step="2" value="'+_dssvg.parametres.taillePolice+'" />';
+     contentOfPopup+='<div id="parTaillePoliceValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.taillePolice+'</div>';
+     contentOfPopup+='<label for="parTaillePolice"> : '+trad['Taille_des_textes']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parTaillePolice" type="range" min="14" max="24" step="2" value="'+_dssvg.parametres.taillePolice+'" style="width:80%;min-width:200px;max-width:500px;" />';
+     contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
     
@@ -4039,22 +3911,28 @@ function myObj1(initObj1){
     contentOfPopup+='<legend>'+trad['Utilisation']+'</legend>';
   
     contentOfPopup+='<div >';
-    contentOfPopup+='<label for="parOptimisationChemin">'+trad['Optimisation_des_tracés_chemin']+' : </label>';
-    contentOfPopup+='<div id="parOptimisationCheminValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.optimisationChemin+'</div>';
-    contentOfPopup+='<input id="parOptimisationChemin" type="range" min="0" max="2" step="1" value="'+_dssvg.parametres.optimisationChemin+'" />';
+     contentOfPopup+='<div id="parOptimisationCheminValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.optimisationChemin+'</div>';
+     contentOfPopup+='<label for="parOptimisationChemin"> : '+trad['Optimisation_des_tracés_chemin']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parOptimisationChemin" type="range" min="0" max="2" step="1" value="'+_dssvg.parametres.optimisationChemin+'" style="width:80%;min-width:200px;max-width:500px;" />';
+     contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
     contentOfPopup+='<div >';
-    contentOfPopup+='<label for="parDiviseurDeplacement">'+trad['Diviseur_de_déplacement']+' : </label>';
-    contentOfPopup+='<div id="parDiviseurDeplacementValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.diviseurDeplacement+'</div>';
-    contentOfPopup+='<input id="parDiviseurDeplacement" type="range" min="1" max="5" step="1" value="'+_dssvg.parametres.diviseurDeplacement+'" />';
+     contentOfPopup+='<div id="parDiviseurDeplacementValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.diviseurDeplacement+'</div>';
+     contentOfPopup+='<label for="parDiviseurDeplacement"> : '+trad['Diviseur_de_déplacement']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parDiviseurDeplacement" type="range" min="1" max="5" step="1" value="'+_dssvg.parametres.diviseurDeplacement+'" style="width:80%;min-width:200px;max-width:500px;" />';
+     contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
     
     contentOfPopup+='<div >';
-    contentOfPopup+='<label for="parFacteurAimnt">'+trad['Diviseur_de_pixel']+' : </label>';
-    contentOfPopup+='<div id="parFacteurAimntValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.facteurAimnt+'</div>';
-    contentOfPopup+='<input id="parFacteurAimnt" type="range" min="1" max="10" step="1" value="'+_dssvg.parametres.facteurAimnt+'" />';
+     contentOfPopup+='<div id="parFacteurAimntValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.facteurAimnt+'</div>';
+     contentOfPopup+='<label for="parFacteurAimnt"> : '+trad['Diviseur_de_pixel']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parFacteurAimnt" type="range" min="1" max="10" step="1" value="'+_dssvg.parametres.facteurAimnt+'" style="width:80%;min-width:200px;max-width:500px;" />';
+     contentOfPopup+='</div>';
     contentOfPopup+='</div>';
 
   contentOfPopup+='</fieldset>';
@@ -4123,7 +4001,7 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function ajouteListenersParam(){
-  // todo ajouter 3eme paramètre
+
   dogid('parLargeurScrollSize').addEventListener('change'         , setParScrollSize                 , 'range' );
   dogid('parLargeurScrollSize').addEventListener('mousedown'      , mouseDownParScrollSize           , 'range' );
   dogid('parLargeurScrollSize').addEventListener('touchstart'     , touchDownParScrollSize           , 'range' );
@@ -4218,7 +4096,7 @@ function myObj1(initObj1){
   if(vb!=null){
   
    var viewboxTab=refZnDessin.getAttribute('viewBox').trim().replace(/ /g,',').replace(/,,/g,',').replace(/,,/g,',').replace(/,,/g,',').split(',').map(Number);
-//   console.log('viewboxTab avant=',viewboxTab,' , _dssvg.zoom1 avant=',_dssvg.zoom1);
+
    if(_dssvg.zoom1==256 && n==2){
     // rien
    }else if(_dssvg.zoom1==0.03125 && n==0.5){ // 0.03125 // 0.0625
@@ -4234,7 +4112,6 @@ function myObj1(initObj1){
      var x=globalDernierePositionSouris.sx-w/2;
      var y=globalDernierePositionSouris.sy-w/2;
     }
-//    refZnDessin.setAttribute('viewBox',_dssvg.viewBoxInit.join(' '));
     setAttributeViewBox();  
     rayonPoint=_dssvg.parametres.rayonReference/_dssvg.zoom1;
     strkWiTexteSousPoignees=rayonPoint/20;
@@ -4401,8 +4278,6 @@ function myObj1(initObj1){
   pt1.y = deltaReel.y;
   laTransformation+=' translate( '+pt1.x+' , '+pt1.y+' )';
   
-//  console.log('laTransformation=',laTransformation)
-
    globalGeneralSvgReferenceElement.setAttribute( 'transform' ,  laTransformation );
    _dssvg.arbre0[globalIndiceArbre].data.attributes['transform']=laTransformation;
 
@@ -4629,12 +4504,6 @@ function myObj1(initObj1){
   
   divlag1.innerHTML='<span>depPLZ='+_dssvg.zoom1+'</span>,<span style="color:red;">x='+arrdi10000(newPointX)+'</span>,<span style="color:red;">y='+arrdi10000(newPointY)+'</span>';
 
-
-  
-  
-  
-//  console.log('deltaReel=',deltaReel);
-  
   
   var laTransformation='';
   for(var i=0;i<globalSelectRotationPosCentreElement.tabTransform.tab.length;i++){
@@ -4647,7 +4516,6 @@ function myObj1(initObj1){
     laTransformation+=cy+' ';
     laTransformation+=') ';
     
-//   divlag1.innerHTML='<span>depCRZ='+_dssvg.zoom1+'</span>,<span style="color:red;">x='+arrdi10000(globalSelectRotationPosCentreElement.tabTransform.tab[i][1][1]+deltaReel.x)+'</span>,<span style="color:red;">y='+arrdi10000(globalSelectRotationPosCentreElement.tabTransform.tab[i][1][2]+deltaReel.y)+'</span>';
     divLag1Pour({t:'traCaZ',l:'traCaZ','cx':cx,'cy':cy});
 
     
@@ -4668,8 +4536,6 @@ function myObj1(initObj1){
    
   }else{
   
-  
- //  console.log('laTransformation=',laTransformation);
    globalGeneralSvgReferenceElement.setAttribute('transform',laTransformation);
    _dssvg.arbre0[globalIndiceArbre].data.attributes['transform']=laTransformation;
   }
@@ -4706,7 +4572,7 @@ function myObj1(initObj1){
  };
  //========================================================================================================
  function actionDownRotatePositionCentreTransformElement(e){
-//  console.log('mouseDownTranslate e=',e.target);
+
   initPosxy=positionSouris(e);
   ecran_appuye='fElementTransformCentreRotation';
   
@@ -4718,7 +4584,6 @@ function myObj1(initObj1){
   initClick={x:e.clientX , y:e.clientY};
   _dssvg.idArbreCourant=parseInt(e.target.getAttribute('data-elem').replace(/ cr/,''),10);
   globalIndiceArbre=recupereIndiceArbre(_dssvg.idArbreCourant);
-//  globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]')[0];
   globalSelectRotationPosCentreElement.autreReference=null;
   globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]');
   if(globalGeneralSvgReferenceElement.length>1){
@@ -4756,7 +4621,6 @@ function myObj1(initObj1){
   
   var tr=globalGeneralSvgReferenceElement.getAttribute('transform')?globalGeneralSvgReferenceElement.getAttribute('transform'):'';
   globalSelectRotationPosCentreElement.tabTransform=convertirTransformEnTableau(tr,['rotate']);
-//  console.log('globalSelectRotationPosCentreElement.tabTransform=',globalSelectRotationPosCentreElement.tabTransform)
 
 
   var refPointcr=document.querySelectorAll('[data-elem="'+_dssvg.idArbreCourant+' cr"]')[0];
@@ -4766,12 +4630,6 @@ function myObj1(initObj1){
     y:arrdi10000(refPointcr.cy.animVal.value),
    }
   }
-//  console.log('globalSelectRotationPosCentreElement.positionPointCR=',globalSelectRotationPosCentreElement.positionPointCR);
-
-/*
-  document.body.addEventListener( 'mousemove' , mouseMoveRotationPosCentreElement , 'bodymove' );
-  document.body.addEventListener( 'touchmove' , touchMoveRotationPosCentreElement , 'bodymove' );
-*/  
  }
  
  //========================================================================================================
@@ -4786,7 +4644,7 @@ function myObj1(initObj1){
   }
   
   var trTab=tr.toLowerCase().split(')');
-//  console.log('trTab=',trTab);
+
   for(var i=0;i<trTab.length;i++){
    
    if(trTab[i]==''){
@@ -4833,7 +4691,7 @@ function myObj1(initObj1){
    }
    
   }
-//  console.log('tab=',tab);
+
   for(var i=0;i<trAajouter.length;i++){
    var elem=trAajouter[i];
    if(elem==='rotate'){
@@ -4889,19 +4747,13 @@ function myObj1(initObj1){
 		globalGeneralReferencePointControleClique.setAttribute('cx', newPointX );
 		globalGeneralReferencePointControleClique.setAttribute('cy', newPointY );
   
-  
-  
-  
-  
-  
-  
   var nouvelAngle=angle2Points(
    globalElementTransformSkewx.positionPointCR.x ,
    globalElementTransformSkewx.positionPointCR.y ,
    newPointX,
    newPointY
   )-270;
-//  console.log('nouvelAngle=',nouvelAngle);
+
   
   nouvelAngle=arrdi10000(nouvelAngle);
   if(nouvelAngle<-180){
@@ -4933,7 +4785,6 @@ function myObj1(initObj1){
     laTransformation+=') ';
    }
   }
-//  console.log('laTransformation='+laTransformation);
 
   if(globalElementTransformSkewx.autreReference && ( globalElementTransformSkewx.autreReference.nodeName.toLowerCase()==='radialgradient' || globalElementTransformSkewx.autreReference.nodeName.toLowerCase()==='lineargradient' ) ){
 
@@ -4949,8 +4800,6 @@ function myObj1(initObj1){
    _dssvg.arbre0[globalIndiceArbre].data.attributes['transform']=laTransformation;
    
   }
-  
-//  divlag1.innerHTML='<span>mskEZ='+_dssvg.zoom1+'</span>,<span style="color:red;">a='+(nouvelAngle)+'</span>,<span>sx='+initPosxy.sx + '</span>,<span>sy=' + initPosxy.sy+'</span>';
   
  }  
  //========================================================================================================
@@ -4980,7 +4829,7 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function actionDownElementTransformSkewx(e){
-//  console.log(e);
+
   initPosxy=positionSouris(e);
   ecran_appuye='fElementTransformSkewx';
   
@@ -4992,8 +4841,6 @@ function myObj1(initObj1){
   _dssvg.idArbreCourant=parseInt(e.target.getAttribute('data-elem').replace(/ hg/,''),10);
   globalIndiceArbre=recupereIndiceArbre(_dssvg.idArbreCourant);
   
-//  globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]')[0];
-
   globalElementTransformSkewx.autreReference=null;
   globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]');
   if(globalGeneralSvgReferenceElement.length>1){
@@ -5026,7 +4873,6 @@ function myObj1(initObj1){
 
   var tr=globalGeneralSvgReferenceElement.getAttribute('transform')?globalGeneralSvgReferenceElement.getAttribute('transform'):'';
   globalElementTransformSkewx.tabTransform=convertirTransformEnTableau(tr,['skewx']);
-//  console.log('globalElementTransformSkewx.tabTransform=',globalElementTransformSkewx.tabTransform);
   
   
   globalElementTransformSkewx.rectangle=null;
@@ -5062,7 +4908,6 @@ function myObj1(initObj1){
    globalElementTransformSkewx.positionPointSK.x ,
    globalElementTransformSkewx.positionPointSK.y ,
   )-270;
-//  console.log('globalElementTransformSkewx.skewxInit=',globalElementTransformSkewx.skewxInit);
   
 
   var sxInit=globalElementTransformSkewx.tabTransform.tab[globalElementTransformSkewx.tabTransform.indices.skewx][1][0];
@@ -5074,14 +4919,10 @@ function myObj1(initObj1){
  //========================================================================================================
  function distanceEntreDroiteEtPoint(x1,y1,x2,y2,px,py){ // la droite est définie par x1,y1,x2,y2
   var delta=0;
-//  console.log(Math.round(x1*100)/100,Math.round(y1*100)/100,Math.round(x2*100)/100,Math.round(y2*100)/100,Math.round(px*100)/100,Math.round(py*100)/100);
   if(Math.round((x2-x1)*1000)/1000!==0){ // la droite n'est pas verticale
-//   console.log('cas 1')
    if(Math.round(y2*1000)/1000===Math.round(y1*1000)/1000){
-//    console.log('cas 2')
     delta=Math.round((py-y2)*1000)/1000;
    }else{
-//    console.log('cas 3')
     var a0=Math.round((y2-y1)/(x2-x1)*1000)/1000; // a0 = pente de la droite
 //    console.log( 'pente de la droite = ' , a0 );
     var b0=y1-a0*x1; // on a a0 et b0 de l'équation de la droite y=a0*x+b0
@@ -5092,7 +4933,6 @@ function myObj1(initObj1){
     delta=Math.sqrt((px-xn)*(px-xn)+(py-yn)*(py-yn))*(py<yn?-1:1);
    }
   }else{
-//   console.log('cas 4')
    delta=Math.round((px-x1)*1000)/1000;
   }
   return delta;
@@ -5102,7 +4942,6 @@ function myObj1(initObj1){
   if(e.hasOwnProperty('touches')){
    e=e.touches[0];
   }
-//  console.log('e=',e);
  }
  //========================================================================================================
  function selectionnerElementAtransformer(e){
@@ -5117,18 +4956,15 @@ function myObj1(initObj1){
   globalIndiceArbre=recupereIndiceArbre(_dssvg.idArbreCourant);
   affPoi();
   divLag2Complete();
-//  chercherPointsGroupeVoinsin(e);
+
  }
  //========================================================================================================
  function mouseDownDeplacerTousLesElementsDeGroupe(e){
   e.stopPropagation();
-//  console.log('e=',e)
-
  }
  //========================================================================================================
  function touchDownDeplacerTousLesElementsDeGroupe(e){
   e.stopPropagation();
-//  console.log('e=',e)
  }
  
  
@@ -5167,7 +5003,6 @@ function myObj1(initObj1){
   if(globalSelectRotationAngleElement.tabTransform.indices.rotate>=0){
    ancienAngle=globalSelectRotationAngleElement.tabTransform.tab[globalSelectRotationAngleElement.tabTransform.indices.rotate][1][0]
   }
-//  console.log('ancienAngle=',ancienAngle);
   var deltaAngle=nouvelAngle-ancienAngle;
   
   var t=matrixToFnt(globalSelectRotationAngleElement.matriceParentElement);
@@ -5183,7 +5018,6 @@ function myObj1(initObj1){
    nouvelAngle=nouvelAngle-360;
   }
   
-//  console.log('nouvelAngle=',nouvelAngle);
   
   var laTransforlation='';
   for(var i=0;i<globalSelectRotationAngleElement.tabTransform.tab.length;i++){
@@ -5210,24 +5044,16 @@ function myObj1(initObj1){
     laTransforlation+=') ';
    }
   }
-//  console.log('laTransforlation=',laTransforlation , 'globalSelectRotationAngleElement.autreReference=',globalSelectRotationAngleElement.autreReference)
   if(globalSelectRotationAngleElement.autreReference && ( globalSelectRotationAngleElement.autreReference.nodeName.toLowerCase()==='radialgradient' || globalSelectRotationAngleElement.autreReference.nodeName.toLowerCase()==='lineargradient' )){
    _dssvg.arbre0[globalIndiceArbre].data.attributes['gradientTransform']=laTransforlation;
    globalGeneralSvgReferenceElement.setAttribute('transform',laTransforlation);
    // il faut aussi appliquer l'écart de la rotation à data-idarbre1="2"
    globalSelectRotationAngleElement.autreReference.setAttribute('gradientTransform' ,  laTransforlation );
    
-   
-   
   }else{
    globalGeneralSvgReferenceElement.setAttribute('transform',laTransforlation);
    _dssvg.arbre0[globalIndiceArbre].data.attributes['transform']=laTransforlation;
   }
-//  divlag1.innerHTML='<span>1mdREZ='+_dssvg.zoom1+'</span>,<span style="color:red;">a='+(nouvelAngle)+'</span>,<span>sx='+(Math.round(initPosxy.sx*10)/10) + '</span>,<span>sy=' + (Math.round(initPosxy.sy*10)/10)+'</span>';
-  
-  
-  
-  
   
  } 
  
@@ -5260,7 +5086,6 @@ function myObj1(initObj1){
  //========================================================================================================
  function actionDownRotateTransformAngleElement2(e){
   
-//  console.log('actionDownRotateTransformAngleElement2 e=',e.target);
   initPosxy=positionSouris(e);
   ecran_appuye='fElementTransformAngle2';
   
@@ -5271,8 +5096,6 @@ function myObj1(initObj1){
   initClick={x:e.clientX , y:e.clientY};
   _dssvg.idArbreCourant=parseInt(e.target.getAttribute('data-elem').replace(/ cr/,''),10);
   globalIndiceArbre=recupereIndiceArbre(_dssvg.idArbreCourant);
-//  globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]')[0];
-  
   globalSelectRotationAngleElement.autreReference=null; // pour le radialGradient
   
   globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]');
@@ -5280,15 +5103,7 @@ function myObj1(initObj1){
    globalSelectRotationAngleElement.autreReference=globalGeneralSvgReferenceElement[globalGeneralSvgReferenceElement.length-1];
   }
   globalGeneralSvgReferenceElement=globalGeneralSvgReferenceElement[0]; 
-  
-  
-//  globalSelectRotationAngleElement.matriceParentElementInverse=globalGeneralSvgReferenceElement.parentNode.getScreenCTM().inverse();
-//  globalSelectRotationAngleElement.matriceParentElementInverse.e=0;
-//  globalSelectRotationAngleElement.matriceParentElementInverse.f=0;
-
   globalSelectRotationAngleElement.matriceParentElement=globalGeneralSvgReferenceElement.parentNode.getScreenCTM()
-  
-  
   globalSelectRotationAngleElement.rectangle=null;
   
   
@@ -5306,8 +5121,6 @@ function myObj1(initObj1){
   
   var tr=globalGeneralSvgReferenceElement.getAttribute('transform')?globalGeneralSvgReferenceElement.getAttribute('transform'):'';
   globalSelectRotationAngleElement.tabTransform=convertirTransformEnTableau(tr,['rotate']);
-//  console.log('globalSelectRotationAngleElement.tabTransform=',globalSelectRotationAngleElement.tabTransform)
-
 
   var refPointcr=document.querySelectorAll('[data-elem="'+_dssvg.idArbreCourant+' cr"]')[0];
   if(refPointcr){
@@ -5330,7 +5143,6 @@ function myObj1(initObj1){
    globalSelectRotationAngleElement.positionPointAN.x ,
    globalSelectRotationAngleElement.positionPointAN.y ,
   );
-//  console.log('globalSelectRotationAngleElement.angleInit=',globalSelectRotationAngleElement.angleInit);
   
   divlag1.innerHTML='<span>2mdREZ='+_dssvg.zoom1+'</span>,<span>sx='+initPosxy.sx + '</span>,<span>sy=' + initPosxy.sy+'</span><span>a='+(globalSelectRotationAngleElement.angleInit)+'</span>';
   
@@ -5359,20 +5171,11 @@ function myObj1(initObj1){
 		globalGeneralReferencePointControleClique.setAttribute('cy', newPointY );
 
   if(globEchelle.dataInit.t0.indices.scale<globEchelle.dataInit.t0.indices.rotate){
-//   console.log('pt1=',pt1,'globEchelle.dataInit=',globEchelle.dataInit);
+
    var matrix = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix();
    matrix=matrix.rotate(globEchelle.dataInit.angle);
    var pt2=refZnDessin.createSVGPoint();  
    pt2=pt1.matrixTransform(matrix);
-//   console.log('pt2=',pt2);
-//   var dx2=globEchelle.dataInit.dx2;
-//   var dy2=globEchelle.dataInit.dy2;
-//   var dx2=globEchelle.dataInit.dx2+pt2.x;
-//   var dy2=globEchelle.dataInit.dy2+pt2.y;
-//   var dx2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt9[0],globalElementTransformScale.init.pt9[1],globEchelle.dataInit.dx2+pt2.x,globEchelle.dataInit.dy2);
-//   var dy2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt8[0],globalElementTransformScale.init.pt8[1],globEchelle.dataInit.dx2,globEchelle.dataInit.dy2+pt2.y);
-//   var dx2=globEchelle.dataInit.pt10[0]+pt2.x;
-//   var dy2=globEchelle.dataInit.pt10[1]+pt2.y;
    var dx2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt9[0],globalElementTransformScale.init.pt9[1],globEchelle.dataInit.pt10[0]+pt2.x,globEchelle.dataInit.pt10[1]+pt2.y);
    var dy2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt8[0],globalElementTransformScale.init.pt8[1],globEchelle.dataInit.pt10[0]+pt2.x,globEchelle.dataInit.pt10[1]+pt2.y);
   }else{
@@ -5380,16 +5183,8 @@ function myObj1(initObj1){
    var dx2=distanceEntreDroiteEtPoint(globalElementTransformScale.init.cx,globalElementTransformScale.init.cy,globalElementTransformScale.init.pt9[0],globalElementTransformScale.init.pt9[1],newPointX,newPointY);
   }
 
-
-//  console.log(globalElementTransformScale.init);
-
-  
-//  console.log( 'dx2 = ' , dx2 , 'globalElementTransformScale.init.dx2=' , globalElementTransformScale.init.dx2 , ' dy2 = ' , dy2 , 'globalElementTransformScale.init.dy2=' , globalElementTransformScale.init.dy2 );
-  
   var nouvelleEchelleX=dx2/globEchelle.dataInit.dx2*globEchelle.dataInit.t0.tab[globEchelle.dataInit.t0.indices.scale][1][0];
   var nouvelleEchelleY=dy2/globEchelle.dataInit.dy2*globEchelle.dataInit.t0.tab[globEchelle.dataInit.t0.indices.scale][1][1];
-//  console.log( ' dy2 = ' , dy2 , 'globalElementTransformScale.init.dy2=' , globalElementTransformScale.init.dy2 , 'nouvelleEchelleY=' , nouvelleEchelleY , 'globEchelle.dataInit=',globEchelle.dataInit);
-  
   
   var echelleTrouvee=false;
   var tt='';
@@ -5507,7 +5302,6 @@ function myObj1(initObj1){
  };
  //========================================================================================================
  function actionDownElementTransformScale3(e){
-//  console.log(e);
   
   initPosxy=positionSouris(e);
   ecran_appuye='felementTransformEchelle3';
@@ -5552,10 +5346,7 @@ function myObj1(initObj1){
   
   globalElementTransformScale.matriceDeplacementPoint=globalElementTransformScale.matriceRacineInverse.multiply(globalGeneralReferencePointControleClique.getScreenCTM()).inverse();
   
-//  console.log('globalGeneralReferencePointControleClique=',globalGeneralReferencePointControleClique)
-  
   globEchelle.dataInit=JSON.parse(globalGeneralReferencePointControleClique.getAttribute('data-init'));
-//  console.log('globEchelle.dataInit=',globEchelle.dataInit);
   
   globEchelle.angle=parseFloat(globalGeneralReferencePointControleClique.getAttribute('data-angle'));
   
@@ -5642,7 +5433,6 @@ function myObj1(initObj1){
    }
    
    if(lst[i].getAttribute('data-type') && lst[i].getAttribute('data-type')=='systeme'){
-//    console.log('data-type =',lst[i].getAttribute('data-type'));
     continue;
    }
    
@@ -5708,7 +5498,6 @@ function myObj1(initObj1){
     }
    }catch(e){
    }
-//   console.log('extensions=',extensions,'_dssvg.mode_en_cours=',_dssvg.mode_en_cours,'lst[i]=',lst[i])
    
    
    
@@ -5718,12 +5507,10 @@ function myObj1(initObj1){
     var idarbre1=parseInt(lst[i].getAttribute('data-idarbre1'),10);
     
     if(nn==='radialgradient'){
-//     console.log('ici');
 
      var transform=lst[i].getAttribute('gradientTransform')?lst[i].getAttribute('gradientTransform'):'';
 
      var cascade=calculCascadeTransform(lst[i],[]);
-//     console.log(cascade);
      var monClone=lst[i].cloneNode(true);
      monClone.id='inverse_de_'+idarbre1;
      lst[i].parentNode.appendChild(monClone);
@@ -5731,7 +5518,6 @@ function myObj1(initObj1){
      monClone.setAttribute('data-idarbre1','');
      monClone.setAttribute('data-type','toRemove');
 
-//     console.log('transform=',transform);
      var id=lst[i].getAttribute('id');
      // créer un cercle de visualisation
      var cercle=ajouteElemDansElem(
@@ -5756,7 +5542,6 @@ function myObj1(initObj1){
      var transform=lst[i].getAttribute('gradientTransform')?lst[i].getAttribute('gradientTransform'):'';
 
      var cascade=calculCascadeTransform(lst[i],[]);
-//     console.log(cascade);
      var monClone=lst[i].cloneNode(true);
      monClone.id='inverse_de_'+idarbre1;
      lst[i].parentNode.appendChild(monClone);
@@ -5920,7 +5705,7 @@ function myObj1(initObj1){
        var transform0=lst[i].getAttribute('transform')?lst[i].getAttribute('transform'):'';
       }
       var t0=convertirTransformEnTableau(transform0,['scale','rotate']);
-//      console.log('t0=',t0);
+
       var matrix = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix();
       for(var j=0;j<t0.tab.length;j++){
         if(t0.tab[j][0]=='scale'){
@@ -5986,7 +5771,6 @@ function myObj1(initObj1){
       
       var dy2=distanceEntreDroiteEtPoint(cx,cy,pt8.x,pt8.y,pt10.x,pt10.y);
       var dx2=distanceEntreDroiteEtPoint(cx,cy,pt9.x,pt9.y,pt10.x,pt10.y);
-//      console.log( ' dy2 = ' , dy2 , ' , dx2 = ' , dx2 );
       
       
       var line  = ajouteElemDansElem(refZnDessin,'path',{ 'data-type':'toRemove','data-elem':''+idarbre1+'',d:'M '+cx+' '+cy+' L '+pt8.x+' '+pt8.y+'',style:'fill:lightgreen;opacity:0.9;stroke:purple;stroke-width:'+(1/_dssvg.zoom1/1)+';'});
@@ -6003,10 +5787,8 @@ function myObj1(initObj1){
       // pour angle de la rotation
       
       var t0=convertirTransformEnTableau(transform0,['rotate','skewx']);
-//      console.log('t0=',t0);
       var angleRot=t0.tab[t0.indices.rotate][1][0];
       var angleSkewx=t0.tab[t0.indices.skewx][1][0];
-//      console.log( ' angleSkewx=' , angleSkewx );
       
       
       
@@ -6180,7 +5962,7 @@ function myObj1(initObj1){
    if(globalEditionPoints.tableauIndcesPoints[0]==0){
     var newPosx1=arrdi10000(globalSelectionPoints.tabAbsolu[0]+deltaRel.x);
     var newPosy1=arrdi10000(globalSelectionPoints.tabAbsolu[1]+deltaRel.y);
- //    console.log('newPosx1=',newPosx1,'newPosy1=',newPosy1);
+
     globalGeneralSvgReferenceElement.setAttribute('cx',newPosx1);
     _dssvg.arbre0[globalIndiceArbre].data.attributes['cx']=newPosx1;
     globalGeneralSvgReferenceElement.setAttribute('cy',newPosy1);
@@ -6206,12 +5988,11 @@ function myObj1(initObj1){
  
   }else if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='circle' || globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='radialgradient' ){
    
-//   console.log(globalEditionPoints.tableauIndcesPoints);
    
    if(globalEditionPoints.tableauIndcesPoints[0]==0){
     var newPosx1=arrdi10000(globalSelectionPoints.tabAbsolu[0]+deltaRel.x);
     var newPosy1=arrdi10000(globalSelectionPoints.tabAbsolu[1]+deltaRel.y);
-//    console.log('newPosx1=',newPosx1,'newPosy1=',newPosy1);
+
     globalGeneralSvgReferenceElement.setAttribute('cx',newPosx1);
     _dssvg.arbre0[globalIndiceArbre].data.attributes['cx']=newPosx1;
     globalGeneralSvgReferenceElement.setAttribute('cy',newPosy1);
@@ -6358,36 +6139,32 @@ function myObj1(initObj1){
        if(nouvelAngle<=-360){
         nouvelAngle+=360*Math.abs(parseInt(nouvelAngle/360,10));
        }
-//       console.log('nouvelAngle=',nouvelAngle,'angleOriginal=',angleOriginal , 'px1=',px1 , 'py1=' , py1 , 'nouvelAnglePoints=' , nouvelAnglePoints , 'deltaAngle=' , deltaAngle );
+
        tt+=' '+globalSelectionPoints.tabOriginal[i][0]+' '+(globalSelectionPoints.tabOriginal[i][1])           +' '+(globalSelectionPoints.tabOriginal[i][2])           +' '+(nouvelAngle)+' '+(globalSelectionPoints.tabOriginal[i][4])+' '+(globalSelectionPoints.tabOriginal[i][5])+' '+(globalSelectionPoints.tabOriginal[i][6])+' '+(globalSelectionPoints.tabOriginal[i][7])+' ';
-//       divlag1.innerHTML='<span>1Z='+_dssvg.zoom1+'</span>,<span>x='+arrdi10000(newPointX)+ '</span>,<span>y=' +arrdi10000(newPointY)+'</span>,<span>a=' + arrdi10000(nouvelAngle)+'</span>';
+
        divLag1Pour({t:'dppChZ',l:'dppChZ','a':nouvelAngle});
       
 
       }else if(globalEditionPoints.tableauIndcesPoints[1]==1){
        // points pour gérer rx et ry
-       // M 36 86 A 80 40 0 1 1 79 88 
        
        var rayonOriginal=globalEditionPoints.tableauIndcesPoints[2];
        var px1=globalEditionPoints.tableauIndcesPoints[3];
        var py1=globalEditionPoints.tableauIndcesPoints[4];
        var nouvelleDistanceAbsolue=Math.sqrt((newPointX-px1)*(newPointX-px1)+(newPointY-py1)*(newPointY-py1));
        nouvelleDistanceAbsolue=arrdi10000(nouvelleDistanceAbsolue);
-//       console.log('nouvelleDistanceAbsolue=',nouvelleDistanceAbsolue);
        tt+=' '+globalSelectionPoints.tabOriginal[i][0]+' '+(nouvelleDistanceAbsolue)           +' '+(globalSelectionPoints.tabOriginal[i][2])           +' '+(globalSelectionPoints.tabOriginal[i][3])+' '+(globalSelectionPoints.tabOriginal[i][4])+' '+(globalSelectionPoints.tabOriginal[i][5])+' '+(globalSelectionPoints.tabOriginal[i][6])+' '+(globalSelectionPoints.tabOriginal[i][7])+' ';
        
        divLag1Pour({t:'dppChZ',l:'dppChZ','rx':nouvelleDistanceAbsolue});
 
       }else if(globalEditionPoints.tableauIndcesPoints[1]==2){
-       // points pour gérer rx et ry
-       // M 36 86 A 80 40 0 1 1 79 88 
        
        var rayonOriginal=globalEditionPoints.tableauIndcesPoints[2];
        var px1=globalEditionPoints.tableauIndcesPoints[3];
        var py1=globalEditionPoints.tableauIndcesPoints[4];
        var nouvelleDistanceAbsolue=Math.sqrt((newPointX-px1)*(newPointX-px1)+(newPointY-py1)*(newPointY-py1));
        nouvelleDistanceAbsolue=arrdi10000(nouvelleDistanceAbsolue);
-//       console.log('nouvelleDistanceAbsolue=',nouvelleDistanceAbsolue);
+
        tt+=' '+globalSelectionPoints.tabOriginal[i][0]+' '+(globalSelectionPoints.tabOriginal[i][1])           +' '+(nouvelleDistanceAbsolue)           +' '+(globalSelectionPoints.tabOriginal[i][3])+' '+(globalSelectionPoints.tabOriginal[i][4])+' '+(globalSelectionPoints.tabOriginal[i][5])+' '+(globalSelectionPoints.tabOriginal[i][6])+' '+(globalSelectionPoints.tabOriginal[i][7])+' ';
        
        divLag1Pour({t:'dppChZ',l:'dppChZ','ry':nouvelleDistanceAbsolue});
@@ -6508,11 +6285,11 @@ function myObj1(initObj1){
       tt+=' '+globalSelectionPoints.tabOriginal[i].join(' ');
      }
     }else{
-//     console.log('non traité 2 : ', globalSelectionPoints.tabOriginal[i] );
+
      tt+=' '+globalSelectionPoints.tabOriginal[i].join(' ');
     }
    }
-//   console.log('tt='+tt);
+
  		globalGeneralSvgReferenceElement.setAttribute('d',tt); // _dssvg.idArbreCourant
    _dssvg.arbre0[globalIndiceArbre].data.attributes['d']=tt;
 
@@ -6578,19 +6355,12 @@ function myObj1(initObj1){
   globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]');
   if(globalGeneralSvgReferenceElement.length>1){
    globalEditionPoints.autreReference=globalGeneralSvgReferenceElement[globalGeneralSvgReferenceElement.length-1];
-//   console.log('globalEditionPoints.autreReference=',globalEditionPoints.autreReference)
    globalEditionPoints.autreReferenceInverse=document.querySelectorAll('[id="inverse_de_'+_dssvg.idArbreCourant+'"]')[0];
 
   }
   globalGeneralSvgReferenceElement=globalGeneralSvgReferenceElement[0]; 
   
-  
-  
-//  console.log('globalGeneralReferencePointControleClique=',globalGeneralReferencePointControleClique);
   globalIndicePoint=parseInt(globalGeneralReferencePointControleClique.getAttribute('data-indicepoint'),10);
-//  console.log('globalIndicePoint=',globalIndicePoint)
-  
-  
   
   globalEditionPoints.matriceElementElementInverse=globalGeneralSvgReferenceElement.getScreenCTM().inverse();
   globalEditionPoints.matriceElementElementInverse.e=0;
@@ -6623,7 +6393,6 @@ function myObj1(initObj1){
   globalEditionPoints.matriceSvgInverse=refZnDessin.getScreenCTM().inverse();
   
   
-//  globTranslateMatriceAbsolueInverse=refZnDessin.getScreenCTM().inverse().multiply(globalGeneralSvgReferenceElement.getScreenCTM()).inverse();
   globalEditionPoints.matriceAbsolueInverse=refZnDessin.getScreenCTM().inverse().multiply(globalGeneralSvgReferenceElement.getScreenCTM()).inverse();
   globalEditionPoints.matriceAbsolueInverse.e=0;
   globalEditionPoints.matriceAbsolueInverse.f=0;
@@ -6640,7 +6409,6 @@ function myObj1(initObj1){
 
   globalEditionPoints.refLignesPointsDeControle2=null;
   var recherche2=globalGeneralReferencePointControleClique.getAttribute('data-recherche2');
-//  console.log('recherche2=',recherche2)
   if(recherche2 && recherche2!==''){
    globalEditionPoints.refLignesPointsDeControle2=document.querySelectorAll('[data-indice="'+recherche2+'"]')[0];
    if(globalEditionPoints.refLignesPointsDeControle2){
@@ -6652,9 +6420,9 @@ function myObj1(initObj1){
  //========================================================================================================
  function poigneeAffichable(x,y){
   var afficherObjet=true;
-  if(x<_dssvg.viewBoxInit[0]){ // *_dssvg.zoom1
+  if(x<_dssvg.viewBoxInit[0]){
    afficherObjet=false;
-  }else if(x>(_dssvg.viewBoxInit[0]+_dssvg.viewBoxInit[2])){ // *_dssvg.zoom1
+  }else if(x>(_dssvg.viewBoxInit[0]+_dssvg.viewBoxInit[2])){
    afficherObjet=false;
   }else if(y<_dssvg.viewBoxInit[1]){
    afficherObjet=false;
@@ -6757,8 +6525,6 @@ function myObj1(initObj1){
     dot.addEventListener('touchstart',touchDownSelectionPtElement,'dot')
    }
 
-//     globalSelectionPoints.tabAbsolu=[parseFloat(globalGeneralSvgReferenceElement.getAttribute('x1')),parseFloat(globalGeneralSvgReferenceElement.getAttribute('y1')),parseFloat(globalGeneralSvgReferenceElement.getAttribute('x2')) , parseFloat(globalGeneralSvgReferenceElement.getAttribute('y2'))];
-
   }else if( type=='image' ){
 
    filcol='rgba(221,160,221,0.5)';
@@ -6852,10 +6618,8 @@ function myObj1(initObj1){
    }
 
   }else if(type=='path'){
-//   console.log('globalSelectionPoints.tabAbsolu=',globalSelectionPoints.tabAbsolu);
    
    for(var i=0;i<globalSelectionPoints.tabAbsolu.length;i++){
-//    console.log('globalSelectionPoints.tabAbsolu['+i+']=',globalSelectionPoints.tabAbsolu[i]);
     filcol='rgba(0,0,255,0.5)';
     strokWit=1;
     if(i==0){
@@ -6915,7 +6679,7 @@ function myObj1(initObj1){
      // point au milieu du segment     
      var px1=(pt0.x+ptPrec.x)/2;
      var py1=(pt0.y+ptPrec.y)/2;
-     // todo ajouter la transformation matricielle 
+     
      if(poigneeAffichable(px1,py1)){
       var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-type':'toRemove','data-elem':_dssvg.idArbreCourant,'data-fnt':'actionMoveSelectionPtElement',cx:px1,cy:py1,r:rayonPoint/3,style:'fill:rgba(128,128,128,0.5);'+strk+';stroke-width:'+(strokWit/_dssvg.zoom1/3)+';'}); // pink
      }
@@ -6945,8 +6709,6 @@ function myObj1(initObj1){
      }
 
     // points pour gérer rx et ry
-    //  M 36 86 A 80 40 0 1 1 79 88 
-//     console.log('globalSelectionPoints.tabAbsolu[i][1]=',globalSelectionPoints.tabAbsolu[i][1],'angleEntreLesDeuxPointsDeArc=',angleEntreLesDeuxPointsDeArc, globalSelectionPoints.tabAbsolu[i][1]/_dssvg.zoom1*Math.cos((angleEntreLesDeuxPointsDeArc)*Math.PI/180) );
      var px4=px1+globalSelectionPoints.tabAbsolu[i][1]*Math.cos((angleEntreLesDeuxPointsDeArc+ancienAngle-90)*Math.PI/180);
      var py4=py1+globalSelectionPoints.tabAbsolu[i][1]*Math.sin((angleEntreLesDeuxPointsDeArc+ancienAngle-90)*Math.PI/180); //+globalSelectionPoints.tabAbsolu[i][1]*Math.sin((angleEntreLesDeuxPointsDeArc)*Math.PI/180);
      if(poigneeAffichable(px4,py4)){
@@ -7045,7 +6807,6 @@ function myObj1(initObj1){
      
     }else if(globalSelectionPoints.tabAbsolu[i][0]=='Q' || globalSelectionPoints.tabAbsolu[i][0]=='S' ){
      
-//     console.log('globalSelectionPoints.tabAbsolu[i]=',globalSelectionPoints.tabAbsolu[i]);
      ptPrec.x=pointFixePrecedent.x;
      ptPrec.y=pointFixePrecedent.y;
      ptPrec=ptPrec.matrixTransform(matrixRelatifVersAbsolu);
@@ -7053,7 +6814,6 @@ function myObj1(initObj1){
      // premier point de controle
      ptC1.x=globalSelectionPoints.tabAbsolu[i][1];
      ptC1.y=globalSelectionPoints.tabAbsolu[i][2];
-//     console.log('ptC1=',ptC1);
      ptC1=ptC1.matrixTransform(matrixRelatifVersAbsolu);
 
      // point de fin
@@ -7180,7 +6940,7 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function actionDownSelectionIndiceArbre(e,idArbre){
-//  console.log('mouseDownTranslate e=',e);
+
   if(e===null){
    if(idArbre!=_dssvg.idArbreCourant){
     globalIndicePoint=null;
@@ -7190,12 +6950,10 @@ function myObj1(initObj1){
    _dssvg.idArbreCourant=idArbre;
    globalIndiceArbre=recupereIndiceArbre(_dssvg.idArbreCourant);
    
-//   globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]')[0];
    globalSelectionPoints.autreReference=null; // pour le radialGradient
    globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]');
    if(globalGeneralSvgReferenceElement.length>1){
     globalSelectionPoints.autreReference=globalGeneralSvgReferenceElement[globalGeneralSvgReferenceElement.length-1];
-//    console.log('globalSelectionPoints.autreReference=',globalSelectionPoints.autreReference)
    }
    globalGeneralSvgReferenceElement=globalGeneralSvgReferenceElement[0]; 
    
@@ -7207,7 +6965,6 @@ function myObj1(initObj1){
    var temp=parseInt(e.target.getAttribute('data-elem').replace(/ hg/,''),10);
    if(_dssvg.idArbreCourant!==null){
     if(temp!=_dssvg.idArbreCourant){
-//     console.log('ici temp=',temp);
      globalIndicePoint=null;
      _dssvg.idArbrPreceden=_dssvg.idArbreCourant;
      _dssvg.idArbreCourant=temp;
@@ -7218,17 +6975,14 @@ function myObj1(initObj1){
    }
    
    globalIndiceArbre=recupereIndiceArbre(_dssvg.idArbreCourant);
-//   globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]')[0];
 
    globalSelectionPoints.autreReference=null; // pour le radialGradient
    globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]');
    
    if(globalGeneralSvgReferenceElement.length>1){
     globalSelectionPoints.autreReference=globalGeneralSvgReferenceElement[globalGeneralSvgReferenceElement.length-1];
- //   console.log('globalSelectionPoints.autreReference=',globalSelectionPoints.autreReference)
    }
    globalGeneralSvgReferenceElement=globalGeneralSvgReferenceElement[0]; 
-//  console.log('globalGeneralSvgReferenceElement=',globalGeneralSvgReferenceElement)  
    globalIndicePoint=0;
    afficheArbre0({init:false});
    var aSupp=document.querySelectorAll('[data-elem="'+_dssvg.idArbreCourant+' hg"]')[0];
@@ -7240,12 +6994,11 @@ function myObj1(initObj1){
     console.warn('%cErreur à analyser e=','background:yellow;color:red;',e1)
    }
    return;
-//   divLag2Complete();
   }
   globalSelectionPoints.tabOriginal=null;
   globalSelectionPoints.tabAbsolu=null;
   
-//  console.log( 'globalGeneralSvgReferenceElement=',globalGeneralSvgReferenceElement);
+
   if(globalGeneralSvgReferenceElement!==undefined){
    globTranslateMatriceSvgInverse=refZnDessin.getScreenCTM().inverse();
    globTranslateMatriceAbsolueInverse=refZnDessin.getScreenCTM().inverse().multiply(globalGeneralSvgReferenceElement.getScreenCTM()).inverse();
@@ -7345,16 +7098,6 @@ function myObj1(initObj1){
   var ancienneWidth =arrdi10000(globalSelectElementTaille.rectangle.width);
   var ancienneHeight=arrdi10000(globalSelectElementTaille.rectangle.height);
   
-  
-
-
-  
-  
-  
-  
-  
-  
-//  console.log('nouvelleWidth=',nouvelleWidth,'nouvelleHeight=',nouvelleHeight);
 
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   function calculDy1(refy,i){
@@ -7441,7 +7184,6 @@ function myObj1(initObj1){
     }
     
     var ancienneStrokeWidth=parseFloat(globalSelectElementTaille.tableauOriginal[0]['stroke-width']);
-//    console.log('ancienneStrokeWidth=', ancienneStrokeWidth , 'globalSelectElementTaille.tableauOriginal[0][stroke-width]=' , globalSelectElementTaille.tableauOriginal[0]['stroke-width'] );
     if(ancienneStrokeWidth<=0.01){
      ancienneStrokeWidth=0.01;
     }
@@ -7460,9 +7202,6 @@ function myObj1(initObj1){
       sty+=elem+':'+globalSelectElementTaille.tableauOriginal[0][elem]+';';
      }
     }
-//    console.log('sty=',sty,'ancienneFontSize=',ancienneFontSize,'nouvelleFontSize=',nouvelleFontSize,'rapport=',rapport)
-    
-//    console.log('sty=',sty);
     globalGeneralSvgReferenceElement.setAttribute('style'  , sty)
     _dssvg.arbre0[globalIndiceArbre].data.attributes['style']=sty;
 
@@ -7477,7 +7216,6 @@ function myObj1(initObj1){
    globalGeneralSvgReferenceElement.nodeName.toLowerCase()=='use'   ||
    globalGeneralSvgReferenceElement.nodeName.toLowerCase()=='filter' 
   ){
-//   console.log('nouvelleWidth=',nouvelleWidth,'nouvelleHeight=',nouvelleHeight);
    if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()=='use' && ( nouvelleWidth===0 || nouvelleHeight===0 ) ){
     return;
    }
@@ -7489,8 +7227,6 @@ function myObj1(initObj1){
     globalGeneralSvgReferenceElement.setAttribute('height'  ,nouvelleHeight)
     _dssvg.arbre0[globalIndiceArbre].data.attributes['height']=nouvelleHeight;
    }
-   
-//   console.log('globalSelectElementTaille.autreReference=',globalSelectElementTaille.autreReference);
    
    if(globalSelectElementTaille.autreReference!==null){
     globalSelectElementTaille.autreReference.setAttribute('width',nouvelleWidth);
@@ -7551,7 +7287,6 @@ function myObj1(initObj1){
    }
    
    divLag1Pour({t:'rszCeZ',l:'rszCeZ','r':r});
-//   divlag1.innerHTML='<span>2resizC Z='+arrdi10000(_dssvg.zoom1)+'</span>,<span>r='+ r + '';
 
   }else if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()=='radialgradient'){
    
@@ -7679,7 +7414,6 @@ function myObj1(initObj1){
      var delta1=calculDxDy1( 6 , 7 , i );
      var delta2=calculDxDy1( 1 , 2 , i );
      
-//     console.log( delta2.dx , delta2.dy );
      
      var tab=JSON.parse(JSON.stringify(globalSelectElementTaille.tableauOriginal[i]));
      tab[6]=delta1.noux;
@@ -7687,7 +7421,6 @@ function myObj1(initObj1){
      
      if(ancienneWidth>0 && ancienneHeight>0 && nouvelleWidth>0 && nouvelleHeight>0){
       var rapport=(nouvelleWidth/ancienneWidth+nouvelleHeight/ancienneHeight)/2;
-//      console.log('rapport=',rapport);
       tab[1]=tab[1]*rapport;
       tab[2]=tab[2]*rapport;
      }
@@ -7696,9 +7429,6 @@ function myObj1(initObj1){
      
      
      tt+=tab.join(' ')+' ';
-//     console.log('tt=',tt);
-     
-//     tt+='   '+globalSelectElementTaille.tableauOriginal[i][0]+' '+(delta1.noux)+' '+(delta1.nouy)+' '+(delta2.noux)+' '+(delta2.nouy)+' '+(delta3.noux)+' '+(delta3.nouy)+'  ';
      
     }else if(globalSelectElementTaille.tableauOriginal[i][0]=='C' || globalSelectElementTaille.tableauOriginal[i][0]=='c' ){
 
@@ -7714,7 +7444,6 @@ function myObj1(initObj1){
      globalSelectElementTaille.tableauOriginal[i][0]=='S' 
     ){
 
-     // M 14 38   q    78 -66 99 15    
      var delta1=calculDxDy1( 1 , 2 , i );
      var delta2=calculDxDy1( 3 , 4 , i );
      tt+='   '+globalSelectElementTaille.tableauOriginal[i][0]+' '+delta1.noux+' '+delta1.nouy+' '+delta2.noux+' '+delta2.nouy+'    ';
@@ -7754,7 +7483,6 @@ function myObj1(initObj1){
      
     }
    }
-//   console.log('tt=',tt);
    globalGeneralSvgReferenceElement.setAttribute('d',tt);
    _dssvg.arbre0[globalIndiceArbre].data.attributes['d']=tt;
    
@@ -7793,7 +7521,6 @@ function myObj1(initObj1){
  //========================================================================================================
  function actionDownSizeElement(e){
   
-  //  console.log('mouseDownTranslate e=',e.target,e);
   initPosxy=positionSouris(e);
   ecran_appuye='tailleElement';
   
@@ -7817,7 +7544,6 @@ function myObj1(initObj1){
   globalSelectElementTaille.autreReference=null; // pour le radialGradient et filter
   if(globalGeneralSvgReferenceElement.length>1){
    globalSelectElementTaille.autreReference=globalGeneralSvgReferenceElement[globalGeneralSvgReferenceElement.length-1];
-//   console.log('globalSelectElementTaille.autreReference=',globalSelectElementTaille.autreReference)
   }
   globalGeneralSvgReferenceElement=globalGeneralSvgReferenceElement[0];  
   
@@ -7903,10 +7629,8 @@ function myObj1(initObj1){
   }else if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()=='text' || globalGeneralSvgReferenceElement.nodeName.toLowerCase()=='tspan'){
    
    var obj1=recuperePropsCouleurs(_dssvg.idArbreCourant);
-//   console.log('obj1=' , obj1 );
    
    globalSelectElementTaille.tableauOriginal=[ obj1 , parseFloat(rectangle.getAttribute('height'))];
-//   console.log('globalSelectElementTaille.tableauOriginal=',globalSelectElementTaille.tableauOriginal)
    
   }
   
@@ -7966,7 +7690,6 @@ function myObj1(initObj1){
 
   }else if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='circle' || globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='ellipse' || 'radialgradient' === globalGeneralSvgReferenceElement.nodeName.toLowerCase() ){
    
-//   console.log('globalIndiceArbre=',globalIndiceArbre)
    var newPosx=arrdi10000(globalSelectElementMove.tableauOriginal[0]+deltaReel.x);
    var newPosy=arrdi10000(globalSelectElementMove.tableauOriginal[1]+deltaReel.y);
  		globalGeneralSvgReferenceElement.setAttribute('cx',newPosx);
@@ -8043,7 +7766,6 @@ function myObj1(initObj1){
    divLag1Pour({t:'depPgZ',l:'depPgZ','x':newPosx,'y':newPosy});
 
   }else if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()=='path'){
-   //    console.log('deltaReel=',deltaReel);
    
    divLag1Pour({t:'depChZ',l:'depChZ','x':arrdi10000(newPointX),'y':arrdi10000(newPointY)});
    
@@ -8160,7 +7882,6 @@ function myObj1(initObj1){
      tt+=globalSelectElementMove.tableauOriginal[i].join(' ')+' ';
     }
    }
-//   console.log('tt='+tt);
  		globalGeneralSvgReferenceElement.setAttribute('d',tt);
    _dssvg.arbre0[globalIndiceArbre].data.attributes['d']=tt;
    
@@ -8206,7 +7927,6 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function actionDownMoveElement(e){
-//  console.log('mouseDownTranslate e=',e.target,e);
   initPosxy=positionSouris(e);
   ecran_appuye='deplaceElement';
   
@@ -8225,7 +7945,6 @@ function myObj1(initObj1){
   
   globalIndiceArbre=recupereIndiceArbre(_dssvg.idArbreCourant);
   globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+_dssvg.idArbreCourant+'"]');
-//  console.log('globalGeneralSvgReferenceElement=',globalGeneralSvgReferenceElement);
   
   globalSelectElementMove.autreReference=null; // pour le radialGradient ou filter
   if(globalGeneralSvgReferenceElement.length>1){
@@ -8297,7 +8016,6 @@ function myObj1(initObj1){
   ){
   
    globalSelectElementMove.tableauOriginal=[ parseFloat(globalGeneralSvgReferenceElement.getAttribute('x')) , parseFloat(globalGeneralSvgReferenceElement.getAttribute('y')) ];
-//   console.log('globalGeneralSvgReferenceElement=',globalGeneralSvgReferenceElement,'globalSelectElementMove.tableauOriginal=' , globalSelectElementMove.tableauOriginal );
   
   }else if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='circle' || globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='ellipse' || 'radialgradient' === globalGeneralSvgReferenceElement.nodeName.toLowerCase()){
    
@@ -8457,15 +8175,12 @@ function myObj1(initObj1){
    try{
     
     if(nn==='radialgradient'){
-//     console.log('ici');
 
      var transform=lst[i].getAttribute('gradientTransform')?lst[i].getAttribute('gradientTransform'):'';
 
      var cascade=calculCascadeTransform(lst[i],[]);
-//     console.log(cascade);
-     
      // il faut fabriquer un radialGradient inverse et assigner au cercle plus bas son url(id)
-//     debugger;
+
      var monClone=lst[i].cloneNode(true);
      monClone.id='inverse_de_'+idarbre1;
      lst[i].parentNode.appendChild(monClone);
@@ -8502,7 +8217,6 @@ function myObj1(initObj1){
      var transform=lst[i].getAttribute('gradientTransform')?lst[i].getAttribute('gradientTransform'):'';
 
      var cascade=calculCascadeTransform(lst[i],[]);
-//     console.log(cascade);
      var monClone=lst[i].cloneNode(true);
      monClone.id='inverse_de_'+idarbre1;
      lst[i].parentNode.appendChild(monClone);
@@ -8706,7 +8420,6 @@ function myObj1(initObj1){
     continue;
    }
    if(lst[i].getAttribute('data-type') && lst[i].getAttribute('data-type')=='systeme'){
-//    console.log('data-type =',lst[i].getAttribute('data-type'));
     continue;
    }
    if(_dssvg.mode_en_cours==='setModeSaisieSelElt1' && ( nn=='defs' )){
@@ -8726,9 +8439,6 @@ function myObj1(initObj1){
     }
    }catch(e){
    }
-//   console.log('extensions=',extensions)
-   
-   
    
    try{
     var idarbre1=lst[i].getAttribute('data-idarbre1');
@@ -8757,7 +8467,6 @@ function myObj1(initObj1){
       refZnDessin.prepend(monClone);
      }
     }
-//    console.log('nn=' , nn);
 
     if(nn==='radialgradient'){
      
@@ -8766,7 +8475,7 @@ function myObj1(initObj1){
      var transform=lst[i].getAttribute('gradientTransform')?lst[i].getAttribute('gradientTransform'):'';
 
      var cascade=calculCascadeTransform(lst[i],[]);
-//     console.log(cascade);
+
      var monClone=lst[i].cloneNode(true);
      monClone.id='inverse_de_'+idarbre1;
      lst[i].parentNode.appendChild(monClone);
@@ -8774,7 +8483,7 @@ function myObj1(initObj1){
      monClone.setAttribute('data-idarbre1','');
      monClone.setAttribute('data-type','toRemove');
 
-//     console.log('transform=',transform);
+
      var id=lst[i].getAttribute('id');
 
      var cercle=ajouteElemDansElem(
@@ -8801,7 +8510,7 @@ function myObj1(initObj1){
      var transform=lst[i].getAttribute('gradientTransform')?lst[i].getAttribute('gradientTransform'):'';
 
      var cascade=calculCascadeTransform(lst[i],[]);
-//     console.log(cascade);
+
      var monClone=lst[i].cloneNode(true);
      monClone.id='inverse_de_'+idarbre1;
      lst[i].parentNode.appendChild(monClone);
@@ -8832,7 +8541,7 @@ function myObj1(initObj1){
      
      
     }else if(nn==='filter'){
-//     console.log(cascade);
+
      var rectangle=ajouteElemDansElem(
       refZnDessin,
       'rect',
@@ -8900,7 +8609,6 @@ function myObj1(initObj1){
  function annuler1(e){
   if(_dssvg.historique1.length>1){
    var toto=_dssvg.historique1.pop(); 
-//   console.log('toto=',toto);
    _dssvg.arbre0=_dssvg.historique1.pop();
    afficheArbre0({init:false});
   }  
@@ -9072,7 +8780,6 @@ function myObj1(initObj1){
  
  //========================================================================================================
  function redrawCss(){
-//  console.log('redrawCss');
   getSizes()
  
   wi_of_the_menulft=_dssvg.parametres.largeurMenuGauche+_dssvg.parametres.scroll_size;
@@ -9082,17 +8789,6 @@ function myObj1(initObj1){
    ss.deleteRule(i);
   }
   
-/*
-css do not hide address bar on mobile browser
-https://stackoverflow.com/questions/18061308/prevent-address-bar-hiding-in-mobile-browsers
-html {background-color: red;overflow: hidden;width: 100%;}
-body {height: 100%;
-  position: fixed; / * prevent overscroll bounce * /
-  background-color: lightgreen;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;/ * iOS velocity scrolling * /
-}
-*/  
   
   ss.insertRule('body{background-color:aliceblue;color:#333;font-family:verdana,arial,sans-serif;font-size:'+(_dssvg.parametres.taillePolice)+'px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;text-size-adjust:100%;width:100%;position:fixed;touch-action:manipulation;height:100%;overscroll-behavior:none;overflow:hidden;-webkit-overflow-scrolling: touch;}' , ss.cssRules.length);
   ss.insertRule('*{scrollbar-color: #34d3f7 #bfe8ff;}' , ss.cssRules.length);
@@ -9151,7 +8847,7 @@ body {height: 100%;
   
  }  
 //========================================================================================================
- function getScrollWidth() { //setup globalScrollWidth1
+ function getScrollWidth(){
   var div = document.createElement("div");
   div.style.width = '100px';
   div.style.height = '100px';
@@ -9252,7 +8948,7 @@ body {height: 100%;
  }, 250);
  //========================================================================================================
  function _foldFunction1(idArbre){
-//  console.log(idArbre);
+
   for(var i=0;i<_dssvg.arbre0.length;i++){
    if(_dssvg.arbre0[i].id===idArbre){
     _dssvg.arbre0[i].isOpen=_dssvg.arbre0[i].isOpen===1?0:1;
@@ -9271,7 +8967,6 @@ body {height: 100%;
    if(_dssvg.arbre0[i].id==idArbre){
     indiceArbre=i;
     branche=_dssvg.arbre0[i];
-//    console.log('branche=',branche);
     values=_dssvg.arbre0[i].data;
     break;
    }
@@ -9279,7 +8974,6 @@ body {height: 100%;
   
   var td1MaxWidth='width:20%';
   
-//  console.log('edit node number '+idArbre+' values=',values );
   var elementsAffiches=[];
   var tt='';
   for(var i in values.attributes){
@@ -9431,12 +9125,12 @@ body {height: 100%;
  }
  //========================================================================================================
  function myCallBackAction1(context,tree){
-//  console.log(context);
+
   if(context.action.substr(0,7)==='delete|'){
   }else{
    switch(context.action){
     case 'afterReorganize' :
- //    console.log(tree , _dssvg.arbre0 );
+
      var newTree=[_dssvg.arbre0[0]];
      for(var i=0;i<tree.length;i++){
       newTree.push(tree[i]);
@@ -9539,9 +9233,6 @@ body {height: 100%;
     return;
    }
   }
-  
-//  console.log( 'nouveauxAttributs=' , nouveauxAttributs );
-  
   
   for(var i=0;i<_dssvg.arbre0.length;i++){
    if(_dssvg.arbre0[i].id==idArbre){
@@ -10043,7 +9734,7 @@ body {height: 100%;
  }
  //========================================================================================================
  function popupArbo1(e){
-//  console.log('ici')
+
   var contentOfPopup='<h3>'+trad['arbre']+'</h3>';
   contentOfPopup+='<div id="comandTop">';
   contentOfPopup+='<button id="ajouterGroupe"          class="butMenuHaut butEnabled butpopUp">+g</button>';
@@ -10164,7 +9855,6 @@ body {height: 100%;
  }
  //========================================================================================================
  function zoomWheelSvg(e){
-//  console.log('e=',e)
   if(e.deltaY<0){
    zoomPlusMoins(2);
   }else{
@@ -10174,9 +9864,9 @@ body {height: 100%;
  //========================================================================================================
  function menuTopWheel(e){
   if(e.deltaY<0){
-   divtpe.scrollTo(divtpe.scrollLeft+10,0);
+   divtpe.scrollTo(divtpe.scrollLeft+30,0);
   }else{
-   divtpe.scrollTo(divtpe.scrollLeft-10,0);
+   divtpe.scrollTo(divtpe.scrollLeft-30,0);
   }
  }
 
@@ -10204,7 +9894,6 @@ body {height: 100%;
   timerLongClick=setTimeout( function(){
    tempsSuperieurA300=true;
    if(movingButton.isMoving===false){
-//    console.log(e);
     e.target.style.borderColor='red';
    }
   } , 300);
@@ -10224,7 +9913,6 @@ body {height: 100%;
     var shortColor=thecolor.substr(0,1)=='#'?thecolor.substr(1):thecolor;
     for(var numColWeb=0;numColWeb<tabWebCol0.length ;numColWeb++){
      if(tabWebCol0[numColWeb][0].length>6){
-  //    console.log( tabWebCol0[numColWeb][0]  , tabWebCol0[numColWeb][0].substr(0,6).toLowerCase() , shortColor.toLowerCase() );
       if(tabWebCol0[numColWeb][0].substr(0,6).toLowerCase()==shortColor.toLowerCase()){
        thecolor=tabWebCol0[numColWeb][0].substr(6).toLowerCase();
        break;
@@ -10238,11 +9926,9 @@ body {height: 100%;
   
   
   if(colorPickerData.context=='strokeElement'){
-//   console.log('dans _callBackColorPicker, colorPickerData=',colorPickerData);    // {value: 'red', id: null, context: 'strokeElement', opac: 1, numArbre: 1}
    majPropArbre(colorPickerData.numArbre , 'stroke' , colorPickerData.value );
   }
   if(colorPickerData.context=='fillElement'){
-//   console.log('dans _callBackColorPicker, colorPickerData=',colorPickerData);    // {value: 'red', id: null, context: 'strokeElement', opac: 1, numArbre: 1}
    majPropArbre(colorPickerData.numArbre , 'fill' , colorPickerData.value );
   }
   
@@ -10254,33 +9940,21 @@ body {height: 100%;
    // mettre à jour _dssvg.strokCols
    var indiceTab=parseInt(colorPickerData.id.replace('setStrokeStylColor1_',''),10);
    _dssvg.strokCols[indiceTab]=colorPickerData.value;
-/*   
-   if(false && indiceObjSelect1>=0){
-    draw_state.elementsToDraw2[indiceObjSelect1].strokeColor1=colorPickerData.value;
-   }
-*/   
    saveStte();
    highliteStrokeStyle();
   }
   if(colorPickerData.context=='setFillStylColor'){
    dogid(colorPickerData.id).style.color=colorPickerData.value;
    draw_state.fillStyle1=colorPickerData.value;
-/*   
-   if(false && indiceObjSelect1>=0){
-    draw_state.elementsToDraw2[indiceObjSelect1].fillStyle1=colorPickerData.value;
-   }
-*/   
    saveStte();
   }
-//  console.log('indiceObjSelect1='+indiceObjSelect1)
-  
   
   closePopup();
  }
  
  
+ //========================================================================================================
  function touchMoveButton(e){
-//  console.log(e.touches[0] , movingButton)
   if(Math.abs(e.touches[0].clientX-movingButton.initX)>=2 || Math.abs(e.touches[0].clientY-movingButton.initY)>=2){
 
    movingButton.isMoving=true;
@@ -10334,14 +10008,13 @@ body {height: 100%;
   if (a.length == 1)
     a = "0" + a;
   var ret='#' + r + g + b + a;
-//  console.log(ret);
   return ret;
    
  }
  
  //========================================================================================================
  function _selColor1(c){
-//  console.log(c);
+
   dogid('colorInput').value=c.substr(0,6);
   if(c==='transparent'){
    kellyColor1.setColor('rgba(0,0,0,0)');
@@ -10395,8 +10068,6 @@ body {height: 100%;
   t+=' <canvas id="colPick1" width="'+largeurCanvas+'" height="'+hauteurCanvas+'" style="width:'+largeurCanvas+'px;height:'+hauteurCanvas+'px;"></canvas>';
   t+='</div>';
 
-//  button_size:35,
-//  border_button_size:1,
 
   var countCouleursUtilisees=0;
   var largeurBtns=wi_of_the_menulft-2*wi_of_the_brds1-globalScrollWidth1;
@@ -10406,66 +10077,6 @@ body {height: 100%;
   var border1='border:1px white outset;padding:0;height:'+(largeurBtns)+'px;width:'+(largeurBtns)+'px;';
   
   
-/*  
-  if(false){ // affichage des couleurs actuellement utilisées
-   t+='<table cellpadding="0" cellspacing="0" summary="" style=" border:1px blue solid;margin:0 auto;">';
-   t+='<tr><td><span>Used</span></td></tr>';
-   var colsTab=[];
-   var colVal='';
-   var trouve=false;
-   var trouve2=false;
-   var eltList=['strokeColor1','fillStyle1'];
-   for(var elt in eltList){
-    for(var i=0;i<draw_state.elementsToDraw2.length;i++){
-     colVal=draw_state.elementsToDraw2[i][eltList[elt]];
-     trouve=false;
-     for(var j=0;j<colsTab.length;j++){
-      if(colsTab[j].colVal==colVal){
-       trouve=true;
-       trouve2=false;
-       for(var k=0;k<colsTab[j].objList.length;k++){
-        if(colsTab[j].objList[k]==i){
-         trouve2=true;
-         break;
-        }
-       }
-       if(trouve2===false){
-        colsTab[j].objList.push(i);
-       }
-       
-       break;
-      }
-     }
-     if(trouve===false){
-      colsTab.push({colVal:colVal,objList:[i]})
-     }
-    }
-   }
- //  console.log('colsTab=',colsTab);
-   for(var i=0;i<colsTab.length;i++){
-    t+='<tr>';
-    
-    t+='<td style="vertical-align:middle;border:1px blue solid;padding:2px;">';
-    t+=''+colsTab[i].colVal;
-    t+='</td>';
-
-    t+='<td style="vertical-align:middle;border:1px blue solid;padding:2px;">';
-    t+='<div style="display:inline-block;'+border1+'background:'+colsTab[i].colVal+';"></div>';
-    t+='</td>';
-
-    t+='<td style="vertical-align:middle;border:1px blue solid;padding:2px;">';
-    for(var j=0;j<colsTab[i].objList.length;j++){
-     t+=' <button style="margin-top:-4px;" id="countObj_'+countCouleursUtilisees+'" data-obj="'+colsTab[i].objList[j]+'" class="cmdbtn cmdbtnleft">'+colsTab[i].objList[j]+'</button>';
-     countCouleursUtilisees++;
-    }
-    t+='</td>';
-
-    t+='</tr>';
-    
-   }
-   t+='</table>';
-  } // fin des couleurs actuellement utilisées
-*/  
   
   t+='<table cellpadding="0" cellspacing="0" summary="" style=" border:1px blue solid;margin:0 auto;">';
   t+='<tr><td colspan="'+nbCoulParLigne+'"><span>WEB named</span><button class="butEnabled butMenuHaut" style="margin-left: 10px;" onclick="'+global_variable_name+'.selColor1(\'transparent\')">transparent</button></td></tr>';
@@ -10521,7 +10132,7 @@ body {height: 100%;
   showPopUp('popupCouleurs')  ;;
 
   var initColor=colorPickerData.value;
-//  console.log('trfa',(colorPickerData.value.substr(0,1) == '#' && colorPickerData.value.substr(1)>='000000' ))// && colorPickerData.value.substr(1)<='FFFFFF'));
+
   if(initColor.substr(0,1) == '#' && initColor.substr(1).toUpperCase()>='000000'&&initColor.substr(1).toUpperCase()<='FFFFFF'){
    initColor=initColor.substr(1);
    dogid('chooseColor').style.background=initColor;
@@ -10557,8 +10168,6 @@ body {height: 100%;
    userEvents : { 
     change : function(handler) {
      var c=handler.getCurColorHex().substr(1).toUpperCase();
-//     console.log('change',handler.getCurColorHex() , c  ); 
-//     dogid('chooseColor').style.display='none';
      if(c>='000000' && c <= 'FFFFFF'){
       dogid('colorName').innerHTML='';
       dogid('chooseColor').style.background='#'+c;
@@ -10592,7 +10201,6 @@ body {height: 100%;
  //========================================================================================================
  function setPickerForColor(cont,e){
   
-//  console.log('clickdroit',e);
   colorPickerData.context=cont;
   colorPickerData.id=e.target.id;
   var colorButton=dogid(e.target.id).style.color;
@@ -10607,7 +10215,6 @@ body {height: 100%;
    var txt='rgba('+cols[0]+','+cols[1]+','+cols[2]+','+cols[3]+')';
    var val=RGBAToHexA(txt);
    colorPickerData.value=colorButton; //val.substr(0,7);
-//   colorPickerData.opac=cols[3];
   }else{
    colorPickerData.opac=1;
    var value = rgb2hex(dogid(e.target.id).style.color);
@@ -10617,23 +10224,12 @@ body {height: 100%;
     colorPickerData.value=value;
    }
   }
-//  console.log('colorPickerData=',colorPickerData);
   popupCouleurs(e);
  }
  
  //========================================================================================================
  function highliteStrokeStyle(e){
   var elt=null;
-/*  
-  var elt=dogid('strostyl_transp');
-  if(_dssvg.strokeColor1=='transparent'){
-   elt.style.background=bckVert1;
-   elt.style.borderStyle='inset';
-  }else{
-   elt.style.background='';
-   elt.style.borderStyle='';
-  }
-*/  
   for(var i=0;i<_dssvg.strokCols.length;i++){
    elt=dogid('setStrokeStylColor1_'+i);
    elt.style.borderColor='';
@@ -10649,7 +10245,6 @@ body {height: 100%;
  //========================================================================================================
  function setStrokeStyle(e){
   if(e!==null){
-//   console.log(e);
    if(e.target.id=='strostyl_transp' || e.target.parentElement.id=='strostyl_transp'){
     _dssvg.strokeColor1='transparent';
    }else{
@@ -10662,17 +10257,11 @@ body {height: 100%;
     }
    }
   }
- 
-//  if(false){ //indiceObjSelect1!=-1){
-//   _dssvg.elementsToDraw2[indiceObjSelect1].strokeColor1=draw_state.strokeColor1;
-//  }
-  
   highliteStrokeStyle();
   saveStte();
  } 
  //========================================================================================================
  function useColor(e){
-//  console.log('use color ',e,colorPickerData);
   if(e.target.id.indexOf('setStrokeStylColor')>=0){
    _dssvg.strokeColor1=dogid(e.target.id).style.color;
    highliteStrokeStyle();
@@ -10680,25 +10269,11 @@ body {height: 100%;
    draw_state.fillStyle1=dogid(e.target.id).style.color;
    highliteFillStyle();
   }
-/*
-  if(false ){ // && indiceObjSelect1>=0
-   if(e.target.id.indexOf('setStrokeStylColor')>=0){
-    _dssvg.strokeColor1=dogid(e.target.id).style.color;
-    _dssvg.elementsToDraw2[indiceObjSelect1].strokeColor1=draw_state.strokeColor1;
-    highliteStrokeStyle();
-   }else if(e.target.id.indexOf('setFillStylColor2')>=0){
-    _dssvg.fillStyle1=dogid(e.target.id).style.color;
-    _dssvg.elementsToDraw2[indiceObjSelect1].fillStyle1=draw_state.fillStyle1;
-    highliteFillStyle();
-   }
-  }
-*/  
   saveStte();
  }
 
  //========================================================================================================
  function setStrokeStylColor(e){
-//  console.log(e);
   if(e.cancelable){e.preventDefault();}
   e.stopPropagation();
   if(movingButton.isMoving===false){
@@ -10718,11 +10293,9 @@ body {height: 100%;
  //========================================================================================================
  function clickDownDivLag2(e){
   e.stopPropagation();
-//  console.log('e=',e.target,e.target.nodeName)
   if(e.target.nodeName.toLowerCase()==='button'){
    var action=e.target.getAttribute('data-action');
    if(action){
-    // suppAttribGraDuGroupe1
     traiterAction(action);
    }
   }
@@ -10743,7 +10316,6 @@ body {height: 100%;
     lang='en';
     setTrad_en();
    }
-//   setTrad_en();    console.log('trad=',trad);
    init0(lang);
   }
   scr.src='trad.js?v='+ver;
@@ -10752,7 +10324,6 @@ body {height: 100%;
  }
  //========================================================================================================
  function init0(lang){
-//  console.log('init début');
   
   var draw_stateTxt=localStorage.getItem('_dssvg');
   if(draw_stateTxt!==null){
@@ -10777,14 +10348,12 @@ body {height: 100%;
    }catch(e1){
    }
   }
-//  console.log('_dssvg.parametres=' , _dssvg.parametres );
   getScrollWidth();
   redrawCss();
   _dssvg.parametres.scroll_size=globalScrollWidth1;
   he_of_the_menutpe=_dssvg.parametres.hauteurMenuHaut+_dssvg.parametres.scroll_size;
   wi_of_the_menulft=_dssvg.parametres.largeurMenuGauche+_dssvg.parametres.scroll_size;
   
-//  console.log('globalScrollWidth1=',globalScrollWidth1);
   
   
   
@@ -10915,7 +10484,6 @@ body {height: 100%;
        butt.className='butEnabled butMenuGauche';
        butt.innerHTML=boutons[i].contenu;
        butt.title=boutons[i].libelle;
-//       console.log(_dssvg.strokCols[nbElts]);
        butt.style.color=_dssvg.strokCols[nbElts]; // attention un rgba avec opacite = 1 => trasnformé en rgb
        
        butt.addEventListenerBase( 'contextmenu' , function(e){e.preventDefault();e.stopPropagation();return false;} ); 
@@ -10998,9 +10566,6 @@ body {height: 100%;
    try{
     var jsonDs=JSON.parse(draw_stateTxt);
     
-//    console.log('dans init, jsonDs=',jsonDs);
-    
-    
     if(jsonDs.hasOwnProperty('parametres') && jsonDs.parametres.hasOwnProperty('rayonReference')){
      _dssvg.parametres.rayonReference=jsonDs.parametres.rayonReference;
     }
@@ -11040,18 +10605,15 @@ body {height: 100%;
     
     if(jsonDs.hasOwnProperty('viewBoxInit')){
      _dssvg.viewBoxInit=jsonDs.viewBoxInit;
-//     console.log(_dssvg.viewBoxInit);
      var width =(xscreen-margns.l-wi_of_the_menulft-decal.l-margns.r-2*wi_of_the_brds2)/_dssvg.zoom1;
      var height=(yscreen-margns.t-he_of_the_menutpe-decal.t-margns.b-2*wi_of_the_brds2)/_dssvg.zoom1;
 
-//     console.log(width,height);
      if(_dssvg.viewBoxInit[2]>width){
       _dssvg.viewBoxInit[2]=width;
      }
      if(_dssvg.viewBoxInit[3]>height){
       _dssvg.viewBoxInit[3]=height;
      }
-//     refZnDessin.setAttribute('viewBox',_dssvg.viewBoxInit.join(' '));
      setAttributeViewBox();  
     }
     
@@ -11062,20 +10624,6 @@ body {height: 100%;
       }
      }
      _dssvg.arbre0=jsonDs.arbre0;
-    }else{
-/*     
-     if(jsonDs.hasOwnProperty('innerSvg') && jsonDs.innerSvg!==''){
-      _dssvg.innerSvg=jsonDs.innerSvg;
-      refZnDessin.innerHTML=jsonDs.innerSvg;
-      getSvgTree({init:true})
-     }else{
-      if(jsonDs.hasOwnProperty('outerSvg') && jsonDs.outerSvg!==''){
-       _dssvg.outerSvg=jsonDs.outerSvg;
-       refZnDessin.outerHTML=jsonDs.outerSvg;
-       getSvgTree({init:true})
-      }
-     }
-*/     
     }
    }catch(e){}
   }
@@ -11106,9 +10654,6 @@ body {height: 100%;
 //   }
    
   }, false);
-//  if(initObj1.isLocalhost===false){
-//   window.oncontextmenu=function(e){e.preventDefault();e.stopPropagation();return false;}; 
-//  }
   popupBackground1=document.createElement('div');
   popupBackground1.id='popupBackground1';
   popupBackground1.style.display='none';
@@ -11121,7 +10666,6 @@ body {height: 100%;
   body.appendChild(popupBackground1);
   
   
-  //   ss.insertRule('#popupContent1{z-index: 101;opacity: 0.9;position: absolute;background: white;overflow: scroll;    border-radius: 4px;box-shadow: 0px 0px 25px #000;}' , ss.cssRules.length);  
 
   popupContent1=document.createElement('div');
   popupContent1.id='popupContent1';
@@ -11160,10 +10704,6 @@ body {height: 100%;
   
   setTimeout(apresInit,250);
   
-  
-  
-  
-//  console.log('init fin');  
  }
  //========================================================================================================
  function apresInit(){
@@ -11206,7 +10746,6 @@ body {height: 100%;
    }else{
     var idArbre=parseInt(lst[i].getAttribute('data-idarbre1'),10);
     var indiceArbre=recupereIndiceArbre(idArbre);
-//    console.log('idArbre='+idArbre,'indiceArbre=',indiceArbre);
    }
 
    try{   
@@ -11218,10 +10757,8 @@ body {height: 100%;
     var maxx=-999999;
     var maxy=-999999;   
     
- //   console.log('bounding=',bounding);
     
     var tab=[[bounding.x,bounding.y],[bounding.x+bounding.width,bounding.y],[bounding.x+bounding.width,bounding.y+bounding.height],[bounding.x,bounding.y+bounding.height]];
- //   console.log('tab=',tab);
     for(var j=0;j<tab.length;j++){
      
      pt1.x=tab[j][0];
@@ -11274,7 +10811,6 @@ body {height: 100%;
    var indA=recupereIndiceArbre(idArbre);
    var elem=document.querySelectorAll('[data-idarbre1="'+idArbre+'"]');
    var nomDuTransform='transform';
-//   console.log('elem=',elem)
    
    if(elem.length>1){ // probablement un radialGradient
     if(elem[elem.length-1].nodeName.toLowerCase()==='radialgradient'){
@@ -11306,14 +10842,12 @@ body {height: 100%;
      tt+=') ';
     }
    }
-//   console.log('tt=',tt);
    elem.setAttribute(nomDuTransform,tt);
    _dssvg.arbre0[indA].data.attributes[nomDuTransform]=tt;
    
    return {statut:true,elem:elem};
 
   }catch(e){
-//   console.log('e=',e);
   }
   return {statut:false};
  }
@@ -11350,7 +10884,6 @@ body {height: 100%;
    }
   }
   ttemp[0]=ttemp[0].toLowerCase();
-//         console.log('dx=',dx,'dy=',dy);
   if(ttemp[0]=='c'){
    ttemp[1]=arrdi10000(ttemp[1]-dx);
    ttemp[2]=arrdi10000(ttemp[2]-dy);
@@ -11387,7 +10920,7 @@ body {height: 100%;
   }else if(ttemp[0]=='z'){
   }else{
    console.warn('%ctraiter ttemp[0]=','color:purple;',ttemp[0])
-   todo();
+
   }
   var tt=''+ttemp[0]+ ' ';
   for(var i=1;i<ttemp.length;i++){
@@ -11415,7 +10948,7 @@ body {height: 100%;
   try{
    var ind=recupereIndiceArbre(numArbre);
    var eltd=_dssvg.arbre0[ind].data.attributes;
- //  console.log('eltd=',eltd);
+
    // on récupére TOUS LES ATTRIBUTS de la propriété "style"
    var attributStyle=eltd.hasOwnProperty('style')?eltd.style:null;
    if(attributStyle!==null && attributStyle!==''){
@@ -11467,18 +11000,13 @@ body {height: 100%;
     nouveauAttributs[n]=_dssvg.arbre0[ind].data.attributes[n];
    }
   }
-//  console.log('JSON.parse(JSON.stringify(nouveauAttributs))=',JSON.parse(JSON.stringify(nouveauAttributs)));
   _dssvg.arbre0[ind].data.attributes=JSON.parse(JSON.stringify(nouveauAttributs));
  }
  //========================================================================================================
  function majPropArbre(numArbre , type , valeur ){
   var ind=recupereIndiceArbre(numArbre);
   var eltd=_dssvg.arbre0[ind].data;
-//  console.log('eltd=',eltd);
   var couleurs=recuperePropsCouleurs(numArbre);
-//  console.log('couleurs=',couleurs , 'type=',type , 'valeur=', valeur);
-  
-  
   var nouveaStyle1={};
   for(var n in couleurs){
    if(type==n){
@@ -11504,7 +11032,6 @@ body {height: 100%;
    }
   }
   
-//  console.log('nouveaStyle2=' , nouveaStyle2 );
   var tt='';
   for(var n in nouveaStyle2){
    tt+=''+n+':'+nouveaStyle2[n]+';'
@@ -11526,8 +11053,6 @@ body {height: 100%;
    var extensionsTxt=globalGeneralSvgReferenceElement.getAttribute('data-extensions');
    if(extensionsTxt){
     extensions=JSON.parse(extensionsTxt);
-//    console.log('extensions=',extensions);
-    
    }
    
    if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='radialgradient' || globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='lineargradient' ){
@@ -11543,7 +11068,6 @@ body {height: 100%;
    if(extensions && extensions.tableauArbre.includes('clipPath') || extensions && extensions.tableauArbre.includes('pattern') ){
     t+='Le clipPath/pattern contient des transformations';
    }else{
- //   console.log('objTransform=',objTransform);
     for(var i=0;i<objTransform.tab.length;i++){
      t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"supptransform1","numArbre":'+numArbre+',"numTransform":'+i+'}')+'">'+objTransform.tab[i][0]+'(';
      for(var j=0;j<objTransform.tab[i][1].length;j++){
@@ -11678,14 +11202,14 @@ body {height: 100%;
 
     }
    }
-//   console.log('_dssvg.mode_en_cours=' , _dssvg.mode_en_cours ); // 
+
    if(
      (_dssvg.mode_en_cours==='setModeSaisieSelElt1' || 'setModeSaisieDefsElt1'===_dssvg.mode_en_cours) ||
      ( (_dssvg.mode_en_cours==='setModeSaisieEditionPoin1' || 'setModeSaisieDefsPtE1'===_dssvg.mode_en_cours ) && globalIndicePoint!==null )
    ){
 
     var couleurs=recuperePropsCouleurs(numArbre);
-//    console.log('couleurs=',couleurs);
+
     if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='image'){
       t+='<button class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"wiEtHeImageVide" ,"numArbre":'+numArbre+'}')+'">raz hauteur et largeur</button>';
       t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"opacity" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['opacity']         +'"}')+'">opac:'+couleurs['opacity']+'</button>';
@@ -11738,7 +11262,7 @@ body {height: 100%;
      }
     }
    }
-//   console.log('cx=',cx,'cy=',cy);
+
    if(cx!==null && cy!==null){
     var lst=document.querySelectorAll('[data-action="selectionnerElementAtransformer"]'); // data-elem=""2 hg"
     for(var i=0;i<lst.length;i++){
@@ -11748,9 +11272,9 @@ body {height: 100%;
        var cx1=parseFloat(lst[i].getAttribute('cx'));
        var cy1=parseFloat(lst[i].getAttribute('cy'));
        if(cx1>=cx-0.5 && cx1<=cx+0.5 && cy1>=cy-0.5 && cy1<=cy+0.5 ){
-//        console.log('lst['+i+']=',lst[i]);
+
         var idAutre=parseInt(attrDe.substr(0,attrDe.indexOf(' hg')),10);
-//        console.log('idAutre=',idAutre)
+
         t+='<button class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"selectionnerGroupeDessous1"  ,"idAutre":'+idAutre+',"idCourant":'+_dssvg.idArbreCourant+'}')+'">'+trad['selectionner_le_groupe']+' '+idAutre+' '+trad['sous_le']+' '+_dssvg.idArbreCourant+' ('+trad['sous_le']+')</button>';
        }
       }
@@ -11764,7 +11288,7 @@ body {height: 100%;
   
   divlag2.innerHTML=t;
   var taille=divlag2.getBoundingClientRect();
-//  console.log('taille=',taille)
+
   divlft.style.paddingBottom=taille.height+'px';
   
  }
@@ -11835,16 +11359,16 @@ body {height: 100%;
  function afficheArbre0(option){
 
   var obj=looptree(0,{afficherTout:true}); // =='setModeSaisieDefsElt1'
-//  console.log('looptree obj=',obj);
+
   refZnDessin.innerHTML=obj.txt;
   recalculBBoxes();
   saveStte();
   var obj=looptree(0,{afficherTout:false,mode:_dssvg.mode_en_cours});
-//  console.log('looptree obj=',obj);
+
 //  console.log('_dssvg.arbre0=',_dssvg.arbre0); // hugues
   etatPoigneesVoisines1=false;
   majBout();
-//  console.log('obj.txt=' , obj.txt );
+
   refZnDessin.innerHTML=obj.txt;
   
   var absy= ajouteElemDansElem(refZnDessin,'polyline',{'data-type':'systeme',points:'0 0 101 0','stroke-dasharray':'5',style:'fill:transparent;stroke:red;stroke-width:'+(1/_dssvg.zoom1/4)+';'}); // 
@@ -11862,15 +11386,6 @@ body {height: 100%;
     afficheIndicateurFleche();
    }else{
     affPoi();
-/*    
-    //  déclenche des poignées en double
-    if(_dssvg.mode_en_cours=='setModeSaisieEditionPoin1' || _dssvg.mode_en_cours=='setModeSaisieDefsPtE1' ){
-     if(_dssvg.idArbreCourant!==null){
-      debugger;
-      actionDownSelectionIndiceArbre(null,_dssvg.idArbreCourant);
-     }   
-    }
-*/    
    }
   }
   divLag2Complete();
@@ -11891,7 +11406,7 @@ body {height: 100%;
     }else{
      option.tableauArbre.push(_dssvg.arbre0[i].data.nodeName);
     }
-//    console.log(option.tableauArbre);
+
     
     if('#comment'==_dssvg.arbre0[i].data.nodeName){
     }else{
@@ -11911,11 +11426,6 @@ body {height: 100%;
       }
      }
      var nn=_dssvg.arbre0[i].data.nodeName.toLowerCase();
-/*     
-     if(nn==='defs' || nn==='stop' || nn=='lineargradient' || nn=='filter' || nn=='fegaussianblur' || nn==='radialgradient'){
-      afficherObjet=true;
-     }
-*/     
      if(afficherObjet===false && ( option.tableauArbre[0]==='defs' || option.tableauArbre[option.tableauArbre.length-1]==='g' || option.tableauArbre[0]==='symbol'  ) ){ 
       // on doit afficher les groupes car quand on dessine dans un groupe, il faut que je puisse comparer 
       // la matrice générée et la matrice réelle
@@ -12020,14 +11530,12 @@ body {height: 100%;
       return;
      }
      if(attribute.nodeValue==parseFloat(attribute.nodeValue)){
-//      console.log('float pour attribut=',attribute.nodeName);
       result2[result2.length-1].data.attributes[attribute.nodeName]=parseFloat(attribute.nodeValue);
      }else{
       result2[result2.length-1].data.attributes[attribute.nodeName]=attribute.nodeValue;
      }
     }
    }
-//   console.log(xmlNode.getScreenCTM());
    try{
     xmlNode.setAttribute('data-idarbre1',result2.length-1);
     level++;
@@ -12205,7 +11713,6 @@ body {height: 100%;
              }
              break;
              case "M": case "m": case "L": case "l": case "C": case "c": case "Q": case "q": case "T": case "t": case "S": case "s":
- //                console.log( 'paths['+indicePath+']=' + paths[indicePath] );
                  try{
                   var arr = paths[indicePath].split(/[\s,]+/).filter(function(v) { return v.length > 0 }).map(function(v){return parseFloat(v.trim())});
                  }catch(e){
@@ -12245,8 +11752,6 @@ body {height: 100%;
                   
                  }else if(keys[i].toLowerCase()=='s'){ // comme t mais non quadratique
                  
-                  // S x2 y2, x y
- //                   console.log( lastx , lasty );
                   var tousLesTableaux=[];
                   if(arr.length==4){
                    tousLesTableaux.push(arr);
@@ -12432,7 +11937,6 @@ body {height: 100%;
                   
                  }else{
                   console.warn('%cPourquoi ?','color:yellow;background:red;')
- //                 console.log('X arr=',arr);
                   for(var t = 0, lenPaths = arr.length ; t < lenPaths ; t++){
                    if(t%2 === 0){
                     x = (keys[i] == "l" ? x : 0) + parseFloat(arr[t]);
@@ -12447,30 +11951,16 @@ body {height: 100%;
                  break;
                  
              case "a" : case 'A' :
-                 // console.log('TODO arc keys[i]='+keys[i]+' paths[indicePath]='+paths[indicePath]+' str='+str);
-                 //   0       1      2               3              4          5       6
-                 // a rx      ry     x-axis-rotation large-arc-flag sweep-flag dx      dy     rx      ry     x-axis-rotation large-arc-flag sweep-flag dx      dy
-                 // a 3.243   7.691  0               1              1          -6.487  0      3.243   7.691  0               1 1 6.487  0 
-                 // a 3       7      0               1              1          -6      0      3       7      0               1 1 6.487  0 
                   var arr = paths[indicePath].split(/[\s,]+/).filter(function(v) { return v.length > 0 });
                   var tousLesTableaux=[];
                   if(arr.length==7){
- //                  console.log('lastx='+lastx+' lasty='+lasty+' , arr=',arr,arr.length );
                    tabOri.push([keys[i] , parseFloat(arr[0]) , parseFloat(arr[1]) , parseFloat(arr[2]) , parseFloat(arr[3]) , parseFloat(arr[4]) , parseFloat(arr[5]) , parseFloat(arr[6]) ]);
                    if(keys[i]=='a'){
-                    // 183, 96,    350, 105,    167.2423391369542, 167.2423391369542, 0, 1, 0, {}
-                    
-                    // dex    dey    fix    fiy   rax  ray  ang   grc  ant obj
-                    //  0      1      2      3     4    5    6     7    8   9
-                    
                     tabAbs.push(['A'     , parseFloat(arr[0]) , parseFloat(arr[1]) , parseFloat(arr[2]) , parseFloat(arr[3]) , parseFloat(arr[4]) , parseFloat(arr[5])+lastx , parseFloat(arr[6])+lasty ]);
-//                    var ret=computeArcPoints(lastx,lasty,parseFloat(arr[0]),parseFloat(arr[1]),arr[2],arr[3]  , arr[4],lastx+parseFloat(arr[5]),lastx+parseFloat(arr[6]) );
-//                    console.log('ret arc relatif=',ret);
                     lastx+=parseFloat(arr[5]);
                     lasty+=parseFloat(arr[6]);
                    }else{
                     tabAbs.push([keys[i] , parseFloat(arr[0]) , parseFloat(arr[1]) , parseFloat(arr[2]) , parseFloat(arr[3]) , parseFloat(arr[4]) , parseFloat(arr[5]) , parseFloat(arr[6]) ]);
-//                    var ret=computeArcPoints(lastx,lasty,parseFloat(arr[0]),parseFloat(arr[1]),arr[2],arr[3]  , arr[4],parseFloat(arr[5]),parseFloat(arr[6]) );
                     lastx=parseFloat(arr[5]);
                     lasty=parseFloat(arr[6]);
                    }
@@ -12540,19 +12030,16 @@ body {height: 100%;
          if(lastx>maxx){maxx=lastx;}
          if(lasty<miny){miny=lasty;}
          if(lasty>maxy){maxy=lasty;}
-//         console.log('lastx,lasty=',lastx,lasty);
      }
      return { tabOri:tabOri , tabAbs:tabAbs , tabPts:tabPts, sizes:{minx:minx , maxx:maxx , miny:miny , maxy:maxy} };
  }
  //========================================================================================================
  function closePopup(){
-//  console.log( 'popUpIsDisplayed1=',popUpIsDisplayed1 );
   if('popupCouleurs'===popUpIsDisplayed1){
    majBout();
   }
   if('popupArbo1'==popUpIsDisplayed1){
    dogid('popupValue').innerHTML='Veuillez patienter svp!'
-//   console.log('_dssvg.arbre0=',_dssvg.arbre0);
    afficheArbre0({prendreTout:false});
   }
   popupBackground1.style.display='none'; 
@@ -12564,7 +12051,7 @@ body {height: 100%;
  //========================================================================================================
  function resizePopup(param){
   getSizes();
-//  var scrollTopCurrent1=document.documentElement.scrollTop;
+
   popupBackground1.style.width=xscreen+'px'; 
   popupBackground1.style.height=yscreen+'px'; 
   popupBackground1.style.top=(document.documentElement.scrollTop) + 'px';
@@ -12575,8 +12062,6 @@ body {height: 100%;
   popupContent1.style.top=(document.documentElement.scrollTop+marginPopup) + 'px';
   popupContent1.style.left=marginPopup+'px';
 
-//  body.style.top=(-scrollTopCurrent1) + 'px';
-//  body.style.position='fixed'; 
   dogid('BtnclosPop').style.right=0+'px';
   dogid('BtnclosPop').style.top=-0+'px';
  }
