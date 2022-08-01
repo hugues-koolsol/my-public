@@ -1,4 +1,3 @@
-// traiter les todo
 "use strict";
 var trad={};
 //========================================================================================================
@@ -34,6 +33,7 @@ var colorPickerData={
 function myObj1(initObj1){
  "use strict";
  var global_variable_name=initObj1.varname;
+ var global_version_number=initObj1.version;
  
  var body = document.getElementsByTagName('body')[0];
  var xscreen=0;
@@ -141,6 +141,18 @@ function myObj1(initObj1){
  };
  
  //========================================================================================================
+ //========================================================================================================
+ function recharger(e){
+  document.location=String(document.location);
+ }
+ //========================================================================================================
+ function changementVersion1(e){
+  var contentOfPopup='<h3>'+trad['version']+'</h3>';
+  contentOfPopup+='<br /><button id="okrecharger" class="butEnabled butMenuHaut">OK</button>'
+  popupValue.innerHTML=contentOfPopup;
+  document.getElementById('okrecharger').addEventListener('click',recharger,'button');
+  showPopUp('changementVersion1');  
+ }
  //========================================================================================================
  function popupSpecial1(e){
   var contentOfPopup='<h3>'+trad['Opérations_spéciales']+'</h3>';
@@ -3975,6 +3987,7 @@ function myObj1(initObj1){
   
   contentOfPopup+='</fieldset>';
   
+  contentOfPopup+='<span style="font-size:0.8em;">'+version+'</span>';
   
   
   popupValue.innerHTML=contentOfPopup;
@@ -10303,8 +10316,6 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function init(){
-  var ver=document.getElementById('mscr').src;
-  ver=ver.substr(ver.indexOf('?v=')+3);
   var scr=document.createElement('script');
   scr.type='text/javascript';
   scr.onload=function(){
@@ -10317,10 +10328,10 @@ function myObj1(initObj1){
     setTrad_en();
    }
    init0(lang);
+   
   }
-  scr.src='trad.js?v='+ver;
+  scr.src='trad.js';
   body.appendChild(scr);
-  
  }
  //========================================================================================================
  function init0(lang){
@@ -10685,14 +10696,11 @@ function myObj1(initObj1){
   
   afficheArbre0({init:true});
   
-  var ver=document.getElementById('mscr').src;
-  ver=ver.substr(ver.indexOf('?v=')+3);
-  
   var tab=['hdtree','html5kellycolorpicker.min','path-simplification03'];
   for(var i=0;i<tab.length;i++){
    var scr=document.createElement('script');
    scr.type='text/javascript';
-   scr.src=tab[i]+'.js?v='+ver;
+   scr.src=tab[i]+'.js?v='+version;
    body.appendChild(scr);
   }
   try{
@@ -10703,6 +10711,57 @@ function myObj1(initObj1){
   }
   
   setTimeout(apresInit,250);
+  
+  
+  
+  if(navigator.onLine&&version!=='0'){
+   if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('svg_sw.js.php').then(
+     function(reg){}
+    ).catch(
+     function(error){
+      console.warn('error=',error);
+     }
+    );
+   }
+   setTimeout(majSw,300);
+  }
+ }
+ //========================================================================================================
+ function majSw(){
+  var url='ver.php';
+  var maindenant=new Date();
+  url+='?t='+maindenant.getTime();
+  
+  var r = new XMLHttpRequest();
+  r.open("GET",url,true);
+  r.timeout=6000;
+  r.onreadystatechange = function () {
+   if (r.readyState != 4 || r.status != 200) return;
+   try{
+    var ret=r.responseText;
+//    console.log(ret,version);
+    if(ret!==version){
+     changementVersion1();
+/*     
+     if(confirm(trad['version'])){ //alert(ret+','+version);
+      document.location=String(document.location);
+     }
+*/     
+    }
+     
+   }catch(e){
+    console.error(e,r);
+    return;
+   }
+  };
+  r.onerror=function(e){
+   console.error('e=',e);
+   /* whatever(); */    
+   return;
+  }
+  r.ontimeout=function(e){console.error('e=',e); /* whatever(); */    return;}
+  r.send();
   
  }
  //========================================================================================================
@@ -12100,4 +12159,6 @@ function myObj1(initObj1){
   nop                 : function(){ return null;},
  }
 }
-var maVariable01=new myObj1({varname:'maVariable01'});
+
+var maVariable01=new myObj1({varname:'maVariable01',version:'0'});
+var version='0';
