@@ -8,10 +8,14 @@ var _listeners = [];
 EventTarget.prototype.addEventListenerBase = EventTarget.prototype.addEventListener;
 EventTarget.prototype.addEventListener = function(type, listener, typeElement){
   if(typeElement===false || typeElement=== undefined){
-   console.warn('%cbug dans addEventListener ','background:yellow;color:red;', 'listener=' , listener , 'typeElement=',typeElement)
+  }else{
+   _listeners.push({target: this , parentElt1:this.parent, type: type, listener: listener , typeElement:typeElement});
   }
-  _listeners.push({target: this , parentElt1:this.parent, type: type, listener: listener , typeElement:typeElement});
-  this.addEventListenerBase(type, listener , false);
+  if(typeElement==='button'){
+   this.addEventListenerBase(type, listener , {capture:false,passive:true});
+  }else{
+   this.addEventListenerBase(type, listener , false);
+  }
 };
 //========================================================================================================
 function removeListeners(){
@@ -147,8 +151,8 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function changementVersion1(e){
-  var contentOfPopup='<h3>'+trad['version']+'</h3>';
-  contentOfPopup+='<br /><button id="okrecharger" class="butEnabled butMenuHaut">OK</button>'
+  var contentOfPopup='<h3 style="text-align:center;margin:10px 5px;">'+trad['version']+'</h3>';
+  contentOfPopup+='<br /><button id="okrecharger" class="butEnabled butMenuHaut" style="display:block;margin:10px auto;">&nbsp;OK&nbsp;</button>'
   popupValue.innerHTML=contentOfPopup;
   document.getElementById('okrecharger').addEventListener('click',recharger,'button');
   showPopUp('changementVersion1');  
@@ -361,13 +365,6 @@ function myObj1(initObj1){
   showPopUp('insererUneEtoile');  
   
   
-//  dogid('parNombreDeBranches').addEventListener('change'         , setParNombreDeBranches          , 'range' );
-  
-  
-  
-/*  
-  // <text data-idarbre1="4" x="2.6556" y="2.1126" stroke="black" stroke-width="0.02" fill="transparent" font-family="Verdana" font-size="0.5">?</text> 
-*/  
  }
  //========================================================================================================
  function ajouteListenersEtoile(){
@@ -861,7 +858,7 @@ function myObj1(initObj1){
   }
   
   document.getElementById('supprimeElement1').style.display='none';
-  if( _dssvg.mode_en_cours=='setModeSaisieSelElt1' ){
+  if( _dssvg.mode_en_cours==='setModeSaisieSelElt1' || _dssvg.mode_en_cours==='setModeSaisieDefsElt1' ){
    if(globalGeneralSvgReferenceElement!==null && globalIndiceArbre!==null && _dssvg.idArbreCourant!==null){
     document.getElementById('supprimeElement1').innerHTML='&times;&nbsp'+_dssvg.idArbreCourant;
     document.getElementById('supprimeElement1').style.display='';
@@ -1356,7 +1353,7 @@ function myObj1(initObj1){
   
   var obj=looptree(0,{afficherTout:true,sansDataIdArbre:true});
   if(ajouterRetrancher==null){
-   var deb='<svg viewBox="'+Math.round(_dssvg.arbre0[0].data.sizes.minx*10000)/10000+' '+Math.round(_dssvg.arbre0[0].data.sizes.miny*10000)/10000+'  '+Math.round((_dssvg.arbre0[0].data.sizes.maxx - _dssvg.arbre0[0].data.sizes.minx )*10000)/10000+' '+Math.round((_dssvg.arbre0[0].data.sizes.maxy - _dssvg.arbre0[0].data.sizes.miny )*10000)/10000+'">';
+   var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+Math.round(_dssvg.arbre0[0].data.sizes.minx*10000)/10000+' '+Math.round(_dssvg.arbre0[0].data.sizes.miny*10000)/10000+'  '+Math.round((_dssvg.arbre0[0].data.sizes.maxx - _dssvg.arbre0[0].data.sizes.minx )*10000)/10000+' '+Math.round((_dssvg.arbre0[0].data.sizes.maxy - _dssvg.arbre0[0].data.sizes.miny )*10000)/10000+'">';
   }else{
    var tt=document.getElementById('sourceSvg').value;
    var pos0=tt.indexOf('viewBox="');
@@ -1365,32 +1362,32 @@ function myObj1(initObj1){
    var tab=tt.substr(0,pos0).trim().replace(/ /g,',').replace(/,,/g,',').replace(/,,/g,',').replace(/,,/g,',').split(',').map(Number);
    
    if(tab.length===4 && ajouterRetrancher.fonction=='moinsUnGauche'){
-    var deb='<svg viewBox="'+(tab[0]-1)+' '+(tab[1])+'  '+(tab[2])+' '+(tab[3])+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0]-1)+' '+(tab[1])+'  '+(tab[2])+' '+(tab[3])+'">';
    }else if(tab.length===4 && ajouterRetrancher.fonction=='plusUnGauche'){
-    var deb='<svg viewBox="'+(tab[0]+1)+' '+(tab[1])+'  '+(tab[2])+' '+(tab[3])+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0]+1)+' '+(tab[1])+'  '+(tab[2])+' '+(tab[3])+'">';
    }else if(tab.length===4 && ajouterRetrancher.fonction=='moinsUnHautGauche'){
-    var deb='<svg viewBox="'+(tab[0]-1)+' '+(tab[1]-1)+'  '+(tab[2])+' '+(tab[3])+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0]-1)+' '+(tab[1]-1)+'  '+(tab[2])+' '+(tab[3])+'">';
    }else if(tab.length===4 && ajouterRetrancher.fonction=='plusUnHautGauche'){
-    var deb='<svg viewBox="'+(tab[0]+1)+' '+(tab[1]+1)+'  '+(tab[2])+' '+(tab[3])+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0]+1)+' '+(tab[1]+1)+'  '+(tab[2])+' '+(tab[3])+'">';
    }else if(tab.length===4 && ajouterRetrancher.fonction=='moinsUnHaut'){
-    var deb='<svg viewBox="'+(tab[0])+' '+(tab[1]-1)+'  '+(tab[2])+' '+(tab[3])+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0])+' '+(tab[1]-1)+'  '+(tab[2])+' '+(tab[3])+'">';
    }else if(tab.length===4 && ajouterRetrancher.fonction=='plusUnHaut'){
-    var deb='<svg viewBox="'+(tab[0])+' '+(tab[1]+1)+'  '+(tab[2])+' '+(tab[3])+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0])+' '+(tab[1]+1)+'  '+(tab[2])+' '+(tab[3])+'">';
    }else if(tab.length===4 && ajouterRetrancher.fonction=='moinsUnBasDroite'){
-    var deb='<svg viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2]-1)+' '+(tab[3]-1)+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2]-1)+' '+(tab[3]-1)+'">';
    }else if(tab.length===4 && ajouterRetrancher.fonction=='plusUnBasDroite'){
-    var deb='<svg viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2]+1)+' '+(tab[3]+1)+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2]+1)+' '+(tab[3]+1)+'">';
    }else if(tab.length===4 && ajouterRetrancher.fonction=='moinsUnMilieuDroite'){
-    var deb='<svg viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2])+' '+(tab[3]-1)+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2])+' '+(tab[3]-1)+'">';
    }else if(tab.length===4 && ajouterRetrancher.fonction=='plusUnMilieuDroite'){
-    var deb='<svg viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2])+' '+(tab[3]+1)+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2])+' '+(tab[3]+1)+'">';
    }else if(tab.length===4 && ajouterRetrancher.fonction=='moinsUnMilieuBas'){
-    var deb='<svg viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2]-1)+' '+(tab[3])+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2]-1)+' '+(tab[3])+'">';
    }else if(tab.length===4 && ajouterRetrancher.fonction=='plusUnMilieuBas'){
-    var deb='<svg viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2]+1)+' '+(tab[3])+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(tab[0])+' '+(tab[1])+'  '+(tab[2]+1)+' '+(tab[3])+'">';
     
    }else{
-    var deb='<svg viewBox="'+_dssvg.arbre0[0].data.sizes.minx+' '+_dssvg.arbre0[0].data.sizes.miny+'  '+(_dssvg.arbre0[0].data.sizes.maxx - _dssvg.arbre0[0].data.sizes.minx )+' '+(_dssvg.arbre0[0].data.sizes.maxy - _dssvg.arbre0[0].data.sizes.miny )+'">';
+    var deb='<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+_dssvg.arbre0[0].data.sizes.minx+' '+_dssvg.arbre0[0].data.sizes.miny+'  '+(_dssvg.arbre0[0].data.sizes.maxx - _dssvg.arbre0[0].data.sizes.minx )+' '+(_dssvg.arbre0[0].data.sizes.maxy - _dssvg.arbre0[0].data.sizes.miny )+'">';
    }
   }
   cont+=deb+obj.txt+'</svg>';
@@ -1688,8 +1685,8 @@ function myObj1(initObj1){
  //========================================================================================================
  function popupImportSvg1(){
   var contentOfPopup='<h3>'+trad['importer_un_svg']+'</h3>';
-  contentOfPopup+='Url : <input id="urlAImporter" style="max-width:80%;border: 3px #eee inset;" />';
-  contentOfPopup+='<br /><button id="importerUrlSvg"  class="butEnabled butMenuHaut">'+trad['Importer_de_l_url']+'</button>';
+//  contentOfPopup+='Url : <input id="urlAImporter" style="max-width:80%;border: 3px #eee inset;" />';
+//  contentOfPopup+='<br /><button id="importerUrlSvg"  class="butEnabled butMenuHaut">'+trad['Importer_de_l_url']+'</button>';
   contentOfPopup+='<br />';
   contentOfPopup+='<textarea id="contenuSvg" rows="5" style="min-height: 50vh; border: 3px #eee inset; width: 80%;"></textarea>';
   contentOfPopup+='<div id="comandTree1">';
@@ -1711,7 +1708,7 @@ function myObj1(initObj1){
   
   document.getElementById('importerSvgEtFermer').addEventListener('click',importerSvgEtFermer,'button');
   document.getElementById('importerEnAjoutant').addEventListener('click',importerEnAjoutant,'button');
-  document.getElementById('importerUrlSvg').addEventListener('click',importerUrlSvg,'button');
+//  document.getElementById('importerUrlSvg').addEventListener('click',importerUrlSvg,'button');
   
   
 //  '<path data-idarbre1="1" d="M 12 12L 22 22" stroke="black" stroke-width="1" fill="transparent"></path>'
@@ -2215,7 +2212,7 @@ function myObj1(initObj1){
  //========================================================================================================
  function mouseMoveZoneDessin(e){
   e.stopPropagation();
-  e.preventDefault();
+//  e.preventDefault();
   moveZoneDessin(e);
  }
  var enCoursDeSelectionSansClickSurElement=false;
@@ -2523,26 +2520,39 @@ function myObj1(initObj1){
   var dy=0;
   var xDetermine=false;
   var yDetermine=false;
-  for(var j=indPoint-1;j>=0 && !( xDetermine===true && yDetermine===true );j--){
-   if(tbAbsolu[j].length>=3){
-    if(xDetermine===false){
+  if(indPoint-1>0 && tbAbsolu[indPoint-1][0]==='Z'){
+   // si le point précédent est un Z, il faut remonter au dernier M connu
+   for(var j=indPoint-1;j>=0 && !( xDetermine===true && yDetermine===true );j--){
+    if(tbAbsolu[j][0]==='M'){
      xDetermine=true;
-     dx=tbAbsolu[j][tbAbsolu[j].length-2];
-    }
-    if(yDetermine===false){
+     dx=tbAbsolu[j][1];
      yDetermine=true;
-     dy=tbAbsolu[j][tbAbsolu[j].length-1];
-    }          
-   }else if(tbAbsolu[j].length==2){
-    if(tbAbsolu[j][0]==='H'){
+     dy=tbAbsolu[j][2];
+    }
+   }
+   
+  }else{
+   for(var j=indPoint-1;j>=0 && !( xDetermine===true && yDetermine===true );j--){
+    if(tbAbsolu[j].length>=3){
      if(xDetermine===false){
       xDetermine=true;
-      dx=tbAbsolu[j][tbAbsolu[j].length-1];
+      dx=tbAbsolu[j][tbAbsolu[j].length-2];
      }
-    }else if(tbAbsolu[j][0]==='V'){
      if(yDetermine===false){
       yDetermine=true;
       dy=tbAbsolu[j][tbAbsolu[j].length-1];
+     }          
+    }else if(tbAbsolu[j].length==2){
+     if(tbAbsolu[j][0]==='H'){
+      if(xDetermine===false){
+       xDetermine=true;
+       dx=tbAbsolu[j][tbAbsolu[j].length-1];
+      }
+     }else if(tbAbsolu[j][0]==='V'){
+      if(yDetermine===false){
+       yDetermine=true;
+       dy=tbAbsolu[j][tbAbsolu[j].length-1];
+      }
      }
     }
    }
@@ -3842,7 +3852,7 @@ function myObj1(initObj1){
   
   
   contentOfPopup+='<style>'
-  contentOfPopup+='fieldset{border:1px blue outset;margin:10px 3px 0px 3px;}'
+  contentOfPopup+='fieldset{border:1px blue outset;margin:10px 3px 0px 3px;padding-bottom: 14px;}'
   contentOfPopup+='fieldset>div{border:1px red outset;margin:10px 3px 3px 3px;}'
   contentOfPopup+='fieldset>legend{border:1px blue outset;font-size:1.1em;margin:10px auto 10px auto;padding:3px;border-radius:4px;}'
   contentOfPopup+='</style>'
@@ -3947,8 +3957,15 @@ function myObj1(initObj1){
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
 
+    contentOfPopup+='<div  style="text-align:center;">';
+     contentOfPopup+='<button type="button" class="butEnabled butMenuHaut" id="francais">Français</button>';
+     contentOfPopup+='&nbsp;';
+     contentOfPopup+='<button class="butEnabled butMenuHaut" type="button"  id="english">English</button>';
+    contentOfPopup+='</div>';
+
   contentOfPopup+='</fieldset>';
     
+
   contentOfPopup+='<fieldset>';
   
     contentOfPopup+='<legend>'+trad['liens_divers']+'</legend>';
@@ -3963,11 +3980,20 @@ function myObj1(initObj1){
 
     contentOfPopup+='<div style="text-align:center;" >';
     contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://svgsilh.com/">svgsilh.com</a>';
+    contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://www.svgrepo.com/">svgrepo.com</a>';
+    contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://freesvg.org/">freesvg.org</a>';
+    
     contentOfPopup+='</div>';
 
+    contentOfPopup+='<div style="text-align:center;" >';
+    contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://github.com/hugues-koolsol/my-public/tree/master/svg">github source</a>';
+    contentOfPopup+='</div>';
+
+  contentOfPopup+='</fieldset>';
 
     
     
+  
   contentOfPopup+='<fieldset>';
     contentOfPopup+='<legend>'+trad['Réinitialiser_le_programme_et_recharger_la_page']+'</legend>';
     
@@ -3979,21 +4005,10 @@ function myObj1(initObj1){
   
   
   
-  contentOfPopup+='<fieldset style="text-align:center;">';
-    
-    contentOfPopup+='<button type="button" class="butEnabled butMenuHaut" id="francais">Français</button>';
-    contentOfPopup+='&nbsp;';
-    contentOfPopup+='<button class="butEnabled butMenuHaut" type="button"  id="english">English</button>';
-  
-  contentOfPopup+='</fieldset>';
-  
-  contentOfPopup+='<span style="font-size:0.8em;">'+version+'</span>';
+  contentOfPopup+='<span style="font-size: 0.8em;display: block;margin: 0 auto;text-align: center;">Version : '+version+'</span>';
   
   
   popupValue.innerHTML=contentOfPopup;
-  
-  dogid('francais').addEventListener('click'       , setFrancais        , 'bouton' );
-  dogid('english').addEventListener('click'       , setEnglish        , 'bouton' );
   
   
   
@@ -4061,6 +4076,9 @@ function myObj1(initObj1){
 
   
   dogid('suppVraimentToutToutTout').addEventListener('click'      , suppVraimentToutToutTout         , 'button' );
+  
+  dogid('francais').addEventListener('click'       , setFrancais        , 'button' );
+  dogid('english').addEventListener('click'       , setEnglish        , 'button' );
   
   
   
@@ -10323,9 +10341,11 @@ function myObj1(initObj1){
    if(navigator.language.toLowerCase().indexOf('fr')>=0){
     lang='fr';
     setTrad_fr();
+    document.querySelector('meta[name="description"]').setAttribute("content", 'editeur svg koolsol');
    }else{
     lang='en';
     setTrad_en();
+    document.querySelector('meta[name="description"]').setAttribute("content", 'svg editor  koolsol');
    }
    init0(lang);
    
@@ -10348,8 +10368,10 @@ function myObj1(initObj1){
         if(lang!==jsonDs.parametres.lang){
          if(jsonDs.parametres.lang==='fr'){
           setTrad_fr();
+          document.querySelector('meta[name="description"]').setAttribute("content", 'editeur svg koolsol');
          }else{
           setTrad_en();
+          document.querySelector('meta[name="description"]').setAttribute("content", 'svg editor  koolsol');
          }
         }
        }
@@ -10381,22 +10403,22 @@ function myObj1(initObj1){
   refZnDessin.style.position='relative';
   refZnDessin.style.background='transparent'; //'#def2ff';
   divc1.appendChild(refZnDessin);
-  refZnDessin.addEventListenerBase('wheel', zoomWheelSvg);  
+  refZnDessin.addEventListenerBase('wheel', zoomWheelSvg ,{capture:false,passive:true} );  
 
-  refZnDessin.addEventListenerBase( 'mousedown', mouseDownZoneDessin , false );
-  refZnDessin.addEventListenerBase('mousemove', mouseMoveZoneDessin , false );
-  window.addEventListenerBase('mouseup'  , mouseUpFenetre   , false );
+  refZnDessin.addEventListenerBase( 'mousedown', mouseDownZoneDessin , {capture:false,passive:true} );
+  refZnDessin.addEventListenerBase('mousemove', mouseMoveZoneDessin , {capture:false,passive:true} );
+  window.addEventListenerBase('mouseup'  , mouseUpFenetre   , {capture:false,passive:true} );
   
   
-  refZnDessin.addEventListenerBase( 'touchstart', touchDownZoneDessin , false );
-  refZnDessin.addEventListenerBase('touchmove', touchMoveZoneDessin , false );
-  window.addEventListenerBase('touchend'  , touchUpFenetre   , false );
+  refZnDessin.addEventListenerBase( 'touchstart', touchDownZoneDessin , {capture:false,passive:true} );
+  refZnDessin.addEventListenerBase('touchmove', touchMoveZoneDessin , {capture:false,passive:true} );
+  window.addEventListenerBase('touchend'  , touchUpFenetre   , {capture:false,passive:true} );
   groupeActif.refGroupe=refZnDessin;
   
   divtpe=document.createElement('div');
   divtpe.id='divtpe';
   body.appendChild(divtpe);
-  divtpe.addEventListenerBase('wheel', menuTopWheel);  
+  divtpe.addEventListenerBase('wheel', menuTopWheel );  
   
   divlft=document.createElement('div');
   divlft.id='divlft';
@@ -10412,7 +10434,7 @@ function myObj1(initObj1){
   divlag2.id='divlag2';
   divlag2.style.position='absolute';
   body.appendChild(divlag2);  
-  divlag2.addEventListenerBase( 'click' , clickDownDivLag2 , false );
+  divlag2.addEventListenerBase( 'click' , clickDownDivLag2 , {capture:false,passive:true} );
 
 
 
@@ -10740,14 +10762,8 @@ function myObj1(initObj1){
    if (r.readyState != 4 || r.status != 200) return;
    try{
     var ret=r.responseText;
-//    console.log(ret,version);
     if(ret!==version){
      changementVersion1();
-/*     
-     if(confirm(trad['version'])){ //alert(ret+','+version);
-      document.location=String(document.location);
-     }
-*/     
     }
      
    }catch(e){
