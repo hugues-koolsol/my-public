@@ -2968,6 +2968,29 @@ function myObj1(initObj1){
     }
     afficheArbre0({init:false});
    
+   }else if('polylineToPath'===jso.action){
+    var tt=globalGeneralSvgReferenceElement.getAttribute('points');
+    var tabTT=tt.trim().replace(/ /g,',').replace(/,,/g,',').replace(/,,/g,',').replace(/,,/g,',').split(',').map(Number);
+    if(tabTT.length>=4){
+     var ntt='M '+tabTT[0] + ' ' + tabTT[1] + ' ' ;
+     for(var i=2;i<tabTT.length;i+=2){
+      ntt += ' C ' + tabTT[i-2] + ' ' + tabTT[i-1] + ' ' + tabTT[i] + ' ' + tabTT[i+1] + ' ' + tabTT[i] + ' ' + tabTT[i+1] + '   ' ;
+     }
+     var indA=recupereIndiceArbre(jso.numArbre);
+     var elem=JSON.parse(JSON.stringify(_dssvg.arbre0[indA].data.attributes));
+     var newElem={};
+     for(var elt in elem){
+      if(elt==='points'){
+       newElem['d']=ntt;
+      }else{
+       newElem[elt]=elem[elt];
+      }
+     }
+     _dssvg.arbre0[indA].data.attributes=JSON.parse(JSON.stringify(newElem));
+     _dssvg.arbre0[indA].data.label='path';
+     _dssvg.arbre0[indA].data.nodeName='path';
+    }
+    afficheArbre0({init:false});
    }
    
   }catch(e){
@@ -4005,7 +4028,7 @@ function myObj1(initObj1){
   
   
   
-  contentOfPopup+='<span style="font-size: 0.8em;display: block;margin: 0 auto;text-align: center;">Version : '+version+'</span>';
+  contentOfPopup+='<span style="font-size: 0.8em;display: block;margin: 0 auto;text-align: center;">Version : '+global_version_number+'</span>';
   
   
   popupValue.innerHTML=contentOfPopup;
@@ -10333,7 +10356,7 @@ function myObj1(initObj1){
   return;
  }
  //========================================================================================================
- function init(){
+ function init(version){
   var scr=document.createElement('script');
   scr.type='text/javascript';
   scr.onload=function(){
@@ -10350,7 +10373,7 @@ function myObj1(initObj1){
    init0(lang);
    
   }
-  scr.src='trad.js';
+  scr.src='trad.js?v='+version;
   body.appendChild(scr);
  }
  //========================================================================================================
@@ -10453,8 +10476,8 @@ function myObj1(initObj1){
   {id:'setModeSaisieTranE1'       , position:'menuGauche' , libelle:trad['seltranselts']                        , action:setModeSaisieTranE1         , svg:'<svg class="svgBoutonGauche1" viewBox="-9 -9  35 36"><rect x="0" y="0" width="13" height="14" stroke="red" stroke-width="3" fill="transparent"></rect><circle cx="0" cy="0" r="3.5" stroke="rgb(0, 0, 255)" stroke-width="3" fill="transparent"></circle><path stroke="green" stroke-width="3" fill="transparent" d=" M 18 0 L 23 -7 L 13 -7 L 18 0 C 18 14 10 19 0 19  L -7 24 L -7 14 L 0 19"></path></svg>'},
   {id:'setModeSaisieGroupe1'      , position:'menuGauche' , libelle:trad['selgrps']                             , action:setModeSaisieGroupe1        , svg:'<svg class="svgBoutonGauche1" viewBox="-18.5 -9.5  46.5 46.5"><rect x="0" y="0" width="13" height="13" stroke="red" stroke-width="3" fill="transparent" transform="rotate(45 0 0 ) "></rect><rect x="7" y="15" width="13" height="14" stroke="red" stroke-width="3" fill="transparent" transform="rotate(0 0 0 ) "></rect><rect x="-13" y="-4" width="36" height="36" stroke="gold" stroke-width="3" fill="transparent"></rect><circle cx="-13" cy="-4" r="3.5" stroke="rgb(0, 0, 255)" stroke-width="3" fill="transparent"></circle></svg>'},
 
-  {id:'setZoomPlus1'              , position:'menuGauche' , libelle:'zoom+'                                     , action:setZoomPlus1                , svg:'<svg class="svgBoutonGauche1" viewBox="0 0.75  53.55078125 49.5"><text x="0" y="40" style="font-size:39px;stroke-width:1.55;stroke:black;fill:blue;stroke-opacity:1;fill-opacity:1;">🔍</text><polygon points=" 18 12  18 18  12 18  12 22  18 22  18 28  22 28  22 22  28 22  28 18  22 18  22 12 " stroke="red" stroke-width="2" fill="yellow"></polygon></svg>'},
-  {id:'setZoomMoins1'             , position:'menuGauche' , libelle:'zoom-'                                     , action:setZoomMoins1               , svg:'<svg class="svgBoutonGauche1" viewBox="0 0.75  53.55078125 49.5"><text x="0" y="40" style="font-size:39px;stroke-width:1.55;stroke:black;fill:blue;stroke-opacity:1;fill-opacity:1;">🔍</text><polygon points=" 18 18  18 18  12 18  12 22  18 22  18 22  22 22  22 22  28 22  28 18  22 18  22 18 " stroke="red" stroke-width="2" fill="yellow"></polygon></svg>'},
+  {id:'setZoomPlus1'              , position:'menuGauche' , libelle:'zoom+'                                     , action:setZoomPlus1                , svg:'<svg class="svgBoutonGauche1" viewBox="6.0529 13.2798  349.0983 344.2846"><title>Loupe plus</title><g transform=""><path stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" d=" M 210 237 A 125 125 -4 1 1 233 213  L 261 240 C 251 245 242 253 237 265 L 210 237" style="stroke:rgb(0, 0, 0);fill:#5B7FAE;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></path><circle cx="131" cy="139" r="99" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:rgb(0, 0, 0);fill:white;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></circle><path d="  M 277 236   C 295 253 327 284 354 313   C 328 314 315 331 309 355   L 235 281   C 233 256 259 235 277 236 " stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:orange;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></path><path d=" M 354 313 C 356 339 338 363 309 355  c 2 -9 10 -41 45 -42" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:darkgoldenrod;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></path><path d="M 54.4973 120.996 H 114.4973 V 62.996 H 148.4973 V 120.996 H 206.4973 V 154.996 H 148.4973 V 212.996 H 114.4973 V 154.996 H 54.4973 V 120.996 " stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:red;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></path></g></svg>'},
+  {id:'setZoomMoins1'             , position:'menuGauche' , libelle:'zoom-'                                     , action:setZoomMoins1               , svg:'<svg class="svgBoutonGauche1" viewBox="6.0529 13.2798  349.0983 344.2846"><title>Loupe plus</title><g transform=""><path stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" d=" M 210 237 A 125 125 -4 1 1 233 213  L 261 240 C 251 245 242 253 237 265 L 210 237" style="stroke:rgb(0, 0, 0);fill:#5B7FAE;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></path><circle cx="131" cy="139" r="99" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:rgb(0, 0, 0);fill:white;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></circle><path d="  M 277 236   C 295 253 327 284 354 313   C 328 314 315 331 309 355   L 235 281   C 233 256 259 235 277 236 " stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:orange;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></path><path d=" M 354 313 C 356 339 338 363 309 355  c 2 -9 10 -41 45 -42" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:darkgoldenrod;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></path><path d=" M 54.4973 120.996 H 114.4973 V 121 H 148.4973 V 120.996 H 206.4973 V 154.996 H 148.4973 V 155  H 114.4973 V 155 H 54.4973 V 120.996" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:red;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></path></g></svg>'},
 
   {id:'setModeSaisieDefsElt1'     , position:'menuGauche' , libelle:trad['seleltsdefs']                         , action:setModeSaisieDefsElt1       , svg:'<svg class="svgBoutonGauche1" viewBox="-5.5 -5.5  25 26"><rect x="0" y="0" width="13" height="14" stroke="red" stroke-width="3" fill="transparent"></rect><circle cx="0" cy="0" r="3.5" stroke="rgb(0, 0, 255)" stroke-width="3" fill="transparent"></circle><circle cx="13" cy="14" r="3.5" stroke="green" stroke-width="3" fill="transparent"></circle></svg>' },
   {id:'setModeSaisieDefsPtE1'     , position:'menuGauche' , libelle:trad['selptseltsdefs']                      , action:setModeSaisieDefsPtE1       , svg:'<svg class="svgBoutonGauche1" viewBox="-12.5 13.5  34 29"><path stroke="black" stroke-width="3" fill="transparent" d=" M -7 18 C -4 37 11 40 16 22 "></path><circle cx="10" cy="36" r="3.5" stroke="blue" stroke-width="2" fill="green"></circle><circle cx="-7" cy="19" r="3.5" stroke="red" stroke-width="2" fill="pink"></circle><circle cx="-4" cy="37" r="3.5" stroke="green" stroke-width="2" fill="blue"></circle><circle cx="16" cy="23" r="3.5" stroke="red" stroke-width="2" fill="pink"></circle><path d="M -7,19 L -4,36" stroke="rgb(0, 0, 255)" stroke-width="1" fill="transparent"></path><path d="M 16,23 L 10,36" stroke="rgb(0, 255, 0)" stroke-width="1" fill="transparent"></path></svg>'},
@@ -10722,7 +10745,7 @@ function myObj1(initObj1){
   for(var i=0;i<tab.length;i++){
    var scr=document.createElement('script');
    scr.type='text/javascript';
-   scr.src=tab[i]+'.js?v='+version;
+   scr.src=tab[i]+'.js?v='+global_version_number;
    body.appendChild(scr);
   }
   try{
@@ -10736,7 +10759,7 @@ function myObj1(initObj1){
   
   
   
-  if(navigator.onLine&&version!=='0'){
+  if(navigator.onLine&&global_version_number!=='0'){
    if('serviceWorker' in navigator){
     navigator.serviceWorker.register('svg_sw.js.php').then(
      function(reg){}
@@ -10762,7 +10785,7 @@ function myObj1(initObj1){
    if (r.readyState != 4 || r.status != 200) return;
    try{
     var ret=r.responseText;
-    if(ret!==version){
+    if(ret!==global_version_number){
      changementVersion1();
     }
      
@@ -11166,6 +11189,7 @@ function myObj1(initObj1){
      if(globalIndicePoint>0){
       t+='<button class="butEnabled butMenuHaut bckRouge" data-action="'+htm1('{"action":"supprimerPointPolyline","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'">'+trad['supprimer_point']+'</button>';
      }
+     t+='<button class="butEnabled butMenuHaut bckRouge" data-action="'+htm1('{"action":"polylineToPath","numArbre":'+numArbre+'}')+'">'+trad['polyx_vers_path']+'</button>';
      
      
     }else if(
@@ -12162,7 +12186,7 @@ function myObj1(initObj1){
 //  console.log( xscreen , yscreen )
  } 
  //========================================================================================================
- init();
+ init(global_version_number);
  //========================================================================================================
  return {
   selColor1           : function(a){ return _selColor1(a);},
@@ -12177,4 +12201,3 @@ function myObj1(initObj1){
 }
 
 var maVariable01=new myObj1({varname:'maVariable01',version:'0'});
-var version='0';
