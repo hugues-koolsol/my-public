@@ -1694,7 +1694,7 @@ function myObj1(initObj1){
   contentOfPopup+=' <button id="importerEnAjoutant"   class="butEnabled butMenuHaut">'+trad['importer_en_ajoutant']+'</button>';
   contentOfPopup+=' <br />';
   // zzvin.svg , zzSimplificationChemin.svg zzSVG_Logo-svgomg.svg zzsagami_single-svgomg.svg zztest-car-lite.svg
-  contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="0 0  0 0"><defs><pattern id="star" viewBox="0,0,10,10" width="10%" height="10%"><polygon points="0,0 2,5 0,10 5,8 10,10 8,5 10,0 5,2"></polygon></pattern></defs><circle cx="50" cy="50" r="50" fill="url(#star)"></circle><circle cx="180" cy="50" r="40" fill="none" stroke-width="20" stroke="url(#star)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
+  contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4.8229 -4.8229  224.8229 106.4479"><defs><pattern id="pat01" viewBox="0,0,14,14" width="20%" height="20%"><g fill="blue" stroke="red" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 5.5 5.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d=" M -1.5 5.5   a 2 2 0 1 0 0 3   a 2 2 0 0 1 3 0   a 2 2 0 1 0 0 -3   a 2 2 0 0 1 -3 0  "></path><path d="M 12.5 5.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M 5.5 -1.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M 5.5 12.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M -1.5 -1.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M 12.5 -1.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M 12.5 12.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M -1.5 12.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path></g></pattern></defs><circle cx="71.6876" cy="51.625" r="50" fill="url(#pat01)"></circle><circle cx="180" cy="50" r="40" fill="none" stroke-width="30" stroke="url(#pat01)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
   contentOfPopup+=' <br /><br /><button id="test19"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="-28.9289 -24.9948  170.6555 150.0684"><defs><clipPath id="cp" transform="rotate(10)"><path transform="translate(3 3)" d="M 22.9695 18.0532 C 14.1526 18.0532 -3.4807 35.199 -10.093 39.4856 C -14.5013 42.3431 -5.6849 52.3449 -5.6849 53.7739 C -5.6849 55.2027 -5.6849 56.6317 -5.6849 56.6317 C 3.132 62.347 14.1526 65.2046 22.9695 102.3543 C 31.7859 69.4911 56.0316 75.2063 75.8691 102.3543 C 75.8691 62.347 91.2982 63.7758 133.1773 68.0622 C 95.7067 46.6297 58.2361 25.1973 139.7899 19.482 C 97.9108 20.9107 53.8278 19.482 108.9316 -11.9526 C 86.89 -19.0967 22.9695 10.909 20.765 -23.3831 " style="stroke:rgb(0, 0, 0);fill:blanchedalmond;stroke-width:0;stroke-opacity:1;fill-opacity:1;opacity:1;"></path></clipPath></defs><rect x="3" y="4" width="70" height="66" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#cp)" style="stroke:rgb(0, 0, 0);fill:rosybrown;stroke-width:1;stroke-opacity:1;fill-opacity:0.5;opacity:1;"></rect></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test19 clipPath</button>';
   contentOfPopup+=' <br /><br /><button id="test17"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="0 -1  442.2656 377.5"><defs><filter id="filtered-3" height="220%"><feFlood flood-color="#551C0B" result="COLOR-outline"></feFlood><feMorphology operator="dilate" radius="0.3" in="SourceAlpha" result="OUTLINE_10"></feMorphology><feComposite operator="in" in="COLOR-outline" in2="OUTLINE_10" result="OUTLINE_20"></feComposite><feGaussianBlur stdDeviation="4" in="SourceAlpha" result="LIGHTING-EFFECTS_10"></feGaussianBlur><feSpecularLighting surfaceScale="5" specularConstant="0.5" specularExponent="7.5" lighting-color="#white" in="LIGHTING-EFFECTS_10" result="LIGHTING-EFFECTS_20"><fePointLight x="750" y="-50" z="300"></fePointLight></feSpecularLighting><feComposite in2="SourceAlpha" operator="in" in="LIGHTING-EFFECTS_20" result="LIGHTING-EFFECTS_30"></feComposite><feComposite operator="arithmetic" k1="0" k2="1" k3="1" k4="0" in="SourceGraphic" in2="LIGHTING-EFFECTS_30" result="LIGHTING-EFFECTS_40"></feComposite><feComponentTransfer in="LIGHTING-EFFECTS_40" result="COLOR-EFFECTS_10"><feFuncR type="gamma" offset="-1.3" amplitude="10" exponent="4.84"></feFuncR><feFuncB type="gamma" offset="-1.3" amplitude="10.1" exponent="40.84"></feFuncB></feComponentTransfer><feMerge><feMergeNode in="OUTLINE_20"></feMergeNode><feMergeNode in="COLOR-EFFECTS_10"></feMergeNode></feMerge></filter></defs><text filter="url(#filtered-3)" x="20" y="140" font-size="140" stroke="#EF7349" fill="#EF7349">BLOP!</text><g fill="transparent" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke="#EF7349"><path filter="url(#filtered-3)" d="M 387 226 C 382.55 226 344.7 277.28 329 292 C 286.38 331.96 230.33 371 170 371 "></path><path filter="url(#filtered-3)" stroke-width="20" stroke="#EF7349" fill="transparent" d=" M 342.5 289.5 C 317.46 321.54 239.49 367.5 212.5 376.5 "></path></g></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test17 filtres 2</button>';
   contentOfPopup+=' <br /><br /><button id="test16"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<defs><filter id="MyFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="200" height="120"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"></feGaussianBlur><feOffset in="blur" dx="4" dy="4" result="offsetBlur"></feOffset><feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.75" specularExponent="20" lighting-color="#bbbbbb" result="specOut"><fePointLight x="-5000" y="-10000" z="20000"></fePointLight></feSpecularLighting><feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"></feComposite><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint"></feComposite><feMerge><feMergeNode in="offsetBlur"></feMergeNode><feMergeNode in="litPaint"></feMergeNode></feMerge></filter></defs><g filter="url(#MyFilter)"><path fill="none" stroke="#D90000" stroke-width="10" d=" M 50 66 c -50 0 -50 -60 0 -60 h 100 c 50 0 50 60 1 60  z"></path><path fill="#D90000" d="M60,56 c-30,0 -30,-40 0,-40 h80 c30,0 30,40 0,40z"></path><g fill="#FFFFFF" stroke="black" font-size="45" font-family="Verdana"><text x="52" y="52">SVG</text></g></g></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test16 filtres</button>';
@@ -5490,6 +5490,7 @@ function myObj1(initObj1){
     continue;
    }
    
+/*   
    var extensions='';
    try{
     extensions=JSON.parse(lst[i].getAttribute('data-extensions'));
@@ -5501,15 +5502,56 @@ function myObj1(initObj1){
     }
    }catch(e){
    }
+*/   
    var col='red';
    if(_dssvg.mode_en_cours==='setModeSaisieDefsTrE1' || 'setModeSaisieDefsGrp1'===_dssvg.mode_en_cours ){
     col='yellow';
    }
    
+   
+   if(lst[i].nodeName==='pattern'){
+    continue;
+   }
+   
+    var extensionSymbole=lst[i].getAttribute('data-extensions'); // hugues
+    if(extensionSymbole){
+     extensionSymbole=JSON.parse(extensionSymbole);
+     if(extensionSymbole.hasOwnProperty('dansSymbol') && extensionSymbole.dansSymbol===true){
+      var monClone=lst[i].cloneNode(true);
+      refZnDessin.prepend(monClone);
+     }
+     if(extensionSymbole.hasOwnProperty('dansDefs') && extensionSymbole.dansDefs===true){
+      if('setModeSaisieTranE1'===_dssvg.mode_en_cours){
+       continue;
+      }
+      // cas du clipPath et du pattern
+      var monClone=lst[i].cloneNode(true);
+      var attrTra=lst[i].getAttribute('transform')?lst[i].getAttribute('transform'):'';
+      var t='';
+      try{
+       var m=lst[i].getScreenCTM();
+//       t='matrix('+m.a+','+m.b+','+m.c+','+m.d+',0,0) scale('+(1/_dssvg.zoom1)+','+(1/_dssvg.zoom1)+')';//'+m.e+','+m.f+')';
+      }catch(e){
+      }
+      
+      var idarbre1=lst[i].getAttribute('data-idarbre1');
+      monClone.setAttribute('transform',t + ' ' + attrTra );
+      monClone.setAttribute('data-idarbre1',idarbre1);
+      monClone.setAttribute('data-type','toRemove');
+      refZnDessin.prepend(monClone);
+     }
+    }
+   
+   
+   
+   
    try{
     var idarbre1=lst[i].getAttribute('data-idarbre1');
     var bounding=lst[i].getBBox(); // matrix
     var matrix=lst[i].getScreenCTM();
+    if(lst[i].parentNode.nodeName==='pattern'){
+     continue;
+    }
     var matrix=refZnDessin.getScreenCTM().inverse().multiply(lst[i].parentNode.getScreenCTM());
     var transform=(lst[i].getAttribute('transform')?lst[i].getAttribute('transform'):'');
     var boite=ajouteElemDansElem(lst[i].parentNode,'rect',{'data-rectangle':idarbre1,transform:transform,'data-type':'toRemove',x:bounding.x,y:bounding.y,width:bounding.width,height:bounding.height,style:'stroke:'+col+';stroke-opacity:0.2;stroke-width:'+(1/_dssvg.zoom1)+';fill:transparent;'});
@@ -5520,9 +5562,14 @@ function myObj1(initObj1){
     }
    }
   }
+  
+  
+  
+  
+  var lst=refZnDessin.querySelectorAll('*'); // on a cloné des éléments plus haut
   for(var i=0;i<lst.length ;i++){
    var nn=lst[i].nodeName.toLowerCase();
-   if(nn==='stop' || nn=='filter' || nn=='fegaussianblur' ||  nn=='defs' ){
+   if(nn==='stop' || nn=='filter' || nn=='fegaussianblur' ||  nn=='defs' ||  nn=='pattern' ){
     continue;
    }
    
@@ -5557,7 +5604,9 @@ function myObj1(initObj1){
    
    try{
     
-    
+    if(!lst[i].getAttribute('data-idarbre1')){
+     continue;
+    }
     var idarbre1=parseInt(lst[i].getAttribute('data-idarbre1'),10);
     
     if(nn==='radialgradient'){
@@ -5776,7 +5825,6 @@ function myObj1(initObj1){
       
       
 //      console.log('t0=',t0);
-      
 
       // centre de l'échelle
       var toto=refZnDessin.getScreenCTM().inverse().multiply(lst[i].parentNode.getScreenCTM()).inverse();
@@ -8149,7 +8197,7 @@ function myObj1(initObj1){
      );
      var bounding=cercle.getBBox();
      cercle.remove();
-    }else if(nn==='lineargradient'){     
+    }else if(nn==='lineargradient'){   
 
      var xlink=lst[i].getAttribute('xlink:href');
      var transform=lst[i].getAttribute('gradientTransform')?lst[i].getAttribute('gradientTransform'):'';
@@ -8185,6 +8233,8 @@ function myObj1(initObj1){
     }
    }
   }
+  
+  
   for(var i=0;i<lst.length ;i++){
    var idarbre1=lst[i].getAttribute('data-idarbre1');
    var nn=lst[i].nodeName.toLowerCase();
@@ -8508,14 +8558,15 @@ function myObj1(initObj1){
      if(extensionSymbole.hasOwnProperty('dansDefs') && extensionSymbole.dansDefs===true){
       // cas du clipPath et du pattern
       var monClone=lst[i].cloneNode(true);
+      var attrTra=lst[i].getAttribute('transform')?lst[i].getAttribute('transform'):'';
       var t='';
       try{
        var m=lst[i].getScreenCTM();
-       t='matrix('+m.a+','+m.b+','+m.c+','+m.d+',0,0) scale('+(1/_dssvg.zoom1)+','+(1/_dssvg.zoom1)+')';//'+m.e+','+m.f+')';
+//       t='matrix('+m.a+','+m.b+','+m.c+','+m.d+',0,0) scale('+(1/_dssvg.zoom1)+','+(1/_dssvg.zoom1)+')';//'+m.e+','+m.f+')';
       }catch(e){
       }
       
-      monClone.setAttribute('transform',t);
+      monClone.setAttribute('transform',t + ' ' + attrTra );
       monClone.setAttribute('data-idarbre1',idarbre1);
       monClone.setAttribute('data-type','toRemove');
       refZnDessin.prepend(monClone);
@@ -8617,7 +8668,9 @@ function myObj1(initObj1){
      
      
     }else{
+     
      var matrixRelatifVersAbsolu=refZnDessin.getScreenCTM().inverse().multiply(lst[i].getScreenCTM());
+     console.log('matrixRelatifVersAbsolu=',matrixRelatifVersAbsolu);
      var bounding=lst[i].getBBox(); // matrix
     }
     pt1.x=bounding.x;
@@ -8638,7 +8691,9 @@ function myObj1(initObj1){
     pt4.y=bounding.y+bounding.height;  
     pt4=pt4.matrixTransform(matrixRelatifVersAbsolu);
 
-    
+//    pt1.x-=18;
+//    pt1.y-=17;
+    console.log('pt1=',pt1);
     var txt1   = ajouteElemDansElem(refZnDessin,'text'  ,{'data-type':'toRemove' ,'text':idarbre1,x:pt1.x-6/_dssvg.zoom1,y:pt1.y+3/_dssvg.zoom1,style:'fill:white;stroke:blue;stroke-width:'+strkWiTexteSousPoignees+';font-size:'+fontSiTexteSousPoignees+'px;'});
     var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-type':'toRemove' ,'data-elem':''+idarbre1+' hg', 'data-fnt':'actMovElementPosition,mouseDownMoveElement',cx:pt1.x,cy:pt1.y,r:rayonPoint,style:'fill:rgba(255,0,0,0.2);stroke:blue;stroke-width:'+(1/_dssvg.zoom1)+';'});
     dot.addEventListener('mousedown',mouseDownMoveElement,'dot');
@@ -11381,6 +11436,9 @@ function myObj1(initObj1){
     }
    }
   }
+  if(_dssvg.mode_en_cours==='setModeSaisieDeplace1'){
+   t+='<span style="color:red;font-weight:bold;">elts='+(_dssvg.arbre0.length-1)+'</span>';
+  }
   
   
   
@@ -11440,24 +11498,24 @@ function myObj1(initObj1){
  } 
  //========================================================================================================
  function afficheIndicateurFleche(){
-  var x0=_dssvg.viewBoxInit[0]+_dssvg.viewBoxInit[2]/2;
-  var y0=_dssvg.viewBoxInit[1]+_dssvg.viewBoxInit[3]/2;
-  var x1=_dssvg.arbre0[0].data.sizes.minx+(_dssvg.arbre0[0].data.sizes.maxx-_dssvg.arbre0[0].data.sizes.minx)/2;
-  var y1=_dssvg.arbre0[0].data.sizes.miny+(_dssvg.arbre0[0].data.sizes.maxy-_dssvg.arbre0[0].data.sizes.miny)/2;
+  var x0=arrdi10000(_dssvg.viewBoxInit[0]+_dssvg.viewBoxInit[2]/2);
+  var y0=arrdi10000(_dssvg.viewBoxInit[1]+_dssvg.viewBoxInit[3]/2);
+  var x1=arrdi10000(_dssvg.arbre0[0].data.sizes.minx+(_dssvg.arbre0[0].data.sizes.maxx-_dssvg.arbre0[0].data.sizes.minx)/2);
+  var y1=arrdi10000(_dssvg.arbre0[0].data.sizes.miny+(_dssvg.arbre0[0].data.sizes.maxy-_dssvg.arbre0[0].data.sizes.miny)/2);
   var line= ajouteElemDansElem(refZnDessin,'path',{'data-type':'toRemove','data-elem':0,d:'M '+x0+' '+y0+' L '+x1+' '+y1+'',style:'fill:transparent;stroke:blue;stroke-width:'+(1/_dssvg.zoom1)+';'});
  }
  //========================================================================================================
  function afficheIndicateurBoite(){
-  var x1=_dssvg.arbre0[0].data.sizes.minx;
-  var y1=_dssvg.arbre0[0].data.sizes.miny;
-  var w1=(_dssvg.arbre0[0].data.sizes.maxx-_dssvg.arbre0[0].data.sizes.minx);
-  var h1=(_dssvg.arbre0[0].data.sizes.maxy-_dssvg.arbre0[0].data.sizes.miny);
+  var x1=arrdi10000(_dssvg.arbre0[0].data.sizes.minx);
+  var y1=arrdi10000(_dssvg.arbre0[0].data.sizes.miny);
+  var w1=arrdi10000((_dssvg.arbre0[0].data.sizes.maxx-_dssvg.arbre0[0].data.sizes.minx));
+  var h1=arrdi10000((_dssvg.arbre0[0].data.sizes.maxy-_dssvg.arbre0[0].data.sizes.miny));
   var rect= ajouteElemDansElem(refZnDessin,'rect',{'data-type':'toRemove','data-elem':0,x:x1,y:y1,width:w1,height:h1,style:'fill:rgba(0,255,0,0.5);stroke:blue;stroke-width:'+(1/_dssvg.zoom1)+';'});
  }
  //========================================================================================================
  function afficheArbre0(option){
 
-  var obj=looptree(0,{afficherTout:true}); // =='setModeSaisieDefsElt1'
+  var obj=looptree(0,{afficherTout:true});
 
   refZnDessin.innerHTML=obj.txt;
   recalculBBoxes();
@@ -11473,7 +11531,8 @@ function myObj1(initObj1){
   var absy= ajouteElemDansElem(refZnDessin,'polyline',{'data-type':'systeme',points:'0 0 101 0','stroke-dasharray':'5',style:'fill:transparent;stroke:red;stroke-width:'+(1/_dssvg.zoom1/4)+';'}); // 
   var ordo= ajouteElemDansElem(refZnDessin,'polyline',{'data-type':'systeme',points:'0 0 0 101','stroke-dasharray':'5',style:'fill:transparent;stroke:red;stroke-width:'+(1/_dssvg.zoom1/4)+';'}); // 
   
-  if('setModeSaisieDeplace1'==_dssvg.mode_en_cours){
+  if('setModeSaisieDeplace1'===_dssvg.mode_en_cours){
+   
    if(obj.nbObjAff==0 && _dssvg.arbre0.length>1){
     afficheIndicateurFleche();
     afficheIndicateurBoite();
