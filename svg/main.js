@@ -8951,7 +8951,8 @@ function myObj1(initObj1){
   ss.insertRule('.class_treeHandle1{ border:1px #F7F3CA outset; display:inline-block; float:right; height:30px; width:30px; min-width:45px; text-align: center; text-decoration: none; font-size: 1.5em; line-height: 1.6em; border-radius:5px; font-family:monospace; cursor:pointer;}' , ss.cssRules.length);
   ss.insertRule('.class_tree_yydanger {    color: #FFFFFF!important;    background: linear-gradient(to bottom, #FF0000, #D30000)!important;    font-size: 1.5em;    display: inline-block;    text-decoration: none;    text-align: center;    border-radius: 5px;    font-family: verdana, arial, sans-serif;    cursor: pointer;    min-width: 40px;    min-height: 30px;    line-height: 30px;    border: 1px #F7F3CA outset;}' , ss.cssRules.length);
   ss.insertRule('#editTree1 td{ border:1px blue solid; margin:1px; padding:1px;}' , ss.cssRules.length);
-  ss.insertRule('#editTree1 input,#editTree1 textarea{ border:2px #eee inset; margin:1px; padding:5px;width:100%;}' , ss.cssRules.length);
+  ss.insertRule('#editTree1 input,#editTree1 textarea{ border:2px #eee inset; margin:1px; padding:5px;width:100%;font-size:1.1em;overflow:scroll;}' , ss.cssRules.length);
+  ss.insertRule('#editTree1 textarea::-webkit-scrollbar{width:25px;}' , ss.cssRules.length);
   
   
  }  
@@ -9081,7 +9082,7 @@ function myObj1(initObj1){
    }
   }
   
-  var td1MaxWidth='width:20%';
+  var td1MaxWidth='width:15%';
   
   var elementsAffiches=[];
   var tt='';
@@ -9096,7 +9097,10 @@ function myObj1(initObj1){
 //    tt+='<td></td>';
    }else if(i=='d'){
     tt+='<td style="'+td1MaxWidth+';">'+i+'</td>';
-    tt+='<td><textarea  data-attrib="'+i+'" cols="50" rows="3" style="overflow:hidden;">'+values.attributes[i]+'</textarea></td>';
+    tt+='<td><textarea  id="bef_input_'+i+'" data-attrib="'+i+'" cols="50" rows="3" >'+values.attributes[i]+'</textarea>';
+    tt+='<br />';
+    tt+='<button id="defaultStyle" data-forAttrib="'+i+'" class="butEnabled" onclick="if(document.getElementById(\'bef_input_'+i+'\').style.overflow==\'hidden\'){document.getElementById(\'bef_input_'+i+'\').style.overflow=\'scroll\';}else{document.getElementById(\'bef_input_'+i+'\').style.overflow=\'hidden\';}">RS</button>';
+    tt+='</td>';
 
    }else if(i==='stroke-linejoin'){
     tt+='<td style="'+td1MaxWidth+';">'+i+'</td>';
@@ -9124,6 +9128,7 @@ function myObj1(initObj1){
      tt+='<td>';
      tt+='<textarea cols="50" rows="3" id="idtempstyle" data-attrib="'+i+'">'+values.attributes[i]+'</textarea>';
      tt+='<br /><button id="defaultStyle" data-forAttrib="'+i+'" class="butEnabled" onclick="document.getElementById(\'idtempstyle\').value=\'fill:red;stroke:blue;stroke-width:1;\'">default</button>';
+     tt+='<button id="defaultStyle" data-forAttrib="'+i+'" class="butEnabled" onclick="if(document.getElementById(\'bef_input_'+i+'\').style.overflow==\'hidden\'){document.getElementById(\'bef_input_'+i+'\').style.overflow=\'scroll\';}else{document.getElementById(\'bef_input_'+i+'\').style.overflow=\'hidden\';}">RS</button>';
      tt+='</td>';
     }else{
      tt+='<td style="'+td1MaxWidth+';">'+i+'</td><td><input     data-attrib="'+i+'" value="'+values.attributes[i]+'"></td>';
@@ -9185,6 +9190,7 @@ function myObj1(initObj1){
      tt+='<td>';
      tt+='<textarea  id="idtempstyle"   data-attrib="'+lstAttribs[i]+'"></textarea>';
      tt+='<br /><button id="defaultStyle" data-forAttrib="'+lstAttribs[i]+'" class="butEnabled" onclick="document.getElementById(\'idtempstyle\').value=\'fill:red;stroke:blue;stroke-width:1;\'">Def</button>';
+     tt+='<button id="defaultStyle" data-forAttrib="'+i+'" class="butEnabled" onclick="if(document.getElementById(\'idtempstyle\').style.overflow==\'hidden\'){document.getElementById(\'idtempstyle\').style.overflow=\'scroll\';}else{document.getElementById(\'idtempstyle\').style.overflow=\'hidden\';}">RS</button>';
      tt+='</td>';
     }else if(lstAttribs[i]==='d'){
      tt+='<td style="'+td1MaxWidth+';">'+lstAttribs[i]+'</td>';
