@@ -15,7 +15,7 @@ actif,cle,fr,en
 1,gerpar,gérer les paramètres,manage settings
 1,supp_et_recharge,supprimer et recharger,delete and reload
 1,coultrait,couleur de trait,stroke color
-1,integrmodifman,intégrer modification manuelle,integrate manual modification
+1,integrmodifman,intégrer modification manuelle ( debug ),integrate manual modification ( debug )
 1,annuler,annuler,cancel
 1,pousser_vers_le_haut,pousser vers le haut,push up
 1,pousser_vers_le_bas,pousser vers le bas,push down
@@ -51,7 +51,7 @@ actif,cle,fr,en
 1,Utilisation,Utilisation,Use
 1,Optimisation_des_tracés_chemin,Optimisation des tracés chemin,Path route optimization
 1,Diviseur_de_déplacement,Diviseur de déplacement,Displacement divider
-1,Diviseur_de_pixel,Diviseur de pixel,pixel divider
+1,Diviseur_de_pixel,Diviseur de pixel,pixel snap divider
 1,liens_divers,liens divers,miscellaneous links
 1,Réinitialiser_le_programme_et_recharger_la_page,Réinitialiser le programme et recharger la page,Reset the program and reload the page
 1,Réinitialiser,Réinitialiser,Reset
@@ -95,3 +95,5 @@ actif,cle,fr,en
 1,Il_y_a,Il y a ,There are
 1,chemins_à_transformer_voulez_vous_continuer,"chemins à transformer, voulez vous continuer","paths to convert, do you want to continue"
 1,svg_vide,le svg est vide,the svg is empty
+1,version,La version du programme a changé. Voulez vous recharger la page ?,The program version has changed. Do you want to reload the page ?
+1,polyx_vers_path,polygone/line  en chemin,polygon/line into a path

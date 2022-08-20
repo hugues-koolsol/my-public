@@ -16,7 +16,7 @@ trad['aimpix']='aimanter au pixel';
 trad['gerpar']='gérer les paramètres';
 trad['supp_et_recharge']='supprimer et recharger';
 trad['coultrait']='couleur de trait';
-trad['integrmodifman']='intégrer modification manuelle';
+trad['integrmodifman']='intégrer modification manuelle ( debug )';
 trad['annuler']='annuler';
 trad['pousser_vers_le_haut']='pousser vers le haut';
 trad['pousser_vers_le_bas']='pousser vers le bas';
@@ -96,6 +96,8 @@ trad['Certain']='Certain';
 trad['Il_y_a']='Il y a ';
 trad['chemins_à_transformer_voulez_vous_continuer']='chemins à transformer, voulez vous continuer';
 trad['svg_vide']='le svg est vide';
+trad['version']='La version du programme a changé. Voulez vous recharger la page ?';
+trad['polyx_vers_path']='polygone/line  en chemin';
 }
 
 function setTrad_en(){
@@ -115,7 +117,7 @@ trad['aimpix']='snap to pixel';
 trad['gerpar']='manage settings';
 trad['supp_et_recharge']='delete and reload';
 trad['coultrait']='stroke color';
-trad['integrmodifman']='integrate manual modification';
+trad['integrmodifman']='integrate manual modification ( debug )';
 trad['annuler']='cancel';
 trad['pousser_vers_le_haut']='push up';
 trad['pousser_vers_le_bas']='push down';
@@ -151,7 +153,7 @@ trad['Taille_des_textes']='Text size';
 trad['Utilisation']='Use';
 trad['Optimisation_des_tracés_chemin']='Path route optimization';
 trad['Diviseur_de_déplacement']='Displacement divider';
-trad['Diviseur_de_pixel']='pixel divider';
+trad['Diviseur_de_pixel']='pixel snap divider';
 trad['liens_divers']='miscellaneous links';
 trad['Réinitialiser_le_programme_et_recharger_la_page']='Reset the program and reload the page';
 trad['Réinitialiser']='Reset';
@@ -195,5 +197,7 @@ trad['Certain']='Sure';
 trad['Il_y_a']='There are';
 trad['chemins_à_transformer_voulez_vous_continuer']='paths to convert, do you want to continue';
 trad['svg_vide']='the svg is empty';
+trad['version']='The program version has changed. Do you want to reload the page ?';
+trad['polyx_vers_path']='polygon/line into a path';
 }
 
