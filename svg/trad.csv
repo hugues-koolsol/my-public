@@ -97,3 +97,5 @@ actif,cle,fr,en
 1,svg_vide,le svg est vide,the svg is empty
 1,version,La version du programme a changé. Voulez vous recharger la page ?,The program version has changed. Do you want to reload the page ?
 1,polyx_vers_path,polygone/line  en chemin,polygon/line into a path
+1,message_version,"si ce message réapparaît, veuillez attendre quelques secondes avant d'appuyer sur OK car il faut un peu de temps avant que tous les éléments soient téléchargés.","if this message reappears, please wait a few seconds before pressing OK as it takes a while for all items to download."
+1,recharger_la_page,recharger la page,reload the page

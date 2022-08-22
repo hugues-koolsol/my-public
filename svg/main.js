@@ -152,7 +152,8 @@ function myObj1(initObj1){
  //========================================================================================================
  function changementVersion1(e){
   var contentOfPopup='<h3 style="text-align:center;margin:10px 5px;">'+trad['version']+'</h3>';
-  contentOfPopup+='<br /><button id="okrecharger" class="butEnabled butMenuHaut" style="display:block;margin:10px auto;">&nbsp;OK&nbsp;</button>'
+  contentOfPopup+='<br /><button id="okrecharger" class="butEnabled butMenuHaut" style="display:block;margin:10px auto;">&nbsp;&nbsp;OK&nbsp;&nbsp;</button>'
+  contentOfPopup+='<br /><div style="width:80%;text-align:center;margin:10px auto;">'+trad['message_version']+'</div>';
   popupValue.innerHTML=contentOfPopup;
   document.getElementById('okrecharger').addEventListener('click',recharger,'button');
   showPopUp('changementVersion1');  
@@ -588,7 +589,7 @@ function myObj1(initObj1){
  
  //========================================================================================================
  function majPropsGroupeEtElements(e){
-  var lstAttribs=['id','style','fill','fill-opacity','fill-rule','stroke','stroke-width','opacity','transform','line-cap','enable-background','filter','stroke-linecap','stroke-linejoin','stroke-miterlimit','stroke-dasharray'];
+  var lstAttribs=['id','style','fill','fill-opacity','fill-rule','stroke','stroke-width','stroke-opacity','opacity','transform','line-cap','enable-background','filter','stroke-linecap','stroke-linejoin','stroke-miterlimit','stroke-dasharray'];
   var propsGroupe={};
   var propsElements={};
   var elts=document.getElementsByTagName('input');
@@ -663,7 +664,7 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function popupPropEltsGrp1(jso){
-  var lstAttribs=['id','style','fill','fill-opacity','fill-rule','stroke','stroke-width','opacity','transform','line-cap','enable-background','filter','stroke-linecap','stroke-linejoin','stroke-miterlimit','stroke-dasharray'];
+  var lstAttribs=['id','style','fill','fill-opacity','fill-rule','stroke','stroke-width','opacity','transform','line-cap','enable-background','filter','stroke-opacity','stroke-linecap','stroke-linejoin','stroke-miterlimit','stroke-dasharray'];
   var contentOfPopup='<h3>'+trad['modif_prop_grp_et_elts']+'</h3>';
   contentOfPopup+='<style>'
   contentOfPopup+='.table1{border:1px blue outset;margin:10px 3px 0px 3px;width:80%;}';
@@ -1150,10 +1151,10 @@ function myObj1(initObj1){
   for(var i=0;i<lst.length ;i++){
    if(lst[i].tagName.toLowerCase()==='path'){
     var numArbre=lst[i].getAttribute('data-idarbre1');
-    var obj=recuperePropsCouleurs(numArbre);
+    var couleur=recuperePropsCouleurs(numArbre);
     var indC=recupereIndiceArbre(numArbre);
     var d=_dssvg.arbre0[indC].data.attributes.d;
-    var tt=simplifierUnChemin(d,parseFloat(obj['stroke-width']));
+    var tt=simplifierUnChemin(d,parseFloat(couleur['stroke-width'].valeur));
     _dssvg.arbre0[indC].data.attributes.d=tt;
    }
   }
@@ -1573,7 +1574,7 @@ function myObj1(initObj1){
     if(valeursExtremesTrouvees===true){
      var leChemin=obj.tabPts.join(' ');
      var obj2=recuperePropsCouleurs(_dssvg.arbre0[i].id); // obj
-     var tt=simplifierUnChemin(leChemin,parseFloat(obj2['stroke-width']));
+     var tt=simplifierUnChemin(leChemin,parseFloat(obj2['stroke-width'].valeur));
      _dssvg.arbre0[i].data.attributes.d=tt;
     }
    }
@@ -2841,7 +2842,7 @@ function myObj1(initObj1){
     strokeData.context=''+jso.action+'';
     popupStroke(null)
     
-   }else if('stroke-opacity' === jso.action || 'fill-opacity' === jso.action){
+   }else if('stroke-opacity' === jso.action || 'fill-opacity' === jso.action || 'opacity' === jso.action){
     
     strokeData.numArbre=jso.numArbre;
     strokeData.value=jso.valeur;
@@ -2897,7 +2898,7 @@ function myObj1(initObj1){
    }else if('suppAttribGra1'===jso.action){
     var indA=recupereIndiceArbre(jso.numArbre);
     for( n in _dssvg.arbre0[indA].data.attributes){
-     if(n==='style' || n==='fill' || n==='fill-opacity' || n==='stroke' || n==='stroke-width' || n==='stroke-opacity'  || n==='stroke-linecap'  || n==='stroke-linejoin' ){
+     if(n==='style' || n==='fill' || n==='fill-opacity' || n==='stroke' || n==='stroke-width' || n==='stroke-opacity'  || n==='opacity'  || n==='stroke-linecap'  || n==='stroke-linejoin' ){
       _dssvg.arbre0[indA].data.attributes[n]='';
      }
     }
@@ -2906,7 +2907,7 @@ function myObj1(initObj1){
     for( i=0;i<_dssvg.arbre0.length;i++){
      if(_dssvg.arbre0[i].parentId===jso.numArbre){
       for( n in _dssvg.arbre0[i].data.attributes){
-       if(n==='style' || n==='fill' || n==='fill-opacity' || n==='stroke' || n==='stroke-width' || n==='stroke-opacity'  || n==='stroke-linecap'  || n==='stroke-linejoin' ){
+       if(n==='style' || n==='fill' || n==='fill-opacity' || n==='stroke' || n==='stroke-width' || n==='stroke-opacity'  || n==='opacity'  || n==='stroke-linecap'  || n==='stroke-linejoin' ){
         _dssvg.arbre0[i].data.attributes[n]='';
        }
       }
@@ -3016,6 +3017,7 @@ function myObj1(initObj1){
    if(nouvelleValeur>=0 && nouvelleValeur<=1){
     strokeData.value=nouvelleValeur;
     dogid('parOpacityValeur').setAttribute('data-valeur', nouvelleValeur );
+    dogid('parOpacityValeur').setAttribute('data-fixer' , nouvelleValeur );
     dogid('parOpacityValeur').innerHTML=nouvelleValeur;
    }
   }else{
@@ -3038,7 +3040,7 @@ function myObj1(initObj1){
   }catch(e){}
   strokeData.value=valeur;
 
-  contentOfPopup+='<button id="parOpacityValeur" class="butEnabled butMenuGauche"  style="display:inline-block;min-width:7rem;margin:5px auto 5px auto;text-align:center;font-size:2em;min-height: 1.5em;" data-valeur="'+valeur+'">'+valeur+'</button>';
+  contentOfPopup+='<button id="parOpacityValeur" class="butEnabled butMenuGauche" data-valeur="'+valeur+'" data-fixer="'+valeur+'" style="display:inline-block;min-width:7rem;margin:5px auto 5px auto;text-align:center;font-size:2em;min-height: 1.5em;" data-valeur="'+valeur+'">'+valeur+'</button>';
   var tabs=[0.1,0.01,0.001];
   for(var j=0;j<tabs.length;j++){
    contentOfPopup+='<div style="text-align:center;margin-top:10px;">';
@@ -3472,7 +3474,7 @@ function myObj1(initObj1){
     }else if('setModeSaisieTranE1'===_dssvg.mode_en_cours || 'setModeSaisieDefsTrE1' === _dssvg.mode_en_cours ){
 
      removeListeners();
-     // todo, à virer
+     // todo, à virer ???
      if(globalGeneralSvgReferenceElement && ( ecran_appuye==='fElementTransformTranslate1' )){
       try{
        var matrice=globalGeneralSvgReferenceElement.getScreenCTM().inverse().multiply(globalGeneralSvgReferenceElement.parentNode.getScreenCTM()).inverse();
@@ -3486,7 +3488,7 @@ function myObj1(initObj1){
     }else if('setModeSaisieGroupe1'===_dssvg.mode_en_cours || 'setModeSaisieDefsGrp1'===_dssvg.mode_en_cours){
      
      removeListeners();
-     // todo, à virer
+     // todo, à virer ??
      if(globalGeneralSvgReferenceElement && ( ecran_appuye==='fElementTransformTranslate1' ) ){
       var matrice=globalGeneralSvgReferenceElement.getScreenCTM().inverse().multiply(globalGeneralSvgReferenceElement.parentNode.getScreenCTM()).inverse();
       var obj=matrixToFnt(matrice);
@@ -4010,6 +4012,7 @@ function myObj1(initObj1){
     contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://svgsilh.com/">svgsilh.com</a>';
     contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://www.svgrepo.com/">svgrepo.com</a>';
     contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://freesvg.org/">freesvg.org</a>';
+    contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://github.com/microsoft/fluentui-emoji/tree/main/assets">microsoft emoji</a>';
     
     contentOfPopup+='</div>';
 
@@ -7281,7 +7284,7 @@ function myObj1(initObj1){
     }else if(globalSelectElementTaille.tableauOriginal[1]>0){
      var rapport=nouvelleHeight/globalSelectElementTaille.tableauOriginal[1];
     }
-    var ancienneFontSize=parseFloat(globalSelectElementTaille.tableauOriginal[0]['font-size']);
+    var ancienneFontSize=parseFloat(globalSelectElementTaille.tableauOriginal[0]['font-size'].valeur);
     if(ancienneFontSize<=0){
      ancienneFontSize=0.001;
     }
@@ -7290,7 +7293,7 @@ function myObj1(initObj1){
      nouvelleFontSize=0.001;
     }
     
-    var ancienneStrokeWidth=parseFloat(globalSelectElementTaille.tableauOriginal[0]['stroke-width']);
+    var ancienneStrokeWidth=parseFloat(globalSelectElementTaille.tableauOriginal[0]['stroke-width'].valeur);
     if(ancienneStrokeWidth<=0.01){
      ancienneStrokeWidth=0.01;
     }
@@ -7306,7 +7309,7 @@ function myObj1(initObj1){
      }else if(elem==='stroke-width'){
       sty+='stroke-width:'+nouvelleStrokeWidth+';';
      }else{
-      sty+=elem+':'+globalSelectElementTaille.tableauOriginal[0][elem]+';';
+      sty+=elem+':'+globalSelectElementTaille.tableauOriginal[0][elem].valeur+';';
      }
     }
     globalGeneralSvgReferenceElement.setAttribute('style'  , sty)
@@ -8675,7 +8678,7 @@ function myObj1(initObj1){
     }else{
      
      var matrixRelatifVersAbsolu=refZnDessin.getScreenCTM().inverse().multiply(lst[i].getScreenCTM());
-     console.log('matrixRelatifVersAbsolu=',matrixRelatifVersAbsolu);
+//     console.log('matrixRelatifVersAbsolu=',matrixRelatifVersAbsolu);
      var bounding=lst[i].getBBox(); // matrix
     }
     pt1.x=bounding.x;
@@ -8698,7 +8701,7 @@ function myObj1(initObj1){
 
 //    pt1.x-=18;
 //    pt1.y-=17;
-    console.log('pt1=',pt1);
+//    console.log('pt1=',pt1);
     var txt1   = ajouteElemDansElem(refZnDessin,'text'  ,{'data-type':'toRemove' ,'text':idarbre1,x:pt1.x-6/_dssvg.zoom1,y:pt1.y+3/_dssvg.zoom1,style:'fill:white;stroke:blue;stroke-width:'+strkWiTexteSousPoignees+';font-size:'+fontSiTexteSousPoignees+'px;'});
     var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-type':'toRemove' ,'data-elem':''+idarbre1+' hg', 'data-fnt':'actMovElementPosition,mouseDownMoveElement',cx:pt1.x,cy:pt1.y,r:rayonPoint,style:'fill:rgba(255,0,0,0.2);stroke:blue;stroke-width:'+(1/_dssvg.zoom1)+';'});
     dot.addEventListener('mousedown',mouseDownMoveElement,'dot');
@@ -10567,7 +10570,8 @@ function myObj1(initObj1){
 
   {id:'break0'                    , position:'menuGauche' , cssText:'height:15px;'},
 
-  {id:'integrerModifManuelle1'    , position:'menuGauche' , libelle:trad['integrmodifman']                      , action:integrerModifManuelle1      , contenu:'MM'   },
+  {id:'recharger'                 , position:'menuGauche' , libelle:trad['recharger_la_page']                   , action:recharger                   , contenu:'Re'  , class:'butEnabled butMenuGauche bckRouge'  , svg : '<svg class="svgBoutonGauche1" viewBox="-1.995 -22  204 224"><path stroke-linejoin="round" stroke-linecap="round" d=" m 100 0   a 100 100 0 1 0 100 99   h -40   A 60 60 0 1 1 100 40  v 20 l 34 -40 l -34 -40 v 20" style="stroke:yellow;fill:transparent;stroke-width:10;"></path></svg>'},
+  {id:'integrerModifManuelle1'    , position:'menuGauche' , libelle:trad['integrmodifman']                      , action:integrerModifManuelle1      , contenu:'MM'  , class:'butEnabled butMenuGauche bckRouge'  , svg : '<svg class="svgBoutonGauche1" viewBox="0 0  85 77"><path stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" d="M 83 44   H 70       V 36       C 70 36 70 35 70 35     C 79 34 85 29 85 21     V 19       C 85 17 84 16 82 16     S 79 17 79 19       V 21       C 79 27 76 30 70 31     C 69 26 66 23 61 22     C 60 17 58 13 52 11     C 54 9 56 7 56 4     V 2       C 56 1 54 0 53 0     S 51 1 51 2       V 4       C 51 7 48 9 45 9     H 41       C 37 9 34 7 34 4     V 2       C 34 1 33 0 32 0     S 29 1 29 2       V 4       C 29 7 31 9 33 11     C 28 13 25 17 24 22     C 19 23 17 26 16 31     C 9 30 6 27 6 21     V 19       C 6 17 5 16 3 16     S 0 17 0 19       V 21       C 0 29 6 35 15 35     C 15 35 15 36 15 36     V 44       H 2       C 1 44 0 45 0 46     S 0 49 1 49       H 15       V 52       C 15 54 15 56 16 58     C 6 58 0 63 0 72     V 74       C 0 75 1 76 3 76     S 6 75 6 74       V 72       C 6 65 9 62 17 62     C 22 71 31 77 43 77     C 54 77 65 71 68 62     C 76 62 79 65 79 72     V 74       C 79 75 80 76 82 76     S 85 75 85 74       V 72       C 85 63 79 58 70 58     C 70 56 70 54 70 52     V 49       H 82       C 85 49 85 47 85 46     S 85 44 83 44       Z M 40 72   C 28 71 19 63 19 52     V 36       C 19 32 22 27 24 26     C 26 29 28 31 33 31     H 40       V 72       Z M 33 27   C 31 27 28 25 28 23     C 28 18 34 14 40 14     H 41       H 45       H 45       C 51 14 57 18 57 23     C 57 25 54 27 52 27     H 33       Z M 66 52   C 66 63 57 71 45 72     V 31       H 52       C 57 31 60 29 61 26     C 65 27 66 32 66 36     V 52       Z " style="stroke:yellow;fill:yellow;stroke-width:1;"></path><text x="16" y="59" style="font-size:32;stroke-width:1.22;stroke:navy;fill:navy;font-family:Verdana;stroke-opacity:1;fill-opacity:1;opacity:1;">M</text><text x="42" y="59" style="font-size:32;stroke-width:1.22;stroke:navy;fill:navy;font-family:Verdana;stroke-opacity:1;fill-opacity:1;opacity:1;">M</text></svg>'},
 
    // =================== MENU HAUT =====================  
   {id:'annuler1'                  , position:'menuHaut'   , libelle:trad['annuler']                             , action:annuler1                    , svg:'<svg class="svgBoutonHaut1" viewBox="0 -20  220 240"><path stroke="blue" stroke-width="5" fill="red" d=" M 100 0 A 100 100 0 1 1 0 100 H 40 A 60 60 1 1 0 100 40 V 60  L 66 20 L 100 -20 Z"></path></svg>'                   }, // ⟳ = bouton fleche arrondie sens horaire
@@ -10836,7 +10840,9 @@ function myObj1(initObj1){
     );
    }
    setTimeout(majSw,300);
+
   }
+  
  }
  //========================================================================================================
  function majSw(){
@@ -11121,7 +11127,7 @@ function myObj1(initObj1){
      var prop=tab1[i].split(':');
      if(prop.length===2){
       if(prop[1]!==''){
-       couleurs[prop[0].trim()]=prop[1];
+       couleurs[prop[0].trim()]={valeur:prop[1],definie:true,type:'style'};
       }
      }
     }
@@ -11144,9 +11150,9 @@ function myObj1(initObj1){
      tab[i][1]=eltd.hasOwnProperty(tab[i][0])?(eltd[tab[i][0]]!==''?eltd[tab[i][0]]:null):null;
      // l'élément a-t-il une propriété individuelle non vide
      if(tab[i][1]!==null){
-      couleurs[tab[i][0]]=tab[i][1]; // oui, on la renseigne
+      couleurs[tab[i][0]]={valeur:tab[i][1],definie:true,type:'tag'}; // oui, on la renseigne
      }else{
-      couleurs[tab[i][0]]=tab[i][2]; // non, on met la valeur par défaut
+      couleurs[tab[i][0]]={valeur:tab[i][2],definie:false,type:'tag'}; // non, on met la valeur par défaut
      }
     }
     
@@ -11176,22 +11182,26 @@ function myObj1(initObj1){
    if(type==n){
     nouveaStyle1[n]=valeur;
    }else{
-    nouveaStyle1[n]=couleurs[n]
+    if(couleurs[n].definie===true){
+     nouveaStyle1[n]=couleurs[n].valeur
+    }
    }
   }
   var nouveaStyle2={};
   for(var n in couleurs){
-   if( eltd.nodeName==='text' || eltd.nodeName==='tspan' ){
-    if(n==='font-size' || n==='font-family' || n==='stroke'  || n==='stroke-width' || n==='stroke-opacity' || n==='fill'  || n==='fill-opacity' ){
-     nouveaStyle2[n]=nouveaStyle1[n];
-    }
-   }else if( eltd.nodeName==='image' ){
-    if(n==='opacity'){
-     nouveaStyle2[n]=nouveaStyle1[n];
-    }
-   }else{
-    if(!( n==='font-size' ) ){
-     nouveaStyle2[n]=nouveaStyle1[n];
+   if(couleurs[n].definie===true){
+    if( eltd.nodeName==='text' || eltd.nodeName==='tspan' ){
+     if(n==='font-size' || n==='font-family' || n==='stroke'  || n==='stroke-width' || n==='stroke-opacity' || n==='fill'  || n==='fill-opacity' ){
+      nouveaStyle2[n]=nouveaStyle1[n];
+     }
+    }else if( eltd.nodeName==='image' ){
+     if(n==='opacity'){
+      nouveaStyle2[n]=nouveaStyle1[n];
+     }
+    }else{
+     if(!( n==='font-size' ) ){
+      nouveaStyle2[n]=nouveaStyle1[n];
+     }
     }
    }
   }
@@ -11377,17 +11387,18 @@ function myObj1(initObj1){
 
     if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='image'){
       t+='<button class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"wiEtHeImageVide" ,"numArbre":'+numArbre+'}')+'">raz hauteur et largeur</button>';
-      t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"opacity" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['opacity']         +'"}')+'">opac:'+couleurs['opacity']+'</button>';
+      t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"opacity" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['opacity'].valeur         +'"}')+'">opac:'+couleurs['opacity'].valeur+'</button>';
     }else{
-     if(couleurs['stroke'] && couleurs['stroke'].indexOf('url(')<0){
-      t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"strokeElement" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke']         +'"}')+'">strk:'+couleurs['stroke']+'</button>';
+     if(couleurs['stroke'] && couleurs['stroke'].valeur.indexOf('url(')<0){
+      t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"strokeElement" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke'].valeur         +'"}')+'">strk:'+couleurs['stroke'].valeur+'</button>';
      }
-     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"stroke-width"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-width']   +'"}')+'">strk-wi:'+couleurs['stroke-width']+'</button>';
-     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"stroke-opacity","numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-opacity'] +'"}')+'">strk-opa:'+couleurs['stroke-opacity']+'</button>';
-     if(couleurs['fill'].indexOf('url(')<0){
-      t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"fillElement"   ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill']           +'"}')+'">fill:'+couleurs['fill']+'</button>';
+     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"stroke-width"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-width'].valeur   +'"}')+'">strk-wi:'+couleurs['stroke-width'].valeur+'</button>';
+     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"stroke-opacity","numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-opacity'].valeur +'"}')+'">strk-opa:'+couleurs['stroke-opacity'].valeur+'</button>';
+     if(couleurs['fill'].valeur.indexOf('url(')<0){
+      t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"fillElement"   ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill'].valeur           +'"}')+'">fill:'+couleurs['fill'].valeur+'</button>';
      }
-     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"fill-opacity"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill-opacity']   +'"}')+'">fill-opa:'+couleurs['fill-opacity']+'</button>';
+     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"fill-opacity"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill-opacity'].valeur   +'"}')+'">fill-opa:'+couleurs['fill-opacity'].valeur+'</button>';
+     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"opacity"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['opacity'].valeur   +'"}')+'">opacity:'+couleurs['opacity'].valeur+'</button>';
     }
     t+='<button class="butEnabled butMenuHaut bckRouge" style="min-width: fit-content;" data-action="'+htm1('{"action":"suppAttribGra1"  ,"numArbre":'+numArbre+'}')+'">supp attr gra</button>';
     
