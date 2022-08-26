@@ -1700,7 +1700,7 @@ function myObj1(initObj1){
   contentOfPopup+=' <br />';
   // zzvin.svg , zzSimplificationChemin.svg zzSVG_Logo-svgomg.svg zzsagami_single-svgomg.svg zztest-car-lite.svg
 //  contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4.8229 -4.8229  224.8229 106.4479"><defs><pattern id="pat01" viewBox="0,0,14,14" width="20%" height="20%"><g fill="blue" stroke="red" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 5.5 5.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d=" M -1.5 5.5   a 2 2 0 1 0 0 3   a 2 2 0 0 1 3 0   a 2 2 0 1 0 0 -3   a 2 2 0 0 1 -3 0  "></path><path d="M 12.5 5.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M 5.5 -1.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M 5.5 12.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M -1.5 -1.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M 12.5 -1.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M 12.5 12.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M -1.5 12.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path></g></pattern></defs><circle cx="71.6876" cy="51.625" r="50" fill="url(#pat01)"></circle><circle cx="180" cy="50" r="40" fill="none" stroke-width="30" stroke="url(#pat01)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
-  contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg xmlns="http://www.w3.org/2000/svg"><defs><pattern id="pat01" viewBox="0,0,48,48" width="20%" height="20%"><path fill="red" stroke="blue" d="m  -6 -5  a 7 7 0  1 1 12 0  a 4 7 0 0 0 0 10  a 7 7 0 1 1 -12 0  a 4 7 0 0 0 0 -10  m  25 -1  a 7 7 -1 1 0 0 12  a 7 4 0 0 1 10 0  a 7 7 0 1 0 0 -12  a 7 4 0 0 1 -10 0  m -24 24  a 7 7 -1 1 0 0 12  a 7 4 0 0 1 10 0  a 7 7 0 1 0 0 -12  a 7 4 0 0 1 -10 0  m  23 1   a 7 7 0  1 1 12 0  a 4 7 0 0 0 0 10  a 7 7 0 1 1 -12 0  a 4 7 0 0 0 0 -10  m  24 -24 a 7 7 0 1 1 12 0   a 4 7 0 0 0 0 10  a 7 7 0 1 1 -12 0  a 4 7 0 0 0 0 -10  m   1 23  a 7 7 -1 1 0 0 12  a 7 4 0 0 1 10 0  a 7 7 0 1 0 0 -12  a 7 4 0 0 1 -10 0  m -49 25  a 7 7 0 1 1 12 0   a 4 7 0 0 0 0 10  a 7 7 0 1 1 -12 0  a 4 7 0 0 0 0 -10  m  25 -1  a 7 7 -1 1 0 0 12  a 7 4 0 0 1 10 0  a 7 7 0 1 0 0 -12  a 7 4 0 0 1 -10 0  m  23  1  a 7 7 0 1 1 12 0   a 4 7 0 0 0 0 10  a 7 7 0 1 1 -12 0  a 4 7 0 0 0 0 -10"></path></pattern></defs><circle cx="67" cy="41" r="41" fill="url(#pat01)"></circle><circle cx="162" cy="41" r="39" fill="none" stroke-width="30" stroke="url(#pat01)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
+  contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15.6056 -15.6056  216.6056 98.6056"><defs><pattern id="pat01" viewBox="0,0,46,46" width="20%" height="20%"><path fill="red" stroke="blue" d=" M -6 -5 A 7 7 0 1 1 6 -5 A 4 7 0 0 0 6 5 A 7 7 0 1 1 -6 5 A 4 7 0 0 0 -6 -5 M 18 -6 A 7 7 -1 1 0 18 6 A 7 4 0 0 1 28 6 A 7 7 0 1 0 28 -6 A 7 4 0 0 1 18 -6 M -5 17 A 7 7 -1 1 0 -5 29 A 7 4 0 0 1 5 29 A 7 7 0 1 0 5 17 A 7 4 0 0 1 -5 17 M 17 18 A 7 7 0 1 1 29 18 A 4 7 0 0 0 29 28 A 7 7 0 1 1 17 28 A 4 7 0 0 0 17 18 M 40 -5 A 7 7 0 1 1 52 -5 A 4 7 0 0 0 52 5 A 7 7 0 1 1 40 5 A 4 7 0 0 0 40 -5 M 41 17 A 7 7 -1 1 0 41 29 A 7 4 0 0 1 51 29 A 7 7 0 1 0 51 17 A 7 4 0 0 1 41 17 M -6 41 A 7 7 0 1 1 6 41 A 4 7 0 0 0 6 51 A 7 7 0 1 1 -6 51 A 4 7 0 0 0 -6 41 M 18 40 A 7 7 -1 1 0 18 52 A 7 4 0 0 1 28 52  A 7 7 0 1 0 28 40 A 7 4 0 0 1 18 40 M 40 41 A 7 7 0 1 1 52 41 A 4 7 0 0 0 52 51 A 7 7 0 1 1 40 51 A 4 7 0 0 0 40 41"></path></pattern></defs><circle cx="89" cy="42" r="41" fill="url(#pat01)"></circle><circle cx="162" cy="41" r="39" fill="none" stroke-width="30" stroke="url(#pat01)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
   contentOfPopup+=' <br /><br /><button id="test19"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="-28.9289 -24.9948  170.6555 150.0684"><defs><clipPath id="cp" transform="rotate(10)"><path transform="translate(3 3)" d="M 22.9695 18.0532 C 14.1526 18.0532 -3.4807 35.199 -10.093 39.4856 C -14.5013 42.3431 -5.6849 52.3449 -5.6849 53.7739 C -5.6849 55.2027 -5.6849 56.6317 -5.6849 56.6317 C 3.132 62.347 14.1526 65.2046 22.9695 102.3543 C 31.7859 69.4911 56.0316 75.2063 75.8691 102.3543 C 75.8691 62.347 91.2982 63.7758 133.1773 68.0622 C 95.7067 46.6297 58.2361 25.1973 139.7899 19.482 C 97.9108 20.9107 53.8278 19.482 108.9316 -11.9526 C 86.89 -19.0967 22.9695 10.909 20.765 -23.3831 " style="stroke:rgb(0, 0, 0);fill:blanchedalmond;stroke-width:0;stroke-opacity:1;fill-opacity:1;opacity:1;"></path></clipPath></defs><rect x="3" y="4" width="70" height="66" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#cp)" style="stroke:rgb(0, 0, 0);fill:rosybrown;stroke-width:1;stroke-opacity:1;fill-opacity:0.5;opacity:1;"></rect></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test19 clipPath</button>';
   contentOfPopup+=' <br /><br /><button id="test17"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="0 -1  442.2656 377.5"><defs><filter id="filtered-3" height="220%"><feFlood flood-color="#551C0B" result="COLOR-outline"></feFlood><feMorphology operator="dilate" radius="0.3" in="SourceAlpha" result="OUTLINE_10"></feMorphology><feComposite operator="in" in="COLOR-outline" in2="OUTLINE_10" result="OUTLINE_20"></feComposite><feGaussianBlur stdDeviation="4" in="SourceAlpha" result="LIGHTING-EFFECTS_10"></feGaussianBlur><feSpecularLighting surfaceScale="5" specularConstant="0.5" specularExponent="7.5" lighting-color="#white" in="LIGHTING-EFFECTS_10" result="LIGHTING-EFFECTS_20"><fePointLight x="750" y="-50" z="300"></fePointLight></feSpecularLighting><feComposite in2="SourceAlpha" operator="in" in="LIGHTING-EFFECTS_20" result="LIGHTING-EFFECTS_30"></feComposite><feComposite operator="arithmetic" k1="0" k2="1" k3="1" k4="0" in="SourceGraphic" in2="LIGHTING-EFFECTS_30" result="LIGHTING-EFFECTS_40"></feComposite><feComponentTransfer in="LIGHTING-EFFECTS_40" result="COLOR-EFFECTS_10"><feFuncR type="gamma" offset="-1.3" amplitude="10" exponent="4.84"></feFuncR><feFuncB type="gamma" offset="-1.3" amplitude="10.1" exponent="40.84"></feFuncB></feComponentTransfer><feMerge><feMergeNode in="OUTLINE_20"></feMergeNode><feMergeNode in="COLOR-EFFECTS_10"></feMergeNode></feMerge></filter></defs><text filter="url(#filtered-3)" x="20" y="140" font-size="140" stroke="#EF7349" fill="#EF7349">BLOP!</text><g fill="transparent" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke="#EF7349"><path filter="url(#filtered-3)" d="M 387 226 C 382.55 226 344.7 277.28 329 292 C 286.38 331.96 230.33 371 170 371 "></path><path filter="url(#filtered-3)" stroke-width="20" stroke="#EF7349" fill="transparent" d=" M 342.5 289.5 C 317.46 321.54 239.49 367.5 212.5 376.5 "></path></g></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test17 filtres 2</button>';
   contentOfPopup+=' <br /><br /><button id="test16"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<defs><filter id="MyFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="200" height="120"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"></feGaussianBlur><feOffset in="blur" dx="4" dy="4" result="offsetBlur"></feOffset><feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.75" specularExponent="20" lighting-color="#bbbbbb" result="specOut"><fePointLight x="-5000" y="-10000" z="20000"></fePointLight></feSpecularLighting><feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"></feComposite><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint"></feComposite><feMerge><feMergeNode in="offsetBlur"></feMergeNode><feMergeNode in="litPaint"></feMergeNode></feMerge></filter></defs><g filter="url(#MyFilter)"><path fill="none" stroke="#D90000" stroke-width="10" d=" M 50 66 c -50 0 -50 -60 0 -60 h 100 c 50 0 50 60 1 60  z"></path><path fill="#D90000" d="M60,56 c-30,0 -30,-40 0,-40 h80 c30,0 30,40 0,40z"></path><g fill="#FFFFFF" stroke="black" font-size="45" font-family="Verdana"><text x="52" y="52">SVG</text></g></g></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test16 filtres</button>';
@@ -2212,7 +2212,7 @@ function myObj1(initObj1){
  //========================================================================================================
  function touchMoveZoneDessin(e){
   e.stopPropagation();
-  e.preventDefault();
+//  e.preventDefault(); // utile pour l'arbre ??
   moveZoneDessin(e.touches[0]);
  }
  //========================================================================================================
@@ -5521,7 +5521,7 @@ function myObj1(initObj1){
     continue;
    }
    
-    var extensionSymbole=lst[i].getAttribute('data-extensions'); // hugues
+    var extensionSymbole=lst[i].getAttribute('data-extensions');
     if(extensionSymbole){
      extensionSymbole=JSON.parse(extensionSymbole);
      if(extensionSymbole.hasOwnProperty('dansSymbol') && extensionSymbole.dansSymbol===true){
@@ -8262,8 +8262,8 @@ function myObj1(initObj1){
     if(_dssvg.mode_en_cours==='setModeSaisieDefsPtE1' && extensions.dansDefs===false){
      continue;
     }
-    if(extensions.hasOwnProperty('dansDefs') && extensions.dansDefs===true && !( nn==='clippath' &&  nn==='pattern' ) ){
-     // cas du clipPath
+    if(extensions.hasOwnProperty('dansDefs') && extensions.dansDefs===true && nn!=='clippath' &&  nn!=='pattern' ){
+     var transformOriginal=lst[i].getAttribute('transform');
      var monClone=lst[i].cloneNode(true);
      var t='';
      try{
@@ -8275,6 +8275,7 @@ function myObj1(initObj1){
      monClone.setAttribute('transform',t);
      monClone.setAttribute('data-idarbre1',idarbre1);
      monClone.setAttribute('data-type','toRemove');
+     monClone.setAttribute('data-transformOriginal',transformOriginal===null?'':transformOriginal);
      refZnDessin.prepend(monClone);
     }
     
@@ -11240,7 +11241,10 @@ function myObj1(initObj1){
    }
     var objTransform=convertirTransformEnTableau(tr,[]);
    if(extensions && extensions.tableauArbre.includes('clipPath') || extensions && extensions.tableauArbre.includes('pattern') ){
-    t+='Le clipPath/pattern contient des transformations';
+    if(globalGeneralSvgReferenceElement.getAttribute('data-transformOriginal') && globalGeneralSvgReferenceElement.getAttribute('data-transformOriginal')!==''){
+     t+=''+trad['clip_ou_pattern_contient_des_transformations'];
+    }else{
+    }
    }else{
     for(var i=0;i<objTransform.tab.length;i++){
      t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"supptransform1","numArbre":'+numArbre+',"numTransform":'+i+'}')+'">'+objTransform.tab[i][0]+'(';
@@ -11563,7 +11567,12 @@ function myObj1(initObj1){
    }
   }else{
    if(obj.nbObjAff==0 && _dssvg.arbre0.length>1){
-    afficheIndicateurFleche();
+    if('setModeSaisieDefsElt1'=== _dssvg.mode_en_cours || 'setModeSaisieDefsPtE1' === _dssvg.mode_en_cours ){
+     afficheIndicateurFleche();
+     affPoi();
+    }else{
+     afficheIndicateurFleche();
+    }
    }else{
     affPoi();
    }

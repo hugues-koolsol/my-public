@@ -421,7 +421,7 @@ function cMyTree1(objectName,divId,lintre1,optionParms,callBack1){
  }
  //====================================================================================================
  function myTouchStart(e){
-  console.log('myTouchStart' , e);
+//  console.log('myTouchStart' , e);
   e.preventDefault();
   e.stopPropagation();
   myFuncStart(e,e.touches[0]);

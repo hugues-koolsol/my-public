@@ -100,6 +100,7 @@ trad['version']='La version du programme a changé. Voulez vous recharger la pag
 trad['polyx_vers_path']='polygone/line  en chemin';
 trad['message_version']='si ce message réapparaît, veuillez attendre quelques secondes avant d\'appuyer sur OK car il faut un peu de temps avant que tous les éléments soient téléchargés.';
 trad['recharger_la_page']='recharger la page';
+trad['clip_ou_pattern_contient_des_transformations']='Le clipPath ou le pattern contient des transformations';
 }
 
 function setTrad_en(){
@@ -203,5 +204,6 @@ trad['version']='The program version has changed. Do you want to reload the page
 trad['polyx_vers_path']='polygon/line into a path';
 trad['message_version']='if this message reappears, please wait a few seconds before pressing OK as it takes a while for all items to download.';
 trad['recharger_la_page']='reload the page';
+trad['clip_ou_pattern_contient_des_transformations']='The clipPath or pattern contains transformations';
 }
 
