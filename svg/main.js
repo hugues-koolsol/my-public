@@ -1,3 +1,4 @@
+// symbol
 "use strict";
 var trad={};
 //========================================================================================================
@@ -125,7 +126,7 @@ function myObj1(initObj1){
  var bckRouge='linear-gradient(red 0%, #db0000 100%)';
  var bckJaune='linear-gradient(gold 0%, #e3bf00 100%)';
  var bckRose='linear-gradient(rgb(233 192 215) 0%, rgb(255 213 236) 100%)';
- var marginPopup=20;
+ var marginPopup=25;
  var kellyColor1=null;
  var svgEtoile='<svg class="svgBoutonGauche1" viewBox="2 0  57 56"><polygon points="  30 9   35 23 50 23 40 33 45 48 30 38 15 48 20 33 10 23 25 23" fill="transparent" stroke-width="5" style="stroke:blue;fill:transparent;stroke-width:5;stroke-opacity:1;fill-opacity:1;"></polygon></svg>';
  
@@ -865,8 +866,10 @@ function myObj1(initObj1){
   document.getElementById('supprimeElement1').style.display='none';
   if( _dssvg.mode_en_cours==='setModeSaisieSelElt1' || _dssvg.mode_en_cours==='setModeSaisieDefsElt1' ){
    if(globalGeneralSvgReferenceElement!==null && globalIndiceArbre!==null && _dssvg.idArbreCourant!==null){
-    document.getElementById('supprimeElement1').innerHTML='&times;&nbsp'+_dssvg.idArbreCourant;
+//    document.getElementById('supprimeElement1').innerHTML='&times;&nbsp'+_dssvg.idArbreCourant;
+    document.getElementById('supprimeElement1').innerHTML='<svg style="width:20px;" viewBox="-3 -3  16 16"><g fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:yellow;fill:transparent;stroke-width:2;"><path d=" M 0 0  L 10 10" /><path d="M 10 0 L 0 10 " /></g></svg>&nbsp'+_dssvg.idArbreCourant;
     document.getElementById('supprimeElement1').style.display='';
+    document.getElementById('supprimeElement1').style.width='30px';
    }
   }
   
@@ -1700,6 +1703,7 @@ function myObj1(initObj1){
   contentOfPopup+=' <br />';
   // zzvin.svg , zzSimplificationChemin.svg zzSVG_Logo-svgomg.svg zzsagami_single-svgomg.svg zztest-car-lite.svg
 //  contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4.8229 -4.8229  224.8229 106.4479"><defs><pattern id="pat01" viewBox="0,0,14,14" width="20%" height="20%"><g fill="blue" stroke="red" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 5.5 5.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d=" M -1.5 5.5   a 2 2 0 1 0 0 3   a 2 2 0 0 1 3 0   a 2 2 0 1 0 0 -3   a 2 2 0 0 1 -3 0  "></path><path d="M 12.5 5.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M 5.5 -1.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M 5.5 12.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M -1.5 -1.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M 12.5 -1.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M 12.5 12.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M -1.5 12.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path></g></pattern></defs><circle cx="71.6876" cy="51.625" r="50" fill="url(#pat01)"></circle><circle cx="180" cy="50" r="40" fill="none" stroke-width="30" stroke="url(#pat01)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
+  contentOfPopup+=' <br /><br /><button id="test21"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"    xmlns:xlink="http://www.w3.org/1999/xlink">  <style>    .classA {      fill: red;    }  </style>  <defs>    <g id="Port">      <circle style="fill: inherit;" r="10"/>    </g>  </defs>  <text y="15">black</text>  <use x="50" y="10" href="#Port" />  <text y="35">red</text>  <use x="50" y="30" href="#Port" class="classA"/>  <text y="55">blue</text>  <use x="50" y="50" href="#Port" style="fill: blue;"/></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test21 use &amp; style </button>';
   contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15.6056 -15.6056  216.6056 98.6056"><defs><pattern id="pat01" viewBox="0,0,46,46" width="20%" height="20%"><path fill="red" stroke="blue" d=" M -6 -5 A 7 7 0 1 1 6 -5 A 4 7 0 0 0 6 5 A 7 7 0 1 1 -6 5 A 4 7 0 0 0 -6 -5 M 18 -6 A 7 7 -1 1 0 18 6 A 7 4 0 0 1 28 6 A 7 7 0 1 0 28 -6 A 7 4 0 0 1 18 -6 M -5 17 A 7 7 -1 1 0 -5 29 A 7 4 0 0 1 5 29 A 7 7 0 1 0 5 17 A 7 4 0 0 1 -5 17 M 17 18 A 7 7 0 1 1 29 18 A 4 7 0 0 0 29 28 A 7 7 0 1 1 17 28 A 4 7 0 0 0 17 18 M 40 -5 A 7 7 0 1 1 52 -5 A 4 7 0 0 0 52 5 A 7 7 0 1 1 40 5 A 4 7 0 0 0 40 -5 M 41 17 A 7 7 -1 1 0 41 29 A 7 4 0 0 1 51 29 A 7 7 0 1 0 51 17 A 7 4 0 0 1 41 17 M -6 41 A 7 7 0 1 1 6 41 A 4 7 0 0 0 6 51 A 7 7 0 1 1 -6 51 A 4 7 0 0 0 -6 41 M 18 40 A 7 7 -1 1 0 18 52 A 7 4 0 0 1 28 52  A 7 7 0 1 0 28 40 A 7 4 0 0 1 18 40 M 40 41 A 7 7 0 1 1 52 41 A 4 7 0 0 0 52 51 A 7 7 0 1 1 40 51 A 4 7 0 0 0 40 41"></path></pattern></defs><circle cx="89" cy="42" r="41" fill="url(#pat01)"></circle><circle cx="162" cy="41" r="39" fill="none" stroke-width="30" stroke="url(#pat01)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
   contentOfPopup+=' <br /><br /><button id="test19"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="-28.9289 -24.9948  170.6555 150.0684"><defs><clipPath id="cp" transform="rotate(10)"><path transform="translate(3 3)" d="M 22.9695 18.0532 C 14.1526 18.0532 -3.4807 35.199 -10.093 39.4856 C -14.5013 42.3431 -5.6849 52.3449 -5.6849 53.7739 C -5.6849 55.2027 -5.6849 56.6317 -5.6849 56.6317 C 3.132 62.347 14.1526 65.2046 22.9695 102.3543 C 31.7859 69.4911 56.0316 75.2063 75.8691 102.3543 C 75.8691 62.347 91.2982 63.7758 133.1773 68.0622 C 95.7067 46.6297 58.2361 25.1973 139.7899 19.482 C 97.9108 20.9107 53.8278 19.482 108.9316 -11.9526 C 86.89 -19.0967 22.9695 10.909 20.765 -23.3831 " style="stroke:rgb(0, 0, 0);fill:blanchedalmond;stroke-width:0;stroke-opacity:1;fill-opacity:1;opacity:1;"></path></clipPath></defs><rect x="3" y="4" width="70" height="66" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#cp)" style="stroke:rgb(0, 0, 0);fill:rosybrown;stroke-width:1;stroke-opacity:1;fill-opacity:0.5;opacity:1;"></rect></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test19 clipPath</button>';
   contentOfPopup+=' <br /><br /><button id="test17"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="0 -1  442.2656 377.5"><defs><filter id="filtered-3" height="220%"><feFlood flood-color="#551C0B" result="COLOR-outline"></feFlood><feMorphology operator="dilate" radius="0.3" in="SourceAlpha" result="OUTLINE_10"></feMorphology><feComposite operator="in" in="COLOR-outline" in2="OUTLINE_10" result="OUTLINE_20"></feComposite><feGaussianBlur stdDeviation="4" in="SourceAlpha" result="LIGHTING-EFFECTS_10"></feGaussianBlur><feSpecularLighting surfaceScale="5" specularConstant="0.5" specularExponent="7.5" lighting-color="#white" in="LIGHTING-EFFECTS_10" result="LIGHTING-EFFECTS_20"><fePointLight x="750" y="-50" z="300"></fePointLight></feSpecularLighting><feComposite in2="SourceAlpha" operator="in" in="LIGHTING-EFFECTS_20" result="LIGHTING-EFFECTS_30"></feComposite><feComposite operator="arithmetic" k1="0" k2="1" k3="1" k4="0" in="SourceGraphic" in2="LIGHTING-EFFECTS_30" result="LIGHTING-EFFECTS_40"></feComposite><feComponentTransfer in="LIGHTING-EFFECTS_40" result="COLOR-EFFECTS_10"><feFuncR type="gamma" offset="-1.3" amplitude="10" exponent="4.84"></feFuncR><feFuncB type="gamma" offset="-1.3" amplitude="10.1" exponent="40.84"></feFuncB></feComponentTransfer><feMerge><feMergeNode in="OUTLINE_20"></feMergeNode><feMergeNode in="COLOR-EFFECTS_10"></feMergeNode></feMerge></filter></defs><text filter="url(#filtered-3)" x="20" y="140" font-size="140" stroke="#EF7349" fill="#EF7349">BLOP!</text><g fill="transparent" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke="#EF7349"><path filter="url(#filtered-3)" d="M 387 226 C 382.55 226 344.7 277.28 329 292 C 286.38 331.96 230.33 371 170 371 "></path><path filter="url(#filtered-3)" stroke-width="20" stroke="#EF7349" fill="transparent" d=" M 342.5 289.5 C 317.46 321.54 239.49 367.5 212.5 376.5 "></path></g></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test17 filtres 2</button>';
@@ -6112,8 +6116,10 @@ function myObj1(initObj1){
 
      globalEditionPoints.autreReference.setAttribute('cx'  ,newPosx1);
      globalEditionPoints.autreReference.setAttribute('cy'  ,newPosy1);
-     globalEditionPoints.autreReferenceInverse.setAttribute('cx',newPosx1);
-     globalEditionPoints.autreReferenceInverse.setAttribute('cy',newPosy1);
+     if(globalEditionPoints.autreReferenceInverse!==undefined){
+      globalEditionPoints.autreReferenceInverse.setAttribute('cx',newPosx1);
+      globalEditionPoints.autreReferenceInverse.setAttribute('cy',newPosy1);
+     }
      
     }
     
@@ -6128,7 +6134,9 @@ function myObj1(initObj1){
      if(globalEditionPoints.autreReference!==null){
 
       globalEditionPoints.autreReference.setAttribute('r'  ,newR);
-      globalEditionPoints.autreReferenceInverse.setAttribute('r',newR);
+      if(globalEditionPoints.autreReferenceInverse!==undefined){
+       globalEditionPoints.autreReferenceInverse.setAttribute('r',newR);
+      }
      }
      divLag1Pour({t:'dppCeZ',l:'dppCeZ','r':newR});
     }
@@ -7782,7 +7790,13 @@ function myObj1(initObj1){
    globalGeneralSvgReferenceElement.nodeName.toLowerCase()=='use'    ||
    globalGeneralSvgReferenceElement.nodeName.toLowerCase()=='filter' 
   ){
-   
+   if(isNaN(globalSelectElementMove.tableauOriginal[0])){
+    globalSelectElementMove.tableauOriginal[0]=0;
+   }
+   if(isNaN(globalSelectElementMove.tableauOriginal[1])){
+    globalSelectElementMove.tableauOriginal[1]=0;
+   }
+
    var newPosx=arrdi10000(globalSelectElementMove.tableauOriginal[0]+deltaReel.x);
    var newPosy=arrdi10000(globalSelectElementMove.tableauOriginal[1]+deltaReel.y);
 
@@ -7800,6 +7814,12 @@ function myObj1(initObj1){
 
   }else if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='circle' || globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='ellipse' || 'radialgradient' === globalGeneralSvgReferenceElement.nodeName.toLowerCase() ){
    
+   if(isNaN(globalSelectElementMove.tableauOriginal[0])){
+    globalSelectElementMove.tableauOriginal[0]=0;
+   }
+   if(isNaN(globalSelectElementMove.tableauOriginal[1])){
+    globalSelectElementMove.tableauOriginal[1]=0;
+   }
    var newPosx=arrdi10000(globalSelectElementMove.tableauOriginal[0]+deltaReel.x);
    var newPosy=arrdi10000(globalSelectElementMove.tableauOriginal[1]+deltaReel.y);
  		globalGeneralSvgReferenceElement.setAttribute('cx',newPosx);
@@ -7809,8 +7829,10 @@ function myObj1(initObj1){
    if(globalSelectElementMove.autreReference!==null){
     globalSelectElementMove.autreReference.setAttribute('cx',newPosx);
     globalSelectElementMove.autreReference.setAttribute('cy',newPosy);
-    globalSelectElementMove.autreReferenceInverse.setAttribute('cx',newPosx);
-    globalSelectElementMove.autreReferenceInverse.setAttribute('cy',newPosy);
+    if(globalSelectElementMove.autreReferenceInverse!==undefined){
+     globalSelectElementMove.autreReferenceInverse.setAttribute('cx',newPosx);
+     globalSelectElementMove.autreReferenceInverse.setAttribute('cy',newPosy);
+    }
    }
 
    divLag1Pour({t:'depCeZ',l:'depCeZ','x':newPosx,'y':newPosy});
@@ -8409,7 +8431,7 @@ function myObj1(initObj1){
   
  }
  //========================================================================================================
- function ajouterPointsDeControleElements(){  // hugues
+ function ajouterPointsDeControleElements(){
   var pt0    = refZnDessin.createSVGPoint();
   var pt1    = refZnDessin.createSVGPoint();
   var pt2    = refZnDessin.createSVGPoint();
@@ -9146,7 +9168,7 @@ function myObj1(initObj1){
    tt+='</tr>';
    elementsAffiches.push(i);
   }
-  if(branche.data.nodeName.toLowerCase()==='text' || branche.data.nodeName.toLowerCase()==='tspan' || branche.data.nodeName.toLowerCase()==='title' ){
+  if(branche.data.nodeName.toLowerCase()==='text' || branche.data.nodeName.toLowerCase()==='tspan' || branche.data.nodeName.toLowerCase()==='title' || branche.data.nodeName.toLowerCase()==='style' ){
    tt+='<tr>';
    tt+='<td style="'+td1MaxWidth+';">'+branche.data.nodeName.toLowerCase()+'</td>';
    var valeur=(branche.data[branche.data.nodeName]!==undefined?branche.data[branche.data.nodeName]:branche.data['text']);
@@ -9337,7 +9359,7 @@ function myObj1(initObj1){
    var lst=dogid('editTree1Table').getElementsByTagName(el[l]);
    for(var j=0;j<lst.length;j++){
     if(lst[j].getAttribute('data-attrib') && lst[j].value && lst[j].value !=''){
-     if(lst[j].getAttribute('data-attrib')=='text' || lst[j].getAttribute('data-attrib')=='tspan' || lst[j].getAttribute('data-attrib')=='title'){
+     if(lst[j].getAttribute('data-attrib')=='text' || lst[j].getAttribute('data-attrib')=='tspan' || lst[j].getAttribute('data-attrib')=='title' || lst[j].getAttribute('data-attrib')=='style' ){
       txt=htm1(lst[j].value);
      }else{
       nouveauxAttributs[lst[j].getAttribute('data-attrib')]=htm1(lst[j].value);
@@ -9635,7 +9657,7 @@ function myObj1(initObj1){
    type:'node',
    nodeName:'symbol',
    text:'',
-   attributes:{'data-idarbre1':nouvelId,'id':nouvelId},
+   attributes:{'data-idarbre1':nouvelId,'id':nouvelId,'viewBox':'-5 -5 10 10'},
    sizes:{minx:999999,miny:999999,maxx:-999999,maxy:-999999}
   };
   
@@ -10008,6 +10030,7 @@ function myObj1(initObj1){
  
  //========================================================================================================
  function startStrokeStyleColor(e){
+  e.stopPropagation();
   movingButton.isMoving=false;
   if(e.touches){
    e=e.touches[0];
@@ -10021,6 +10044,7 @@ function myObj1(initObj1){
     e.target.style.borderColor='red';
    }
   } , 300);
+  console.log('ici');
  }
  
  //========================================================================================================
@@ -10059,6 +10083,7 @@ function myObj1(initObj1){
 
   if(colorPickerData.context=='setStrokeStylColor'){
    dogid(colorPickerData.id).style.color=colorPickerData.value;
+   document.getElementById(colorPickerData.id+'_svg').setAttribute('fill',colorPickerData.value);
    _dssvg.strokeColor1=colorPickerData.value;
    
    // mettre à jour _dssvg.strokCols
@@ -10159,7 +10184,7 @@ function myObj1(initObj1){
  
  
  //========================================================================================================
- function popupCouleurs(e){
+ function popupCouleurs(){ // e){
   var t='';
   
   var bodySize=body.getBoundingClientRect();
@@ -10323,11 +10348,11 @@ function myObj1(initObj1){
  }
 
  //========================================================================================================
- function setPickerForColor(cont,e){
+ function setPickerForColor(cont,target){// e
   
   colorPickerData.context=cont;
-  colorPickerData.id=e.target.id;
-  var colorButton=dogid(e.target.id).style.color;
+  colorPickerData.id=target.id; //e.target.id;
+  var colorButton=dogid(target.id).style.color;//dogid(e.target.id).style.color;
   if(colorButton.substr(0,4)=='rgb('){
    var cols=colorButton.substr(4).replace(/\)/,'').split(',');
    var txt='rgba('+cols[0]+','+cols[1]+','+cols[2]+',1)';
@@ -10341,14 +10366,14 @@ function myObj1(initObj1){
    colorPickerData.value=colorButton; //val.substr(0,7);
   }else{
    colorPickerData.opac=1;
-   var value = rgb2hex(dogid(e.target.id).style.color);
+   var value = rgb2hex(dogid(target.id).style.color);// rgb2hex(dogid(e.target.id).style.color);
    if(value===null){
     colorPickerData.value='#ff00ff';
    }else{
     colorPickerData.value=value;
    }
   }
-  popupCouleurs(e);
+  popupCouleurs(); // e);
  }
  
  //========================================================================================================
@@ -10385,12 +10410,12 @@ function myObj1(initObj1){
   saveStte();
  } 
  //========================================================================================================
- function useColor(e){
-  if(e.target.id.indexOf('setStrokeStylColor')>=0){
-   _dssvg.strokeColor1=dogid(e.target.id).style.color;
+ function useColor(target){ // e){
+  if(target.id.indexOf('setStrokeStylColor')>=0){
+   _dssvg.strokeColor1=dogid(target.id).style.color;
    highliteStrokeStyle();
-  }else if(e.target.id.indexOf('setFillStylColor2')>=0){
-   draw_state.fillStyle1=dogid(e.target.id).style.color;
+  }else if(target.id.indexOf('setFillStylColor2')>=0){
+   draw_state.fillStyle1=dogid(target.id).style.color;
    highliteFillStyle();
   }
   saveStte();
@@ -10400,14 +10425,21 @@ function myObj1(initObj1){
  function setStrokeStylColor(e){
   if(e.cancelable){e.preventDefault();}
   e.stopPropagation();
+  var target=e.target;
+  while(target.nodeName.toLowerCase()!=='button'){
+   target=target.parentNode;
+  }
+  
+  
+  
   if(movingButton.isMoving===false){
    if(e.button==2){ // rightClick
-    setPickerForColor('setStrokeStylColor',e);
+    setPickerForColor('setStrokeStylColor',target);
    }else{
     if(tempsSuperieurA300===true){
-     setPickerForColor('setStrokeStylColor',e);
+     setPickerForColor('setStrokeStylColor',target);
     }else{
-     useColor(e);
+     useColor(target);
     }
    }
   }
@@ -10563,11 +10595,11 @@ function myObj1(initObj1){
 
   {id:'break0'                    , position:'menuGauche' , cssText:'height:15px;' },
 
-  {id:'suppTout'                  , position:'menuGauche' , libelle:trad['supp_et_recharge']                    , action:suppTout                    , contenu:'×'    , class:'butEnabled butMenuGauche bckRouge' , oldcssText:'background:red;'  },
+  {id:'suppTout'                  , position:'menuGauche' , libelle:trad['supp_et_recharge']                    , action:suppTout                    , contenu:'×'    , class:'butEnabled butMenuGauche bckRouge' , oldcssText:'background:red;' , svg:'<svg class="svgBoutonGauche1"  viewBox="-3 -3  16 16"><g fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:yellow;fill:transparent;stroke-width:2;"><path d=" M 0 0  L 10 10" /><path d="M 10 0 L 0 10 " /></g></svg>' },
   
   {id:'break0'                    , position:'menuGauche' , cssText:'height:15px;'},
 
-  {id:'setStrokeStylColor1'       , position:'menuGauche' , libelle:trad['coultrait']                           , action:setStrokeStylColor          , contenu:'✎'    , contextFunct:startStrokeStyleColor }, // type:'strokCols' , noContextMenu:true   , func, , color:'#FF00FF' , cssText:'font-size:1.3em;max-height:23px;min-height:23px;text-shadow: 1px 1px 3px black;'  },  
+  {id:'setStrokeStylColor1'       , position:'menuGauche' , libelle:trad['coultrait']                           , action:setStrokeStylColor          , contenu:'✎'    , contextFunct:startStrokeStyleColor , svg : '<svg class="svgBoutonGauche1" viewBox="-0.2555 0.3622  32.296 31.897"><path fill="#402A32" stroke-width="2" d="M 4.0123 26.7292 C 4.296 26.4252 4.7561 26.4252 5.0398 26.7292 C 5.3235 27.0331 5.3235 27.5259 5.0398 27.8299 L 2.9848 30.0313 C 2.7011 30.3352 2.2411 30.3352 1.9574 30.0313 C 1.6736 29.7273 1.6736 29.2345 1.9574 28.9306 L 4.0123 26.7292 Z " style="fill:black;stroke-width:4;"></path><path id="id_to_replace" fill="color_to_replace" stroke="black" stroke-width="0.1" d="M 27.9001 8.0699 C 28.1994 7.9269 28.48 7.7315 28.7279 7.4835 C 29.8995 6.3119 29.8995 4.4124 28.7279 3.2409 C 27.5563 2.0693 25.6569 2.0693 24.4853 3.2409 C 24.2373 3.4888 24.0418 3.7694 23.8989 4.0687 L 23.7782 3.948 L 13.5691 12.1093 C 13.5691 13.2863 12.5867 14.2301 11.4102 14.1947 L 11.3453 14.2597 C 11.1201 14.4848 10.917 14.7309 10.7387 14.9946 L 3.6256 25.5148 L 4.5701 27.4705 L 6.454 28.3433 L 16.9743 21.2301 C 17.238 21.0517 17.4841 20.8487 17.7092 20.6236 L 17.7785 20.5543 L 17.7879 20.2567 C 17.8223 19.1674 18.7607 18.3283 19.8471 18.4153 L 28.0208 8.1907 L 27.9001 8.0699 Z " style="stroke:black;stroke-width:0.6;"></path><path d="M 29.6923 8.6788 L 23.8072 3.0221 L 22.9664 3.8302 L 28.8515 9.487 L 22.5461 15.5478 C 22.3139 15.7709 22.3139 16.1328 22.5461 16.3558 C 22.7782 16.5791 23.1547 16.5791 23.3868 16.3558 L 29.6923 10.2951 C 30.1566 9.8487 30.1566 9.1251 29.6923 8.6788 Z " fill="#F9C23C" style="fill:black;"></path><path d="M6.45225 28.3762L3.62382 25.5477L3.27027 25.9013C2.48922 26.6823 2.48922 27.9487 3.27027 28.7297C4.05131 29.5108 5.31764 29.5108 6.09869 28.7297L6.45225 28.3762Z" fill="#F9C23C"></path><path d="M 11.3102 14.2636 L 13.1089 12.4649 L 13.4674 12.1783 L 19.7595 18.4704 L 19.4729 18.8289 L 17.6741 20.6277 L 11.3102 14.2636 Z " fill="#F9C23C"></path></svg>'}, // type:'strokCols' , noContextMenu:true   , func, , color:'#FF00FF' , cssText:'font-size:1.3em;max-height:23px;min-height:23px;text-shadow: 1px 1px 3px black;'  },  
 
   {id:'break0'                    , position:'menuGauche' , cssText:'height:15px;'},
 
@@ -10609,7 +10641,8 @@ function myObj1(initObj1){
        butt.id=boutons[i].id+'_'+nbElts;
        butt.type='button'
        butt.className='butEnabled butMenuGauche';
-       butt.innerHTML=boutons[i].contenu;
+//       butt.innerHTML=boutons[i].contenu;
+       butt.innerHTML=boutons[i].svg.replace(/id_to_replace/,boutons[i].id+'_'+nbElts+'_svg').replace(/color_to_replace/,_dssvg.strokCols[nbElts]);
        butt.title=boutons[i].libelle;
        butt.style.color=_dssvg.strokCols[nbElts]; // attention un rgba avec opacite = 1 => trasnformé en rgb
        
@@ -10801,7 +10834,7 @@ function myObj1(initObj1){
   popupContent1.style.left=0; 
   body.appendChild(popupContent1);
   var t='';
-  t+='<button id="BtnclosPop" type="button" class="butEnabled bckRouge" style="position:fixed;color:yellow;width:35px;height:35px;z-index:200;">&times;</button>';
+  t+='<button id="BtnclosPop" type="button" class="butEnabled bckRouge" style="position:fixed;color:yellow;width:35px;height:35px;z-index:200;"><svg style="width:20px;" viewBox="-3 -3  16 16"><g fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:yellow;fill:transparent;stroke-width:2;"><path d=" M 0 0  L 10 10" /><path d="M 10 0 L 0 10 " /></g></svg></button>';
   t+='<div style="margin-top:0px;border:1px red solid;padding-bottom:200px;border-radius: 4px;" id="popupValue"></div>';
   popupContent1.innerHTML=t;
   
@@ -11548,7 +11581,7 @@ function myObj1(initObj1){
   saveStte();
   var obj=looptree(0,{afficherTout:false,mode:_dssvg.mode_en_cours});
 
-//  console.log('_dssvg.arbre0=',_dssvg.arbre0); // hugues
+//  console.log('_dssvg.arbre0=',_dssvg.arbre0);
   etatPoigneesVoisines1=false;
   majBout();
 
@@ -11667,12 +11700,13 @@ function myObj1(initObj1){
       }
       txt+='>';
 
-      var obj=looptree(_dssvg.arbre0[i].id,option);
-      nbObjAff+=obj.nbObjAff;
+      if(_dssvg.arbre0[i].data.nodeName.toLowerCase()!=='style'){
+       var obj=looptree(_dssvg.arbre0[i].id,option);
+       nbObjAff+=obj.nbObjAff;
+       txt+=obj.txt;
+      }
       
-      txt+=obj.txt;
-      
-      if(_dssvg.arbre0[i].data.nodeName==='text' || _dssvg.arbre0[i].data.nodeName==='tspan' || _dssvg.arbre0[i].data.nodeName==='title'){
+      if(_dssvg.arbre0[i].data.nodeName==='text' || _dssvg.arbre0[i].data.nodeName==='tspan' || _dssvg.arbre0[i].data.nodeName==='title' || _dssvg.arbre0[i].data.nodeName==='style'){
        txt+=_dssvg.arbre0[i].data.text;
       }
       txt+='</'+_dssvg.arbre0[i].data.nodeName+'>';
