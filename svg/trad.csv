@@ -14,7 +14,7 @@ actif,cle,fr,en
 1,aimpix,aimanter au pixel,snap to pixel
 1,gerpar,gérer les paramètres,manage settings
 1,supp_et_recharge,supprimer et recharger,delete and reload
-1,coultrait,couleur de trait,stroke color
+1,coultrait,couleur de trait ( clic long et/ou clic gauche pour modifier ),stroke color ( long click and/or left click to modify )
 1,integrmodifman,intégrer modification manuelle ( debug ),integrate manual modification ( debug )
 1,annuler,annuler,cancel
 1,pousser_vers_le_haut,pousser vers le haut,push up

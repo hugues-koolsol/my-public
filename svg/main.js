@@ -1,4 +1,3 @@
-// symbol
 "use strict";
 var trad={};
 //========================================================================================================
@@ -265,34 +264,13 @@ function myObj1(initObj1){
  
 
  //========================================================================================================
- function touchDownParAngleInitial(e){
-  e.stopPropagation();
-  actionDownParAngleInitial(e.touches[0]);
- }
- //========================================================================================================
- function mouseDownParAngleInitial(e){
-  e.stopPropagation();
-  actionDownParAngleInitial();
- }
- //========================================================================================================
- function actionDownParAngleInitial(e){
-  dogid('parAngleInitial').addEventListener('touchmove' , changeAngleInitial , 'range');
-  dogid('parAngleInitial').addEventListener('mousemove' , changeAngleInitial , 'range');
-  dogid('parAngleInitial').addEventListener('touchend'  , finTouchParam , 'range');
-  dogid('parAngleInitial').addEventListener('mouseup'   , finMouseParam , 'range');
- }
- //========================================================================================================
- function changeAngleInitial(e){
-  e.stopPropagation();
-  dogid('parAngleInitialValeur').innerHTML=dogid('parAngleInitial').value;
- }
- 
-
- //========================================================================================================
  function calculerEtAjouterEtoile(){
   var nbbr=parseInt(document.getElementById('parNombreDeBranchesValeur').innerHTML,10);
   var perc=parseInt(document.getElementById('parPourcentageArrondiValeur').innerHTML,10);
-  var angInit=-parseInt(document.getElementById('parAngleInitialValeur').innerHTML,10);
+  var angInit=-parseFloat(document.getElementById('parAngleInitial').value);
+  if(angInit<-90 || angInit>0){
+   angInit=0;
+  }
   var tailleOriginale=100;
   var taille=tailleOriginale;
   
@@ -334,7 +312,7 @@ function myObj1(initObj1){
   contentOfPopup+='<div id="parNombreDeBranchesValeur" style="display:inline-block;min-width:2rem;">8</div>';
   contentOfPopup+='<label for="parNombreDeBranches"> : '+trad['nombre_de_branches']+'</label>';
   contentOfPopup+='<div>';
-   contentOfPopup+='<input id="parNombreDeBranches" type="range" min="3" max="30" step="1" value="8" style="width:95%;min-width:200px;max-width:500px;" />';
+   contentOfPopup+='<input id="parNombreDeBranches" type="range" min="3" max="64" step="1" value="8" style="width:95%;min-width:200px;max-width:500px;" />';
   contentOfPopup+='</div>';
   contentOfPopup+='</div>';
   
@@ -349,9 +327,8 @@ function myObj1(initObj1){
   
 
   contentOfPopup+='<div >';
-  contentOfPopup+='<div id="parAngleInitialValeur" style="display:inline-block;min-width:2rem;">0</div>';
-  contentOfPopup+='<label for="parAngleInitial"> : '+trad['angle_initial']+'</label>';
-  contentOfPopup+='<input id="parAngleInitial" type="range" min="0" max="90" step="1" value="0" style="width:95%;min-width:200px;max-width:500px;" />';
+  contentOfPopup+='<label for="parAngleInitial">'+trad['angle_initial']+' : </label>';
+  contentOfPopup+='<input id="parAngleInitial" type="text" step="1" value="0" style="width:50%;max-width:500px;border: 3px #eee inset;font-size: 1.1em;" />';
   contentOfPopup+='</div>';
   
 
@@ -375,9 +352,6 @@ function myObj1(initObj1){
 
   dogid('parPourcentageArrondi').addEventListener('mousedown'      , mouseDownParPourcentageArrondi    , 'range' );
   dogid('parPourcentageArrondi').addEventListener('touchstart'     , touchDownParPourcentageArrondi    , 'range' );
-
-  dogid('parAngleInitial').addEventListener('mousedown'      , mouseDownParAngleInitial    , 'range' );
-  dogid('parAngleInitial').addEventListener('touchstart'     , touchDownParAngleInitial    , 'range' );
 
   dogid('calculerEtAjouterEtoile').addEventListener('click'      , calculerEtAjouterEtoile    , 'range' );
  }
@@ -9657,7 +9631,7 @@ function myObj1(initObj1){
    type:'node',
    nodeName:'symbol',
    text:'',
-   attributes:{'data-idarbre1':nouvelId,'id':nouvelId,'viewBox':'-5 -5 10 10'},
+   attributes:{'data-idarbre1':nouvelId,'id':nouvelId},
    sizes:{minx:999999,miny:999999,maxx:-999999,maxy:-999999}
   };
   
@@ -9676,7 +9650,7 @@ function myObj1(initObj1){
    type:'node',
    nodeName:'path',
    text:'',
-   attributes:{'data-idarbre1':nouvelId,'d':'M -1 -1 H 1 V 1 H -1 V -1'},
+   attributes:{'data-idarbre1':nouvelId,'d':'M 0 0 h 1 v 1 h -1 v -1'},
    sizes:{minx:999999,miny:999999,maxx:-999999,maxy:-999999}
   };
   
@@ -9824,6 +9798,34 @@ function myObj1(initObj1){
  }
 
  //========================================================================================================
+ function ajouterUse(e){
+  var nouvelId=-1;
+  for(var i=0;i<_dssvg.arbre0.length;i++){
+   if(_dssvg.arbre0[i].id>nouvelId){
+    nouvelId=_dssvg.arbre0[i].id;
+   }
+  }
+  nouvelId+=1;
+  
+  var data={
+   label:'use',
+   level:0,
+   type:'node',
+   nodeName:'use',
+   text:'',
+   attributes:{'data-idarbre1':nouvelId,'x':'0','y':'0','href':'#0'},
+   sizes:{minx:999999,miny:999999,maxx:-999999,maxy:-999999}
+  };
+  
+  var obj1={
+   id:nouvelId,parentId:0,isOpen:1,
+   data:data
+  };
+  _dssvg.arbre0.push(obj1);
+  oMyTree1.addElement(obj1);
+ }
+
+ //========================================================================================================
  function insererTag(){
   var nomTag=document.getElementById('nomTag').value;
   if(nomTag!==''){
@@ -9895,6 +9897,7 @@ function myObj1(initObj1){
   contentOfPopup+='<button id="ajouterPattern"         class="butMenuHaut butEnabled butpopUp">+pattern</button>';
   
   contentOfPopup+='<button id="ajouterSymbol"          class="butMenuHaut butEnabled butpopUp">+symbol</button>';
+  contentOfPopup+='<button id="ajouterUse"             class="butMenuHaut butEnabled butpopUp">+use</button>';
   contentOfPopup+='<button id="ajouterTag"             class="butMenuHaut butEnabled butpopUp bckJaune">+tag</button>';
   contentOfPopup+='<div>';
    contentOfPopup+='<input id="champRechercherDansArbre" placeholder="'+trad['rechercher']+'" style="max-width:100px;">';
@@ -9942,6 +9945,7 @@ function myObj1(initObj1){
   dogid('ajouterFeGaussianBlur').addEventListener('click',ajouterFeGaussianBlur,'button');
   dogid('ajouterImage').addEventListener('click',ajouterImage,'button');
   dogid('ajouterTitle').addEventListener('click',ajouterTitle,'button');
+  dogid('ajouterUse').addEventListener('click',ajouterUse,'button');
   dogid('ajouterTag').addEventListener('click',ajouterTag,'button');
   dogid('insererTag').addEventListener('click',insererTag,'button');
   dogid('ajouterSymbol').addEventListener('click',ajouterSymbol,'button');
