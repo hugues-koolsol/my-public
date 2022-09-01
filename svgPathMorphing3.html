@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+ <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>svg morphing</title>
+  <style type="text/css">
+svg {
+ width: 90%;
+ max-width:90%;
+ height: 90%;
+ max-height:90%;
+}  
+
+#svg4 #path4 {
+  transition: d 0.49s , stroke 0.4s;
+}
+
+
+
+  </style>
+ </head>
+ <body>
+<svg id="svg4" viewBox="-1 -1 5 5" >
+  <path id="square" d="M  -1 -1   L  4  -1    L  4 4  L  -1 4 Z" fill="pink" stroke="green" style="stroke-width:0;" />
+  <path id="path4" d="M 0 0   C 0 0 0 0 0 0    C 3 0 3 0 3 0    C 3 3 3 3 3 3    C 0 3 0 3 0 3 Z" fill="coral" stroke="blue" stroke-linejoin="round" stroke-linecap="round" style="stroke-width:0.1;" />
+</svg>
+<br /><button id="boucleB">boucle</button>
+
+<script>
+
+ 
+ var boucler=false;
+ var xdeb=0;
+ var ydeb=0;
+ var pcx11=0;
+ var pcy11=0;
+ var pcx12=0;
+ var pcy12=0;
+ var pfx11=0;
+ var pfy11=0;
+ 
+ var tab=[
+  ['M' , 0 , 0 ],
+  ['C' , 3 , 0  ,3 ,0  ,3 ,0],
+  ['C' , 3 , 3  ,3 ,3  ,3 ,3],
+  ['C' , 0 , 3  ,0 ,3  ,0 ,3],
+  ['C' , 0 , 0  ,0 ,0  ,0 ,0],
+ ];
+ 
+ var ligneAchangerPrec=0;
+ var colonneAchangerPrec=0;
+ 
+ function changerForm(){
+  
+  var ligneAchanger=parseInt(Math.random()*tab.length,10);
+  if(ligneAchangerPrec===ligneAchanger){
+   ligneAchanger=parseInt(Math.random()*tab.length,10);
+   if(ligneAchangerPrec===ligneAchanger){
+    ligneAchanger=parseInt(Math.random()*tab.length,10);
+   }
+  }
+  ligneAchangerPrec=ligneAchanger;
+  var colonneAchanger=parseInt(Math.random()*tab[ligneAchanger].length-1,10);
+  if(colonneAchangerPrec===colonneAchanger){
+   colonneAchanger=parseInt(Math.random()*tab[ligneAchanger].length-1,10);
+  }
+  colonneAchangerPrec=colonneAchanger;
+  
+  
+//  console.log('ligneAchanger=',ligneAchanger , 'colonneAchanger=' , colonneAchanger );
+  var nouvelleValeur=parseInt(4*Math.random(),10);
+  if(tab[ligneAchanger][colonneAchanger+1]===nouvelleValeur){
+   nouvelleValeur=parseInt(4*Math.random(),10);
+   if(tab[ligneAchanger][colonneAchanger+1]===nouvelleValeur){
+    nouvelleValeur=parseInt(4*Math.random(),10);
+    if(tab[ligneAchanger][colonneAchanger+1]===nouvelleValeur){
+     nouvelleValeur=parseInt(4*Math.random(),10);
+    }
+   }
+  }
+  
+  tab[ligneAchanger][colonneAchanger+1]=nouvelleValeur;
+  if(ligneAchanger===0){
+   if(colonneAchanger+1==1){
+    tab[tab.length-1][5]=nouvelleValeur;
+   }else if(colonneAchanger+1==2){
+    tab[tab.length-1][6]=nouvelleValeur;
+   }
+  }
+  var tt='';
+  for(var i=0;i<tab.length;i++){
+   tt+= ' ' + tab[i].join(' ');
+  }
+  tt+=' Z';
+//  console.log('tt=',tt);
+  document.getElementById('path4').setAttribute('d',tt);
+  
+ }
+ 
+ 
+ function boucle(){
+  if(boucler){
+   changerForm();
+   timeoutID=setTimeout(boucle,500);
+  }
+ }
+ var timeoutID=null;
+
+ document.getElementById('boucleB').addEventListener(
+  'click',
+  function(e){
+   if(boucler===false){
+    boucler=true;
+    timeoutID=setTimeout(boucle,0);
+   }else{
+    clearTimeout(timeoutID);
+    boucler=false;
+    
+   }
+  },
+  false
+ );
+ 
+ 
+ boucler=true;
+ timeoutID=setTimeout(boucle,500);
+  
+ 
+ 
+</script>
+ 
+
+
+ </body>
+</html>

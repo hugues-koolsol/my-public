@@ -709,7 +709,7 @@ function myObj1(initObj1){
   contentOfPopup+='<style>'
   contentOfPopup+='fieldset{border:1px blue outset;margin:10px 3px 0px 3px;}'
   contentOfPopup+='fieldset>div{border:1px red outset;margin:0px;}'
-  contentOfPopup+='fieldset>legend{border:1px red outset;font-size:1.1em;margin:10px auto 10px auto;padding:3px;}'
+  contentOfPopup+='fieldset>legend{border:1px red outset;font-size:1.1em;margin:10px auto 10px auto;padding:3px;text-align: center;}'
   contentOfPopup+='</style>'
   
   contentOfPopup+='<fieldset>';
@@ -3860,9 +3860,9 @@ function myObj1(initObj1){
   
   
   contentOfPopup+='<style>'
-  contentOfPopup+='fieldset{border:1px blue outset;margin:10px 3px 0px 3px;padding-bottom: 14px;}'
+  contentOfPopup+='fieldset{border:1px blue outset;margin:20px 3px 0px 3px;padding-bottom: 14px;}'
   contentOfPopup+='fieldset>div{border:1px red outset;margin:10px 3px 3px 3px;}'
-  contentOfPopup+='fieldset>legend{border:1px blue outset;font-size:1.1em;margin:10px auto 10px auto;padding:3px;border-radius:4px;}'
+  contentOfPopup+='fieldset>legend{border:1px blue outset;font-size:1.1em;margin:10px auto 10px auto;padding:3px;border-radius:4px;text-align: center;}'
   contentOfPopup+='</style>'
 
   contentOfPopup+='<fieldset>';
@@ -3978,24 +3978,27 @@ function myObj1(initObj1){
   
     contentOfPopup+='<legend>'+trad['liens_divers']+'</legend>';
   
-    contentOfPopup+='<div style="text-align:center;" >';
-    contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://jakearchibald.github.io/svgomg/">svgomg</a>';
+    contentOfPopup+='<div style="text-align:center;justify-content: center;display:flex;flex-wrap: wrap;" >';
+    contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" style="padding:5px;" href="https://jakearchibald.github.io/svgomg/">svgomg</a>';
     contentOfPopup+='</div>';
 
-    contentOfPopup+='<div style="text-align:center;" >';
-    contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://svgco.de/">svgcode</a>';
+    contentOfPopup+='<div style="text-align:center;justify-content: center;display:flex;flex-wrap: wrap;" >';
+    contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://svgco.de/">svgcode</a>';
     contentOfPopup+='</div>';
 
-    contentOfPopup+='<div style="text-align:center;" >';
-    contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://svgsilh.com/">svgsilh.com</a>';
-    contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://www.svgrepo.com/">svgrepo.com</a>';
-    contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://freesvg.org/">freesvg.org</a>';
-    contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://github.com/microsoft/fluentui-emoji/tree/main/assets">microsoft emoji</a>';
+    contentOfPopup+='<div style="text-align:center;justify-content: center;display:flex;flex-wrap: wrap;" >';
+    contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://svgsilh.com/">svgsilh.com</a>';
+    contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://www.svgrepo.com/">svgrepo.com</a>';
+    contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://freesvg.org/">freesvg.org</a>';
+    contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://github.com/microsoft/fluentui-emoji/tree/main/assets">microsoft emoji</a>';
     
     contentOfPopup+='</div>';
 
-    contentOfPopup+='<div style="text-align:center;" >';
-    contentOfPopup+='<a class="butEnabled butMenuHaut" target="_blank" href="https://github.com/hugues-koolsol/my-public/tree/master/svg">github source</a>';
+    contentOfPopup+='<div style="text-align:center;justify-content: center;display:flex;flex-wrap: wrap;" >';
+    contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://github.com/hugues-koolsol/my-public/tree/master/svg">';
+    contentOfPopup+='<svg class="svgBoutonGauche1" style="width: 25px; height: 25px;  margin: 0 5px;" viewBox="0 0  16 15.6053"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>';
+    contentOfPopup+='github';
+    contentOfPopup+='</a>'; // 
     contentOfPopup+='</div>';
 
   contentOfPopup+='</fieldset>';
@@ -8944,6 +8947,8 @@ function myObj1(initObj1){
   ss.insertRule('.bckJaune{background:'+bckJaune+';color:red;}' , ss.cssRules.length);  
   ss.insertRule('.bckRose{background:'+bckRose+';color:red;}' , ss.cssRules.length);  
   
+  ss.insertRule('.lienExt1{padding:0px 5px ;display: flex;align-items: center;}' , ss.cssRules.length);  
+  
   
   
   
@@ -9333,7 +9338,7 @@ function myObj1(initObj1){
    var lst=dogid('editTree1Table').getElementsByTagName(el[l]);
    for(var j=0;j<lst.length;j++){
     if(lst[j].getAttribute('data-attrib') && lst[j].value && lst[j].value !=''){
-     if(lst[j].getAttribute('data-attrib')=='text' || lst[j].getAttribute('data-attrib')=='tspan' || lst[j].getAttribute('data-attrib')=='title' || lst[j].getAttribute('data-attrib')=='style' ){
+     if(lst[j].getAttribute('data-attrib')=='text' || lst[j].getAttribute('data-attrib')=='tspan' || lst[j].getAttribute('data-attrib')=='title' ){
       txt=htm1(lst[j].value);
      }else{
       nouveauxAttributs[lst[j].getAttribute('data-attrib')]=htm1(lst[j].value);
@@ -11241,6 +11246,10 @@ function myObj1(initObj1){
       nouveaStyle2[n]=nouveaStyle1[n];
      }
     }
+   }else{
+    if(type===n){
+     nouveaStyle2[n]=valeur;
+    }
    }
   }
   
@@ -11905,6 +11914,8 @@ function myObj1(initObj1){
      var maxy=-999999.0;
      var px=0,py=0;
      var str0 = str.replace(/[0-9]+-/g, function(v){ return v.slice(0, -1) + " -"; }).replace(/\.[0-9]+/g, function(v){return v.match(/\s/g) ? v : v + " ";});
+     str0=str0.replace(/ \./g,' 0.');
+     str0=str0.replace(/ \-\./g,' -0.');
      str0=str0.replace(/ e/g,'e');
      var keys  = str0.match(/[ZzMmLlHhVvZzCcAaQqTtSs]/g);
      var paths = str0.split(/[ZzMmLlHhVvZzCcAaQqTtSs]/g).filter(
