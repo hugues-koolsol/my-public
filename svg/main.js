@@ -445,6 +445,140 @@ function myObj1(initObj1){
  ];
  
  //========================================================================================================
+ function changePosition(e){
+  var numArbre=parseInt(e.target.getAttribute('data-groupe'),10);
+  var deplaceX=parseFloat(document.getElementById('deplaceX').value);
+  var deplaceY=parseFloat(document.getElementById('deplaceY').value);
+  var jso=JSON.parse(e.target.getAttribute('data-jso'));
+  if(isNaN(deplaceX)){
+   deplaceX=0;
+  }
+  if(isNaN(deplaceY)){
+   deplaceY=0;
+  }
+  
+  console.log('deplaceX=',deplaceX,'deplaceY=',deplaceY);
+  
+  function recupElements(id,tab){
+   for(var i=0;i<_dssvg.arbre0.length;i++){
+    if(_dssvg.arbre0[i].parentId===id){
+     var nouvelId=_dssvg.arbre0[i].id;
+     tab.push([nouvelId,i]);
+     recupElements(nouvelId,tab);
+    }
+   }
+  }
+  var tabElts=[];
+  if('redimElt1'===jso.action){
+   tabElts=[[jso.numArbre,recupereIndiceArbre(jso.numArbre)]];
+  }else{
+   recupElements(numArbre,tabElts);
+  }
+  
+  for(var i=0;i<tabElts.length;i++){
+   if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='rect'){
+    
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.x=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.x+deplaceX);
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.y=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.y+deplaceY);
+    
+   }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='circle'){
+    
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.cx=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.cx+deplaceX);
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.cy=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.cy+deplaceY);
+    
+   }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='ellipse'){
+    
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.cx=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.cx+deplaceX);
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.cy=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.cy+deplaceY);
+    
+   }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='polyline' || _dssvg.arbre0[tabElts[i][1]].data.nodeName==='polygon' ){
+    
+    var tab=_dssvg.arbre0[tabElts[i][1]].data.attributes.points.trim().replace(/ /g,',').replace(/,,/g,',').replace(/,,/g,',').replace(/,,/g,',').split(',').map(Number);
+    var tt='';
+    for(var j=0;j<tab.length;j+=2){
+     tt+=' '+arrdi10000(tab[j]  +deplaceX);
+     tt+=' '+arrdi10000(tab[j+1]+deplaceY);
+    }
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.points=tt;
+    
+   }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='line'){
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.x1=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.x1+deplaceX);
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.y1=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.y1+deplaceY);
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.x2=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.x2+deplaceX);
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.y2=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.y2+deplaceY);
+   }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='path'){
+    var tt=_dssvg.arbre0[tabElts[i][1]].data.attributes.d;
+    var obj=getPointsFromSvgPath(tt);
+    var tutu='';
+    for(var j=0;j<obj.tabOri.length;j++){
+     if(obj.tabOri[j][0].toLowerCase()===obj.tabOri[j][0]){
+      tutu+=' '+obj.tabOri[j][0];
+      for(var k=1;k<obj.tabOri[j].length;k++){
+       tutu+=' ' + arrdi10000(obj.tabOri[j][k]);
+      }
+      
+     }else if(obj.tabOri[j][0].toUpperCase()==='H'){
+      tutu+=' '+obj.tabOri[j][0];
+      for(var k=1;k<obj.tabOri[j].length;k+=2){
+       tutu+=' ' + arrdi10000(obj.tabOri[j][k]+deplaceX);
+      }
+      
+     }else if(obj.tabOri[j][0].toUpperCase()==='V'){
+      tutu+=' '+obj.tabOri[j][0];
+      for(var k=1;k<obj.tabOri[j].length;k+=2){
+       tutu+=' ' + arrdi10000(obj.tabOri[j][k]+deplaceY);
+      }
+     }else if(obj.tabOri[j][0].toUpperCase()==='A'){
+      obj.tabOri[j]=[ 
+       obj.tabOri[j][0] , 
+       arrdi10000(obj.tabOri[j][1]) , 
+       arrdi10000(obj.tabOri[j][2]) , 
+       arrdi10000(obj.tabOri[j][3]) , 
+       obj.tabOri[j][4] , 
+       obj.tabOri[j][5] , 
+       arrdi10000(obj.tabOri[j][6]+deplaceX) , arrdi10000(obj.tabOri[j][7]+deplaceY) ];
+      tutu+=' '+obj.tabOri[j].join(' ');
+     }else{
+      tutu+=' '+obj.tabOri[j][0];
+      for(var k=1;k<obj.tabOri[j].length;k+=2){
+       tutu+=' ' + arrdi10000(obj.tabOri[j][k]+deplaceX);
+       tutu+=' ' + arrdi10000(obj.tabOri[j][k+1]+deplaceY);
+      }
+     }
+    }
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.d=tutu;
+   }
+  }
+  
+  
+  
+  closePopup();
+  afficheArbre0({init:false});
+  
+  
+ }
+ //========================================================================================================
+ function popupDeplaceEltsGrp1(jso){
+  
+  var contentOfPopup='<h3>'+trad['deplacer_les_éléments_du_groupe']+'</h3>';
+  contentOfPopup+='<div id="echelle1"  style="margin-top:3px;">';
+
+  contentOfPopup+='pixels X : <input id="deplaceX"  value="0" style="border: 3px #ddd inset;max-width: 50%;"/>';
+  contentOfPopup+='<br />';
+  contentOfPopup+='pixels Y : <input id="deplaceY"  value="0" style="border: 3px #ddd inset;max-width: 50%;" />';
+  contentOfPopup+='<br />';
+  contentOfPopup+='<button id="bdeplace" class="butEnabled butMenuHaut" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'">déplacer</button>';
+
+  contentOfPopup+='</div>';
+  popupValue.innerHTML=contentOfPopup;
+  
+  document.getElementById('bdeplace').addEventListener('click' , changePosition , 'button' )
+  
+  showPopUp('popupDeplaceEltsGrp1');  
+  
+  
+ }
+ //========================================================================================================
  function changeEchelle(e){
   var numArbre=parseInt(e.target.getAttribute('data-groupe'),10);
   var ech=parseFloat(e.target.getAttribute('data-echelle'));
@@ -500,7 +634,7 @@ function myObj1(initObj1){
     for(var j=0;j<obj.tabOri.length;j++){
      if(obj.tabOri[j][0].toUpperCase()==='A'){
       obj.tabOri[j]=[ 
-       arrdi10000(obj.tabOri[j][0]) , 
+       obj.tabOri[j][0] , 
        arrdi10000(obj.tabOri[j][1]*Math.abs(ech)) , 
        arrdi10000(obj.tabOri[j][2]*Math.abs(ech)) , 
        arrdi10000(obj.tabOri[j][3]) , 
@@ -2932,6 +3066,9 @@ function myObj1(initObj1){
      }
     }
 
+
+   }else if('deplaceEltsGrp'===jso.action){
+    popupDeplaceEltsGrp1(jso);
    }else if('redimEltsGrp'===jso.action){
     popupRedimEltsGrp1(jso);
    }else if('redimElt1'===jso.action){
@@ -3961,7 +4098,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parFacteurAimntValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.facteurAimnt+'</div>';
      contentOfPopup+='<label for="parFacteurAimnt"> : '+trad['Diviseur_de_pixel']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parFacteurAimnt" type="range" min="1" max="10" step="1" value="'+_dssvg.parametres.facteurAimnt+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parFacteurAimnt" type="range" min="1" max="16" step="1" value="'+_dssvg.parametres.facteurAimnt+'" style="width:80%;min-width:200px;max-width:500px;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
 
@@ -4281,8 +4418,6 @@ function myObj1(initObj1){
  //========================================================================================================
  function fElementTransformTranslate1(e){
   
-  
-
   initPosxy=positionSouris(e);
   var current=refZnDessin.createSVGPoint();
 		current.x = e.clientX; 
@@ -4293,9 +4428,6 @@ function myObj1(initObj1){
   pt0.x = current.x - globalTransformTranslateElement.mouseStart.x;
   pt0.y = current.y - globalTransformTranslateElement.mouseStart.y;
   
-  
-  
-    
   var newPointX=globalTransformTranslateElement.elementStart.x+pt0.x/_dssvg.parametres.diviseurDeplacement;
   var newPointY=globalTransformTranslateElement.elementStart.y+pt0.y/_dssvg.parametres.diviseurDeplacement;
 		globalGeneralReferencePointControleClique.setAttribute('cx', newPointX );
@@ -4303,7 +4435,6 @@ function myObj1(initObj1){
  
   var deltaReel=refZnDessin.createSVGPoint();  
   deltaReel=pt0.matrixTransform(globalTransformTranslateElement.matriceElementElementInverse).matrixTransform(globalTransformTranslateElement.matriceRacine);
-
 
   var tx=0;
   var ty=0;
@@ -4321,8 +4452,10 @@ function myObj1(initObj1){
   pt1.y = deltaReel.y;
   laTransformation+=' translate( '+pt1.x+' , '+pt1.y+' )';
   
-   globalGeneralSvgReferenceElement.setAttribute( 'transform' ,  laTransformation );
-   _dssvg.arbre0[globalIndiceArbre].data.attributes['transform']=laTransformation;
+  divLag1Pour({t:'traTrZ',l:'traTrZ','dx':arrdi10000(pt1.x),'dy':arrdi10000(pt1.y)});
+  
+  globalGeneralSvgReferenceElement.setAttribute( 'transform' ,  laTransformation );
+  _dssvg.arbre0[globalIndiceArbre].data.attributes['transform']=laTransformation;
 
   return;
   
@@ -11457,6 +11590,7 @@ function myObj1(initObj1){
     t+='<button class="butEnabled butMenuHaut bckRouge" style="min-width: fit-content;" data-action="'+htm1('{"action":"suppAttribGraDuGroupe1"  ,"numArbre":'+numArbre+'}')+'">'+trad['supp_attr_gra_grp']+'</button>';
     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"popupPropEltsGrp1"  ,"numArbre":'+numArbre+'}')+'">'+trad['Modifier_propriétés_du_groupe']+'</button>';
     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"redimEltsGrp"  ,"numArbre":'+numArbre+'}')+'">'+trad['redimentionner_les_éléments_du_groupe']+'</button>';
+    t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"deplaceEltsGrp"  ,"numArbre":'+numArbre+'}')+'">'+trad['deplacer_les_éléments_du_groupe']+'</button>';
    }
    
    
