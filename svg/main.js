@@ -6069,10 +6069,8 @@ function myObj1(initObj1){
       nn==='metadata' || nn==='title' || nn==='desc' ||  nn==='rdf:rdf'  
      ){
      }else{
-      console.warn('erreur sur lst[i]=' , lst[i].nodeName , e );
      }
     }else{
-     console.warn('erreur sur lst[i]=' , lst[i].nodeName , e );
     }
    }
   }
@@ -11170,7 +11168,9 @@ function myObj1(initObj1){
      nomDuTransform='gradientTransform';
      var tr=elem.getAttribute(nomDuTransform)?elem.getAttribute(nomDuTransform):'';
     }else{
-     console.warn('%ctodo','background:yellow;color:red;',elem[elem.length-1].nodeName.toLowerCase())
+     elem=elem[0];
+     var tr=elem.getAttribute(nomDuTransform)?elem.getAttribute(nomDuTransform):'';
+     console.warn('%ctodo','background:yellow;color:red;',elem.nodeName.toLowerCase())
     }
    }else{
     elem=elem[0];
