@@ -579,6 +579,148 @@ function myObj1(initObj1){
   
  }
  //========================================================================================================
+ function changeEchelleY(e){
+  var numArbre=parseInt(e.target.getAttribute('data-groupe'),10);
+  var ech=parseFloat(e.target.getAttribute('data-echelle'));
+  var jso=JSON.parse(e.target.getAttribute('data-jso'));
+  
+  
+  function recupElements(id,tab){
+   for(var i=0;i<_dssvg.arbre0.length;i++){
+    if(_dssvg.arbre0[i].parentId===id){
+     var nouvelId=_dssvg.arbre0[i].id;
+     tab.push([nouvelId,i]);
+     recupElements(nouvelId,tab);
+    }
+   }
+  }
+  var tabElts=[];
+  if('redimElt1'===jso.action){
+   tabElts=[[jso.numArbre,recupereIndiceArbre(jso.numArbre)]];
+  }else{
+   recupElements(numArbre,tabElts);
+  }
+  for(var i=0;i<tabElts.length;i++){
+   var ndNam=_dssvg.arbre0[tabElts[i][1]].data.nodeName.toLowerCase();
+   if(ndNam==='rect' || ndNam==='circle' || ndNam==='ellipse'){
+   }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='polyline' || _dssvg.arbre0[tabElts[i][1]].data.nodeName==='polygon' ){
+    var tab=_dssvg.arbre0[tabElts[i][1]].data.attributes.points.trim().replace(/ /g,',').replace(/,,/g,',').replace(/,,/g,',').replace(/,,/g,',').split(',').map(Number);
+    var tt='';
+    for(var j=0;j<tab.length;j+=2){
+     tt+=' '+arrdi10000(tab[j]);
+     tt+=' '+arrdi10000(tab[j+1]*ech);
+    }
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.points=tt;
+   }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='line'){
+//    _dssvg.arbre0[tabElts[i][1]].data.attributes.x1=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.x1*ech);
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.y1=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.y1*ech);
+//    _dssvg.arbre0[tabElts[i][1]].data.attributes.x2=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.x2*ech);
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.y2=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.y2*ech);
+   }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='path'){
+    var tt=_dssvg.arbre0[tabElts[i][1]].data.attributes.d;
+    var obj=getPointsFromSvgPath(tt);
+    var tutu='';
+    for(var j=0;j<obj.tabOri.length;j++){
+     if(obj.tabOri[j][0].toUpperCase()==='A'){
+      obj.tabOri[j]=[ 
+       obj.tabOri[j][0] , 
+       arrdi10000(obj.tabOri[j][1]*Math.abs(ech)) , 
+       arrdi10000(obj.tabOri[j][2]*Math.abs(ech)) , 
+       arrdi10000(obj.tabOri[j][3]) , 
+       obj.tabOri[j][4] , 
+       obj.tabOri[j][5] , 
+       arrdi10000(obj.tabOri[j][6]) , 
+       arrdi10000(obj.tabOri[j][7]*ech) 
+      ];
+      tutu+=' '+obj.tabOri[j].join(' ');
+     }else{
+      tutu+=' '+obj.tabOri[j][0];
+      for(var k=1;k<obj.tabOri[j].length;k+=2){
+       tutu+=' ' + arrdi10000(obj.tabOri[j][k]);
+       tutu+=' ' + arrdi10000(obj.tabOri[j][k+1]*ech);
+      }
+     }
+    }
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.d=tutu;
+   }
+  }
+  closePopup();
+  afficheArbre0({init:false});
+  
+  
+ } 
+ //========================================================================================================
+ function changeEchelleX(e){
+  var numArbre=parseInt(e.target.getAttribute('data-groupe'),10);
+  var ech=parseFloat(e.target.getAttribute('data-echelle'));
+  var jso=JSON.parse(e.target.getAttribute('data-jso'));
+  
+  
+  function recupElements(id,tab){
+   for(var i=0;i<_dssvg.arbre0.length;i++){
+    if(_dssvg.arbre0[i].parentId===id){
+     var nouvelId=_dssvg.arbre0[i].id;
+     tab.push([nouvelId,i]);
+     recupElements(nouvelId,tab);
+    }
+   }
+  }
+  var tabElts=[];
+  if('redimElt1'===jso.action){
+   tabElts=[[jso.numArbre,recupereIndiceArbre(jso.numArbre)]];
+  }else{
+   recupElements(numArbre,tabElts);
+  }
+  for(var i=0;i<tabElts.length;i++){
+   var ndNam=_dssvg.arbre0[tabElts[i][1]].data.nodeName.toLowerCase();
+   if(ndNam==='rect' || ndNam==='circle' || ndNam==='ellipse'){
+   }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='polyline' || _dssvg.arbre0[tabElts[i][1]].data.nodeName==='polygon' ){
+    var tab=_dssvg.arbre0[tabElts[i][1]].data.attributes.points.trim().replace(/ /g,',').replace(/,,/g,',').replace(/,,/g,',').replace(/,,/g,',').split(',').map(Number);
+    var tt='';
+    for(var j=0;j<tab.length;j+=2){
+     tt+=' '+arrdi10000(tab[j]*ech);
+     tt+=' '+arrdi10000(tab[j+1]);
+    }
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.points=tt;
+   }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='line'){
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.x1=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.x1*ech);
+//    _dssvg.arbre0[tabElts[i][1]].data.attributes.y1=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.y1*ech);
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.x2=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.x2*ech);
+//    _dssvg.arbre0[tabElts[i][1]].data.attributes.y2=arrdi10000(_dssvg.arbre0[tabElts[i][1]].data.attributes.y2*ech);
+   }else if(_dssvg.arbre0[tabElts[i][1]].data.nodeName==='path'){
+    var tt=_dssvg.arbre0[tabElts[i][1]].data.attributes.d;
+    var obj=getPointsFromSvgPath(tt);
+    var tutu='';
+    for(var j=0;j<obj.tabOri.length;j++){
+     if(obj.tabOri[j][0].toUpperCase()==='A'){
+      obj.tabOri[j]=[ 
+       obj.tabOri[j][0] , 
+       arrdi10000(obj.tabOri[j][1]*Math.abs(ech)) , 
+       arrdi10000(obj.tabOri[j][2]*Math.abs(ech)) , 
+       arrdi10000(obj.tabOri[j][3]) , 
+       obj.tabOri[j][4] , 
+       obj.tabOri[j][5] , 
+       arrdi10000(obj.tabOri[j][6]*ech) , 
+       arrdi10000(obj.tabOri[j][7]) 
+      ];
+      tutu+=' '+obj.tabOri[j].join(' ');
+     }else{
+      tutu+=' '+obj.tabOri[j][0];
+      for(var k=1;k<obj.tabOri[j].length;k+=2){
+       tutu+=' ' + arrdi10000(obj.tabOri[j][k]*ech);
+       tutu+=' ' + arrdi10000(obj.tabOri[j][k+1]);
+      }
+     }
+    }
+    _dssvg.arbre0[tabElts[i][1]].data.attributes.d=tutu;
+   }
+  }
+  closePopup();
+  afficheArbre0({init:false});
+  
+  
+ } 
+ //========================================================================================================
  function changeEchelle(e){
   var numArbre=parseInt(e.target.getAttribute('data-groupe'),10);
   var ech=parseFloat(e.target.getAttribute('data-echelle'));
@@ -683,13 +825,28 @@ function myObj1(initObj1){
     contentOfPopup+='</div>';
    }
   }
+  contentOfPopup+='<div style="text-align:center;margin-top:10px;">';
+  contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'"  data-echelle="-1" data-dir="x" style="min-width:4em;">x*(-1)</button>';
+  contentOfPopup+='<div style="text-align:center;margin-top:10px;">';
+   
+  contentOfPopup+='<div style="text-align:center;margin-top:10px;">';
+  contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'"  data-echelle="-1" data-dir="y" style="min-width:4em;">y*(-1)</button>';
+  contentOfPopup+='<div style="text-align:center;margin-top:10px;">';
    
   contentOfPopup+='</div>';
   popupValue.innerHTML=contentOfPopup;
   
   var lst=dogid('echelle1').getElementsByTagName('button');
   for( var i=0;i<lst.length;i++){
-   lst[i].addEventListener('click' , changeEchelle , 'button' )
+   if(lst[i].getAttribute('data-dir')){
+    if(lst[i].getAttribute('data-dir')==='x'){
+     lst[i].addEventListener('click' , changeEchelleX , 'button' )
+    }else if(lst[i].getAttribute('data-dir')==='y'){
+     lst[i].addEventListener('click' , changeEchelleY , 'button' )
+    }
+   }else{
+    lst[i].addEventListener('click' , changeEchelle , 'button' )
+   }
   }
   
   showPopUp('popupRedimEltsGrp1');  
@@ -4058,7 +4215,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parRayonReferenceValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.rayonReference+'</div>';
      contentOfPopup+='<label for="parRayonReference"> : '+trad['Rayon_des_poignées']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parRayonReference" type="range" min="10" max="22" step="2" value="'+_dssvg.parametres.rayonReference+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parRayonReference" type="range" min="10" max="30" step="2" value="'+_dssvg.parametres.rayonReference+'" style="width:80%;min-width:200px;max-width:500px;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
 
@@ -4357,7 +4514,7 @@ function myObj1(initObj1){
   }
  }
  //========================================================================================================
- function matrixToFnt(x){ // hugues
+ function matrixToFnt(x){
   // https://stackoverflow.com/questions/5107134/find-the-rotation-and-skew-of-a-matrix-transformation
   var a = [x.a, x.b, x.c, x.d, x.e, x.f];
   var angle = Math.atan2(a[1], a[0]),
@@ -10706,7 +10863,7 @@ function myObj1(initObj1){
   
   var boutons=[
    // =================== MENU GAUCHE =====================  
-  {id:'popupArbo1'                , position:'menuGauche' , libelle:trad['arbre']                               , action:popupArbo1                  , svg:'<svg class="svgBoutonGauche1" viewBox="-2 1  34.8828 36.5"><text x="-2" y="29" style="font-size:30px;stroke-width:1.21;stroke:black;fill:black;stroke-opacity:1;fill-opacity:1;">🌲</text></svg>'},
+  {id:'popupArbo1'                , position:'menuGauche' , libelle:trad['arbre']                               , action:popupArbo1                  , svg:'<svg class="svgBoutonGauche1" viewBox="-1.2601 -1  50.5203 67"><path stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" fill-rule="nonzero" d=" M 24 0 C 21 0 13 13 11 16 C 9 19 12 20 12 20 l 9 -6 C 9 22 8 25 6 28 C 5 30 7 32 9 31 l 11 -7  C 6 34 5 36 3 39 C 0 43 3 45 6 43 C 3 47 2 49 0 52 C -1 54 1 56 4 54 C 8 51 11 48 12 47 C 12 51 12 55 15 55 C 17 55 19 52 24 46 M 24 0 C 27 0 35 13 37 16 C 39 19 36 20 36 20 l -9 -6 C 39 22 40 25 42 28 C 43 30 41 32 39 31 l -11 -7 C 43 34 43 36 45 39 C 48 43 45 45 42 43 C 45 47 46 49 48 52 C 49 54 47 56 44 54 C 40 51 37 48 36 47 C 36 51 36 55 33 55 C 31 55 29 52 24 46" style="stroke:black;fill:forestgreen;stroke-width:1;"></path><path d=" M 19 52 C 19 52 19 65 19 65 C 19 65 29 65 29 65 C 29 65 29 52 29 52  l -5 -6 l -5 6" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:saddlebrown;stroke-width:1;"></path><path stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" d=" M 24 43 C 21 43 20 39 18 34  L 6 43 C 3 47 2 49 0 52 C -1 54 1 56 4 54 C 8 51 11 48 12 47 L 16 43 L 12 47 C 12 51 12 55 15 55 C 17 55 19 52 24 46 M 24 43 C 27 43 28 39 30 34 L 42 43 C 45 47 46 49 48 52 C 49 54 47 56 44 54 C 40 51 37 48 36 47 L 32 43 L 36 47 C 36 51 36 55 33 55 C 31 55 29 52 24 46" style="stroke:black;fill:darkgreen;stroke-width:1;"></path></svg>'},
   {id:'break0'                    , position:'menuGauche' , cssText:'height:15px;'},
   {id:'popupForme1'               , position:'menuGauche' , libelle:trad['selection']                           , action:popupForme1                 , svg:svgEtoile},
   {id:'setModeSaisieChemin1'      , position:'menuGauche' , libelle:trad['chemin']                              , action:setModeSaisieChemin1        , svg:'<svg class="svgBoutonGauche1" viewBox="-27 -18  52 41"><path stroke="rgb(0, 0, 255)" stroke-width="5" fill="transparent" d=" M -26 -17 C -18 -14 -11 -5 -15 2 C -20 13 -7 17 -1 17  C 5 17 10 15 13 10 C 15 5 16 2 12 -4 C 5 -13 19 -13 19 -13"></path></svg>'},
@@ -12434,8 +12591,8 @@ function myObj1(initObj1){
   popupContent1.style.top=(document.documentElement.scrollTop+marginPopup) + 'px';
   popupContent1.style.left=marginPopup+'px';
 
-  dogid('BtnclosPop').style.right=0+'px';
-  dogid('BtnclosPop').style.top=-0+'px';
+  dogid('BtnclosPop').style.right=(marginPopup-5)+'px';
+  dogid('BtnclosPop').style.top=(marginPopup-5)+'px';
  }
  //========================================================================================================
  function showPopUp(action){
