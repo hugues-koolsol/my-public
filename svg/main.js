@@ -127,7 +127,10 @@ function myObj1(initObj1){
  var bckRose='linear-gradient(rgb(233 192 215) 0%, rgb(255 213 236) 100%)';
  var marginPopup=25;
  var kellyColor1=null;
- var svgEtoile='<svg class="svgBoutonGauche1" viewBox="2 0  57 56"><polygon points="  30 9   35 23 50 23 40 33 45 48 30 38 15 48 20 33 10 23 25 23" fill="transparent" stroke-width="5" style="stroke:blue;fill:transparent;stroke-width:5;stroke-opacity:1;fill-opacity:1;"></polygon></svg>';
+// var svgEtoile='<svg class="svgBoutonGauche1" viewBox="2 0  57 56"><polygon points="  30 9   35 23 50 23 40 33 45 48 30 38 15 48 20 33 10 23 25 23" fill="transparent" stroke-width="5" style="stroke:blue;fill:transparent;stroke-width:5;stroke-opacity:1;fill-opacity:1;"></polygon></svg>';
+ var svgEtoile='<svg class="svgBoutonGauche1" viewBox="-95.1057 -100.5  190.2114 180.9017"><polygon points=" 0 -100.5  17.6336 -24.7705  95.1057 -31.4017  28.5317 8.7705  58.7785 80.4017  0 29.5  -58.7785 80.4017  -28.5317 8.7705  -95.1057 -31.4017  -17.6336 -24.7705  0 -100.5 " stroke-linecap="round" stroke-linejoin="round" style="stroke-width:15;stroke:blue;fill:transparent;"></polygon></svg>';
+ 
+ 
  
  
  //========================================================================================================
@@ -1017,7 +1020,7 @@ function myObj1(initObj1){
   contentOfPopup+='<legend>'+trad['Formes_prédéfinies']+'</legend>';
     contentOfPopup+='<div>';
     contentOfPopup+='<button class="butEnabled butMenuGauche" style="min-width:35px;min-height:35px;margin:3px;" id="insererUneEtoile">'+svgEtoile+'</button>';
-    contentOfPopup+='<button class="butEnabled butMenuGauche" style="min-width:35px;min-height:35px;margin:3px;" id="insererUneFleche"><svg class="svgBoutonGauche1" viewBox="-2 -1  23 18"><polygon points=" 14 1 20 8  14 15   14 11 0 11 0 5 14 5" style="stroke-width:1;stroke:rgb(0, 0, 255);fill:transparent;"></polygon></svg></button>';
+    contentOfPopup+='<button class="butEnabled butMenuGauche" style="min-width:35px;min-height:35px;margin:3px;" id="insererUneFleche"><svg class="svgBoutonGauche1" viewBox="-2 -1  23 18"><polygon points=" 14 1 20 8  14 15   14 11 0 11 0 5 14 5" style="stroke-width:1.5;stroke:rgb(0, 0, 255);fill:transparent;"></polygon></svg></button>';
     contentOfPopup+='</div>';
   contentOfPopup+='</fieldset>';
   
@@ -1690,7 +1693,7 @@ function myObj1(initObj1){
   
   var contentOfPopup='<h3>'+trad['exporter_le_svg']+'</h3>';
   
-  contentOfPopup+='<textarea id="sourceSvg" rows="3" style="min-height:30vh;"></textarea>';
+  contentOfPopup+='<textarea id="sourceSvg" rows="3" style="min-height:30vh;user-select:text;"></textarea>';
 
   contentOfPopup+='<style>';
   contentOfPopup+='#tableExportSvg td{border:1px blue solid;}';
@@ -1961,7 +1964,7 @@ function myObj1(initObj1){
 //  contentOfPopup+='Url : <input id="urlAImporter" style="max-width:80%;border: 3px #eee inset;" />';
 //  contentOfPopup+='<br /><button id="importerUrlSvg"  class="butEnabled butMenuHaut">'+trad['Importer_de_l_url']+'</button>';
   contentOfPopup+='<br />';
-  contentOfPopup+='<textarea id="contenuSvg" rows="5" style="min-height: 50vh; border: 3px #eee inset; width: 80%;"></textarea>';
+  contentOfPopup+='<textarea id="contenuSvg" rows="5" style="min-height: 50vh; border: 3px #eee inset; width: 80%;user-select:text;"></textarea>';
   contentOfPopup+='<div id="comandTree1">';
   contentOfPopup+=' <button id="importerSvgEtFermer"  class="butEnabled butMenuHaut">'+trad['importer_en_écrasant']+'</button>';
   contentOfPopup+=' <button id="importerEnAjoutant"   class="butEnabled butMenuHaut">'+trad['importer_en_ajoutant']+'</button>';
@@ -4204,10 +4207,10 @@ function myObj1(initObj1){
     contentOfPopup+='</div>';
     
     contentOfPopup+='<div >';
-     contentOfPopup+='<div id="parLargeurScrollValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.scroll_size+'</div>';
+     contentOfPopup+='<div id="parLargeurScrollValeur" style="display:inline-block;min-width:2rem;">'+(Math.round(_dssvg.parametres.scroll_size/5)*5)+'</div>';
      contentOfPopup+='<label for="parLargeurScrollSize"> : '+trad['Largeur_du_scroll']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parLargeurScrollSize" type="range" min="0" max="20" step="5" value="'+_dssvg.parametres.scroll_size+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parLargeurScrollSize" type="range" min="0" max="20" step="5" value="'+(Math.round(_dssvg.parametres.scroll_size/5)*5)+'" style="width:80%;min-width:200px;max-width:500px;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
@@ -5769,19 +5772,6 @@ function myObj1(initObj1){
     continue;
    }
    
-/*   
-   var extensions='';
-   try{
-    extensions=JSON.parse(lst[i].getAttribute('data-extensions'));
-    if(_dssvg.mode_en_cours==='setModeSaisieTranE1' && extensions.dansDefs===true){
-     continue;
-    }
-    if(_dssvg.mode_en_cours==='setModeSaisieDefsTrE1' && extensions.dansDefs===false){
-     continue;
-    }
-   }catch(e){
-   }
-*/   
    var col='red';
    if(_dssvg.mode_en_cours==='setModeSaisieDefsTrE1' || 'setModeSaisieDefsGrp1'===_dssvg.mode_en_cours ){
     col='yellow';
@@ -5837,7 +5827,6 @@ function myObj1(initObj1){
    }catch(e){
     if(String(e).indexOf('.getBBox is not a function')>=0){
     }else{
-     console.warn('erreur sur lst[i]=' , lst[i].nodeName , e );
     }
    }
   }
@@ -6134,18 +6123,6 @@ function myObj1(initObj1){
       pt9.y=cy+125/_dssvg.zoom1*Math.sin((angle0+90)/180*Math.PI);
       
       var angle1=angle0;
-/*      
-      if(facteury<0){
-       angle1=angle0-90;
-       if(facteurx<0){
-        angle1=angle0-90;
-       }
-      }else{
-       if(facteurx<0){
-        angle1=angle0+90; // angle
-       }
-      }
-*/      
       pt10.x=cx+125/_dssvg.zoom1*Math.cos((angle1+45)/180*Math.PI);
       pt10.y=cy+125/_dssvg.zoom1*Math.sin((angle1+45)/180*Math.PI);
       
@@ -9225,7 +9202,7 @@ function myObj1(initObj1){
   ss.insertRule('#popupValue div{}' , ss.cssRules.length); 
   ss.insertRule('#popupValue label{margin-right:5px;}' , ss.cssRules.length);  
   ss.insertRule('#popupValue input{min-width:50px;padding:5px;}' , ss.cssRules.length);  
-  ss.insertRule('#popupValue textarea{border:2px #eee inset;border-radius:4px;padding:4px;min-width:80%;}' , ss.cssRules.length);  
+  ss.insertRule('#popupValue textarea{border:2px #eee inset;border-radius:4px;padding:4px;min-width:80%;user-select:text;}' , ss.cssRules.length);  
   
   ss.insertRule('.svgBoutonGauche1{max-height:'+(_dssvg.parametres.hauteurMinBtnMenuGau-2*wi_of_the_brds1-3)+'px;}' , ss.cssRules.length);  // pourquoi -3 ??
   ss.insertRule('.svgBoutonHaut1{min-width:'+_dssvg.parametres.largeurMinBtnMenuHau+'px;height:'+(_dssvg.parametres.hauteurMenuHaut-4*wi_of_the_brds1)+'px;}' , ss.cssRules.length);  
@@ -9249,7 +9226,7 @@ function myObj1(initObj1){
   ss.insertRule('.class_treeHandle1{ border:1px #F7F3CA outset; display:inline-block; float:right; height:30px; width:30px; min-width:45px; text-align: center; text-decoration: none; font-size: 1.5em; line-height: 1.6em; border-radius:5px; font-family:monospace; cursor:pointer;}' , ss.cssRules.length);
   ss.insertRule('.class_tree_yydanger {    color: #FFFFFF!important;    background: linear-gradient(to bottom, #FF0000, #D30000)!important;    font-size: 1.5em;    display: inline-block;    text-decoration: none;    text-align: center;    border-radius: 5px;    font-family: verdana, arial, sans-serif;    cursor: pointer;    min-width: 40px;    min-height: 30px;    line-height: 30px;    border: 1px #F7F3CA outset;}' , ss.cssRules.length);
   ss.insertRule('#editTree1 td{ border:1px blue solid; margin:1px; padding:1px;}' , ss.cssRules.length);
-  ss.insertRule('#editTree1 input,#editTree1 textarea{ border:2px #eee inset; margin:1px; padding:5px;width:100%;font-size:1.1em;overflow:scroll;}' , ss.cssRules.length);
+  ss.insertRule('#editTree1 input,#editTree1 textarea{ border:2px #eee inset; margin:1px; padding:5px;width:100%;font-size:1.1em;overflow:scroll;user-select:text;}' , ss.cssRules.length);
   ss.insertRule('#editTree1 textarea::-webkit-scrollbar{width:25px;}' , ss.cssRules.length);
   
   
@@ -10805,7 +10782,7 @@ function myObj1(initObj1){
   }
   getScrollWidth();
   redrawCss();
-  _dssvg.parametres.scroll_size=globalScrollWidth1;
+  _dssvg.parametres.scroll_size=parseInt(globalScrollWidth1,10);
   he_of_the_menutpe=_dssvg.parametres.hauteurMenuHaut+_dssvg.parametres.scroll_size;
   wi_of_the_menulft=_dssvg.parametres.largeurMenuGauche+_dssvg.parametres.scroll_size;
   
@@ -10888,7 +10865,7 @@ function myObj1(initObj1){
   {id:'break0'                    , position:'menuGauche' , cssText:'height:15px;'},
 
   {id:'aimanterPixel1'            , position:'menuGauche' , libelle:trad['aimpix']                              , action:aimanterPixel1              , svg : '<svg class="svgBoutonGauche1" viewBox="-4 -28  58 55"><path d=" M 0 -24 C 8 -24 30 -24 36 -24 C 43 -24 50 -16 50 -7 C 50 -5 50 5 50 7 C 50 13 43 23 36 23 C 24 23 0 23 0 23 C 0 19 0 11 0 8  C 5 8 29 8 32 8 C 37 8 37 -8 32 -8 C 29 -8 8 -8 0 -8 C 0 -12 0 -20 0 -24" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:red;stroke-width:3;stroke-opacity:1;fill-opacity:1;opacity:1;"></path><rect x="0" y="-23" width="10" height="14" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:white;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></rect><rect x="0" y="9" width="10" height="13" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:white;stroke-width:1;stroke-opacity:1;fill-opacity:1;opacity:1;"></rect></svg>' , contenu:'px' },
-  {id:'popupParametres1'          , position:'menuGauche' , libelle:trad['gerpar']                              , action:popupParametres1            , svg : '<svg class="svgBoutonGauche1" viewBox="3.5 4.5  94 91.5"><g id="cog1"><path stroke="blue" stroke-width="2" fill-opacity="1" fill="blue" d="M50.5 5.5 L 44.63 5.88 L 42.74 21.52 L 39.02 22.78 L 35.5 24.52 L 23.11 14.8 L 18.68 18.68 L 14.8 23.11 L 24.52 35.5 L 22.78 39.02 L 21.52 42.74 L 5.88 44.63 L 5.5 50.5 L 5.88 56.37 L 21.52 58.26 L 22.78 61.98 L 24.52 65.5 L 14.8 77.89 L 18.68 82.32 L 23.11 86.2 L 35.5 76.48 L 39.02 78.22 L 40.93 73.6A 25 25 0 1 1 60.07 73.6 L 61.98 78.22 L 65.5 76.48 L 77.89 86.2 L 82.32 82.32 L 86.2 77.89 L 76.48 65.5 L 78.22 61.98 L 79.48 58.26 L 95.12 56.37 L 95.5 50.5 L 95.12 44.63 L 79.48 42.74 L 78.22 39.02 L 76.48 35.5 L 86.2 23.11 L 82.32 18.68 L 77.89 14.8 L 65.5 24.52 L 61.98 22.78 L 58.26 21.52 L 56.37 5.88 L 50.5 5.5 Z"></path><path stroke="green" stroke-width="2" fill-opacity="1" fill="green" d="M 38 46 L 38 38 C 78 28, 72 63, 54 69 L 54 77 L 46.5 77 L 46.5 65 C 62 64, 70 34, 38 46 Z"></path><path stroke="green" stroke-width="2" fill-opacity="1" fill="green" d="M 46.5 82 L 46.5 90 L 54 90 L 54 82 Z"></path></g></svg>'},
+  {id:'popupParametres1'          , position:'menuGauche' , libelle:trad['gerpar']                              , action:popupParametres1            , svg : '<svg class="svgBoutonGauche1" viewBox="-106.3003 -107.041  213.5988 201.0022"><path d=" M 100 0 C 100 0 79.7763 5.9784 79.7763 5.9784 C 79.7763 5.9784 77.9942 17.8017 77.9942 17.8017 C 77.9942 17.8017 95.5573 29.4755 95.5573 29.4755 C 95.5573 29.4755 90.0969 43.3884 90.0969 43.3884 C 90.0969 43.3884 69.282 40 69.282 40 C 69.282 40 62.5465 49.8792 62.5465 49.8792 C 62.5465 49.8792 73.3052 68.0173 73.3052 68.0173 C 73.3052 68.0173 62.349 78.1831 62.349 78.1831 C 62.349 78.1831 45.0656 66.0991 45.0656 66.0991 C 45.0656 66.0991 34.7107 72.0775 34.7107 72.0775 L 32.8729 50.3378  A 60.1854 60.4115 0 1 0 -25.1945 54.3907 L -23.5792 76.4455 C -26.0652 75.4525 -34.7107 72.0775 -34.7107 72.0775 C -34.7107 72.0775 -50 86.6025 -50 86.6025 C -50 86.6025 -62.349 78.1831 -62.349 78.1831 C -62.349 78.1831 -54.4138 58.6441 -54.4138 58.6441 C -54.4138 58.6441 -62.5465 49.8792 -62.5465 49.8792 C -62.5465 49.8792 -82.6239 56.332 -82.6239 56.332 C -82.6239 56.332 -90.0969 43.3884 -90.0969 43.3884 C -90.0969 43.3884 -74.4699 29.2273 -74.4699 29.2273 C -74.4699 29.2273 -77.9942 17.8017 -77.9942 17.8017 C -77.9942 17.8017 -98.8831 14.9042 -98.8831 14.9042 C -98.8831 14.9042 -100 0 -100 0 C -100 0 -79.7763 -5.9784 -79.7763 -5.9784 C -79.7763 -5.9784 -77.9942 -17.8017 -77.9942 -17.8017 C -77.9942 -17.8017 -95.5573 -29.4755 -95.5573 -29.4755 C -95.5573 -29.4755 -90.0969 -43.3884 -90.0969 -43.3884 C -90.0969 -43.3884 -69.282 -40 -69.282 -40 C -69.282 -40 -62.5465 -49.8792 -62.5465 -49.8792 C -62.5465 -49.8792 -73.3052 -68.0173 -73.3052 -68.0173 C -73.3052 -68.0173 -62.349 -78.1831 -62.349 -78.1831 C -62.349 -78.1831 -45.0656 -66.0991 -45.0656 -66.0991 C -45.0656 -66.0991 -34.7107 -72.0775 -34.7107 -72.0775 C -34.7107 -72.0775 -36.5341 -93.0874 -36.5341 -93.0874 C -36.5341 -93.0874 -22.2521 -97.4928 -22.2521 -97.4928 C -22.2521 -97.4928 -11.9234 -79.1065 -11.9234 -79.1065 C -11.9234 -79.1065 0 -80 0 -80 C 0 -80 7.473 -99.7204 7.473 -99.7204 C 7.473 -99.7204 22.2521 -97.4928 22.2521 -97.4928 C 22.2521 -97.4928 23.5804 -76.4458 23.5804 -76.4458 C 23.5804 -76.4458 34.7107 -72.0775 34.7107 -72.0775 C 34.7107 -72.0775 50 -86.6025 50 -86.6025 C 50 -86.6025 62.349 -78.1831 62.349 -78.1831 C 62.349 -78.1831 54.4138 -58.6441 54.4138 -58.6441 C 54.4138 -58.6441 62.5465 -49.8792 62.5465 -49.8792 C 62.5465 -49.8792 82.6239 -56.332 82.6239 -56.332 C 82.6239 -56.332 90.0969 -43.3884 90.0969 -43.3884 C 90.0969 -43.3884 74.4699 -29.2273 74.4699 -29.2273 C 74.4699 -29.2273 77.9942 -17.8017 77.9942 -17.8017 C 77.9942 -17.8017 98.8831 -14.9042 98.8831 -14.9042 C 98.8831 -14.9042 100 0 100 0 C 100 0 100 0 100 0" style="stroke-width:1;stroke:blue;fill:blue;" transform="rotate(4.3643 0 0 )"></path><path stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" d=" M -19.9035 0.0665 H -47.5914 C -47.5803 -34.716 -29.2323 -48.6369 0.1918 -48.597 C 36.6062 -48.6442 45.8185 -25.4943 45.5704 -0.0489 C 45.13423 14.3612 35.214 28.2112 19.5487 43.9057 C 10.4376 51.5727 10.8315 58.2471 10.8315 61.997  H -12.0032 C -12.1844 60.6516 -11.786 47.7718 -8.6172 42.8653 C -1.4916 31.7469 17.8786 11.5852 17.915 -0.0303 C 18.6014 -16.3637 12.0753 -24.5501 -0.7396 -23.9992 C -13.9158 -23.9741 -20.6076 -15.9549 -20.0506 -0.1851 M -12.881 74.4678 H 11.4458 L 7.5960 93.5628 H -7.4803 Z" style="stroke:forestgreen;fill:forestgreen;stroke-width:1;"></path></svg>'},
 
   {id:'break0'                    , position:'menuGauche' , cssText:'height:15px;' },
 
