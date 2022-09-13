@@ -1972,7 +1972,7 @@ function myObj1(initObj1){
   // zzvin.svg , zzSimplificationChemin.svg zzSVG_Logo-svgomg.svg zzsagami_single-svgomg.svg zztest-car-lite.svg
 //  contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4.8229 -4.8229  224.8229 106.4479"><defs><pattern id="pat01" viewBox="0,0,14,14" width="20%" height="20%"><g fill="blue" stroke="red" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 5.5 5.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d=" M -1.5 5.5   a 2 2 0 1 0 0 3   a 2 2 0 0 1 3 0   a 2 2 0 1 0 0 -3   a 2 2 0 0 1 -3 0  "></path><path d="M 12.5 5.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M 5.5 -1.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M 5.5 12.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M -1.5 -1.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M 12.5 -1.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M 12.5 12.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M -1.5 12.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path></g></pattern></defs><circle cx="71.6876" cy="51.625" r="50" fill="url(#pat01)"></circle><circle cx="180" cy="50" r="40" fill="none" stroke-width="30" stroke="url(#pat01)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
   contentOfPopup+=' <br /><br /><button id="test21"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"    xmlns:xlink="http://www.w3.org/1999/xlink">  <style>    .classA {      fill: red;    }  </style>  <defs>    <g id="Port">      <circle style="fill: inherit;" r="10"/>    </g>  </defs>  <text y="15">black</text>  <use x="50" y="10" href="#Port" />  <text y="35">red</text>  <use x="50" y="30" href="#Port" class="classA"/>  <text y="55">blue</text>  <use x="50" y="50" href="#Port" style="fill: blue;"/></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test21 use &amp; style </button>';
-  contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15.6056 -15.6056  216.6056 98.6056"><defs><pattern id="pat01" viewBox="0,0,46,46" width="20%" height="20%"><path fill="red" stroke="blue" d=" M -6 -5 A 7 7 0 1 1 6 -5 A 4 7 0 0 0 6 5 A 7 7 0 1 1 -6 5 A 4 7 0 0 0 -6 -5 M 18 -6 A 7 7 -1 1 0 18 6 A 7 4 0 0 1 28 6 A 7 7 0 1 0 28 -6 A 7 4 0 0 1 18 -6 M -5 17 A 7 7 -1 1 0 -5 29 A 7 4 0 0 1 5 29 A 7 7 0 1 0 5 17 A 7 4 0 0 1 -5 17 M 17 18 A 7 7 0 1 1 29 18 A 4 7 0 0 0 29 28 A 7 7 0 1 1 17 28 A 4 7 0 0 0 17 18 M 40 -5 A 7 7 0 1 1 52 -5 A 4 7 0 0 0 52 5 A 7 7 0 1 1 40 5 A 4 7 0 0 0 40 -5 M 41 17 A 7 7 -1 1 0 41 29 A 7 4 0 0 1 51 29 A 7 7 0 1 0 51 17 A 7 4 0 0 1 41 17 M -6 41 A 7 7 0 1 1 6 41 A 4 7 0 0 0 6 51 A 7 7 0 1 1 -6 51 A 4 7 0 0 0 -6 41 M 18 40 A 7 7 -1 1 0 18 52 A 7 4 0 0 1 28 52  A 7 7 0 1 0 28 40 A 7 4 0 0 1 18 40 M 40 41 A 7 7 0 1 1 52 41 A 4 7 0 0 0 52 51 A 7 7 0 1 1 40 51 A 4 7 0 0 0 40 41"></path></pattern></defs><circle cx="89" cy="42" r="41" fill="url(#pat01)"></circle><circle cx="162" cy="41" r="39" fill="none" stroke-width="30" stroke="url(#pat01)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
+  contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="-15.6056 -15.6056  216.6056 95.6056"><defs><pattern id="pat01" viewBox="0,0,46,46" width="20%" height="20%"><path fill="red" stroke="blue" stroke-linecap="round" stroke-linejoin="round" d=" M -6 -5 A 7 7 0 1 1 6 -5 A 4 7 0 0 0 6 5 A 7 7 0 1 1 -6 5 A 4 7 0 0 0 -6 -5 M 18 -6 A 7 7 -1 1 0 18 6 A 7 4 0 0 1 28 6 A 7 7 0 1 0 28 -6 A 7 4 0 0 1 18 -6  M -5 17 A 7 7 -1 1 0 -5 29 A 7 4 0 0 1 5 29 A 7 7 0 1 0 5 17 A 7 4 0 0 1 -5 17 M 17 18 A 7 7 0 1 1 29 18 A 4 7 0 0 0 29 28 A 7 7 0 1 1 17 28 A 4 7 0 0 0 17 18 M 40 -5 A 7 7 0 1 1 52 -5 A 4 7 0 0 0 52 5 A 7 7 0 1 1 40 5 A 4 7 0 0 0 40 -5 M 41 17 A 7 7 -1 1 0 41 29 A 7 4 0 0 1 51 29 A 7 7 0 1 0 51 17 A 7 4 0 0 1 41 17 M -6 41 A 7 7 0 1 1 6 41 A 4 7 0 0 0 6 51 A 7 7 0 1 1 -6 51 A 4 7 0 0 0 -6 41 M 18 40 A 7 7 -1 1 0 18 52 A 7 4 0 0 1 28 52 A 7 7 0 1 0 28 40 A 7 4 0 0 1 18 40 M 40 41 A 7 7 0 1 1 52 41 A 4 7 0 0 0 52 51 A 7 7 0 1 1 40 51 A 4 7 0 0 0 40 41"></path></pattern></defs><circle cx="161.7501" cy="40.9994" r="19.312375" fill="url(#pat01)"></circle><circle cx="162" cy="41" r="39" fill="none" stroke-width="30" stroke="url(#pat01)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
   contentOfPopup+=' <br /><br /><button id="test19"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="-28.9289 -24.9948  170.6555 150.0684"><defs><clipPath id="cp" transform="rotate(10)"><path transform="translate(3 3)" d="M 22.9695 18.0532 C 14.1526 18.0532 -3.4807 35.199 -10.093 39.4856 C -14.5013 42.3431 -5.6849 52.3449 -5.6849 53.7739 C -5.6849 55.2027 -5.6849 56.6317 -5.6849 56.6317 C 3.132 62.347 14.1526 65.2046 22.9695 102.3543 C 31.7859 69.4911 56.0316 75.2063 75.8691 102.3543 C 75.8691 62.347 91.2982 63.7758 133.1773 68.0622 C 95.7067 46.6297 58.2361 25.1973 139.7899 19.482 C 97.9108 20.9107 53.8278 19.482 108.9316 -11.9526 C 86.89 -19.0967 22.9695 10.909 20.765 -23.3831 " style="stroke:rgb(0, 0, 0);fill:blanchedalmond;stroke-width:0;stroke-opacity:1;fill-opacity:1;opacity:1;"></path></clipPath></defs><rect x="3" y="4" width="70" height="66" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#cp)" style="stroke:rgb(0, 0, 0);fill:rosybrown;stroke-width:1;stroke-opacity:1;fill-opacity:0.5;opacity:1;"></rect></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test19 clipPath</button>';
   contentOfPopup+=' <br /><br /><button id="test17"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="0 -1  442.2656 377.5"><defs><filter id="filtered-3" height="220%"><feFlood flood-color="#551C0B" result="COLOR-outline"></feFlood><feMorphology operator="dilate" radius="0.3" in="SourceAlpha" result="OUTLINE_10"></feMorphology><feComposite operator="in" in="COLOR-outline" in2="OUTLINE_10" result="OUTLINE_20"></feComposite><feGaussianBlur stdDeviation="4" in="SourceAlpha" result="LIGHTING-EFFECTS_10"></feGaussianBlur><feSpecularLighting surfaceScale="5" specularConstant="0.5" specularExponent="7.5" lighting-color="#white" in="LIGHTING-EFFECTS_10" result="LIGHTING-EFFECTS_20"><fePointLight x="750" y="-50" z="300"></fePointLight></feSpecularLighting><feComposite in2="SourceAlpha" operator="in" in="LIGHTING-EFFECTS_20" result="LIGHTING-EFFECTS_30"></feComposite><feComposite operator="arithmetic" k1="0" k2="1" k3="1" k4="0" in="SourceGraphic" in2="LIGHTING-EFFECTS_30" result="LIGHTING-EFFECTS_40"></feComposite><feComponentTransfer in="LIGHTING-EFFECTS_40" result="COLOR-EFFECTS_10"><feFuncR type="gamma" offset="-1.3" amplitude="10" exponent="4.84"></feFuncR><feFuncB type="gamma" offset="-1.3" amplitude="10.1" exponent="40.84"></feFuncB></feComponentTransfer><feMerge><feMergeNode in="OUTLINE_20"></feMergeNode><feMergeNode in="COLOR-EFFECTS_10"></feMergeNode></feMerge></filter></defs><text filter="url(#filtered-3)" x="20" y="140" font-size="140" stroke="#EF7349" fill="#EF7349">BLOP!</text><g fill="transparent" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke="#EF7349"><path filter="url(#filtered-3)" d="M 387 226 C 382.55 226 344.7 277.28 329 292 C 286.38 331.96 230.33 371 170 371 "></path><path filter="url(#filtered-3)" stroke-width="20" stroke="#EF7349" fill="transparent" d=" M 342.5 289.5 C 317.46 321.54 239.49 367.5 212.5 376.5 "></path></g></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test17 filtres 2</button>';
   contentOfPopup+=' <br /><br /><button id="test16"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<defs><filter id="MyFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="200" height="120"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"></feGaussianBlur><feOffset in="blur" dx="4" dy="4" result="offsetBlur"></feOffset><feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.75" specularExponent="20" lighting-color="#bbbbbb" result="specOut"><fePointLight x="-5000" y="-10000" z="20000"></fePointLight></feSpecularLighting><feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"></feComposite><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint"></feComposite><feMerge><feMergeNode in="offsetBlur"></feMergeNode><feMergeNode in="litPaint"></feMergeNode></feMerge></filter></defs><g filter="url(#MyFilter)"><path fill="none" stroke="#D90000" stroke-width="10" d=" M 50 66 c -50 0 -50 -60 0 -60 h 100 c 50 0 50 60 1 60  z"></path><path fill="#D90000" d="M60,56 c-30,0 -30,-40 0,-40 h80 c30,0 30,40 0,40z"></path><g fill="#FFFFFF" stroke="black" font-size="45" font-family="Verdana"><text x="52" y="52">SVG</text></g></g></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test16 filtres</button>';
@@ -4145,12 +4145,53 @@ function myObj1(initObj1){
 
   saveStte();
  }
- 
-/* 
- 
-*/ 
- 
- 
+ //========================================================================================================
+ function autresKoolsols(){
+  var t='';
+  t+='<hr />'
+  t+='<fieldset>';
+  t+='<legend>koolsol ;-)</legend>';
+  
+  t+='<div style="text-align:center;justify-content: center;display:flex;flex-wrap: wrap;" >';
+
+  t+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://www.koolsol.com/">';
+  t+='<svg class="" style="width: 100px; height: 25px;  margin: 0 5px;" viewBox="-7.2653 -1  59.286 15.75"><path d="M 14.5 2.75 C 12.25 -0.75 8 -0.5 8 4 C 8 8.75 12.25 11 14.5 13.5 C 16.5 11 20.75 8.75 20.75 4 C 20.75 -0.5 16.5 -0.75 14.5 2.75 " stroke="rgb(255, 0, 0)" stroke-width="1" fill="red" stroke-linejoin="round" stroke-linecap="round" transform=""></path><path d="M 28.5 0 C 26.25 2.25 24.25 4.25 22 6.5 C 24.25 8.75 26.25 10.75 28.5 13 C 30.75 10.75 32.75 8.75 35 6.5 C 32.75 4.25 30.75 2.25 28.5 0 " stroke="rgb(255, 0, 0)" stroke-width="1" fill="red" stroke-linejoin="round" stroke-linecap="round" transform=""></path><path d=" M 0 0 C -2.25 3 -7.5 6.25 -6 9  C -5 10.75 -2.25 9.75 -0.25 8.5 C -1 10 -1 10 -2.5 13.5 C -1.25 13.5 1.25 13.5 2.5 13.5 C 1 10 1 10 0.25 8.5 C 2.5 9.75 5 10.75 6 9 C 7.5 6.25 2.25 3 0 0" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:black;stroke-width:1;"></path><path d="M 44.5 0 C 41 0 40.25 3.5 44.5 6.5 C 40.25 5.5 37 5 38.25 8.75 C 39.5 12 42.25 10 44.5 6.5 C 43.5 10.25 43.5 10.25 42 13.75 C 43.25 13.75 45.75 13.75 47 13.75 C 45.5 10.25 45.5 10.25 44.5 6.5 C 47 10 49.5 12 50.75 8.75 C 52 5 48.75 5.5 44.5 6.5 C 48.75 3.5 48 0 44.5 0 " stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:black;stroke-width:1;"></path></svg>';
+  t+='solitaire';
+  t+='</a>'; // 
+  
+
+  t+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://memory.koolsol.app/">';
+  t+='<svg class="" style="width: 25px; height: 25px;  margin: 0 5px;" viewBox="10.25 2.4375  10.5101 9.021"><path d=" M 19.5 7.25  C 18.5 6 17.75 6.25 16.75 6.25" stroke="rgb(0, 0, 0)" stroke-width="0.5" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:mediumvioletred;fill:transparent;stroke-width:0.5;"></path><path d="M 18.25 6.25 C 17.75 6 17.75 5.5 17.5 5.25 " stroke="rgb(0, 0, 0)" stroke-width="0.5" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:mediumvioletred;fill:transparent;stroke-width:0.5;"></path><path d=" M 18 7.75 C 16.75 7.75 16.25 9.25 15 9.75 " stroke="rgb(0, 0, 0)" stroke-width="0.5" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:mediumvioletred;fill:transparent;stroke-width:0.5;"></path><path d=" M 14.25 6.75 C 14.5 6.5 15 6.25 15.5 6.5 " stroke="rgb(0, 0, 0)" stroke-width="0.5" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:hotpink;fill:transparent;stroke-width:0.5;"></path><path d=" M 13.5 9  C 14.5 8.25 14.5 6.5 13.5 6" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:mediumvioletred;fill:transparent;stroke-width:0.5;"></path><path d="M 16 3.75 C 15.5 4 15.25 4.5 15 5 " stroke="rgb(0, 0, 0)" stroke-width="0.5" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:mediumvioletred;fill:transparent;stroke-width:0.5;"></path><path stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" d="M 12 5.25 C 12 4.25 13 4 13.75 4 c 0.75 -0.75 1.75 -0.75 2.5 0 c 1 -0.5 2.25 0 2.75 1 c 0.75 0.75 1 1.5 0.5 2.25 c 0 0.5 0.25 1.25 -0.5 1.75 c -0.75 1.5 -2.5 2 -4 0.75 c -0.5 0 -1 -0.25 -1.25 -0.5 c -0.5 0 -0.75 0 -1.25 0 c -0.5 0 -1.25 -0.75 -1.25 -1.25 c 0 -0.5 0 -1 0 -1.25 c 0 -0.5 0.5 -0.75 0.75 -1 z " style="stroke:red;fill:pink;stroke-width:0.5;stroke-opacity:1;fill-opacity:0.8;"></path></svg>';
+  t+='memory';
+  t+='</a>'; // 
+  
+  
+  t+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://memory.koolsol.app/">';
+  t+='<svg class="" style="width: 25px; height: 25px;  margin: 0 5px;" viewBox="-1 -1  11 11"><g fill="lightblue " stroke="blue" stroke-width="0.2"><rect x="0" y="0" width="3" height="3"></rect><rect x="3" y="0" width="3" height="3"></rect><rect x="6" y="0" width="3" height="3"></rect><rect x="0" y="3" width="3" height="3"></rect><rect x="3" y="3" width="3" height="3"></rect><rect x="6" y="3" width="3" height="3"></rect><rect x="0" y="6" width="3" height="3"></rect><rect x="3" y="6" width="3" height="3"></rect><rect x="6" y="6" width="3" height="3"></rect></g><g stroke="blue" stroke-width="0.1"><line x1="1" y1="0" x2="1" y2="9"></line><line x1="2" y1="0" x2="2" y2="9"></line><line x1="4" y1="0" x2="4" y2="9"></line><line x1="5" y1="0" x2="5" y2="9"></line><line x1="7" y1="0" x2="7" y2="9"></line><line x1="8" y1="0" x2="8" y2="9"></line><line x1="0" y1="1" x2="9" y2="1"></line><line x1="0" y1="2" x2="9" y2="2"></line><line x1="0" y1="4" x2="9" y2="4"></line><line x1="0" y1="5" x2="9" y2="5"></line><line x1="0" y1="7" x2="9" y2="7"></line><line x1="0" y1="8" x2="9" y2="8"></line></g><circle cx="0.5" cy="0.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:blue;fill:blue;stroke-width:0.1;"></circle><circle cx="4.5" cy="2.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:blue;fill:blue;stroke-width:0.1;"></circle><circle cx="8.5" cy="1.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:blue;fill:blue;stroke-width:0.1;"></circle><circle cx="7.5" cy="3.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:blue;fill:blue;stroke-width:0.1;"></circle><circle cx="6.5" cy="8.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:blue;fill:blue;stroke-width:0.1;"></circle><circle cx="5.5" cy="4.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:blue;fill:blue;stroke-width:0.1;"></circle><circle cx="1.5" cy="5.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:blue;fill:blue;stroke-width:0.1;"></circle><circle cx="2.5" cy="6.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:blue;fill:blue;stroke-width:0.1;"></circle><circle cx="3.5" cy="7.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:blue;fill:blue;stroke-width:0.1;"></circle><circle cx="0.5" cy="2.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:crimson;fill:crimson;stroke-width:0.1;"></circle><circle cx="3.5" cy="1.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:crimson;fill:crimson;stroke-width:0.1;"></circle><circle cx="6.5" cy="0.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:crimson;fill:crimson;stroke-width:0.1;"></circle><circle cx="7.5" cy="4.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:crimson;fill:crimson;stroke-width:0.1;"></circle><circle cx="8.5" cy="7.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:crimson;fill:crimson;stroke-width:0.1;"></circle><circle cx="5.5" cy="6.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:crimson;fill:crimson;stroke-width:0.1;"></circle><circle cx="4.5" cy="5.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:crimson;fill:crimson;stroke-width:0.1;"></circle><circle cx="1.5" cy="3.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:crimson;fill:crimson;stroke-width:0.1;"></circle><circle cx="2.5" cy="8.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:crimson;fill:crimson;stroke-width:0.1;"></circle><circle cx="2.5" cy="1.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:forestgreen;fill:forestgreen;stroke-width:0.1;"></circle><circle cx="5.5" cy="0.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:forestgreen;fill:forestgreen;stroke-width:0.1;"></circle><circle cx="6.5" cy="2.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:forestgreen;fill:forestgreen;stroke-width:0.1;"></circle><circle cx="8.5" cy="5.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:forestgreen;fill:forestgreen;stroke-width:0.1;"></circle><circle cx="7.5" cy="6.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:forestgreen;fill:forestgreen;stroke-width:0.1;"></circle><circle cx="3.5" cy="3.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:forestgreen;fill:forestgreen;stroke-width:0.1;"></circle><circle cx="4.5" cy="8.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:forestgreen;fill:forestgreen;stroke-width:0.1;"></circle><circle cx="0.5" cy="4.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:forestgreen;fill:forestgreen;stroke-width:0.1;"></circle><circle cx="1.5" cy="7.5" r="0.1875" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" style="stroke:forestgreen;fill:forestgreen;stroke-width:0.1;"></circle></svg>  ';
+  t+='sudoku';
+  t+='</a>'; // 
+  
+  
+  t+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://minesweeper.koolsol.app/">';
+  t+='<svg class="" style="width: 25px; height: 25px;  margin: 0 5px;" viewBox="-1 -1.2604  20 20.507"><g fill="white" stroke="green" stroke-width="0.3" transform=""><rect x="0" y="0" width="3" height="3"></rect><rect x="3" y="0" width="3" height="3"></rect><rect x="6" y="0" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="9" y="0" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="12" y="0" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="15" y="0" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="12" y="3" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="15" y="3" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="12" y="6" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="15" y="6" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="12" y="9" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="15" y="9" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="9" y="12" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="12" y="12" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="15" y="12" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="9" y="15" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="12" y="15" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="15" y="15" width="3" height="3" style="fill:dodgerblue;"></rect></g><g fill="white" stroke="green" stroke-width="0.3" transform="   "><rect x="0" y="3" width="3" height="3"></rect><rect x="3" y="3" width="3" height="3"></rect><rect x="6" y="3" width="3" height="3"></rect><rect x="9" y="3" width="3" height="3"></rect></g><g fill="white" stroke="green" stroke-width="0.3" transform="   "><rect x="0" y="6" width="3" height="3"></rect><rect x="3" y="6" width="3" height="3"></rect><rect x="6" y="6" width="3" height="3"></rect><rect x="9" y="6" width="3" height="3"></rect></g><g fill="white" stroke="green" stroke-width="0.3" transform="   "><rect x="0" y="9" width="3" height="3" style="fill:dodgerblue;"></rect><rect x="3" y="9" width="3" height="3"></rect><rect x="6" y="9" width="3" height="3"></rect><rect x="9" y="9" width="3" height="3"></rect></g><g fill="white" stroke="green" stroke-width="0.3" transform="   "><rect x="0" y="12" width="3" height="3"></rect><rect x="3" y="12" width="3" height="3"></rect><rect x="6" y="12" width="3" height="3"></rect></g><g fill="white" stroke="green" stroke-width="0.3" transform="   "><rect x="0" y="15" width="3" height="3"></rect><rect x="3" y="15" width="3" height="3"></rect><rect x="6" y="15" width="3" height="3"></rect></g><text x="0.75" y="8.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text><text x="3.75" y="8.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text><text x="3.75" y="5.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text><text x="3.75" y="2.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text><text x="3.75" y="11.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text><text x="3.75" y="14.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text><text x="0.75" y="14.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text><text x="6.75" y="5.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text><text x="9.75" y="5.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">2</text><text x="9.75" y="8.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text><text x="9.75" y="11.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">2</text><text x="6.75" y="11.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text><text x="6.75" y="14.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text><text x="6.75" y="17.5" style="font-size:3;stroke-width:0.12;stroke:black;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;opacity:1;">1</text></svg>';
+  t+='minesweeper';
+  t+='</a>'; // 
+
+  t+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://todo.koolsol.app/">';
+  t+='<svg class="" style="width: 25px; height: 25px;  margin: 0 5px;" viewBox="1 1  19 19"><rect x="2" y="2" width="17" height="17" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:lime;stroke-width:1;"></rect><path d=" M 6 10 C 6 10 8 14 10 14 C 10 10 16 6 16 6 " stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:white;fill:transparent;stroke-width:2;"></path></svg>';
+  t+='todo';
+  t+='</a>'; // 
+  
+  
+  t+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://syllabes.koolsol.app/">';
+  t+='<svg class="" style="width: 80px; height: 25px;  margin: 0 5px;" viewBox="-2 -12  63 19"><text x="0" y="1" style="font-size:12;stroke-width:0.35;stroke:blue;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;">syl</text><text x="40" y="1" style="font-size:12;stroke-width:0.35;stroke:blue;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;">bes</text><text x="23" y="1" style="font-size:12;stroke-width:0.35;stroke:blue;fill:blue;font-family:monospace;stroke-opacity:1;fill-opacity:1;">la</text><rect x="-1" y="-11" width="21" height="17" stroke="rgb(0, 0, 0)" stroke-width="0.5" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:transparent;stroke-width:1;"></rect><rect x="22" y="-11" width="15" height="17" stroke="rgb(0, 0, 0)" stroke-width="0.5" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:transparent;stroke-width:1;"></rect><rect x="39" y="-11" width="21" height="17" stroke="rgb(0, 0, 0)" stroke-width="0.5" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(0, 0, 0);fill:transparent;stroke-width:1;"></rect></svg>';
+  t+='</a>'; // 
+  
+
+  t+='</div>';
+  t+='</fieldset>';
+  return t;
+ }  
  //========================================================================================================
  function popupParametres1(){
   var contentOfPopup='<h3>'+trad['gerpar']+'</h3>';
@@ -4284,6 +4325,8 @@ function myObj1(initObj1){
     contentOfPopup+='</div>';
 
     contentOfPopup+='<div style="text-align:center;justify-content: center;display:flex;flex-wrap: wrap;" >';
+    
+    contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://pattern.monster/">patern monster</a>';
     contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://svgsilh.com/">svgsilh.com</a>';
     contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://www.svgrepo.com/">svgrepo.com</a>';
     contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://freesvg.org/">freesvg.org</a>';
@@ -4294,7 +4337,7 @@ function myObj1(initObj1){
     contentOfPopup+='<div style="text-align:center;justify-content: center;display:flex;flex-wrap: wrap;" >';
     contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://github.com/hugues-koolsol/my-public/tree/master/svg">';
     contentOfPopup+='<svg class="svgBoutonGauche1" style="width: 25px; height: 25px;  margin: 0 5px;" viewBox="0 0  16 15.6053"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>';
-    contentOfPopup+='github';
+    contentOfPopup+='github src';
     contentOfPopup+='</a>'; // 
     contentOfPopup+='</div>';
 
@@ -4313,8 +4356,9 @@ function myObj1(initObj1){
   contentOfPopup+='</fieldset>';
   
   
+  contentOfPopup+=autresKoolsols();
   
-  contentOfPopup+='<span style="font-size: 0.8em;display: block;margin: 0 auto;text-align: center;">Version : '+global_version_number+'</span>';
+  contentOfPopup+='<br /><hr /><br /><span style="font-size: 0.8em;display: block;margin: 0 auto;text-align: center;">Version : '+global_version_number+'</span>';
   
   
   popupValue.innerHTML=contentOfPopup;
@@ -9212,7 +9256,7 @@ function myObj1(initObj1){
   ss.insertRule('.bckJaune{background:'+bckJaune+';color:red;}' , ss.cssRules.length);  
   ss.insertRule('.bckRose{background:'+bckRose+';color:red;}' , ss.cssRules.length);  
   
-  ss.insertRule('.lienExt1{padding:0px 5px ;display: flex;align-items: center;}' , ss.cssRules.length);  
+  ss.insertRule('.lienExt1{padding:0px 5px ;display: flex;align-items: center;margin:5px;}' , ss.cssRules.length);  
   
   
   
@@ -9561,7 +9605,14 @@ function myObj1(initObj1){
   
   for(var i=0;i<_dssvg.arbre0.length;i++){
    if(_dssvg.arbre0[i].id==idToDelete){
+    
+    
     _dssvg.arbre0.splice(i,1);
+    if(globalGeneralSvgReferenceElement && globalGeneralSvgReferenceElement.getAttribute('data-idarbre1') && globalGeneralSvgReferenceElement.getAttribute('data-idarbre1')==i){
+     globalGeneralSvgReferenceElement=null;
+    }
+    
+    
     break;
    }
   }
@@ -12185,6 +12236,8 @@ function myObj1(initObj1){
      str0=str0.replace(/ \./g,' 0.');
      str0=str0.replace(/ \-\./g,' -0.');
      str0=str0.replace(/ e/g,'e');
+     str0=str0.replace(/a/g,' a').replace(/ a/g,' a');
+     str0=str0.replace(/c/g,' c').replace(/ c/g,' c');
      var keys  = str0.match(/[ZzMmLlHhVvZzCcAaQqTtSs]/g);
      var paths = str0.split(/[ZzMmLlHhVvZzCcAaQqTtSs]/g).filter(
       function(v){ 
@@ -12459,6 +12512,33 @@ function myObj1(initObj1){
              case "a" : case 'A' :
                   var arr = paths[indicePath].split(/[\s,]+/).filter(function(v) { return v.length > 0 });
                   var tousLesTableaux=[];
+                  
+//                  console.log('arr=',arr);
+                  
+                  
+                  if( !( arr.length==7 || arr.length%7===0 ) ){
+                   // si la taille du tableau n'est pas un multiple de 7
+                   var newA=[];
+                   var offset=0;
+                   for(var n=0;n<arr.length;n++){
+                    if(n>0 && (n-3+offset)%6==0){
+                     if( (typeof arr[n] === 'string' || arr[n] instanceof String) && arr[n].length===2){
+                      newA.push(arr[n].substr(0,1));
+                      newA.push(arr[n].substr(1,1));
+//                      offset+=1;
+                     }else{
+                      newA.push(arr[n].substr(0,1));
+                      newA.push(arr[n].substr(1,1));
+                      newA.push(arr[n].substr(2));
+                      offset+=1;
+                     }
+                    }else{
+                     newA.push(arr[n]);
+                    }
+                   }
+//                   console.log('newA=',newA);
+                   arr=newA;
+                  }
                   if(arr.length==7){
                    tabOri.push([keys[i] , parseFloat(arr[0]) , parseFloat(arr[1]) , parseFloat(arr[2]) , parseFloat(arr[3]) , parseFloat(arr[4]) , parseFloat(arr[5]) , parseFloat(arr[6]) ]);
                    if(keys[i]=='a'){
@@ -12537,6 +12617,8 @@ function myObj1(initObj1){
          if(lasty<miny){miny=lasty;}
          if(lasty>maxy){maxy=lasty;}
      }
+//     console.log('tabOri=',tabOri);     console.log('tabAbs=',tabAbs);
+     
      return { tabOri:tabOri , tabAbs:tabAbs , tabPts:tabPts, sizes:{minx:minx , maxx:maxx , miny:miny , maxy:maxy} };
  }
  //========================================================================================================
