@@ -636,6 +636,12 @@ function myObj1(initObj1){
        arrdi10000(obj.tabOri[j][7]*ech) 
       ];
       tutu+=' '+obj.tabOri[j].join(' ');
+     }else if(obj.tabOri[j][0].toUpperCase()==='V'  ){
+      tutu+=' '+obj.tabOri[j][0];
+      tutu+=' ' + arrdi10000(obj.tabOri[j][1]*ech);
+     }else if(obj.tabOri[j][0].toUpperCase()==='H'  ){
+      tutu+=' '+obj.tabOri[j][0];
+      tutu+=' ' + arrdi10000(obj.tabOri[j][1]);
      }else{
       tutu+=' '+obj.tabOri[j][0];
       for(var k=1;k<obj.tabOri[j].length;k+=2){
@@ -707,6 +713,12 @@ function myObj1(initObj1){
        arrdi10000(obj.tabOri[j][7]) 
       ];
       tutu+=' '+obj.tabOri[j].join(' ');
+     }else if(obj.tabOri[j][0].toUpperCase()==='H'  ){
+      tutu+=' '+obj.tabOri[j][0];
+      tutu+=' ' + arrdi10000(obj.tabOri[j][1]*ech);
+     }else if( obj.tabOri[j][0].toUpperCase()==='V' ){
+      tutu+=' '+obj.tabOri[j][0];
+      tutu+=' ' + arrdi10000(obj.tabOri[j][1]);
      }else{
       tutu+=' '+obj.tabOri[j][0];
       for(var k=1;k<obj.tabOri[j].length;k+=2){
@@ -7049,6 +7061,9 @@ function myObj1(initObj1){
      
       
      if(poigneeAffichable(pt0.x,pt0.y)){
+      if(globalSelectionPoints.tabAbsolu[i][0]=='M'){
+       strokWit=4;
+      }
       var dot = ajouteElemDansElem(refZnDessin,'circle',{'data-indicepoint':i,cx:pt0.x,cy:pt0.y,'data-type':'toRemove','data-elem':_dssvg.idArbreCourant,'data-recherche1':recherche1,'data-indice':i+',1,2','data-fnt':'actionMoveSelectionPtElement',r:rayonPoint,style:'fill:'+filcol+';opacity:0.7;'+strk+';stroke-width:'+(strokWit/_dssvg.zoom1)+';'});
       dot.addEventListener('mousedown',mouseDownSelectionPtElement,'dot')
       dot.addEventListener('touchstart',touchDownSelectionPtElement,'dot')
