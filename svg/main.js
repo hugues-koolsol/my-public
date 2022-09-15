@@ -129,7 +129,7 @@ function myObj1(initObj1){
  var kellyColor1=null;
 // var svgEtoile='<svg class="svgBoutonGauche1" viewBox="2 0  57 56"><polygon points="  30 9   35 23 50 23 40 33 45 48 30 38 15 48 20 33 10 23 25 23" fill="transparent" stroke-width="5" style="stroke:blue;fill:transparent;stroke-width:5;stroke-opacity:1;fill-opacity:1;"></polygon></svg>';
  var svgEtoile='<svg class="svgBoutonGauche1" viewBox="-95.1057 -100.5  190.2114 180.9017"><polygon points=" 0 -100.5  17.6336 -24.7705  95.1057 -31.4017  28.5317 8.7705  58.7785 80.4017  0 29.5  -58.7785 80.4017  -28.5317 8.7705  -95.1057 -31.4017  -17.6336 -24.7705  0 -100.5 " stroke-linecap="round" stroke-linejoin="round" style="stroke-width:15;stroke:blue;fill:transparent;"></polygon></svg>';
- 
+ var styylCopie=null;
  
  
  
@@ -315,7 +315,7 @@ function myObj1(initObj1){
   contentOfPopup+='<div id="parNombreDeBranchesValeur" style="display:inline-block;min-width:2rem;">8</div>';
   contentOfPopup+='<label for="parNombreDeBranches"> : '+trad['nombre_de_branches']+'</label>';
   contentOfPopup+='<div>';
-   contentOfPopup+='<input id="parNombreDeBranches" type="range" min="3" max="64" step="1" value="8" style="width:95%;min-width:200px;max-width:500px;" />';
+   contentOfPopup+='<input id="parNombreDeBranches" type="range" min="3" max="72" step="1" value="8" style="width:95%;min-width:200px;max-width:500px;" />';
   contentOfPopup+='</div>';
   contentOfPopup+='</div>';
   
@@ -3179,7 +3179,37 @@ function myObj1(initObj1){
     strokeData.context=''+jso.action+'';
     popupOpacity(null);
     
+    
+
+
+
+   }else if('pastestyyl'===jso.action){
+    
+    if(styylCopie!==null){
+     for(var v in styylCopie){
+      majPropArbre(jso.numArbre , v , styylCopie[v].valeur , false );
+     }
+     afficheArbre0({init:false});
+    }
+
+   }else if('copystyyl'===jso.action){
+    
+    var couleurs=recuperePropsCouleurs(jso.numArbre);
+    styylCopie=null;
+    try{
+     styylCopie=JSON.parse(JSON.stringify(couleurs));
+    }catch(ek){}
+    
+    
+   }else if('editElement'===jso.action){
+    popupArbo1();
+    setTimeout( function(){_editFunction1(jso.numArbre);},50 );
+    
+    
    }else if('suppAttribGra1'===jso.action){
+    
+    
+    
     var indA=recupereIndiceArbre(jso.numArbre);
     for( n in _dssvg.arbre0[indA].data.attributes){
      if(n==='style' || n==='fill' || n==='fill-opacity' || n==='stroke' || n==='stroke-width' || n==='stroke-opacity'  || n==='opacity'  || n==='stroke-linecap'  || n==='stroke-linejoin' ){
@@ -3293,7 +3323,7 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function setOpacity(e){
-  majPropArbre(strokeData.numArbre , strokeData.context , strokeData.value );
+  majPropArbre(strokeData.numArbre , strokeData.context , strokeData.value , true );
   closePopup();
  }
  //========================================================================================================
@@ -3309,7 +3339,7 @@ function myObj1(initObj1){
    }
   }else{
    strokeData.value=parseFloat(e.target.getAttribute('data-fixer'));
-   majPropArbre(strokeData.numArbre , strokeData.context , strokeData.value );
+   majPropArbre(strokeData.numArbre , strokeData.context , strokeData.value , true );
    closePopup();
   }
  }
@@ -3361,7 +3391,7 @@ function myObj1(initObj1){
  
  //========================================================================================================
  function setStrokeWidth(e){
-  majPropArbre(strokeData.numArbre , strokeData.context , strokeData.value );
+  majPropArbre(strokeData.numArbre , strokeData.context , strokeData.value , true );
   _dssvg.strokeWidth1=strokeData.value;
   closePopup();
  }
@@ -3377,7 +3407,7 @@ function myObj1(initObj1){
    }
   }else if(e.target.getAttribute('data-fixer')){
    strokeData.value=parseFloat(e.target.getAttribute('data-fixer'));
-   majPropArbre(strokeData.numArbre , strokeData.context , strokeData.value );
+   majPropArbre(strokeData.numArbre , strokeData.context , strokeData.value , true );
    _dssvg.strokeWidth1=strokeData.value;
    closePopup();
   }
@@ -9246,7 +9276,7 @@ function myObj1(initObj1){
   ss.insertRule('.butMenuHaut{height:'+(he_of_the_menutpe-2*wi_of_the_brds1-globalScrollWidth1)+'px;margin-right:'+(_dssvg.parametres.intervalleEntreBtns)+'px;min-width: fit-content;width: min-content;display:inline-block;white-space:pre;}' , ss.cssRules.length);  
   ss.insertRule('#divlag1 {overflow:hidden;font-size:0.8em;}' , ss.cssRules.length);  
   ss.insertRule('#divlag1 span{display:inline-block;min-width:6em;}' , ss.cssRules.length);  
-  ss.insertRule('#divlag2 {overflow:hidden;font-size:0.8em;background:white;border:1px #444 outset;}' , ss.cssRules.length);  
+  ss.insertRule('#divlag2 {overflow:hidden;font-size:0.8em;background:white;border:1px #444 outset;display:flex;flex-flow:row wrap;}' , ss.cssRules.length);  
   ss.insertRule('#divlag2 button,#divlag2 div{display:inline-block;margin-right:3px;padding-right:3px;height:'+(he_of_the_menutpe-2*wi_of_the_brds1-globalScrollWidth1-2)+'px;}' , ss.cssRules.length);  
   ss.insertRule('.butpopUp{margin-right:'+(_dssvg.parametres.intervalleEntreBtns)+'px;min-width:'+(wi_of_the_menulft-2*wi_of_the_brds1-globalScrollWidth1)+'px;display:inline-block;}' , ss.cssRules.length);  
   
@@ -10414,10 +10444,10 @@ function myObj1(initObj1){
   
   
   if(colorPickerData.context=='strokeElement'){
-   majPropArbre(colorPickerData.numArbre , 'stroke' , colorPickerData.value );
+   majPropArbre(colorPickerData.numArbre , 'stroke' , colorPickerData.value , true );
   }
   if(colorPickerData.context=='fillElement'){
-   majPropArbre(colorPickerData.numArbre , 'fill' , colorPickerData.value );
+   majPropArbre(colorPickerData.numArbre , 'fill' , colorPickerData.value , true );
   }
   
 
@@ -10789,10 +10819,22 @@ function myObj1(initObj1){
  //========================================================================================================
  function clickDownDivLag2(e){
   e.stopPropagation();
+  console.log('e.target.nodeName=',e.target.nodeName);
   if(e.target.nodeName.toLowerCase()==='button'){
    var action=e.target.getAttribute('data-action');
    if(action){
     traiterAction(action);
+   }
+  }else{
+   var p=e.target.parentNode;
+   while(p.nodeName.toLowerCase()!=='button'){
+    p=p.parentNode;
+   }
+   if(p.nodeName.toLowerCase()==='button'){
+    var action=p.getAttribute('data-action');
+    if(action){
+     traiterAction(action);
+    }
    }
   }
   return;
@@ -10811,7 +10853,16 @@ function myObj1(initObj1){
     lang='en';
     setTrad_en();
     document.querySelector('meta[name="description"]').setAttribute("content", 'svg editor  koolsol');
+    var t='';
+    t+='<h1>koolsol svg editor</h1>';
+    t+='<p>This editor allows you to create, import and export drawings in svg format.</p>';
+    t+='<p>Elements ( path , rect, circle, g, ...) as well as definitions ( pattern , filter, symbol, ...) can be edited point by point, including when they have transformations ( scale, rotate , .. . ).</p>';
+    t+='<p>You can work offline because it is a pwa (progressive web app)</p>';
+    t+='<p>You must enable javascript to use this tool.</p>';
+    document.getElementById('description').innerHTML=t;
+    
    }
+   document.getElementById('description').style.display='none';;
    init0(lang);
    
   }
@@ -10911,8 +10962,9 @@ function myObj1(initObj1){
   {id:'popupForme1'               , position:'menuGauche' , libelle:trad['selection']                           , action:popupForme1                 , svg:svgEtoile},
   {id:'setModeSaisieChemin1'      , position:'menuGauche' , libelle:trad['chemin']                              , action:setModeSaisieChemin1        , svg:'<svg class="svgBoutonGauche1" viewBox="-27 -18  52 41"><path stroke="rgb(0, 0, 255)" stroke-width="5" fill="transparent" d=" M -26 -17 C -18 -14 -11 -5 -15 2 C -20 13 -7 17 -1 17  C 5 17 10 15 13 10 C 15 5 16 2 12 -4 C 5 -13 19 -13 19 -13"></path></svg>'},
   
-  {id:'setModeSaisieDeplace1'     , position:'menuGauche' , libelle:trad['deplacer']                            , action:setModeSaisieDeplace1       , svg:'<svg class="svgBoutonGauche1" viewBox="-2 -1.25  54.80 38.75"><text x="19" y="31" font-family="Verdana" style="font-size:36px;stroke:red;fill:yellow;stroke-width:1;stroke-opacity:1;fill-opacity:1;">⇲</text><text x="-2" y="25" stroke="red" font-family="Verdana" style="font-size:36px;stroke-width:1;stroke:red;fill:yellow;stroke-opacity:1;fill-opacity:1;">⇱</text></svg>'},
-
+  {id:'setModeSaisieDeplace1'     , position:'menuGauche' , libelle:trad['deplacer']                            , action:setModeSaisieDeplace1       , svg:'<svg class="svgBoutonGauche1" viewBox="-1 -1  34 34"><polyline points=" 1 1  32 1 " stroke-dasharray="5" style="fill:transparent;stroke:red;stroke-width:3;stroke-opacity:1;fill-opacity:1;"></polyline><polyline points=" 1 1  1 32 " stroke-dasharray="5" style="fill:transparent;stroke:red;stroke-width:3;stroke-opacity:1;fill-opacity:1;"></polyline><circle cx="16" cy="16" r="5" fill="transparent" style="stroke:blue;fill:transparent;stroke-width:3;stroke-opacity:1;fill-opacity:1;"></circle><path d=" M 11 5  L 5 5 H 5 L 5 11 L 5 5 L 27 27 L 27 20 L 27 27 L 20 27" stroke="rgb(0, 0, 0)" stroke-width="2" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform=""></path></svg>'},
+//  {id:'setModeSaisieDeplace1'     , position:'menuGauche' , libelle:trad['deplacer']                            , action:setModeSaisieDeplace1       , svg:'<svg class="svgBoutonGauche1" viewBox="-2 -1.25  54.80 38.75"><text x="19" y="31" font-family="Verdana" style="font-size:36px;stroke:red;fill:yellow;stroke-width:1;stroke-opacity:1;fill-opacity:1;">⇲</text><text x="-2" y="25" stroke="red" font-family="Verdana" style="font-size:36px;stroke-width:1;stroke:red;fill:yellow;stroke-opacity:1;fill-opacity:1;">⇱</text></svg>'},
+//<svg xmlns="http://www.w3.org/2000/svg" 
   {id:'setModeSaisieSelElt1'      , position:'menuGauche' , libelle:trad['selelts']                             , action:setModeSaisieSelElt1        , svg:'<svg class="svgBoutonGauche1" viewBox="-5.5 -5.5  25 26"><rect x="0" y="0" width="13" height="14" stroke="red" stroke-width="3" fill="transparent"></rect><circle cx="0" cy="0" r="3.5" stroke="rgb(0, 0, 255)" stroke-width="3" fill="transparent"></circle><circle cx="13" cy="14" r="3.5" stroke="green" stroke-width="3" fill="transparent"></circle></svg>'},
   {id:'setModeSaisieEditionPoin1' , position:'menuGauche' , libelle:trad['selptselts']                          , action:setModeSaisieEditionPoin1   , svg:'<svg class="svgBoutonGauche1" viewBox="-12.5 13.5  34 29"><path stroke="black" stroke-width="3" fill="transparent" d=" M -7 18 C -4 37 11 40 16 22 "></path><circle cx="10" cy="36" r="3.5" stroke="blue" stroke-width="2" fill="green"></circle><circle cx="-7" cy="19" r="3.5" stroke="red" stroke-width="2" fill="pink"></circle><circle cx="-4" cy="37" r="3.5" stroke="green" stroke-width="2" fill="blue"></circle><circle cx="16" cy="23" r="3.5" stroke="red" stroke-width="2" fill="pink"></circle><path d="M -7,19 L -4,36" stroke="rgb(0, 0, 255)" stroke-width="1" fill="transparent"></path><path d="M 16,23 L 10,36" stroke="rgb(0, 255, 0)" stroke-width="1" fill="transparent"></path></svg>'},
   {id:'setModeSaisieTranE1'       , position:'menuGauche' , libelle:trad['seltranselts']                        , action:setModeSaisieTranE1         , svg:'<svg class="svgBoutonGauche1" viewBox="-9 -9  35 36"><rect x="0" y="0" width="13" height="14" stroke="red" stroke-width="3" fill="transparent"></rect><circle cx="0" cy="0" r="3.5" stroke="rgb(0, 0, 255)" stroke-width="3" fill="transparent"></circle><path stroke="green" stroke-width="3" fill="transparent" d=" M 18 0 L 23 -7 L 13 -7 L 18 0 C 18 14 10 19 0 19  L -7 24 L -7 14 L 0 19"></path></svg>'},
@@ -11549,7 +11601,7 @@ function myObj1(initObj1){
   _dssvg.arbre0[ind].data.attributes=JSON.parse(JSON.stringify(nouveauAttributs));
  }
  //========================================================================================================
- function majPropArbre(numArbre , type , valeur ){
+ function majPropArbre(numArbre , type , valeur , affiche ){
   var ind=recupereIndiceArbre(numArbre);
   var eltd=_dssvg.arbre0[ind].data;
   var couleurs=recuperePropsCouleurs(numArbre);
@@ -11592,7 +11644,9 @@ function myObj1(initObj1){
   }
   
   _dssvg.arbre0[ind].data.attributes.style=tt;
-  afficheArbre0({init:false});
+  if(affiche){
+   afficheArbre0({init:false});
+  }
   
  }
  
@@ -11773,23 +11827,59 @@ function myObj1(initObj1){
       t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"opacity" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['opacity'].valeur         +'"}')+'">opac:'+couleurs['opacity'].valeur+'</button>';
     }else{
      if(couleurs['stroke'] && couleurs['stroke'].valeur.indexOf('url(')<0){
-      t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"strokeElement" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke'].valeur         +'"}')+'">strk:'+couleurs['stroke'].valeur+'</button>';
+      t+='<button title="'+trad['couleur_de_trait']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"strokeElement" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke'].valeur         +'"}')+'">';
+      t+='<svg class="svgBoutonHaut1" viewBox="-2 -2  16 21"><line x1="0" y1="0" x2="0" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:blue;fill:transparent;stroke-width:3;"></line><line x1="6" y1="0" x2="6" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:red;fill:transparent;stroke-width:3;"></line><line x1="12" y1="0" x2="12" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:green;fill:transparent;stroke-width:3;"></line></svg>';
+      t+=''+couleurs['stroke'].valeur;
+      t+='</button>';
      }
-     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"stroke-width"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-width'].valeur   +'"}')+'">strk-wi:'+couleurs['stroke-width'].valeur+'</button>';
-     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"stroke-opacity","numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-opacity'].valeur +'"}')+'">strk-opa:'+couleurs['stroke-opacity'].valeur+'</button>';
+     t+='<button title="'+trad['epaisseur_de_trait']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"stroke-width"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-width'].valeur   +'"}')+'">';
+     t+='<svg class="svgBoutonHaut1" viewBox="-2 -2  11 19"><line x1="0" y1="0" x2="0" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:1;"></line><line x1="3" y1="0" x2="3" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;"></line><line x1="7" y1="0" x2="7" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:3;"></line></svg>';
+     t+=''+couleurs['stroke-width'].valeur+'</button>';
+     // 
      if(couleurs['fill'].valeur.indexOf('url(')<0){
-      t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"fillElement"   ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill'].valeur           +'"}')+'">fill:'+couleurs['fill'].valeur+'</button>';
+      t+='<button title="'+trad['couleur_de_remplissage']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"fillElement"   ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill'].valeur           +'"}')+'">';
+      t+='<svg class="svgBoutonHaut1" viewBox="-4 -4  12 12"><circle cx="-1" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:blue;stroke-width:0.3;"></circle><circle cx="-1" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:red;stroke-width:0.3;"></circle><circle cx="5" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:green;stroke-width:0.3;"></circle><circle cx="5" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:white;stroke-width:0.3;"></circle></svg>';
+      t+=''+couleurs['fill'].valeur+'</button>';
+      // 
      }
-     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"fill-opacity"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill-opacity'].valeur   +'"}')+'">fill-opa:'+couleurs['fill-opacity'].valeur+'</button>';
-     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"opacity"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['opacity'].valeur   +'"}')+'">opacity:'+couleurs['opacity'].valeur+'</button>';
+
+     t+='<button  title="'+trad['opacite_de_trait']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"stroke-opacity","numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-opacity'].valeur +'"}')+'">';
+     t+='<svg class="svgBoutonHaut1" viewBox="1 -2  10 19"><line x1="3" y1="0" x2="3" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:1;"></line><line x1="6" y1="0" x2="6" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.5;"></line><line x1="9" y1="0" x2="9" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.25;"></line></svg>';
+     t+=''+couleurs['stroke-opacity'].valeur+'</button>';
+
+     t+='<button title="'+trad['opacite_de_remplissage']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"fill-opacity"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill-opacity'].valeur   +'"}')+'">';
+     t+='<svg class="svgBoutonHaut1" viewBox="-4 -4  12 12"><circle cx="-1" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;"></circle><circle cx="-1" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.65;"></circle><circle cx="5" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.4;"></circle><circle cx="5" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.15;"></circle></svg>';
+     t+=''+couleurs['fill-opacity'].valeur+'</button>';
+     // 
+     t+='<button title="'+trad['opacite_de_trait_et_remplissage']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"opacity"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['opacity'].valeur   +'"}')+'">';
+     t+='<svg class="svgBoutonHaut1"  viewBox="-6 -4  16 12"><circle cx="-1" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;"></circle><circle cx="-1" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.65;"></circle><circle cx="5" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.4;"></circle><circle cx="5" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.15;"></circle><line x1="-4" y1="-3" x2="-4" y2="7" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:1;"></line><line x1="2" y1="-3" x2="2" y2="7" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.5;"></line><line x1="8" y1="-3" x2="8" y2="7" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.25;"></line></svg>';
+     t+=''+couleurs['opacity'].valeur+'</button>';
+     // <svg xmlns="http://www.w3.org/2000/svg" 
     }
-    t+='<button class="butEnabled butMenuHaut bckRouge" style="min-width: fit-content;" data-action="'+htm1('{"action":"suppAttribGra1"  ,"numArbre":'+numArbre+'}')+'">supp attr gra</button>';
+    t+='<button title="'+trad['supprimer_attributs_graphiques']+'" class="butEnabled butMenuHaut bckRouge" style="min-width: fit-content;" data-action="'+htm1('{"action":"suppAttribGra1"  ,"numArbre":'+numArbre+'}')+'">';
+    t+='<svg class="svgBoutonHaut1" viewBox="9 -7  45 46.3869"><path d=" M 12 16 C 11 12 12 5 21 -1  C 31 -7 42 -2 46 4 C 51 11 52 24 41 31 C 37 33 28 38 25 30 C 23 26 28 25 27 22 C 25 21 22 22 19 22 C 15 22 12 19 12 16" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(255, 0, 0);fill:gold;stroke-width:1;"></path><circle cx="31" cy="4" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:red;fill:red;stroke-width:1;"></circle><circle cx="21" cy="10" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:chartreuse;fill:chartreuse;stroke-width:1;"></circle><circle cx="40" cy="11" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:yellow;fill:yellow;stroke-width:1;"></circle><circle cx="39" cy="21" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:blue;fill:blue;stroke-width:1;"></circle><circle cx="32" cy="28" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:white;fill:white;stroke-width:1;"></circle><line x1="11" y1="-5" x2="51" y2="34" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:3;"></line><line x1="11" y1="34" x2="51" y2="-5" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:3;"></line></svg>';
+    t+='</button>';
+    t+='<button title="'+trad['editer_element']+'" class="butEnabled butMenuHaut" style="min-width: 2em;padding:0 3px" data-action="'+htm1('{"action":"editElement"  ,"numArbre":'+numArbre+'}')+'">';
+    t+='<svg class="svgBoutonHaut1" viewBox="1 -10  62.0902 64"><g><path d=" M 41 -6 C 41 -3 41 0 41 2 C 42 2 47 2 49 2  C 48 1 44 -3 41 -6" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:slategray;stroke-width:1;"></path><path d=" M 3 -8 C 7 -8 35 -8 42 -8 C 45 -5 49 -1 51 1 C 51 5 51 46 51 52  C 47 52 8 52 3 52 C 3 47 3 -4 3 -8" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:white;stroke-width:1;"></path><path d=" M 50 6 C 52 4 53 3 54 2 C 56 4 58 6 59 7  C 58 8 57 9 55 11 C 53 10 52 8 50 6" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:gainsboro;fill:gainsboro;stroke-width:1;"></path><path d=" M 54 2 C 56 0 58 -1 60 1  C 62 3 61 5 59 7 z" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:orchid;fill:orchid;stroke-width:1;"></path><path d=" M 18 40 L 21 43 L 16 45  L 18 40" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:slategray;stroke-width:1;"></path><path d=" M 10 1 C 10 1 26 1 26 1 m -16 6 h 34 m -34 6 h 30 m -30 6 h 30 m -30 6 h 34 m -34 6 h 31 m -31 6 h 33 m -33 6 h 8 " stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:transparent;stroke-width:3;"></path><path d=" M 21 36 L 23 36 L 23 38 L 25 38 L 25 41 L 55 11  L 50 6 L 20 36" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:gold;fill:gold;stroke-width:1;"></path><path d=" M 20 36 L 23 36 L 23 38 L 25 38 L 25 41 L 21 43 L 18 40  L 20 36" stroke="rgb(255, 0, 0)" stroke-width="5" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:lightpink;fill:lightpink;stroke-width:1;"></path></g></svg>';
+    t+='</button>';
+    t+='<button title="'+trad['copier_styyle']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"copystyyl"  ,"numArbre":'+numArbre+'}')+'">';
+    t+='<svg class="svgBoutonHaut1" viewBox="-20.1445 4.1917  30.7333 32.8356"><g transform="rotate(38 0 0 )"><path d=" M 3 15 C 3 16 3 27 3 30 C 6 30 6 31 7 34 C 8 34 8 34 9 34 C 10 31 10 30 13 30 C 13 27 13 16 13 15 C 11 15 5 15 3 15" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:white;stroke-width:1;"></path><path d=" M 1 15 C 4 15 12 15 15 15 C 15 13 15 12 13 12 C 13 11 13 9 13 7 C 13 6 12 2 8 2 C 4 2 3 6 3 7 C 3 8 3 10 3 12 C 1 12 1 13 1 15" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:dodgerblue;fill:dodgerblue;stroke-width:1;"></path></g></svg>';
+    t+='</button>';
+    if(styylCopie!==null){
+     t+='<button title="'+trad['coller_styyle']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"pastestyyl"  ,"numArbre":'+numArbre+'}')+'">';
+     t+='<svg class="svgBoutonHaut1" viewBox="-2 65.7256  171.2193 144.2744"><path stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" d=" M 166 69 C 163 65 96 106 93 109 C 90 112 86 116 82 121 C 80 123 78 127 75 130  C 72 135 66 143 61 149 L 67 155 C 74 152 81 150 87 147 C 91 145 95 143 98 142 C 103 140 110 136 114 133 C 118 130 170 73 166 69" style="stroke:black;fill:sienna;stroke-width:5;"></path><path d="M 82 121 C 92 126 96 132 97 140 C 94 142 91 143 87 145 C 86 138 81 133 75 130 C 77 126 80 124 82 121 " stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:red;fill:red;stroke-width:5;"></path><path stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" d=" M 61 148 C 46 145 33 153 29 162  C 22 179 17 189 5 203 C 19 203 37 201 46 194 C 56 185 69 161 69 156 z" style="stroke:red;fill:red;stroke-width:5;"></path></svg>';
+     t+='</button>';
+    }
     
    }
    if(_dssvg.mode_en_cours==='setModeSaisieGroupe1' ){
     t+='<button class="butEnabled butMenuHaut bckRouge" style="min-width: fit-content;" data-action="'+htm1('{"action":"suppAttribGraDuGroupe1"  ,"numArbre":'+numArbre+'}')+'">'+trad['supp_attr_gra_grp']+'</button>';
     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"popupPropEltsGrp1"  ,"numArbre":'+numArbre+'}')+'">'+trad['Modifier_propriétés_du_groupe']+'</button>';
-    t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"redimEltsGrp"  ,"numArbre":'+numArbre+'}')+'">'+trad['redimentionner_les_éléments_du_groupe']+'</button>';
+    t+='<button title="'+trad['redimentionner_les_éléments_du_groupe']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"redimEltsGrp"  ,"numArbre":'+numArbre+'}')+'">';
+    t+='<svg class="svgBoutonHaut1" viewBox="0 0  24 27"><path d=" M 1 1 C 6 1 15 1 19 1 L 19 3 L 3 3 L 3 17 L 1 17 L 1 1 M 9 5 L 5 5 L 5 9 L 6 10  L 6 7 L 17 19 L 14 19 L 15 20 L 19 20 L 19 16 L 18 15 L 18 18 L 7 6 L 10 6 L 9 5 m 12 17 l -12 0 l 0 2 l 14 0 l 0 -19 l -2 0 l 0 17" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:red;fill:yellow;stroke-width:0.5;"></path></svg>';
+    t+='</button>';
+    
+    
     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"deplaceEltsGrp"  ,"numArbre":'+numArbre+'}')+'">'+trad['deplacer_les_éléments_du_groupe']+'</button>';
    }
    
@@ -11799,7 +11889,9 @@ function myObj1(initObj1){
      (_dssvg.mode_en_cours==='setModeSaisieSelElt1' || 'setModeSaisieDefsElt1'===_dssvg.mode_en_cours) ||
      ( (_dssvg.mode_en_cours==='setModeSaisieEditionPoin1' || 'setModeSaisieDefsPtE1'===_dssvg.mode_en_cours ) && globalIndicePoint!==null )
   ){
-   t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"redimElt1"  ,"numArbre":'+numArbre+'}')+'">'+trad['redimentionner_élément']+'</button>';
+   t+='<button title="'+trad['redimentionner_élément']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"redimElt1"  ,"numArbre":'+numArbre+'}')+'">';
+   t+='<svg class="svgBoutonHaut1" viewBox="0 0  24 27"><path d=" M 1 1 C 6 1 15 1 19 1 L 19 3 L 3 3 L 3 17 L 1 17 L 1 1 M 9 5 L 5 5 L 5 9 L 6 10  L 6 7 L 17 19 L 14 19 L 15 20 L 19 20 L 19 16 L 18 15 L 18 18 L 7 6 L 10 6 L 9 5 m 12 17 l -12 0 l 0 2 l 14 0 l 0 -19 l -2 0 l 0 17" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:red;fill:yellow;stroke-width:0.5;"></path></svg>';
+   t+='</button>';
   }
   if(_dssvg.mode_en_cours==='setModeSaisieGroupe1' && _dssvg.idArbreCourant!==null){
    /*

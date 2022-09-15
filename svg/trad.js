@@ -2,8 +2,8 @@
 function setTrad_fr(){
 trad['arbre']='édition l\'arbre DOM';
 trad['selection']='sélection de type tracé ou d\'une forme';
-trad['deplacer']='deplacer';
-trad['chemin']='chemin';
+trad['deplacer']='déplacer la fenêtre';
+trad['chemin']='dessiner un chemin';
 trad['selelts']='selectionner les éléments';
 trad['selptselts']='selectionner les points des éléments';
 trad['seltranselts']='selectionner transformations des éléments';
@@ -102,13 +102,23 @@ trad['message_version']='si ce message réapparaît, veuillez attendre quelques 
 trad['recharger_la_page']='recharger la page';
 trad['clip_ou_pattern_contient_des_transformations']='Le clipPath ou le pattern contient des transformations';
 trad['deplacer_les_éléments_du_groupe']='deplacer les éléments du groupe';
+trad['copier_styyle']='copier le style dans le presse-papier';
+trad['coller_styyle']='coller le style du le presse-papier';
+trad['editer_element']='editer l\'élément dans l\'arbre du svg';
+trad['supprimer_attributs_graphiques']='supprimer les attributs graphiques de l\'élément';
+trad['couleur_de_trait']='couleur de trait';
+trad['epaisseur_de_trait']='epaisseur de trait';
+trad['opacite_de_trait']='opacité de trait';
+trad['couleur_de_remplissage']='couleur de remplissage';
+trad['opacite_de_remplissage']='opacité de remplissage';
+trad['opacite_de_trait_et_remplissage']='opacité de trait et de remplissage';
 }
 
 function setTrad_en(){
 trad['arbre']='edit DOM tree';
 trad['selection']='path type or shape selection';
-trad['deplacer']='move';
-trad['chemin']='path';
+trad['deplacer']='move the viewport';
+trad['chemin']='draw a path';
 trad['selelts']='select items';
 trad['selptselts']='select the points of the elements';
 trad['seltranselts']='select element transformations';
@@ -207,5 +217,15 @@ trad['message_version']='if this message reappears, please wait a few seconds be
 trad['recharger_la_page']='reload the page';
 trad['clip_ou_pattern_contient_des_transformations']='The clipPath or pattern contains transformations';
 trad['deplacer_les_éléments_du_groupe']='move group elements';
+trad['copier_styyle']='copy style to clipboard';
+trad['coller_styyle']='paste style from clipboard';
+trad['editer_element']='edit element in svg tree';
+trad['supprimer_attributs_graphiques']='remove graphic attributes from element';
+trad['couleur_de_trait']='stroke color';
+trad['epaisseur_de_trait']='stroke width';
+trad['opacite_de_trait']='stroke opacity';
+trad['couleur_de_remplissage']='fill color';
+trad['opacite_de_remplissage']='fill opacity';
+trad['opacite_de_trait_et_remplissage']='stroke and fill opacity';
 }
 

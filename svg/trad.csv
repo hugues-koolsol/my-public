@@ -1,8 +1,8 @@
 actif,cle,fr,en
 1,arbre,édition l'arbre DOM,edit DOM tree
 1,selection,sélection de type tracé ou d'une forme,path type or shape selection
-1,deplacer,deplacer,move
-1,chemin,chemin,path
+1,deplacer,déplacer la fenêtre,move the viewport
+1,chemin,dessiner un chemin,draw a path
 1,selelts,selectionner les éléments,select items
 1,selptselts,selectionner les points des éléments,select the points of the elements
 1,seltranselts,selectionner transformations des éléments,select element transformations
@@ -101,3 +101,13 @@ actif,cle,fr,en
 1,recharger_la_page,recharger la page,reload the page
 1,clip_ou_pattern_contient_des_transformations,Le clipPath ou le pattern contient des transformations,The clipPath or pattern contains transformations
 1,deplacer_les_éléments_du_groupe,deplacer les éléments du groupe,move group elements
+1,copier_styyle,copier le style dans le presse-papier,copy style to clipboard
+1,coller_styyle,coller le style du le presse-papier,paste style from clipboard
+1,editer_element,editer l'élément dans l'arbre du svg,edit element in svg tree
+1,supprimer_attributs_graphiques,supprimer les attributs graphiques de l'élément,remove graphic attributes from element
+1,couleur_de_trait,couleur de trait,stroke color
+1,epaisseur_de_trait,epaisseur de trait,stroke width
+1,opacite_de_trait,opacité de trait,stroke opacity
+1,couleur_de_remplissage,couleur de remplissage,fill color
+1,opacite_de_remplissage,opacité de remplissage,fill opacity
+1,opacite_de_trait_et_remplissage,opacité de trait et de remplissage,stroke and fill opacity
