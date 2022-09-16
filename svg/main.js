@@ -5578,6 +5578,7 @@ function myObj1(initObj1){
 		current.x = e.clientX; 
   current.y = e.clientY;
   current=current.matrixTransform(globalElementTransformScale.matriceRacineInverse);
+//  console.log('globalElementTransformScale=',globalElementTransformScale);
   
   var pt0=refZnDessin.createSVGPoint();  
   pt0.x = current.x - globalElementTransformScale.mouseStart.x;
@@ -5589,8 +5590,10 @@ function myObj1(initObj1){
   
   var newPointX=globalElementTransformScale.elementStart.x+pt1.x/_dssvg.parametres.diviseurDeplacement;
   var newPointY=globalElementTransformScale.elementStart.y+pt1.y/_dssvg.parametres.diviseurDeplacement;
-		globalGeneralReferencePointControleClique.setAttribute('cx', newPointX );
-		globalGeneralReferencePointControleClique.setAttribute('cy', newPointY );
+//		globalGeneralReferencePointControleClique.setAttribute('cx', newPointX );
+//		globalGeneralReferencePointControleClique.setAttribute('cy', newPointY );
+		globalGeneralReferencePointControleClique.setAttribute('x', newPointX-globalElementTransformScale.wh/2 );
+		globalGeneralReferencePointControleClique.setAttribute('y', newPointY-globalElementTransformScale.wh/2 );
 
   if(globEchelle.dataInit.t0.indices.scale<globEchelle.dataInit.t0.indices.rotate){
 
@@ -5711,6 +5714,7 @@ function myObj1(initObj1){
   init:null,
   tabTransform:null,
   autreReference:null,
+  wh:0,
  }
  
  var globEchelle={
@@ -5733,10 +5737,12 @@ function myObj1(initObj1){
   
   
   
-  initMouseDownObj={x:globalGeneralReferencePointControleClique.cx.animVal.value , y:globalGeneralReferencePointControleClique.cy.animVal.value};
+//  initMouseDownObj={x:globalGeneralReferencePointControleClique.cx.animVal.value , y:globalGeneralReferencePointControleClique.cy.animVal.value};
+  initMouseDownObj={x:globalGeneralReferencePointControleClique.x.animVal.value + globalGeneralReferencePointControleClique.width.animVal.value / 2, y:globalGeneralReferencePointControleClique.y.animVal.value + globalGeneralReferencePointControleClique.height.animVal.value / 2};
   initClick={x:e.clientX , y:e.clientY};
   globalElementTransformScale.initClick=initClick;
   globalElementTransformScale.initMouseDownObj=initMouseDownObj;
+  globalElementTransformScale.wh=globalGeneralReferencePointControleClique.width.animVal.value;
   
   
   _dssvg.idArbreCourant=parseInt(e.target.getAttribute('data-elem').replace(/ se/,''),10);
@@ -5792,7 +5798,8 @@ function myObj1(initObj1){
 		globalElementTransformScale.mouseStart.x = e.clientX; 
   globalElementTransformScale.mouseStart.y = e.clientY;
   globalElementTransformScale.mouseStart=globalElementTransformScale.mouseStart.matrixTransform(globalElementTransformScale.matriceRacineInverse);
-  globalElementTransformScale.elementStart = { x:globalGeneralReferencePointControleClique.cx.animVal.value, y:globalGeneralReferencePointControleClique.cy.animVal.value };
+//  globalElementTransformScale.elementStart = { x:globalGeneralReferencePointControleClique.cx.animVal.value, y:globalGeneralReferencePointControleClique.cy.animVal.value };
+  globalElementTransformScale.elementStart = { x:globalGeneralReferencePointControleClique.x.animVal.value + globalGeneralReferencePointControleClique.width.animVal.value/2, y:globalGeneralReferencePointControleClique.y.animVal.value + globalGeneralReferencePointControleClique.height.animVal.value / 2 };
 
   var tr=globalGeneralSvgReferenceElement.getAttribute('transform')?globalGeneralSvgReferenceElement.getAttribute('transform'):'';
   globalElementTransformScale.tabTransform=convertirTransformEnTableau(tr,['scale']);
@@ -6221,7 +6228,8 @@ function myObj1(initObj1){
 
       var line  = ajouteElemDansElem(refZnDessin,'path',{ 'data-type':'toRemove','data-elem':''+idarbre1+'',d:'M '+cx+' '+cy+' L '+pt9.x+' '+pt9.y+'',style:'fill:lightgreen;opacity:0.9;stroke:green;stroke-width:'+(1/_dssvg.zoom1/1)+';'});
       
-      var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-action':'felementTransformEchelle3','data-init':'{"angle":'+angle1+',"dx2":'+dx2+',"dy2":'+dy2+',"facteurx":'+facteurx+',"facteury":'+facteury+',"cx":'+cx+',"cy":'+cy+',"t0":'+JSON.stringify(t0)+',"pt8":['+pt8.x+','+pt8.y+'],"pt9":['+pt9.x+','+pt9.y+'],"pt10":['+pt10.x+','+pt10.y+']}','data-type':'toRemove','data-elem':''+idarbre1+' se',cx:pt10.x,cy:pt10.y,r:rayonPoint,style:'fill:lightgreen;opacity:0.9;stroke:green;stroke-width:'+(1/_dssvg.zoom1)+';'});
+//      var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-action':'felementTransformEchelle3','data-init':'{"angle":'+angle1+',"dx2":'+dx2+',"dy2":'+dy2+',"facteurx":'+facteurx+',"facteury":'+facteury+',"cx":'+cx+',"cy":'+cy+',"t0":'+JSON.stringify(t0)+',"pt8":['+pt8.x+','+pt8.y+'],"pt9":['+pt9.x+','+pt9.y+'],"pt10":['+pt10.x+','+pt10.y+']}','data-type':'toRemove','data-elem':''+idarbre1+' se',cx:pt10.x,cy:pt10.y,r:rayonPoint,style:'fill:lightgreen;opacity:0.9;stroke:green;stroke-width:'+(1/_dssvg.zoom1)+';'});
+      var dot    = ajouteElemDansElem(refZnDessin,'rect',{'data-action':'felementTransformEchelle3','data-init':'{"angle":'+angle1+',"dx2":'+dx2+',"dy2":'+dy2+',"facteurx":'+facteurx+',"facteury":'+facteury+',"cx":'+cx+',"cy":'+cy+',"t0":'+JSON.stringify(t0)+',"pt8":['+pt8.x+','+pt8.y+'],"pt9":['+pt9.x+','+pt9.y+'],"pt10":['+pt10.x+','+pt10.y+']}','data-type':'toRemove','data-elem':''+idarbre1+' se',x:(pt10.x-rayonPoint/2),y:(pt10.y-rayonPoint/2),width:rayonPoint*2,height:rayonPoint*2,style:'fill:lightgreen;opacity:0.9;stroke:green;stroke-width:'+(1/_dssvg.zoom1)+';'});
       dot.addEventListener('mousedown'  ,mouseDownElementTransformScale3,'dot');
       dot.addEventListener('touchstart' ,touchDownElementTransformScale3,'dot');
       
@@ -10819,7 +10827,7 @@ function myObj1(initObj1){
  //========================================================================================================
  function clickDownDivLag2(e){
   e.stopPropagation();
-  console.log('e.target.nodeName=',e.target.nodeName);
+//  console.log('e.target.nodeName=',e.target.nodeName);
   if(e.target.nodeName.toLowerCase()==='button'){
    var action=e.target.getAttribute('data-action');
    if(action){
@@ -10934,7 +10942,7 @@ function myObj1(initObj1){
   divtpe=document.createElement('div');
   divtpe.id='divtpe';
   body.appendChild(divtpe);
-  divtpe.addEventListenerBase('wheel', menuTopWheel );  
+  divtpe.addEventListenerBase('wheel', menuTopWheel ,{capture:false,passive:true} );  
   
   divlft=document.createElement('div');
   divlft.id='divlft';
@@ -11038,12 +11046,12 @@ function myObj1(initObj1){
        butt.title=boutons[i].libelle;
        butt.style.color=_dssvg.strokCols[nbElts]; // attention un rgba avec opacite = 1 => trasnformé en rgb
        
-       butt.addEventListenerBase( 'contextmenu' , function(e){e.preventDefault();e.stopPropagation();return false;} ); 
-       butt.addEventListenerBase( 'mouseup'     , boutons[i].action );         
-       butt.addEventListenerBase( 'mousedown'   , boutons[i].contextFunct ); 
-       butt.addEventListenerBase( 'touchmove'   , touchMoveButton );
-       butt.addEventListenerBase( 'touchend'    , boutons[i].action );         
-       butt.addEventListenerBase( 'touchstart'  , boutons[i].contextFunct ); 
+       butt.addEventListenerBase( 'contextmenu' , function(e){e.preventDefault();e.stopPropagation();return false;} , {capture:false,passive:true} ); 
+       butt.addEventListenerBase( 'mouseup'     , boutons[i].action , {capture:false,passive:true} );         
+       butt.addEventListenerBase( 'mousedown'   , boutons[i].contextFunct , {capture:false,passive:true} );
+       butt.addEventListenerBase( 'touchmove'   , touchMoveButton , {capture:false,passive:true} );
+       butt.addEventListenerBase( 'touchend'    , boutons[i].action , {capture:false,passive:true} );
+       butt.addEventListenerBase( 'touchstart'  , boutons[i].contextFunct , {capture:false,passive:true} );
        
        
        divlft.appendChild(butt);
@@ -11710,168 +11718,173 @@ function myObj1(initObj1){
      globalSelectionPoints.tabOriginal !==null &&
      globalSelectionPoints.tabAbsolu   !==null
     ){
-     
-     t+='<div style="color:red;">P'+globalIndicePoint+'</div>';
-     
-     t+='<div>';
-     t+=globalSelectionPoints.tabOriginal[globalIndicePoint][0]+'&nbsp;';
-     for(var i=1;i<globalSelectionPoints.tabOriginal[globalIndicePoint].length;i++){
-      t+=''+arrdi10000(globalSelectionPoints.tabOriginal[globalIndicePoint][i])+'&nbsp;&nbsp;';
-     }
-     t+='</div>'
-
-     if(globalIndicePoint>=0){
       
+     try{      
       
-      if(globalSelectionPoints.tabOriginal[globalIndicePoint][0]===globalSelectionPoints.tabOriginal[globalIndicePoint][0].toLowerCase()){
-
-       // si c'est un segment relatif ( en minuscule )
-       var tt=''+globalSelectionPoints.tabAbsolu[globalIndicePoint][0]+ ' ';
-       // globalSelectionPoints.tabAbsolu[globalIndicePoint]
-       for(var i=1;i<globalSelectionPoints.tabAbsolu[globalIndicePoint].length;i++){
-        tt+=''+arrdi10000(globalSelectionPoints.tabAbsolu[globalIndicePoint][i])+' &nbsp;&nbsp;';
-       }
-       t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"pointEnAbsolu","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"nouvPoint":"'+globalSelectionPoints.tabAbsolu[globalIndicePoint].join(' ')+'"}')+'">'+tt+'</button>';
-       
-       if(globalSelectionPoints.tabOriginal[globalIndicePoint][0]=='a'){
-        
-        var ttori=JSON.parse(JSON.stringify(globalSelectionPoints.tabOriginal[globalIndicePoint])); //globalSelectionPoints.tabOriginal[globalIndicePoint];
-        ttori[4]=ttori[4]==1?0:1;
-        t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"largeArc","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"nouvPoint":"'+ttori.join(' ')+'"}')+'">lrgA'+(ttori[4])+'</button>';
-        var ttori=JSON.parse(JSON.stringify(globalSelectionPoints.tabOriginal[globalIndicePoint])); //globalSelectionPoints.tabOriginal[globalIndicePoint];
-        ttori[5]=ttori[5]==1?0:1;
-        t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"sweepFlag","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"nouvPoint":"'+ttori.join(' ')+'"}')+'">swpFlg'+(ttori[4])+'</button>';
-        
-       }
-       
-      }else if(globalSelectionPoints.tabOriginal[globalIndicePoint][0]===globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()){
-
-       // si c'est un segment absolu ( en majuscule )
-       var obj=recupRelatifVersAbsolu(globalIndicePoint , globalSelectionPoints.tabOriginal , globalSelectionPoints.tabAbsolu , numArbre );
-       t+=obj.bout;
-       
+      t+='<div style="color:red;">P'+globalIndicePoint+'</div>';
+      
+      t+='<div>';
+      t+=globalSelectionPoints.tabOriginal[globalIndicePoint][0]+'&nbsp;';
+      for(var i=1;i<globalSelectionPoints.tabOriginal[globalIndicePoint].length;i++){
+       t+=''+arrdi10000(globalSelectionPoints.tabOriginal[globalIndicePoint][i])+'&nbsp;&nbsp;';
       }
-     }
-     t+='<button class="butEnabled butMenuHaut bckVert2" data-action="'+htm1('{"action":"cheminCompletEnRelatif","numArbre":'+numArbre+'}')+'">'+trad['relatif']+'</button>';
-     t+='<button class="butEnabled butMenuHaut bckVert2" data-action="'+htm1('{"action":"cheminCompletEnAbsolu","numArbre":'+numArbre+'}')+'">'+trad['absolu']+'</button>';
+      t+='</div>'
 
-     // supprimer un point d'un chemin
-     
-     if(globalIndicePoint!==0){
+      if(globalIndicePoint>=0){
        
-      if(globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()=='C'){
-       // on ne peut pas supprimer un C suivi par un S
        
-       if(globalIndicePoint<globalSelectionPoints.tabOriginal.length-1 && globalSelectionPoints.tabOriginal[globalIndicePoint+1][0].toUpperCase()=='S'){
+       if(globalSelectionPoints.tabOriginal[globalIndicePoint][0]===globalSelectionPoints.tabOriginal[globalIndicePoint][0].toLowerCase()){
+
+        // si c'est un segment relatif ( en minuscule )
+        var tt=''+globalSelectionPoints.tabAbsolu[globalIndicePoint][0]+ ' ';
+        // globalSelectionPoints.tabAbsolu[globalIndicePoint]
+        for(var i=1;i<globalSelectionPoints.tabAbsolu[globalIndicePoint].length;i++){
+         tt+=''+arrdi10000(globalSelectionPoints.tabAbsolu[globalIndicePoint][i])+' &nbsp;&nbsp;';
+        }
+        t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"pointEnAbsolu","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"nouvPoint":"'+globalSelectionPoints.tabAbsolu[globalIndicePoint].join(' ')+'"}')+'">'+tt+'</button>';
+        
+        if(globalSelectionPoints.tabOriginal[globalIndicePoint][0]=='a'){
+         
+         var ttori=JSON.parse(JSON.stringify(globalSelectionPoints.tabOriginal[globalIndicePoint])); //globalSelectionPoints.tabOriginal[globalIndicePoint];
+         ttori[4]=ttori[4]==1?0:1;
+         t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"largeArc","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"nouvPoint":"'+ttori.join(' ')+'"}')+'">lrgA'+(ttori[4])+'</button>';
+         var ttori=JSON.parse(JSON.stringify(globalSelectionPoints.tabOriginal[globalIndicePoint])); //globalSelectionPoints.tabOriginal[globalIndicePoint];
+         ttori[5]=ttori[5]==1?0:1;
+         t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"sweepFlag","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"nouvPoint":"'+ttori.join(' ')+'"}')+'">swpFlg'+(ttori[4])+'</button>';
+         
+        }
+        
+       }else if(globalSelectionPoints.tabOriginal[globalIndicePoint][0]===globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()){
+
+        // si c'est un segment absolu ( en majuscule )
+        var obj=recupRelatifVersAbsolu(globalIndicePoint , globalSelectionPoints.tabOriginal , globalSelectionPoints.tabAbsolu , numArbre );
+        t+=obj.bout;
+        
+       }
+      }
+      t+='<button class="butEnabled butMenuHaut bckVert2" data-action="'+htm1('{"action":"cheminCompletEnRelatif","numArbre":'+numArbre+'}')+'">'+trad['relatif']+'</button>';
+      t+='<button class="butEnabled butMenuHaut bckVert2" data-action="'+htm1('{"action":"cheminCompletEnAbsolu","numArbre":'+numArbre+'}')+'">'+trad['absolu']+'</button>';
+
+      // supprimer un point d'un chemin
+      
+      if(globalIndicePoint!==0){
+        
+       if(globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()=='C'){
+        // on ne peut pas supprimer un C suivi par un S
+        
+        if(globalIndicePoint<globalSelectionPoints.tabOriginal.length-1 && globalSelectionPoints.tabOriginal[globalIndicePoint+1][0].toUpperCase()=='S'){
+        }else{
+         t+='<button class="butEnabled butMenuHaut bckRouge" data-action="'+htm1('{"action":"SupprimerPointChemin","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'"> &times; P '+(globalIndicePoint)+'</button>';
+        }
+        
+       }else if(globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()=='Q'){
+        // on ne peut pas supprimer un Q suivi par un T
+        
+        if(globalIndicePoint<globalSelectionPoints.tabOriginal.length-1 && globalSelectionPoints.tabOriginal[globalIndicePoint+1][0].toUpperCase()=='T'){
+        }else{
+         t+='<button class="butEnabled butMenuHaut bckRouge" data-action="'+htm1('{"action":"SupprimerPointChemin","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'"> &times; P '+(globalIndicePoint)+'</button>';
+        }
+        
+        
        }else{
         t+='<button class="butEnabled butMenuHaut bckRouge" data-action="'+htm1('{"action":"SupprimerPointChemin","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'"> &times; P '+(globalIndicePoint)+'</button>';
        }
-       
-      }else if(globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()=='Q'){
-       // on ne peut pas supprimer un Q suivi par un T
-       
-       if(globalIndicePoint<globalSelectionPoints.tabOriginal.length-1 && globalSelectionPoints.tabOriginal[globalIndicePoint+1][0].toUpperCase()=='T'){
+      }
+
+      // ajouter un point à un chemin
+      var typePointChemin=['M','L','C','Q','H','V','A','T','S','Z'];
+      for(var i=0;i<typePointChemin.length;i++){
+       if(typePointChemin[i]=='T'){
+        if(globalSelectionPoints.tabAbsolu[globalIndicePoint][0]=='T' || globalSelectionPoints.tabAbsolu[globalIndicePoint][0]=='Q' ){
+         t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"ajouterPointChemin","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"typePointChemin":"'+typePointChemin[i]+'"}')+'"> + '+typePointChemin[i]+' &nbsp;</button>';
+        }
+       }else if(typePointChemin[i]=='S'){
+        if(globalSelectionPoints.tabAbsolu[globalIndicePoint][0]=='S' || globalSelectionPoints.tabAbsolu[globalIndicePoint][0]=='C' ){
+         t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"ajouterPointChemin","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"typePointChemin":"'+typePointChemin[i]+'"}')+'"> + '+typePointChemin[i]+' &nbsp;</button>';
+        }
        }else{
-        t+='<button class="butEnabled butMenuHaut bckRouge" data-action="'+htm1('{"action":"SupprimerPointChemin","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'"> &times; P '+(globalIndicePoint)+'</button>';
-       }
-       
-       
-      }else{
-       t+='<button class="butEnabled butMenuHaut bckRouge" data-action="'+htm1('{"action":"SupprimerPointChemin","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'"> &times; P '+(globalIndicePoint)+'</button>';
-      }
-     }
-
-     // ajouter un point à un chemin
-     var typePointChemin=['M','L','C','Q','H','V','A','T','S','Z'];
-     for(var i=0;i<typePointChemin.length;i++){
-      if(typePointChemin[i]=='T'){
-       if(globalSelectionPoints.tabAbsolu[globalIndicePoint][0]=='T' || globalSelectionPoints.tabAbsolu[globalIndicePoint][0]=='Q' ){
         t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"ajouterPointChemin","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"typePointChemin":"'+typePointChemin[i]+'"}')+'"> + '+typePointChemin[i]+' &nbsp;</button>';
        }
-      }else if(typePointChemin[i]=='S'){
-       if(globalSelectionPoints.tabAbsolu[globalIndicePoint][0]=='S' || globalSelectionPoints.tabAbsolu[globalIndicePoint][0]=='C' ){
-        t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"ajouterPointChemin","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"typePointChemin":"'+typePointChemin[i]+'"}')+'"> + '+typePointChemin[i]+' &nbsp;</button>';
+      }
+      
+      var strkWidth=parseFloat(window.getComputedStyle(globalGeneralSvgReferenceElement)['stroke-width']);
+      if(strkWidth>0){
+       t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"simplifierChemin1","numArbre":'+numArbre+',"strkWidth":'+strkWidth+'}')+'">'+trad['simplifier_ce_chemin']+'</button>';
+      }
+
+      if(globalIndicePoint!==0){
+       if(globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()==='H' || globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()==='V'){
+        t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"hOuVenL1","numArbre":'+numArbre+'}')+'">'+trad['H_ou_V_en_L']+'</button>';
        }
-      }else{
-       t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"ajouterPointChemin","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+',"typePointChemin":"'+typePointChemin[i]+'"}')+'"> + '+typePointChemin[i]+' &nbsp;</button>';
+       if(globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()!=='C' && globalIndicePoint>0){
+        t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"enC1","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'">'+trad['X_en_C']+'</button>';
+       }
       }
+     }catch(egg){
      }
-     
-     var strkWidth=parseFloat(window.getComputedStyle(globalGeneralSvgReferenceElement)['stroke-width']);
-     if(strkWidth>0){
-      t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"simplifierChemin1","numArbre":'+numArbre+',"strkWidth":'+strkWidth+'}')+'">'+trad['simplifier_ce_chemin']+'</button>';
-     }
-
-     if(globalIndicePoint!==0){
-      if(globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()==='H' || globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()==='V'){
-       t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"hOuVenL1","numArbre":'+numArbre+'}')+'">'+trad['H_ou_V_en_L']+'</button>';
-      }
-      if(globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()!=='C' && globalIndicePoint>0){
-       t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"enC1","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'">'+trad['X_en_C']+'</button>';
-      }
-     }
-
 
     }
    }
 
-   if(
-     (_dssvg.mode_en_cours==='setModeSaisieSelElt1' || 'setModeSaisieDefsElt1'===_dssvg.mode_en_cours) ||
-     ( (_dssvg.mode_en_cours==='setModeSaisieEditionPoin1' || 'setModeSaisieDefsPtE1'===_dssvg.mode_en_cours ) && globalIndicePoint!==null )
-   ){
+   try{
+    if(
+      (_dssvg.mode_en_cours==='setModeSaisieSelElt1' || 'setModeSaisieDefsElt1'===_dssvg.mode_en_cours) ||
+      ( (_dssvg.mode_en_cours==='setModeSaisieEditionPoin1' || 'setModeSaisieDefsPtE1'===_dssvg.mode_en_cours ) && globalIndicePoint!==null )
+    ){
 
-    var couleurs=recuperePropsCouleurs(numArbre);
+     var couleurs=recuperePropsCouleurs(numArbre);
 
-    if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='image'){
-      t+='<button class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"wiEtHeImageVide" ,"numArbre":'+numArbre+'}')+'">raz hauteur et largeur</button>';
-      t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"opacity" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['opacity'].valeur         +'"}')+'">opac:'+couleurs['opacity'].valeur+'</button>';
-    }else{
-     if(couleurs['stroke'] && couleurs['stroke'].valeur.indexOf('url(')<0){
-      t+='<button title="'+trad['couleur_de_trait']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"strokeElement" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke'].valeur         +'"}')+'">';
-      t+='<svg class="svgBoutonHaut1" viewBox="-2 -2  16 21"><line x1="0" y1="0" x2="0" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:blue;fill:transparent;stroke-width:3;"></line><line x1="6" y1="0" x2="6" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:red;fill:transparent;stroke-width:3;"></line><line x1="12" y1="0" x2="12" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:green;fill:transparent;stroke-width:3;"></line></svg>';
-      t+=''+couleurs['stroke'].valeur;
+     if(globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='image'){
+       t+='<button class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"wiEtHeImageVide" ,"numArbre":'+numArbre+'}')+'">raz hauteur et largeur</button>';
+       t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"opacity" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['opacity'].valeur         +'"}')+'">opac:'+couleurs['opacity'].valeur+'</button>';
+     }else{
+      if(couleurs['stroke'] && couleurs['stroke'].valeur.indexOf('url(')<0){
+       t+='<button title="'+trad['couleur_de_trait']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"strokeElement" ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke'].valeur         +'"}')+'">';
+       t+='<svg class="svgBoutonHaut1" viewBox="-2 -2  16 21"><line x1="0" y1="0" x2="0" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:blue;fill:transparent;stroke-width:3;"></line><line x1="6" y1="0" x2="6" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:red;fill:transparent;stroke-width:3;"></line><line x1="12" y1="0" x2="12" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:green;fill:transparent;stroke-width:3;"></line></svg>';
+       t+=''+couleurs['stroke'].valeur;
+       t+='</button>';
+      }
+      t+='<button title="'+trad['epaisseur_de_trait']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"stroke-width"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-width'].valeur   +'"}')+'">';
+      t+='<svg class="svgBoutonHaut1" viewBox="-2 -2  11 19"><line x1="0" y1="0" x2="0" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:1;"></line><line x1="3" y1="0" x2="3" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;"></line><line x1="7" y1="0" x2="7" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:3;"></line></svg>';
+      t+=''+couleurs['stroke-width'].valeur+'</button>';
+      // 
+      if(couleurs['fill'].valeur.indexOf('url(')<0){
+       t+='<button title="'+trad['couleur_de_remplissage']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"fillElement"   ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill'].valeur           +'"}')+'">';
+       t+='<svg class="svgBoutonHaut1" viewBox="-4 -4  12 12"><circle cx="-1" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:blue;stroke-width:0.3;"></circle><circle cx="-1" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:red;stroke-width:0.3;"></circle><circle cx="5" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:green;stroke-width:0.3;"></circle><circle cx="5" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:white;stroke-width:0.3;"></circle></svg>';
+       t+=''+couleurs['fill'].valeur+'</button>';
+       // 
+      }
+
+      t+='<button  title="'+trad['opacite_de_trait']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"stroke-opacity","numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-opacity'].valeur +'"}')+'">';
+      t+='<svg class="svgBoutonHaut1" viewBox="1 -2  10 19"><line x1="3" y1="0" x2="3" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:1;"></line><line x1="6" y1="0" x2="6" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.5;"></line><line x1="9" y1="0" x2="9" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.25;"></line></svg>';
+      t+=''+couleurs['stroke-opacity'].valeur+'</button>';
+
+      t+='<button title="'+trad['opacite_de_remplissage']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"fill-opacity"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill-opacity'].valeur   +'"}')+'">';
+      t+='<svg class="svgBoutonHaut1" viewBox="-4 -4  12 12"><circle cx="-1" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;"></circle><circle cx="-1" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.65;"></circle><circle cx="5" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.4;"></circle><circle cx="5" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.15;"></circle></svg>';
+      t+=''+couleurs['fill-opacity'].valeur+'</button>';
+      // 
+      t+='<button title="'+trad['opacite_de_trait_et_remplissage']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"opacity"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['opacity'].valeur   +'"}')+'">';
+      t+='<svg class="svgBoutonHaut1"  viewBox="-6 -4  16 12"><circle cx="-1" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;"></circle><circle cx="-1" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.65;"></circle><circle cx="5" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.4;"></circle><circle cx="5" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.15;"></circle><line x1="-4" y1="-3" x2="-4" y2="7" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:1;"></line><line x1="2" y1="-3" x2="2" y2="7" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.5;"></line><line x1="8" y1="-3" x2="8" y2="7" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.25;"></line></svg>';
+      t+=''+couleurs['opacity'].valeur+'</button>';
+      // <svg xmlns="http://www.w3.org/2000/svg" 
+     }
+     t+='<button title="'+trad['supprimer_attributs_graphiques']+'" class="butEnabled butMenuHaut bckRouge" style="min-width: fit-content;" data-action="'+htm1('{"action":"suppAttribGra1"  ,"numArbre":'+numArbre+'}')+'">';
+     t+='<svg class="svgBoutonHaut1" viewBox="9 -7  45 46.3869"><path d=" M 12 16 C 11 12 12 5 21 -1  C 31 -7 42 -2 46 4 C 51 11 52 24 41 31 C 37 33 28 38 25 30 C 23 26 28 25 27 22 C 25 21 22 22 19 22 C 15 22 12 19 12 16" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(255, 0, 0);fill:gold;stroke-width:1;"></path><circle cx="31" cy="4" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:red;fill:red;stroke-width:1;"></circle><circle cx="21" cy="10" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:chartreuse;fill:chartreuse;stroke-width:1;"></circle><circle cx="40" cy="11" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:yellow;fill:yellow;stroke-width:1;"></circle><circle cx="39" cy="21" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:blue;fill:blue;stroke-width:1;"></circle><circle cx="32" cy="28" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:white;fill:white;stroke-width:1;"></circle><line x1="11" y1="-5" x2="51" y2="34" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:3;"></line><line x1="11" y1="34" x2="51" y2="-5" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:3;"></line></svg>';
+     t+='</button>';
+     t+='<button title="'+trad['editer_element']+'" class="butEnabled butMenuHaut" style="min-width: 2em;padding:0 3px" data-action="'+htm1('{"action":"editElement"  ,"numArbre":'+numArbre+'}')+'">';
+     t+='<svg class="svgBoutonHaut1" viewBox="1 -10  62.0902 64"><g><path d=" M 41 -6 C 41 -3 41 0 41 2 C 42 2 47 2 49 2  C 48 1 44 -3 41 -6" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:slategray;stroke-width:1;"></path><path d=" M 3 -8 C 7 -8 35 -8 42 -8 C 45 -5 49 -1 51 1 C 51 5 51 46 51 52  C 47 52 8 52 3 52 C 3 47 3 -4 3 -8" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:white;stroke-width:1;"></path><path d=" M 50 6 C 52 4 53 3 54 2 C 56 4 58 6 59 7  C 58 8 57 9 55 11 C 53 10 52 8 50 6" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:gainsboro;fill:gainsboro;stroke-width:1;"></path><path d=" M 54 2 C 56 0 58 -1 60 1  C 62 3 61 5 59 7 z" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:orchid;fill:orchid;stroke-width:1;"></path><path d=" M 18 40 L 21 43 L 16 45  L 18 40" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:slategray;stroke-width:1;"></path><path d=" M 10 1 C 10 1 26 1 26 1 m -16 6 h 34 m -34 6 h 30 m -30 6 h 30 m -30 6 h 34 m -34 6 h 31 m -31 6 h 33 m -33 6 h 8 " stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:transparent;stroke-width:3;"></path><path d=" M 21 36 L 23 36 L 23 38 L 25 38 L 25 41 L 55 11  L 50 6 L 20 36" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:gold;fill:gold;stroke-width:1;"></path><path d=" M 20 36 L 23 36 L 23 38 L 25 38 L 25 41 L 21 43 L 18 40  L 20 36" stroke="rgb(255, 0, 0)" stroke-width="5" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:lightpink;fill:lightpink;stroke-width:1;"></path></g></svg>';
+     t+='</button>';
+     t+='<button title="'+trad['copier_styyle']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"copystyyl"  ,"numArbre":'+numArbre+'}')+'">';
+     t+='<svg class="svgBoutonHaut1" viewBox="-20.1445 4.1917  30.7333 32.8356"><g transform="rotate(38 0 0 )"><path d=" M 3 15 C 3 16 3 27 3 30 C 6 30 6 31 7 34 C 8 34 8 34 9 34 C 10 31 10 30 13 30 C 13 27 13 16 13 15 C 11 15 5 15 3 15" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:white;stroke-width:1;"></path><path d=" M 1 15 C 4 15 12 15 15 15 C 15 13 15 12 13 12 C 13 11 13 9 13 7 C 13 6 12 2 8 2 C 4 2 3 6 3 7 C 3 8 3 10 3 12 C 1 12 1 13 1 15" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:dodgerblue;fill:dodgerblue;stroke-width:1;"></path></g></svg>';
+     t+='</button>';
+     if(styylCopie!==null){
+      t+='<button title="'+trad['coller_styyle']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"pastestyyl"  ,"numArbre":'+numArbre+'}')+'">';
+      t+='<svg class="svgBoutonHaut1" viewBox="-2 65.7256  171.2193 144.2744"><path stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" d=" M 166 69 C 163 65 96 106 93 109 C 90 112 86 116 82 121 C 80 123 78 127 75 130  C 72 135 66 143 61 149 L 67 155 C 74 152 81 150 87 147 C 91 145 95 143 98 142 C 103 140 110 136 114 133 C 118 130 170 73 166 69" style="stroke:black;fill:sienna;stroke-width:5;"></path><path d="M 82 121 C 92 126 96 132 97 140 C 94 142 91 143 87 145 C 86 138 81 133 75 130 C 77 126 80 124 82 121 " stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:red;fill:red;stroke-width:5;"></path><path stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" d=" M 61 148 C 46 145 33 153 29 162  C 22 179 17 189 5 203 C 19 203 37 201 46 194 C 56 185 69 161 69 156 z" style="stroke:red;fill:red;stroke-width:5;"></path></svg>';
       t+='</button>';
      }
-     t+='<button title="'+trad['epaisseur_de_trait']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"stroke-width"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-width'].valeur   +'"}')+'">';
-     t+='<svg class="svgBoutonHaut1" viewBox="-2 -2  11 19"><line x1="0" y1="0" x2="0" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:1;"></line><line x1="3" y1="0" x2="3" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;"></line><line x1="7" y1="0" x2="7" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:3;"></line></svg>';
-     t+=''+couleurs['stroke-width'].valeur+'</button>';
-     // 
-     if(couleurs['fill'].valeur.indexOf('url(')<0){
-      t+='<button title="'+trad['couleur_de_remplissage']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"fillElement"   ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill'].valeur           +'"}')+'">';
-      t+='<svg class="svgBoutonHaut1" viewBox="-4 -4  12 12"><circle cx="-1" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:blue;stroke-width:0.3;"></circle><circle cx="-1" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:red;stroke-width:0.3;"></circle><circle cx="5" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:green;stroke-width:0.3;"></circle><circle cx="5" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:white;stroke-width:0.3;"></circle></svg>';
-      t+=''+couleurs['fill'].valeur+'</button>';
-      // 
-     }
-
-     t+='<button  title="'+trad['opacite_de_trait']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"stroke-opacity","numArbre":'+numArbre+',"valeur":"'+couleurs['stroke-opacity'].valeur +'"}')+'">';
-     t+='<svg class="svgBoutonHaut1" viewBox="1 -2  10 19"><line x1="3" y1="0" x2="3" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:1;"></line><line x1="6" y1="0" x2="6" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.5;"></line><line x1="9" y1="0" x2="9" y2="15" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.25;"></line></svg>';
-     t+=''+couleurs['stroke-opacity'].valeur+'</button>';
-
-     t+='<button title="'+trad['opacite_de_remplissage']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"fill-opacity"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['fill-opacity'].valeur   +'"}')+'">';
-     t+='<svg class="svgBoutonHaut1" viewBox="-4 -4  12 12"><circle cx="-1" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;"></circle><circle cx="-1" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.65;"></circle><circle cx="5" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.4;"></circle><circle cx="5" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.15;"></circle></svg>';
-     t+=''+couleurs['fill-opacity'].valeur+'</button>';
-     // 
-     t+='<button title="'+trad['opacite_de_trait_et_remplissage']+'" class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;display:flex;align-items:center;" data-action="'+htm1('{"action":"opacity"  ,"numArbre":'+numArbre+',"valeur":"'+couleurs['opacity'].valeur   +'"}')+'">';
-     t+='<svg class="svgBoutonHaut1"  viewBox="-6 -4  16 12"><circle cx="-1" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;"></circle><circle cx="-1" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.65;"></circle><circle cx="5" cy="-1" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.4;"></circle><circle cx="5" cy="5" r="2" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:black;fill:black;stroke-width:0.3;fill-opacity:0.15;"></circle><line x1="-4" y1="-3" x2="-4" y2="7" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:1;"></line><line x1="2" y1="-3" x2="2" y2="7" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.5;"></line><line x1="8" y1="-3" x2="8" y2="7" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:2;stroke-opacity:0.25;"></line></svg>';
-     t+=''+couleurs['opacity'].valeur+'</button>';
-     // <svg xmlns="http://www.w3.org/2000/svg" 
+     
     }
-    t+='<button title="'+trad['supprimer_attributs_graphiques']+'" class="butEnabled butMenuHaut bckRouge" style="min-width: fit-content;" data-action="'+htm1('{"action":"suppAttribGra1"  ,"numArbre":'+numArbre+'}')+'">';
-    t+='<svg class="svgBoutonHaut1" viewBox="9 -7  45 46.3869"><path d=" M 12 16 C 11 12 12 5 21 -1  C 31 -7 42 -2 46 4 C 51 11 52 24 41 31 C 37 33 28 38 25 30 C 23 26 28 25 27 22 C 25 21 22 22 19 22 C 15 22 12 19 12 16" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:rgb(255, 0, 0);fill:gold;stroke-width:1;"></path><circle cx="31" cy="4" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:red;fill:red;stroke-width:1;"></circle><circle cx="21" cy="10" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:chartreuse;fill:chartreuse;stroke-width:1;"></circle><circle cx="40" cy="11" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:yellow;fill:yellow;stroke-width:1;"></circle><circle cx="39" cy="21" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:blue;fill:blue;stroke-width:1;"></circle><circle cx="32" cy="28" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" transform="" style="stroke:white;fill:white;stroke-width:1;"></circle><line x1="11" y1="-5" x2="51" y2="34" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:3;"></line><line x1="11" y1="34" x2="51" y2="-5" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:transparent;stroke-width:3;"></line></svg>';
-    t+='</button>';
-    t+='<button title="'+trad['editer_element']+'" class="butEnabled butMenuHaut" style="min-width: 2em;padding:0 3px" data-action="'+htm1('{"action":"editElement"  ,"numArbre":'+numArbre+'}')+'">';
-    t+='<svg class="svgBoutonHaut1" viewBox="1 -10  62.0902 64"><g><path d=" M 41 -6 C 41 -3 41 0 41 2 C 42 2 47 2 49 2  C 48 1 44 -3 41 -6" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:slategray;stroke-width:1;"></path><path d=" M 3 -8 C 7 -8 35 -8 42 -8 C 45 -5 49 -1 51 1 C 51 5 51 46 51 52  C 47 52 8 52 3 52 C 3 47 3 -4 3 -8" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:black;fill:white;stroke-width:1;"></path><path d=" M 50 6 C 52 4 53 3 54 2 C 56 4 58 6 59 7  C 58 8 57 9 55 11 C 53 10 52 8 50 6" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:gainsboro;fill:gainsboro;stroke-width:1;"></path><path d=" M 54 2 C 56 0 58 -1 60 1  C 62 3 61 5 59 7 z" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:orchid;fill:orchid;stroke-width:1;"></path><path d=" M 18 40 L 21 43 L 16 45  L 18 40" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:slategray;stroke-width:1;"></path><path d=" M 10 1 C 10 1 26 1 26 1 m -16 6 h 34 m -34 6 h 30 m -30 6 h 30 m -30 6 h 34 m -34 6 h 31 m -31 6 h 33 m -33 6 h 8 " stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:transparent;stroke-width:3;"></path><path d=" M 21 36 L 23 36 L 23 38 L 25 38 L 25 41 L 55 11  L 50 6 L 20 36" stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:gold;fill:gold;stroke-width:1;"></path><path d=" M 20 36 L 23 36 L 23 38 L 25 38 L 25 41 L 21 43 L 18 40  L 20 36" stroke="rgb(255, 0, 0)" stroke-width="5" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:lightpink;fill:lightpink;stroke-width:1;"></path></g></svg>';
-    t+='</button>';
-    t+='<button title="'+trad['copier_styyle']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"copystyyl"  ,"numArbre":'+numArbre+'}')+'">';
-    t+='<svg class="svgBoutonHaut1" viewBox="-20.1445 4.1917  30.7333 32.8356"><g transform="rotate(38 0 0 )"><path d=" M 3 15 C 3 16 3 27 3 30 C 6 30 6 31 7 34 C 8 34 8 34 9 34 C 10 31 10 30 13 30 C 13 27 13 16 13 15 C 11 15 5 15 3 15" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:slategray;fill:white;stroke-width:1;"></path><path d=" M 1 15 C 4 15 12 15 15 15 C 15 13 15 12 13 12 C 13 11 13 9 13 7 C 13 6 12 2 8 2 C 4 2 3 6 3 7 C 3 8 3 10 3 12 C 1 12 1 13 1 15" stroke="rgb(0, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:dodgerblue;fill:dodgerblue;stroke-width:1;"></path></g></svg>';
-    t+='</button>';
-    if(styylCopie!==null){
-     t+='<button title="'+trad['coller_styyle']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"pastestyyl"  ,"numArbre":'+numArbre+'}')+'">';
-     t+='<svg class="svgBoutonHaut1" viewBox="-2 65.7256  171.2193 144.2744"><path stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" d=" M 166 69 C 163 65 96 106 93 109 C 90 112 86 116 82 121 C 80 123 78 127 75 130  C 72 135 66 143 61 149 L 67 155 C 74 152 81 150 87 147 C 91 145 95 143 98 142 C 103 140 110 136 114 133 C 118 130 170 73 166 69" style="stroke:black;fill:sienna;stroke-width:5;"></path><path d="M 82 121 C 92 126 96 132 97 140 C 94 142 91 143 87 145 C 86 138 81 133 75 130 C 77 126 80 124 82 121 " stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" stroke-linejoin="round" stroke-linecap="round" transform="" style="stroke:red;fill:red;stroke-width:5;"></path><path stroke="rgb(255, 0, 0)" stroke-width="1" fill="transparent" d=" M 61 148 C 46 145 33 153 29 162  C 22 179 17 189 5 203 C 19 203 37 201 46 194 C 56 185 69 161 69 156 z" style="stroke:red;fill:red;stroke-width:5;"></path></svg>';
-     t+='</button>';
-    }
-    
-   }
+   }catch(egg){}
    if(_dssvg.mode_en_cours==='setModeSaisieGroupe1' ){
     t+='<button class="butEnabled butMenuHaut bckRouge" style="min-width: fit-content;" data-action="'+htm1('{"action":"suppAttribGraDuGroupe1"  ,"numArbre":'+numArbre+'}')+'">'+trad['supp_attr_gra_grp']+'</button>';
     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"popupPropEltsGrp1"  ,"numArbre":'+numArbre+'}')+'">'+trad['Modifier_propriétés_du_groupe']+'</button>';
@@ -11935,7 +11948,7 @@ function myObj1(initObj1){
    }
   }
   if(_dssvg.mode_en_cours==='setModeSaisieDeplace1'){
-   t+='<span style="color:red;font-weight:bold;">elts='+(_dssvg.arbre0.length-1)+'</span>';
+   t+='<span style="color:black;font-weight:bold;">elts='+(_dssvg.arbre0.length-1)+'</span>';
   }
   
   
