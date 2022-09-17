@@ -111,3 +111,7 @@ actif,cle,fr,en
 1,couleur_de_remplissage,couleur de remplissage,fill color
 1,opacite_de_remplissage,opacité de remplissage,fill opacity
 1,opacite_de_trait_et_remplissage,opacité de trait et de remplissage,stroke and fill opacity
+1,bouger_poignees,Bouger toutes les poignées des C dans les chemins,Move all C handles in paths
+1,bouger_poignees_bleus_seulement,Bouger uniquement les poignées bleues des C dans les chemins,Move only blue C handles in paths
+1,bouger_poignees_vertes_seulement,Bouger uniquement les poignées vertes des C dans les chemins,Move only green C handles in paths
+1,bouger_poignees_rouges_seulement,Bouger uniquement les poignées rouges des C dans les chemins,Move only red C handles in paths

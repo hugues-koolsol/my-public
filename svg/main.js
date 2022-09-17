@@ -130,6 +130,7 @@ function myObj1(initObj1){
 // var svgEtoile='<svg class="svgBoutonGauche1" viewBox="2 0  57 56"><polygon points="  30 9   35 23 50 23 40 33 45 48 30 38 15 48 20 33 10 23 25 23" fill="transparent" stroke-width="5" style="stroke:blue;fill:transparent;stroke-width:5;stroke-opacity:1;fill-opacity:1;"></polygon></svg>';
  var svgEtoile='<svg class="svgBoutonGauche1" viewBox="-95.1057 -100.5  190.2114 180.9017"><polygon points=" 0 -100.5  17.6336 -24.7705  95.1057 -31.4017  28.5317 8.7705  58.7785 80.4017  0 29.5  -58.7785 80.4017  -28.5317 8.7705  -95.1057 -31.4017  -17.6336 -24.7705  0 -100.5 " stroke-linecap="round" stroke-linejoin="round" style="stroke-width:15;stroke:blue;fill:transparent;"></polygon></svg>';
  var styylCopie=null;
+ var selectSeulement=''; // vide, 'rouge', 'vert' , 'bleu'
  
  
  
@@ -825,8 +826,14 @@ function myObj1(initObj1){
      contentOfPopup+='<div style="text-align:center;margin-top:10px;">';
     }
     contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'" data-echelle="'+(Math.round(j*10)/10)+'" style="min-width:4em;">'+(Math.round(j*10)/10)+'</button>';
+    if((Math.round(j*10)/10)===2){
+     contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'" data-echelle="3" style="min-width:4em;">3</button>';
+    }
     if((Math.round(j*10)/10)===0.9 || (Math.round(j*10)/10)===1.9 || (Math.round(j*10)/10)===2 ){
      contentOfPopup+='</div>';
+    }
+    if((Math.round(j*10)/10)===0.3){
+     contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'" data-echelle="0.3333" style="min-width:4em;">0.33</button>';
     }
    }
   }
@@ -836,6 +843,9 @@ function myObj1(initObj1){
     contentOfPopup+='<div style="text-align:center;margin-top:10px;">';
    }
    contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'"  data-echelle="'+(Math.round(j*10)/10)+'" style="min-width:4em;">'+(Math.round(j*10)/10)+'</button>';
+   if((Math.round(j*10)/10)===-2){
+    contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'" data-echelle="-3" style="min-width:4em;">-3</button>';
+   }
    if( (Math.round(j*10)/10)===-2 || (Math.round(j*10)/10)===-1.1 || (Math.round(j*10)/10)===-0.1 || (Math.round(j*10)/10)===-1 ){
     contentOfPopup+='</div>';
    }
@@ -3232,6 +3242,14 @@ function myObj1(initObj1){
    }else if('popupPropEltsGrp1'===jso.action){
     popupPropEltsGrp1(jso);
 
+
+
+    
+   }else if('selectSeulemen'===jso.action){
+    
+    selectSeulement=jso.valeur;
+    afficheArbre0({init:false});
+    
     
    }else if('selectionnerGroupeDessous1'===jso.action){
     _dssvg.idArbreCourant=parseInt(jso.idAutre,10);
@@ -7341,18 +7359,37 @@ function myObj1(initObj1){
       var line2 = ajouteElemDansElem(refZnDessin,'path',{'data-type':'toRemove','data-elem':_dssvg.idArbreCourant,'data-indice':'C2,'+i ,d:'M '+pt0.x   + ' '+pt0.y   + ' L ' + ptC2.x + ' ' + ptC2.y+'',style:'fill:transparent;stroke:green;stroke-width:'+(strokWit/_dssvg.zoom1/4)+';'});
      }
 
-     // premier point de contrôle
+//     selectSeulement='';
+     var rayonvert=rayonPoint;
+     var rayonbleu=rayonPoint;
+     var rayonroug=rayonPoint;
+     // var selectSeulement=''; // aucune, 'rouge', 'vert' , 'bleu'
+     if(selectSeulement==='bleu'){
+      rayonvert=rayonPoint*0.4;
+      rayonroug=rayonPoint*0.4;
+     }else if(selectSeulement==='vert'){
+      rayonbleu=rayonPoint*0.4;
+      rayonroug=rayonPoint*0.4;
+     }else if(selectSeulement==='roug'){
+      rayonbleu=rayonPoint*0.4;
+      rayonvert=rayonPoint*0.4;
+     }
+     // premier point de contrôle fond bleu
      if(poigneeAffichable(ptC1.x,ptC1.y)){
-      var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-indicepoint':i,cx:ptC1.x,cy:ptC1.y,'data-type':'toRemove','data-elem':_dssvg.idArbreCourant,'data-recherche1':'C1,'+i,'data-indice':i+',1,2','data-fnt':'actionMoveSelectionPtElement',r:rayonPoint,style:'fill:'+filcol+';stroke:green;stroke-width:'+(strokWit/_dssvg.zoom1)+';'});
-      dot.addEventListener('mousedown',mouseDownSelectionPtElement,'dot');
-      dot.addEventListener('touchstart',touchDownSelectionPtElement,'dot');
+      var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-indicepoint':i,cx:ptC1.x,cy:ptC1.y,'data-type':'toRemove','data-elem':_dssvg.idArbreCourant,'data-recherche1':'C1,'+i,'data-indice':i+',1,2','data-fnt':'actionMoveSelectionPtElement',r:rayonbleu,style:'fill:'+filcol+';stroke:green;stroke-width:'+(strokWit/_dssvg.zoom1)+';'});
+      if(selectSeulement==='' || selectSeulement==='bleu'){
+       dot.addEventListener('mousedown',mouseDownSelectionPtElement,'dot');
+       dot.addEventListener('touchstart',touchDownSelectionPtElement,'dot');
+      }
      }
 
-     // deuxième point de contrôle
+     // deuxième point de contrôle fond vert
      if(poigneeAffichable(ptC2.x,ptC2.y)){
-      var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-indicepoint':i,'data-type':'toRemove','data-elem':_dssvg.idArbreCourant,'data-recherche1':'C2,'+i,'data-indice':i+',3,4','data-fnt':'actionMoveSelectionPtElement',cx:ptC2.x,cy:ptC2.y,r:rayonPoint,style:'fill:rgba(0,255,0,0.5);stroke:blue;stroke-width:'+(strokWit/_dssvg.zoom1)+';'}); // green
-      dot.addEventListener('mousedown',mouseDownSelectionPtElement,'dot');
-      dot.addEventListener('touchstart',touchDownSelectionPtElement,'dot');
+      var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-indicepoint':i,'data-type':'toRemove','data-elem':_dssvg.idArbreCourant,'data-recherche1':'C2,'+i,'data-indice':i+',3,4','data-fnt':'actionMoveSelectionPtElement',cx:ptC2.x,cy:ptC2.y,r:rayonvert,style:'fill:rgba(0,255,0,0.5);stroke:blue;stroke-width:'+(strokWit/_dssvg.zoom1)+';'}); // green
+      if(selectSeulement==='' || selectSeulement==='vert'){
+       dot.addEventListener('mousedown',mouseDownSelectionPtElement,'dot');
+       dot.addEventListener('touchstart',touchDownSelectionPtElement,'dot');
+      }
      }
 
      var recherche2='';
@@ -7362,9 +7399,11 @@ function myObj1(initObj1){
      
      // point de fin
      if(poigneeAffichable(pt0.x,pt0.y)){
-      var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-indicepoint':i,'data-type':'toRemove','data-elem':_dssvg.idArbreCourant,'data-recherche1':'C2,'+i,'data-recherche2':recherche2,'data-indice':i+',5,6','data-fnt':'actionMoveSelectionPtElement',cx:pt0.x,cy:pt0.y,r:rayonPoint,style:'fill:rgba(255,192,203,0.5);'+strk+';stroke-width:'+(strokWit/_dssvg.zoom1)+';'}); // pink
-      dot.addEventListener('mousedown',mouseDownSelectionPtElement,'dot')
-      dot.addEventListener('touchstart',touchDownSelectionPtElement,'dot')
+      var dot    = ajouteElemDansElem(refZnDessin,'circle',{'data-indicepoint':i,'data-type':'toRemove','data-elem':_dssvg.idArbreCourant,'data-recherche1':'C2,'+i,'data-recherche2':recherche2,'data-indice':i+',5,6','data-fnt':'actionMoveSelectionPtElement',cx:pt0.x,cy:pt0.y,r:rayonroug,style:'fill:rgba(255,192,203,0.5);'+strk+';stroke-width:'+(strokWit/_dssvg.zoom1)+';'}); // pink
+      if(selectSeulement==='' || selectSeulement==='roug'){
+       dot.addEventListener('mousedown',mouseDownSelectionPtElement,'dot')
+       dot.addEventListener('touchstart',touchDownSelectionPtElement,'dot')
+      }
      }
 
      pointFixePrecedent.x=globalSelectionPoints.tabAbsolu[i][5];
@@ -10974,7 +11013,7 @@ function myObj1(initObj1){
 //  {id:'setModeSaisieDeplace1'     , position:'menuGauche' , libelle:trad['deplacer']                            , action:setModeSaisieDeplace1       , svg:'<svg class="svgBoutonGauche1" viewBox="-2 -1.25  54.80 38.75"><text x="19" y="31" font-family="Verdana" style="font-size:36px;stroke:red;fill:yellow;stroke-width:1;stroke-opacity:1;fill-opacity:1;">⇲</text><text x="-2" y="25" stroke="red" font-family="Verdana" style="font-size:36px;stroke-width:1;stroke:red;fill:yellow;stroke-opacity:1;fill-opacity:1;">⇱</text></svg>'},
 //<svg xmlns="http://www.w3.org/2000/svg" 
   {id:'setModeSaisieSelElt1'      , position:'menuGauche' , libelle:trad['selelts']                             , action:setModeSaisieSelElt1        , svg:'<svg class="svgBoutonGauche1" viewBox="-5.5 -5.5  25 26"><rect x="0" y="0" width="13" height="14" stroke="red" stroke-width="3" fill="transparent"></rect><circle cx="0" cy="0" r="3.5" stroke="rgb(0, 0, 255)" stroke-width="3" fill="transparent"></circle><circle cx="13" cy="14" r="3.5" stroke="green" stroke-width="3" fill="transparent"></circle></svg>'},
-  {id:'setModeSaisieEditionPoin1' , position:'menuGauche' , libelle:trad['selptselts']                          , action:setModeSaisieEditionPoin1   , svg:'<svg class="svgBoutonGauche1" viewBox="-12.5 13.5  34 29"><path stroke="black" stroke-width="3" fill="transparent" d=" M -7 18 C -4 37 11 40 16 22 "></path><circle cx="10" cy="36" r="3.5" stroke="blue" stroke-width="2" fill="green"></circle><circle cx="-7" cy="19" r="3.5" stroke="red" stroke-width="2" fill="pink"></circle><circle cx="-4" cy="37" r="3.5" stroke="green" stroke-width="2" fill="blue"></circle><circle cx="16" cy="23" r="3.5" stroke="red" stroke-width="2" fill="pink"></circle><path d="M -7,19 L -4,36" stroke="rgb(0, 0, 255)" stroke-width="1" fill="transparent"></path><path d="M 16,23 L 10,36" stroke="rgb(0, 255, 0)" stroke-width="1" fill="transparent"></path></svg>'},
+  {id:'setModeSaisieEditionPoin1' , position:'menuGauche' , libelle:trad['selptselts']                          , action:setModeSaisieEditionPoin1   , svg:'<svg class="svgBoutonGauche1" viewBox="-12 14  33 28"><path stroke="black" stroke-width="3" fill="transparent" d=" M -7 19 C -4 37 11 40 16 23 "></path><circle cx="10" cy="36" r="4" stroke="blue" stroke-width="2" fill="green" style="stroke:blue;fill:green;stroke-width:1;"></circle><circle cx="-7" cy="19" r="4" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:1;"></circle><circle cx="-4" cy="37" r="4" stroke="green" stroke-width="2" fill="blue" style="stroke:green;fill:blue;stroke-width:1;"></circle><circle cx="16" cy="23" r="4" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:1;"></circle><path d=" M -7 19 L -4 37 " stroke="rgb(0, 0, 255)" stroke-width="1" fill="transparent"></path><path d="M 16,23 L 10,36" stroke="rgb(0, 255, 0)" stroke-width="1" fill="transparent"></path></svg>'},
   {id:'setModeSaisieTranE1'       , position:'menuGauche' , libelle:trad['seltranselts']                        , action:setModeSaisieTranE1         , svg:'<svg class="svgBoutonGauche1" viewBox="-9 -9  35 36"><rect x="0" y="0" width="13" height="14" stroke="red" stroke-width="3" fill="transparent"></rect><circle cx="0" cy="0" r="3.5" stroke="rgb(0, 0, 255)" stroke-width="3" fill="transparent"></circle><path stroke="green" stroke-width="3" fill="transparent" d=" M 18 0 L 23 -7 L 13 -7 L 18 0 C 18 14 10 19 0 19  L -7 24 L -7 14 L 0 19"></path></svg>'},
   {id:'setModeSaisieGroupe1'      , position:'menuGauche' , libelle:trad['selgrps']                             , action:setModeSaisieGroupe1        , svg:'<svg class="svgBoutonGauche1" viewBox="-18.5 -9.5  46.5 46.5"><rect x="0" y="0" width="13" height="13" stroke="red" stroke-width="3" fill="transparent" transform="rotate(45 0 0 ) "></rect><rect x="7" y="15" width="13" height="14" stroke="red" stroke-width="3" fill="transparent" transform="rotate(0 0 0 ) "></rect><rect x="-13" y="-4" width="36" height="36" stroke="gold" stroke-width="3" fill="transparent"></rect><circle cx="-13" cy="-4" r="3.5" stroke="rgb(0, 0, 255)" stroke-width="3" fill="transparent"></circle></svg>'},
 
@@ -11896,7 +11935,6 @@ function myObj1(initObj1){
     t+='<button class="butEnabled butMenuHaut bckJaune" style="min-width: fit-content;" data-action="'+htm1('{"action":"deplaceEltsGrp"  ,"numArbre":'+numArbre+'}')+'">'+trad['deplacer_les_éléments_du_groupe']+'</button>';
    }
    
-   
   }
   if(
      (_dssvg.mode_en_cours==='setModeSaisieSelElt1' || 'setModeSaisieDefsElt1'===_dssvg.mode_en_cours) ||
@@ -11947,6 +11985,32 @@ function myObj1(initObj1){
     }
    }
   }
+  if(
+    ( globalGeneralSvgReferenceElement && globalIndicePoint!==null &&  (_dssvg.mode_en_cours==='setModeSaisieEditionPoin1' || 'setModeSaisieDefsPtE1'===_dssvg.mode_en_cours ) && globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='path' )
+  ){
+   if(selectSeulement!==''){
+    t+='<button title="'+trad['bouger_poignees']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"selectSeulemen" , "valeur":"" ,"numArbre":'+numArbre+'}')+'">';
+    t+='<svg class="svgBoutonHaut1" viewBox="-12 14  33 28"><path stroke="black" stroke-width="3" fill="transparent" d=" M -7 19 C -4 37 11 40 16 23 "></path><circle cx="10" cy="36" r="4" stroke="blue" stroke-width="2" fill="green" style="stroke:blue;fill:green;stroke-width:1;"></circle><circle cx="-7" cy="19" r="4" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:1;"></circle><circle cx="-4" cy="37" r="4" stroke="green" stroke-width="2" fill="blue" style="stroke:green;fill:blue;stroke-width:1;"></circle><circle cx="16" cy="23" r="4" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:1;"></circle><path d=" M -7 19 L -4 37 " stroke="rgb(0, 0, 255)" stroke-width="1" fill="transparent"></path><path d="M 16,23 L 10,36" stroke="rgb(0, 255, 0)" stroke-width="1" fill="transparent"></path></svg>';
+    t+='</button>';
+   }
+   if(selectSeulement!=='bleu'){
+    t+='<button title="'+trad['bouger_poignees_bleus_seulement']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"selectSeulemen" , "valeur":"bleu" ,"numArbre":'+numArbre+'}')+'">';
+    t+='<svg class="svgBoutonHaut1" viewBox="-10 16  29 29"><path stroke="black" stroke-width="3" fill="transparent" d=" M -7 19 C -4 37 11 40 16 23 "></path><circle cx="10" cy="36" r="2" stroke="blue" stroke-width="2" fill="green" style="stroke:blue;fill:green;stroke-width:0.1;"></circle><circle cx="-7" cy="19" r="2" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:1;"></circle><circle cx="-4" cy="37" r="5" stroke="green" stroke-width="2" fill="blue" style="stroke:green;fill:blue;stroke-width:0.1;"></circle><circle cx="16" cy="23" r="2" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:1;"></circle><path d=" M -7 19 L -4 37 " stroke="rgb(0, 0, 255)" stroke-width="1" fill="transparent"></path><path d="M 16,23 L 10,36" stroke="rgb(0, 255, 0)" stroke-width="1" fill="transparent"></path></svg>';
+    t+='</button>';
+   }
+   if(selectSeulement!=='vert'){
+    t+='<button title="'+trad['bouger_poignees_vertes_seulement']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"selectSeulemen" , "valeur":"vert" ,"numArbre":'+numArbre+'}')+'">';
+    t+='<svg class="svgBoutonHaut1" viewBox="-11 15  31 28"><path stroke="black" stroke-width="3" fill="transparent" d=" M -7 19 C -4 37 11 40 16 23 "></path><circle cx="10" cy="36" r="5" stroke="blue" stroke-width="2" fill="green" style="stroke:blue;fill:green;stroke-width:0.1;"></circle><circle cx="-7" cy="19" r="3" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:1;"></circle><circle cx="-4" cy="37" r="3" stroke="green" stroke-width="2" fill="blue" style="stroke:green;fill:blue;stroke-width:0.1;"></circle><circle cx="16" cy="23" r="3" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:1;"></circle><path d=" M -7 19 L -4 37 " stroke="rgb(0, 0, 255)" stroke-width="1" fill="transparent"></path><path d="M 16,23 L 10,36" stroke="rgb(0, 255, 0)" stroke-width="1" fill="transparent"></path></svg>';
+    t+='</button>';
+   }
+   if(selectSeulement!=='roug'){
+    t+='<button title="'+trad['bouger_poignees_rouges_seulement']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"selectSeulemen" , "valeur":"roug" ,"numArbre":'+numArbre+'}')+'">';
+    t+='<svg class="svgBoutonHaut1" viewBox="-11 15  33 27"><path stroke="black" stroke-width="3" fill="transparent" d=" M -7 19 C -4 37 11 40 16 23 "></path><circle cx="10" cy="36" r="3" stroke="blue" stroke-width="2" fill="green" style="stroke:blue;fill:green;stroke-width:0.1;"></circle><circle cx="-7" cy="19" r="3" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:0.1;"></circle><circle cx="-4" cy="37" r="3" stroke="green" stroke-width="2" fill="blue" style="stroke:green;fill:blue;stroke-width:0.1;"></circle><circle cx="16" cy="23" r="5" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:1;"></circle><path d=" M -7 19 L -4 37 " stroke="rgb(0, 0, 255)" stroke-width="1" fill="transparent"></path><path d="M 16,23 L 10,36" stroke="rgb(0, 255, 0)" stroke-width="1" fill="transparent"></path></svg>';
+    t+='</button>';
+   }
+  }
+
+  
   if(_dssvg.mode_en_cours==='setModeSaisieDeplace1'){
    t+='<span style="color:black;font-weight:bold;">elts='+(_dssvg.arbre0.length-1)+'</span>';
   }

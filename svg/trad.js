@@ -112,6 +112,10 @@ trad['opacite_de_trait']='opacité de trait';
 trad['couleur_de_remplissage']='couleur de remplissage';
 trad['opacite_de_remplissage']='opacité de remplissage';
 trad['opacite_de_trait_et_remplissage']='opacité de trait et de remplissage';
+trad['bouger_poignees']='Bouger toutes les poignées des C dans les chemins';
+trad['bouger_poignees_bleus_seulement']='Bouger uniquement les poignées bleues des C dans les chemins';
+trad['bouger_poignees_vertes_seulement']='Bouger uniquement les poignées vertes des C dans les chemins';
+trad['bouger_poignees_rouges_seulement']='Bouger uniquement les poignées rouges des C dans les chemins';
 }
 
 function setTrad_en(){
@@ -227,5 +231,9 @@ trad['opacite_de_trait']='stroke opacity';
 trad['couleur_de_remplissage']='fill color';
 trad['opacite_de_remplissage']='fill opacity';
 trad['opacite_de_trait_et_remplissage']='stroke and fill opacity';
+trad['bouger_poignees']='Move all C handles in paths';
+trad['bouger_poignees_bleus_seulement']='Move only blue C handles in paths';
+trad['bouger_poignees_vertes_seulement']='Move only green C handles in paths';
+trad['bouger_poignees_rouges_seulement']='Move only red C handles in paths';
 }
 
