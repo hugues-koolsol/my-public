@@ -316,7 +316,7 @@ function myObj1(initObj1){
   contentOfPopup+='<div id="parNombreDeBranchesValeur" style="display:inline-block;min-width:2rem;">8</div>';
   contentOfPopup+='<label for="parNombreDeBranches"> : '+trad['nombre_de_branches']+'</label>';
   contentOfPopup+='<div>';
-   contentOfPopup+='<input id="parNombreDeBranches" type="range" min="3" max="72" step="1" value="8" style="width:95%;min-width:200px;max-width:500px;" />';
+   contentOfPopup+='<input id="parNombreDeBranches" type="range" min="3" max="72" step="1" value="8" style="width:95%;min-width:200px;max-width:500px;user-select:auto;" />';
   contentOfPopup+='</div>';
   contentOfPopup+='</div>';
   
@@ -325,7 +325,7 @@ function myObj1(initObj1){
   contentOfPopup+='<div id="parPourcentageArrondiValeur" style="display:inline-block;min-width:2rem;">30</div>';
   contentOfPopup+='<label for="parPourcentageArrondi"> : '+trad['pourcentage_arrondi']+'</label>';
   contentOfPopup+='<div>';
-  contentOfPopup+='<input id="parPourcentageArrondi" type="range" min="0" max="100" step="1" value="30" style="width:95%;min-width:200px;max-width:500px;" />';
+  contentOfPopup+='<input id="parPourcentageArrondi" type="range" min="0" max="100" step="1" value="30" style="width:95%;min-width:200px;max-width:500px;user-select:auto;" />';
   contentOfPopup+='</div>';
   contentOfPopup+='</div>';
   
@@ -828,6 +828,7 @@ function myObj1(initObj1){
     contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'" data-echelle="'+(Math.round(j*10)/10)+'" style="min-width:4em;">'+(Math.round(j*10)/10)+'</button>';
     if((Math.round(j*10)/10)===2){
      contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'" data-echelle="3" style="min-width:4em;">3</button>';
+     contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'" data-echelle="5" style="min-width:4em;">5</button>';
     }
     if((Math.round(j*10)/10)===0.9 || (Math.round(j*10)/10)===1.9 || (Math.round(j*10)/10)===2 ){
      contentOfPopup+='</div>';
@@ -845,6 +846,7 @@ function myObj1(initObj1){
    contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'"  data-echelle="'+(Math.round(j*10)/10)+'" style="min-width:4em;">'+(Math.round(j*10)/10)+'</button>';
    if((Math.round(j*10)/10)===-2){
     contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'" data-echelle="-3" style="min-width:4em;">-3</button>';
+    contentOfPopup+='<button class="butEnabled butMenuGauche" data-groupe="'+jso.numArbre+'" data-jso="'+htm1(JSON.stringify(jso))+'" data-echelle="-5" style="min-width:4em;">-5</button>';
    }
    if( (Math.round(j*10)/10)===-2 || (Math.round(j*10)/10)===-1.1 || (Math.round(j*10)/10)===-0.1 || (Math.round(j*10)/10)===-1 ){
     contentOfPopup+='</div>';
@@ -4271,7 +4273,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parLargeurMenuGaucheValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.largeurMenuGauche+'</div>';
      contentOfPopup+='<label for="parLargeurMenuGauche"> : '+trad['Largeur_du_menu_gauche']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parLargeurMenuGauche" type="range" min="30" max="44" step="2" value="'+_dssvg.parametres.largeurMenuGauche+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parLargeurMenuGauche" type="range" min="30" max="44" step="2" value="'+_dssvg.parametres.largeurMenuGauche+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
@@ -4279,7 +4281,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parHauteurMinBtnMenuGauValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.hauteurMinBtnMenuGau+'</div>';
      contentOfPopup+='<label for="parHauteurMinBtnMenuGau"> : '+trad['Hauteur_minimal_des_boutons_à_gauche']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parHauteurMinBtnMenuGau" type="range" min="20" max="36" step="4" value="'+_dssvg.parametres.hauteurMinBtnMenuGau+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parHauteurMinBtnMenuGau" type="range" min="20" max="36" step="4" value="'+_dssvg.parametres.hauteurMinBtnMenuGau+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
@@ -4287,7 +4289,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parHauteurMenuHautValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.hauteurMenuHaut+'</div>';
      contentOfPopup+='<label for="parHauteurMenuHaut"> : '+trad['Hauteur_du_menu_haut']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parHauteurMenuHaut" type="range" min="30" max="44" step="2" value="'+_dssvg.parametres.hauteurMenuHaut+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parHauteurMenuHaut" type="range" min="30" max="44" step="2" value="'+_dssvg.parametres.hauteurMenuHaut+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
 
@@ -4295,7 +4297,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parLargeurMinBtnMenuHauValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.largeurMinBtnMenuHau+'</div>';
      contentOfPopup+='<label for="parLargeurMinBtnMenuHau"> : '+trad['Largeur_minimal_des_boutons_en_haut']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parLargeurMinBtnMenuHau" type="range" min="20" max="36" step="4" value="'+_dssvg.parametres.largeurMinBtnMenuHau+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parLargeurMinBtnMenuHau" type="range" min="20" max="36" step="4" value="'+_dssvg.parametres.largeurMinBtnMenuHau+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
 
@@ -4303,7 +4305,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parIntervalleEntreBtnsValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.intervalleEntreBtns+'</div>';
      contentOfPopup+='<label for="parIntervalleEntreBtns"> : '+trad['Intervalles_entre_les_boutons']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parIntervalleEntreBtns" type="range" min="0" max="20" step="2" value="'+_dssvg.parametres.intervalleEntreBtns+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parIntervalleEntreBtns" type="range" min="0" max="20" step="2" value="'+_dssvg.parametres.intervalleEntreBtns+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
@@ -4311,7 +4313,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parLargeurScrollValeur" style="display:inline-block;min-width:2rem;">'+(Math.round(_dssvg.parametres.scroll_size/5)*5)+'</div>';
      contentOfPopup+='<label for="parLargeurScrollSize"> : '+trad['Largeur_du_scroll']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parLargeurScrollSize" type="range" min="0" max="20" step="5" value="'+(Math.round(_dssvg.parametres.scroll_size/5)*5)+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parLargeurScrollSize" type="range" min="0" max="20" step="5" value="'+(Math.round(_dssvg.parametres.scroll_size/5)*5)+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
@@ -4319,7 +4321,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parRayonReferenceValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.rayonReference+'</div>';
      contentOfPopup+='<label for="parRayonReference"> : '+trad['Rayon_des_poignées']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parRayonReference" type="range" min="10" max="30" step="2" value="'+_dssvg.parametres.rayonReference+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parRayonReference" type="range" min="10" max="30" step="2" value="'+_dssvg.parametres.rayonReference+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
 
@@ -4327,7 +4329,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parTaillePoliceValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.taillePolice+'</div>';
      contentOfPopup+='<label for="parTaillePolice"> : '+trad['Taille_des_textes']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parTaillePolice" type="range" min="14" max="24" step="2" value="'+_dssvg.parametres.taillePolice+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parTaillePolice" type="range" min="14" max="24" step="2" value="'+_dssvg.parametres.taillePolice+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
@@ -4342,7 +4344,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parOptimisationCheminValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.optimisationChemin+'</div>';
      contentOfPopup+='<label for="parOptimisationChemin"> : '+trad['Optimisation_des_tracés_chemin']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parOptimisationChemin" type="range" min="0" max="2" step="1" value="'+_dssvg.parametres.optimisationChemin+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parOptimisationChemin" type="range" min="0" max="2" step="1" value="'+_dssvg.parametres.optimisationChemin+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
@@ -4350,7 +4352,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parDiviseurDeplacementValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.diviseurDeplacement+'</div>';
      contentOfPopup+='<label for="parDiviseurDeplacement"> : '+trad['Diviseur_de_déplacement']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parDiviseurDeplacement" type="range" min="1" max="5" step="1" value="'+_dssvg.parametres.diviseurDeplacement+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parDiviseurDeplacement" type="range" min="1" max="5" step="1" value="'+_dssvg.parametres.diviseurDeplacement+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
     
@@ -4359,7 +4361,7 @@ function myObj1(initObj1){
      contentOfPopup+='<div id="parFacteurAimntValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.facteurAimnt+'</div>';
      contentOfPopup+='<label for="parFacteurAimnt"> : '+trad['Diviseur_de_pixel']+'</label>';
      contentOfPopup+='<div>';
-      contentOfPopup+='<input id="parFacteurAimnt" type="range" min="1" max="16" step="1" value="'+_dssvg.parametres.facteurAimnt+'" style="width:80%;min-width:200px;max-width:500px;" />';
+      contentOfPopup+='<input id="parFacteurAimnt" type="range" min="1" max="32" step="1" value="'+_dssvg.parametres.facteurAimnt+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
 
@@ -4387,6 +4389,7 @@ function myObj1(initObj1){
     contentOfPopup+='<div style="text-align:center;justify-content: center;display:flex;flex-wrap: wrap;" >';
     
     contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://pattern.monster/">patern monster</a>';
+    contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://yqnn.github.io/svg-path-editor/">path editor</a>';
     contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://svgsilh.com/">svgsilh.com</a>';
     contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://www.svgrepo.com/">svgrepo.com</a>';
     contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://freesvg.org/">freesvg.org</a>';
@@ -4541,7 +4544,7 @@ function myObj1(initObj1){
   
    var viewboxTab=refZnDessin.getAttribute('viewBox').trim().replace(/ /g,',').replace(/,,/g,',').replace(/,,/g,',').replace(/,,/g,',').split(',').map(Number);
 
-   if(_dssvg.zoom1==256 && n==2){
+   if(_dssvg.zoom1==1024 && n==2){
     // rien
    }else if(_dssvg.zoom1==0.03125 && n==0.5){ // 0.03125 // 0.0625
     // rien
@@ -9316,6 +9319,7 @@ function myObj1(initObj1){
   ss.insertRule('*::-webkit-scrollbar-corner{background-color: #34d3f7;}' , ss.cssRules.length);
   ss.insertRule('*::-webkit-resizer{background-color: #34d3f7;}' , ss.cssRules.length);  
   
+  ss.insertRule('button{user-select: none;}' , ss.cssRules.length);  
   ss.insertRule('.butEnabled{display: inline-block; font-size: 0.9em; line-height: 1.0em; text-decoration: none; border: 1px #eee outset; padding    : 1px 0px 0px 1px; border-radius: 5px; box-shadow: 0px 0px 4px #aaa; color: #006c84; background: linear-gradient(to bottom,#beedff 0%, #7eddff 100%); outline: none;}' , ss.cssRules.length);  
   ss.insertRule('.butEnabled:active{  box-shadow : rgb(170 170 170) 0px 0px 0px; background : linear-gradient(rgb(121, 247, 131) 0%, rgb(190, 255, 219) 100%); border     : 1px inset rgb(238, 238, 238);}' , ss.cssRules.length);  
   ss.insertRule('.butDisabled{ display: inline-block; font-size: 0.9em; line-height: 1.0em; text-decoration: none; border: 1px #eee inset; padding    : 1px 0px 0px 1px;  border-radius: 5px; color: #a8b9bd; outline: none; box-shadow: none; background : linear-gradient(rgb(121, 247, 131) 0%, rgb(190, 255, 219) 100%);}  ' , ss.cssRules.length);  
@@ -9332,13 +9336,13 @@ function myObj1(initObj1){
   ss.insertRule('#divtpe{overflow: scroll hidden;position:absolute;display:flex;flex-flow: row nowrap;}' , ss.cssRules.length);  
   
   
-  ss.insertRule('#popupContent1{z-index: 101;opacity: 0.9;position: absolute;background: white;overflow: scroll;    border-radius: 4px;box-shadow: 0px 0px 25px #000;}' , ss.cssRules.length);  
+  ss.insertRule('#popupContent1{z-index: 101;opacity: 0.9;position: absolute;background: white;overflow: scroll;    border-radius: 4px;box-shadow: 0px 0px 25px #000;user-select: text;}' , ss.cssRules.length);  
   
   
   ss.insertRule('#popupValue div{}' , ss.cssRules.length); 
   ss.insertRule('#popupValue label{margin-right:5px;}' , ss.cssRules.length);  
-  ss.insertRule('#popupValue input{min-width:50px;padding:5px;}' , ss.cssRules.length);  
-  ss.insertRule('#popupValue textarea{border:2px #eee inset;border-radius:4px;padding:4px;min-width:80%;user-select:text;}' , ss.cssRules.length);  
+  ss.insertRule('#popupValue input{min-width:50px;padding:5px;user-select:all;}' , ss.cssRules.length);  
+  ss.insertRule('#popupValue textarea{border:2px #eee inset;border-radius:4px;padding:4px;min-width:80%;user-select:all;}' , ss.cssRules.length);  
   
   ss.insertRule('.svgBoutonGauche1{max-height:'+(_dssvg.parametres.hauteurMinBtnMenuGau-2*wi_of_the_brds1-3)+'px;}' , ss.cssRules.length);  // pourquoi -3 ??
   ss.insertRule('.svgBoutonHaut1{min-width:'+_dssvg.parametres.largeurMinBtnMenuHau+'px;height:'+(_dssvg.parametres.hauteurMenuHaut-4*wi_of_the_brds1)+'px;}' , ss.cssRules.length);  
@@ -9362,7 +9366,7 @@ function myObj1(initObj1){
   ss.insertRule('.class_treeHandle1{ border:1px #F7F3CA outset; display:inline-block; float:right; height:30px; width:30px; min-width:45px; text-align: center; text-decoration: none; font-size: 1.5em; line-height: 1.6em; border-radius:5px; font-family:monospace; cursor:pointer;}' , ss.cssRules.length);
   ss.insertRule('.class_tree_yydanger {    color: #FFFFFF!important;    background: linear-gradient(to bottom, #FF0000, #D30000)!important;    font-size: 1.5em;    display: inline-block;    text-decoration: none;    text-align: center;    border-radius: 5px;    font-family: verdana, arial, sans-serif;    cursor: pointer;    min-width: 40px;    min-height: 30px;    line-height: 30px;    border: 1px #F7F3CA outset;}' , ss.cssRules.length);
   ss.insertRule('#editTree1 td{ border:1px blue solid; margin:1px; padding:1px;}' , ss.cssRules.length);
-  ss.insertRule('#editTree1 input,#editTree1 textarea{ border:2px #eee inset; margin:1px; padding:5px;width:100%;font-size:1.1em;overflow:scroll;user-select:text;}' , ss.cssRules.length);
+  ss.insertRule('#editTree1 input,#editTree1 textarea{ border:2px #eee inset; margin:1px; padding:5px;width:100%;font-size:1.1em;overflow:scroll;user-select:all;}' , ss.cssRules.length);
   ss.insertRule('#editTree1 textarea::-webkit-scrollbar{width:25px;}' , ss.cssRules.length);
   
   
@@ -10956,6 +10960,7 @@ function myObj1(initObj1){
   divc1=document.createElement('div');
   divc1.id='divc1';
   divc1.style.position='absolute';
+  divc1.style.touchAction='none';
   body.appendChild(divc1);
   
   
@@ -10965,6 +10970,7 @@ function myObj1(initObj1){
   refZnDessin.style.border='0px blue solid';
   refZnDessin.style.position='relative';
   refZnDessin.style.background='transparent'; //'#def2ff';
+  
   divc1.appendChild(refZnDessin);
   refZnDessin.addEventListenerBase('wheel', zoomWheelSvg ,{capture:false,passive:true} );  
 
