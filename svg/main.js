@@ -816,6 +816,99 @@ function myObj1(initObj1){
   
  }
  //========================================================================================================
+ function enregistrerChemin(){
+  var tt='';
+  var lst=document.getElementById('editPath0').getElementsByTagName('input');
+  for(var i=0;i<lst.length;i++){
+//   console.log(lst[i].id , lst[i].value);
+   var indices=lst[i].id.replace(/lig_/,'').split('_');
+   if(indices[1]==0){
+    tt+=' '+lst[i].value+' ';
+   }else{
+    var val=parseFloat(lst[i].value);
+    if(isNaN(val)){
+     document.getElementById('lig_'+indices[0]+'_'+indices[1]).style.background='red';
+     return;
+    }else{
+     document.getElementById('lig_'+indices[0]+'_'+indices[1]).style.background='';
+     tt+=String(val)+' ';
+    }
+   }
+  }
+  var indC=recupereIndiceArbre(document.getElementById('editPath0').getAttribute('data-chemin'));  
+  _dssvg.arbre0[indC].data.attributes['d']=tt;
+  closePopup();
+  afficheArbre0({init:false});  
+
+//  console.log('tt=',tt);
+ }
+ //========================================================================================================
+ function testerChemin(){
+  var tt='';
+  var lst=document.getElementById('editPath0').getElementsByTagName('input');
+  for(var i=0;i<lst.length;i++){
+//   console.log(lst[i].id , lst[i].value);
+   var indices=lst[i].id.replace(/lig_/,'').split('_');
+   if(indices[1]==0){
+    tt+=' '+lst[i].value+' ';
+   }else{
+    var val=parseFloat(lst[i].value);
+    if(isNaN(val)){
+     document.getElementById('lig_'+indices[0]+'_'+indices[1]).style.background='red';
+     return;
+    }else{
+     document.getElementById('lig_'+indices[0]+'_'+indices[1]).style.background='';
+     tt+=String(val)+' ';
+    }
+   }
+  }
+//  console.log('tt=',tt);
+  document.getElementById('resultatTestChemin').value=tt;
+  document.getElementById('enregistrerChemin').style.display='';
+ }
+ //========================================================================================================
+ function popupeditPath1(jso){ // hugues
+//  console.log('jso=',jso);
+  var contentOfPopup='<h3>Editer un chemin</h3>';
+  
+  var tt=globalGeneralSvgReferenceElement.getAttribute('d');
+  var obj=getPointsFromSvgPath(tt);
+//  console.log('obj.tabOri=',obj.tabOri);
+//  console.log('obj.tabAbs=',obj.tabAbs);
+  contentOfPopup+='<div> ';
+  contentOfPopup+='<table id="editPath0" data-chemin="'+jso.numArbre+'"> ';
+  for(var i=0;i<obj.tabOri.length;i++){
+   contentOfPopup+='<tr>';
+   var lig=obj.tabOri[i];
+//   console.log('lig=',lig);
+   for(var j=0;j<lig.length;j++){
+    contentOfPopup+='<td>'+i+'</td>';
+    contentOfPopup+='<td>';
+//    console.log('lig[j].length=',String(lig[j]).length);
+    contentOfPopup+='<input id="lig_'+i+'_'+j+'" value="'+lig[j]+'" '+(j===0?'readonly style="border: 3px #eee solid;width:'+(String(lig[j]).length)+'em;"':' style="border: 3px #eee inset;width:'+(String(lig[j]).length)+'em;" ')+' size="'+(String(lig[j]).length)+'" >';
+    contentOfPopup+='</td>';
+   }
+   contentOfPopup+='</tr>';
+  }
+  contentOfPopup+='</table>';
+  contentOfPopup+='</div>';
+  contentOfPopup+='<button id="testerChemin" class="butEnabled butMenuHaut">tester les modifications</button>';
+  contentOfPopup+='<br /><br />';
+  contentOfPopup+='<textarea rows="10" cols="50" id="resultatTestChemin"></textarea>';
+  contentOfPopup+='<br /><br />';
+  contentOfPopup+='<button id="enregistrerChemin" class="butEnabled butMenuHaut" style="display:none;">enregistrer les modifications</button>';
+  
+  
+  popupValue.innerHTML=contentOfPopup;
+  
+  
+  document.getElementById('testerChemin').addEventListener(      'click' , testerChemin      , 'button' )
+  document.getElementById('enregistrerChemin').addEventListener( 'click' , enregistrerChemin , 'button' )
+  
+  
+  showPopUp('popupeditPath1');  
+ }
+ //========================================================================================================
  function popupRedimEltsGrp1(jso){
   var contentOfPopup='<h3>'+trad['Redimentionner_tous_les_éléments_du_groupe']+'</h3>';
   contentOfPopup+='<div id="echelle1"  style="display:flex;flex-direction: column;margin-top:3px;">';
@@ -2913,7 +3006,12 @@ function myObj1(initObj1){
  
  //========================================================================================================
  function traiterAction(txt){
-//  console.log('traiterAction txt=',txt);
+//  console.log('traiterAction txt=',txt,'actionBoutonDivlag2Fait=',actionBoutonDivlag2Fait);
+  if(actionBoutonDivlag2Fait===true){
+   actionBoutonDivlag2Fait=false;
+   return true;
+  }
+  actionBoutonDivlag2Fait=false;
   try{
    var jso=JSON.parse(txt);
    if('supptransform1'===jso.action){
@@ -3291,10 +3389,16 @@ function myObj1(initObj1){
 
    }else if('deplaceEltsGrp'===jso.action){
     popupDeplaceEltsGrp1(jso);
+    return true;
    }else if('redimEltsGrp'===jso.action){
     popupRedimEltsGrp1(jso);
+    return true;
    }else if('redimElt1'===jso.action){
     popupRedimEltsGrp1(jso);
+    return true;
+   }else if('editPath1'===jso.action){
+    popupeditPath1(jso);
+    return true;
    }else if('enC1'===jso.action){
     var tt=globalGeneralSvgReferenceElement.getAttribute('d');
     if(tt && jso.indicePoint>0){
@@ -3339,6 +3443,7 @@ function myObj1(initObj1){
   }catch(e){
    console.warn('%cErreur à traiter','background:yellow;color:red;','txt=',txt,'e=',e);
   }
+  actionBoutonDivlag2Fait=true;
   return false;
  }
  //========================================================================================================
@@ -3699,14 +3804,18 @@ function myObj1(initObj1){
   e.stopPropagation();
   actionFinMouseUpOuTouchEndFenetre(e)
  }
+ var actionBoutonDivlag2Fait=false;
  //========================================================================================================
  function actionFinMouseUpOuTouchEndFenetre(e){
+//  console.log('actionFinMouseUpOuTouchEndFenetre actionBoutonDivlag2Fait=',actionBoutonDivlag2Fait);
+  actionBoutonDivlag2Fait=false;
   try{clearTimeout(defTimeoutPolyline);}catch(e){}
   try{clearTimeout(defTimeoutPolygon);}catch(e){}
   if(e && e.target && e.target.nodeName.toLowerCase()==='button'){
    var action=e.target.getAttribute('data-action');
    if(action){
     var ret=traiterAction(action);
+    actionBoutonDivlag2Fait=true;
     if(ret===true){
       return;
     }
@@ -12014,6 +12123,10 @@ function myObj1(initObj1){
     t+='<svg class="svgBoutonHaut1" viewBox="-11 15  33 27"><path stroke="black" stroke-width="3" fill="transparent" d=" M -7 19 C -4 37 11 40 16 23 "></path><circle cx="10" cy="36" r="3" stroke="blue" stroke-width="2" fill="green" style="stroke:blue;fill:green;stroke-width:0.1;"></circle><circle cx="-7" cy="19" r="3" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:0.1;"></circle><circle cx="-4" cy="37" r="3" stroke="green" stroke-width="2" fill="blue" style="stroke:green;fill:blue;stroke-width:0.1;"></circle><circle cx="16" cy="23" r="5" stroke="red" stroke-width="2" fill="pink" style="stroke:red;fill:pink;stroke-width:1;"></circle><path d=" M -7 19 L -4 37 " stroke="rgb(0, 0, 255)" stroke-width="1" fill="transparent"></path><path d="M 16,23 L 10,36" stroke="rgb(0, 255, 0)" stroke-width="1" fill="transparent"></path></svg>';
     t+='</button>';
    }
+   t+='<button title="'+trad['bouger_poignees_rouges_seulement']+'" class="butEnabled butMenuHaut" style="min-width: fit-content;" data-action="'+htm1('{"action":"editPath1" , "numArbre":'+numArbre+'}')+'">';
+   t+='editPath';
+   t+='</button>';
+
   }
 
   
