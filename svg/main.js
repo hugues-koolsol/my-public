@@ -419,6 +419,17 @@ function myObj1(initObj1){
   closePopup();
  }
  //========================================================================================================
+ function insererUneSpirale(){
+  globalClickDessin.tempchild=document.createElementNS("http://www.w3.org/2000/svg",'path');
+  globalClickDessin.tempchild.setAttribute('data-type','toRemove');
+  globalClickDessin.tempchild.setAttribute( 'd'             , 'M 0.264 1.064 c 0.028 -0.34 -0.488 2.372 1.356 0.764 c 1.232 -1.072 0.352 -2.924 -0.904 -3.496 c -2.644 -1.2 -4.976 1.68 -4.668 4.152 c 0.796 6.356 9.42 4.848 11.236 -0.024 c 3.364 -9.032 -9.068 -13.736 -15.096 -8.172 c -9.228 8.52 0.624 22.24 11.648 20.7 c 19.24 -2.692 15.94 -30.228 -2.212 -33.252 c -25.028 -4.172 -32.484 30.908 -11.4 42.304 c 14.916 8.064 33.46 -0.752 38.352 -16.564 c 3.388 -10.956 -0.016 -23.112 -8.308 -30.972 c -15.404 -14.6 -40.684 -10.088 -51.788 7.428 c -7.98 12.588 -7.36 29.068 0.964 41.328 c 14.624 21.536 46.188 22.872 64.088 4.744 c 12.932 -13.096 16.492 -33.36 9.252 -50.224 c -12.708 -29.612 -50.956 -38.348 -76.436 -19.536 c -18.636 13.76 -26.3 38.456 -19.596 60.504 c 10.88 35.78 53.512 51.488 85.948 34.22 c 24.14 -12.852 37.456 -40.388 33.412 -67.316 c -6.648 -44.276 -54.872 -69.864 -95.908 -53.88 c -31.412 12.236 -50.728 44.824 -47.748 78.2 c 4.624 51.8 57.272 84.42 106.2 69.74 c 36.356 -10.908 61.524 -45.416 62.188 -83.16 c 1.08 -61.356 -57.6 -105.632 -116.488 -92.232 c -44.028 10.02 -75.724 49.576 -77.964 94.34' );
+  globalClickDessin.tempchild.setAttribute( 'style' , 'stroke-width:3;stroke:blue;fill:transparent;stroke-linecap:round;stroke-linejoin:round');
+  refZnDessin.appendChild(globalClickDessin.tempchild);
+  ajouteEntreeArbre('path',null);
+  afficheArbre0({prendreTout:false});
+  closePopup();
+ }
+ //========================================================================================================
  function insererUneFleche(){
   // <text data-idarbre1="4" x="2.6556" y="2.1126" stroke="black" stroke-width="0.02" fill="transparent" font-family="Verdana" font-size="0.5">?</text> 
   globalClickDessin.tempchild=document.createElementNS("http://www.w3.org/2000/svg",'polygon');
@@ -1138,6 +1149,8 @@ function myObj1(initObj1){
     contentOfPopup+='<div>';
     contentOfPopup+='<button class="butEnabled butMenuGauche" style="min-width:35px;min-height:35px;margin:3px;" id="insererUneEtoile">'+svgEtoile+'</button>';
     contentOfPopup+='<button class="butEnabled butMenuGauche" style="min-width:35px;min-height:35px;margin:3px;" id="insererUneFleche"><svg class="svgBoutonGauche1" viewBox="-2 -1  23 18"><polygon points=" 14 1 20 8  14 15   14 11 0 11 0 5 14 5" style="stroke-width:1.5;stroke:rgb(0, 0, 255);fill:transparent;"></polygon></svg></button>';
+    contentOfPopup+='<button class="butEnabled butMenuGauche" style="min-width:35px;min-height:35px;margin:3px;" id="insererUneSpirale"><svg class="svgBoutonGauche1" viewBox="-105.608 -99.0828  202.4667 189.325"><path d=" M 0.264 1.064 c 0.028 -0.34 -0.488 2.372 1.356 0.764 c 1.232 -1.072 0.352 -2.924 -0.904 -3.496 c -2.644 -1.2 -4.976 1.68 -4.668 4.152 c 0.796 6.356 9.42 4.848 11.236 -0.024 c 3.364 -9.032 -9.068 -13.736 -15.096 -8.172 c -9.228 8.52 0.624 22.24 11.648 20.7 c 19.24 -2.692 15.94 -30.228 -2.212 -33.252 c -25.028 -4.172 -32.484 30.908 -11.4 42.304 c 14.916 8.064 33.46 -0.752 38.352 -16.564 c 3.388 -10.956 -0.016 -23.112 -8.308 -30.972 c -15.404 -14.6 -40.684 -10.088 -51.788 7.428 c -7.98 12.588 -7.36 29.068 0.964 41.328 c 14.624 21.536 46.188 22.872 64.088 4.744 c 12.932 -13.096 16.492 -33.36 9.252 -50.224 c -12.708 -29.612 -50.956 -38.348 -76.436 -19.536 c -18.636 13.76 -26.3 38.456 -19.596 60.504 c 10.88 35.78 53.512 51.488 85.948 34.22 c 24.14 -12.852 37.456 -40.388 33.412 -67.316 c -6.648 -44.276 -54.872 -69.864 -95.908 -53.88 c -31.412 12.236 -50.728 44.824 -47.748 78.2 c 4.624 51.8 57.272 84.42 106.2 69.74 c 36.356 -10.908 61.524 -45.416 62.188 -83.16 c 1.08 -61.356 -57.6 -105.632 -116.488 -92.232 c -44.028 10.02 -75.724 49.576 -77.964 94.34" style="fill:transparent;stroke:#0080cc;stroke-width:8;" transform=""></path></svg>';
+//     
     contentOfPopup+='</div>';
   contentOfPopup+='</fieldset>';
   
@@ -1167,6 +1180,7 @@ function myObj1(initObj1){
   
   document.getElementById('insererUneEtoile').addEventListener('click',insererUneEtoile,'button');
   document.getElementById('insererUneFleche').addEventListener('click',insererUneFleche,'button');
+  document.getElementById('insererUneSpirale').addEventListener('click',insererUneSpirale,'button');
   document.getElementById('insererUnPatern').addEventListener('click',insererUnPatern,'button');
   document.getElementById('insererUnFiltre').addEventListener('click',insererUnFiltre,'button'); //<defs><filter id="__filtered-3" height="220%"><feFlood flood-color="#551C0B" result="COLOR-outline"></feFlood><feMorphology operator="dilate" radius="0.3" in="SourceAlpha" result="OUTLINE_10"></feMorphology><feComposite operator="in" in="COLOR-outline" in2="OUTLINE_10" result="OUTLINE_20"></feComposite><feGaussianBlur stdDeviation="4" in="SourceAlpha" result="LIGHTING-EFFECTS_10"></feGaussianBlur><feSpecularLighting surfaceScale="5" specularConstant="0.5" specularExponent="7.5" lighting-color="#white" in="LIGHTING-EFFECTS_10" result="LIGHTING-EFFECTS_20"><fePointLight x="750" y="-50" z="300"></fePointLight></feSpecularLighting><feComposite in2="SourceAlpha" operator="in" in="LIGHTING-EFFECTS_20" result="LIGHTING-EFFECTS_30"></feComposite><feComposite operator="arithmetic" k1="0" k2="1" k3="1" k4="0" in="SourceGraphic" in2="LIGHTING-EFFECTS_30" result="LIGHTING-EFFECTS_40"></feComposite><feComponentTransfer in="LIGHTING-EFFECTS_40" result="COLOR-EFFECTS_10"><feFuncR type="gamma" offset="-1.3" amplitude="10" exponent="4.84"></feFuncR><feFuncB type="gamma" offset="-1.3" amplitude="10.1" exponent="40.84"></feFuncB></feComponentTransfer><feMerge><feMergeNode in="OUTLINE_20"></feMergeNode><feMergeNode in="COLOR-EFFECTS_10"></feMergeNode></feMerge></filter></defs>
   
@@ -4503,6 +4517,8 @@ function myObj1(initObj1){
     contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://www.svgrepo.com/">svgrepo.com</a>';
     contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://freesvg.org/">freesvg.org</a>';
     contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://github.com/microsoft/fluentui-emoji/tree/main/assets">microsoft emoji</a>';
+    contentOfPopup+='<a class="butEnabled butMenuHaut lienExt1" target="_blank" href="https://danmarshall.github.io/google-font-to-svg-path/">font to svg</a>';
+    
     
     contentOfPopup+='</div>';
 
