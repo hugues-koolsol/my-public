@@ -64,6 +64,7 @@ function myObj1(initObj1){
    intervalleEntreBtns  : 5,
    deplacerLesPoignees  : 0,
    diviseurDeplacement  : 1,
+   diviseurDeChemin     : 5,
    facteurAimnt         : 1,
    lang                 : 'fr',
   },
@@ -3413,6 +3414,90 @@ function myObj1(initObj1){
    }else if('editPath1'===jso.action){
     popupeditPath1(jso);
     return true;
+    
+   }else if('XenL10'===jso.action){
+    var tt=globalGeneralSvgReferenceElement.getAttribute('d');
+    if(tt && jso.indicePoint>0){
+     var obj=getPointsFromSvgPath(tt);
+     tt='';
+     for(var i=0;i<obj.tabOri.length;i++){
+      if(jso.indicePoint===i){
+       var xPrec=null;
+       var yPrec=null;
+       for(var j=jso.indicePoint-1;j>=0 && (xPrec===null || yPrec===null);j--){
+        if(obj.tabAbs[j][0]==='H'){
+         xPrec=obj.tabAbs[j][1]
+        }else if(obj.tabAbs[j][0]==='V'){
+         yPrec=obj.tabAbs[j][1]
+        }else{
+         xPrec=xPrec===null?obj.tabAbs[j][obj.tabAbs[j].length-2]:xPrec;
+         yPrec=yPrec===null?obj.tabAbs[j][obj.tabAbs[j].length-1]:yPrec;
+        }
+       }
+       var xFina=null;
+       var yFina=null;
+       for(var j=jso.indicePoint;j>=0 && (xFina===null || yFina===null);j--){
+        if(obj.tabAbs[j][0]==='H'){
+         xFina=obj.tabAbs[j][1]
+        }else if(obj.tabAbs[j][0]==='V'){
+         yFina=obj.tabAbs[j][1]
+        }else{
+         xFina=xFina===null?obj.tabAbs[j][obj.tabAbs[j].length-2]:xFina;
+         yFina=yFina===null?obj.tabAbs[j][obj.tabAbs[j].length-1]:yFina;
+        }
+       }
+       
+       
+       
+//       console.log('xPrec=',xPrec , 'yPrec=' , yPrec , 'xFina=',xFina , 'yFina=' , yFina , obj.tabOri[i] , ', ptemp=' , 'M '+xPrec+' '+yPrec + ' ' + obj.tabOri[i].join(' '));
+       
+       globalClickDessin.tempchild=document.createElementNS("http://www.w3.org/2000/svg",'path');
+       globalClickDessin.tempchild.setAttribute('data-type','toRemove');
+       globalClickDessin.tempchild.setAttribute('d','M '+xPrec+' '+yPrec + ' ' + obj.tabOri[i].join(' '));
+       globalClickDessin.tempchild.setAttribute('stroke',_dssvg.strokeColor1);
+       globalClickDessin.tempchild.setAttribute('stroke-width' , _dssvg.strokeWidth1);
+       globalClickDessin.tempchild.setAttribute('fill','transparent');
+       globalClickDessin.tempchild.setAttribute('stroke-linejoin', 'round');
+       globalClickDessin.tempchild.setAttribute('stroke-linecap' , 'round');
+       
+//       refZnDessin.appendChild(globalClickDessin.tempchild);
+       
+
+       var  mypath = globalClickDessin.tempchild;
+       var  pathLength = mypath.getTotalLength();
+       var  polygonPoints= [];
+
+       for (var j=0; j<_dssvg.parametres.diviseurDeChemin; j++) {
+         var p = mypath.getPointAtLength(j * pathLength / _dssvg.parametres.diviseurDeChemin);
+         polygonPoints.push([p.x,p.y]);
+       }
+//       console.log('polygonPoints=',polygonPoints);
+//       globalClickDessin.tempchild.remove();
+       for( var j=1;j<polygonPoints.length;j++){
+        tt+=' L '+polygonPoints[j][0]+' '+polygonPoints[j][1];
+       }
+       tt+=' L '+xFina+' '+yFina;
+
+//       var  mypolygon = document.getElementById("mypolygon");
+//       mypolygon.setAttribute("points", polygonPoints.join(","));       
+       
+       
+       
+       
+       
+       
+      }else{
+       tt+=' '+obj.tabOri[i].join(' ');
+      }
+     }
+     
+     
+     globalGeneralSvgReferenceElement.setAttribute('d',tt);
+     var indA=recupereIndiceArbre(jso.numArbre);
+     _dssvg.arbre0[indA].data.attributes['d']=tt;
+     
+    }
+    afficheArbre0({init:false});
    }else if('enC1'===jso.action){
     var tt=globalGeneralSvgReferenceElement.getAttribute('d');
     if(tt && jso.indicePoint>0){
@@ -4302,6 +4387,36 @@ function myObj1(initObj1){
 
  
  //========================================================================================================
+ function touchDownParDiviseurDeChemin(e){
+  e.stopPropagation();
+  actionDownParDiviseurDeChemin(e.touches[0]);
+ }
+ //========================================================================================================
+ function mouseDownParDiviseurDeChemin(e){
+  e.stopPropagation();
+  actionDownParDiviseurDeChemin();
+ }
+ //========================================================================================================
+ function actionDownParDiviseurDeChemin(e){
+  dogid('parDiviseurDeChemin').addEventListener('touchmove' , changeDiviseurDeChemin , 'range');
+  dogid('parDiviseurDeChemin').addEventListener('mousemove' , changeDiviseurDeChemin , 'range');
+  dogid('parDiviseurDeChemin').addEventListener('touchend'  , finTouchParam , 'range');
+  dogid('parDiviseurDeChemin').addEventListener('mouseup'   , finMouseParam , 'range');
+ }
+ //========================================================================================================
+ function changeDiviseurDeChemin(e){
+  e.stopPropagation();
+  dogid('parDiviseurDeCheminValeur').innerHTML=dogid('parDiviseurDeChemin').value;
+ }
+ //========================================================================================================
+ function setParDiviseurDeChemin(){
+  _dssvg.parametres.diviseurDeChemin=parseInt(dogid('parDiviseurDeChemin').value,10);
+  saveStte();
+ }
+
+
+ 
+ //========================================================================================================
  function touchDownParFacteurAimnt(e){
   e.stopPropagation();
   actionDownParFacteurAimnt(e.touches[0]);
@@ -4488,6 +4603,16 @@ function myObj1(initObj1){
      contentOfPopup+='</div>';
     contentOfPopup+='</div>';
 
+    contentOfPopup+='<div >';
+     contentOfPopup+='<div id="parDiviseurDeCheminValeur" style="display:inline-block;min-width:2rem;">'+_dssvg.parametres.diviseurDeChemin+'</div>';
+     contentOfPopup+='<label for="parDiviseurDeChemin"> : '+trad['diviseur_de_chemin']+'</label>';
+     contentOfPopup+='<div>';
+      contentOfPopup+='<input id="parDiviseurDeChemin" type="range" min="2" max="100" step="1" value="'+_dssvg.parametres.diviseurDeChemin+'" style="width:80%;min-width:200px;max-width:500px;user-select:auto;" />';
+     contentOfPopup+='</div>';
+    contentOfPopup+='</div>';
+    
+    
+
     contentOfPopup+='<div  style="text-align:center;">';
      contentOfPopup+='<button type="button" class="butEnabled butMenuHaut" id="francais">Français</button>';
      contentOfPopup+='&nbsp;';
@@ -4610,6 +4735,10 @@ function myObj1(initObj1){
   dogid('parDiviseurDeplacement').addEventListener('change'       , setParDiviseurDeplacement        , 'range' );
   dogid('parDiviseurDeplacement').addEventListener('mousedown'    , mouseDownParDiviseurDeplacement  , 'range' );
   dogid('parDiviseurDeplacement').addEventListener('touchstart'   , touchDownParDiviseurDeplacement  , 'range' );
+  
+  dogid('parDiviseurDeChemin').addEventListener('change'          , setParDiviseurDeChemin           , 'range' );
+  dogid('parDiviseurDeChemin').addEventListener('mousedown'       , mouseDownParDiviseurDeChemin     , 'range' );
+  dogid('parDiviseurDeChemin').addEventListener('touchstart'      , touchDownParDiviseurDeChemin     , 'range' );
   
   dogid('parFacteurAimnt').addEventListener('change'       , setParFacteurAimnt        , 'range' );
   dogid('parFacteurAimnt').addEventListener('mousedown'    , mouseDownParFacteurAimnt  , 'range' );
@@ -11989,6 +12118,7 @@ function myObj1(initObj1){
        if(globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()!=='C' && globalIndicePoint>0){
         t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"enC1","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'">'+trad['X_en_C']+'</button>';
        }
+       t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"XenL10","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'">X2L'+_dssvg.parametres.diviseurDeChemin+'</button>';
       }
      }catch(egg){
      }

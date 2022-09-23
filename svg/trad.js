@@ -116,6 +116,7 @@ trad['bouger_poignees']='Bouger toutes les poignées des C dans les chemins';
 trad['bouger_poignees_bleus_seulement']='Bouger uniquement les poignées bleues des C dans les chemins';
 trad['bouger_poignees_vertes_seulement']='Bouger uniquement les poignées vertes des C dans les chemins';
 trad['bouger_poignees_rouges_seulement']='Bouger uniquement les poignées rouges des C dans les chemins';
+trad['diviseur_de_chemin']='diviseur de décomposition de chemins en lignes';
 }
 
 function setTrad_en(){
@@ -235,5 +236,6 @@ trad['bouger_poignees']='Move all C handles in paths';
 trad['bouger_poignees_bleus_seulement']='Move only blue C handles in paths';
 trad['bouger_poignees_vertes_seulement']='Move only green C handles in paths';
 trad['bouger_poignees_rouges_seulement']='Move only red C handles in paths';
+trad['diviseur_de_chemin']='divider for the path decomposition to lines';
 }
 
