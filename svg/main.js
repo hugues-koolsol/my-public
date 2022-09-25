@@ -3414,8 +3414,54 @@ function myObj1(initObj1){
    }else if('editPath1'===jso.action){
     popupeditPath1(jso);
     return true;
+   
+   }else if('XenLA10'===jso.action){
+    
+    var tt=globalGeneralSvgReferenceElement.getAttribute('d');
+    if(tt){
+     var obj=getPointsFromSvgPath(tt);
+     globalClickDessin.tempchild=document.createElementNS("http://www.w3.org/2000/svg",'path');
+     globalClickDessin.tempchild.setAttribute('data-type','toRemove');
+     globalClickDessin.tempchild.setAttribute('d',tt);
+     globalClickDessin.tempchild.setAttribute('stroke',_dssvg.strokeColor1);
+     globalClickDessin.tempchild.setAttribute('stroke-width' , _dssvg.strokeWidth1);
+     globalClickDessin.tempchild.setAttribute('fill','transparent');
+     var  mypath = globalClickDessin.tempchild;
+     var  pathLength = mypath.getTotalLength();
+     var  polygonPoints= [];
+     for (var j=0; j<_dssvg.parametres.diviseurDeChemin; j++) {
+      var p = mypath.getPointAtLength(j * pathLength / _dssvg.parametres.diviseurDeChemin);
+      polygonPoints.push([p.x,p.y]);
+     }
+     tt=' M '+polygonPoints[0][0]+' '+polygonPoints[0][1];
+     for( var j=1;j<polygonPoints.length;j++){
+      tt+=' L '+polygonPoints[j][0]+' '+polygonPoints[j][1];
+     }
+     
+     var xFina=null;
+     var yFina=null;
+     for(var j=obj.tabAbs.length-1;j>=0 && (xFina===null || yFina===null);j--){
+      if(obj.tabAbs[j][0]==='H'){
+       xFina=obj.tabAbs[j][1]
+      }else if(obj.tabAbs[j][0]==='V'){
+       yFina=obj.tabAbs[j][1]
+      }else{
+       xFina=xFina===null?obj.tabAbs[j][obj.tabAbs[j].length-2]:xFina;
+       yFina=yFina===null?obj.tabAbs[j][obj.tabAbs[j].length-1]:yFina;
+      }
+     }
+     tt+=' L '+xFina+' '+yFina;
+     
+     
+     globalGeneralSvgReferenceElement.setAttribute('d',tt);
+     var indA=recupereIndiceArbre(jso.numArbre);
+     _dssvg.arbre0[indA].data.attributes['d']=tt;
+     
+    }
+    afficheArbre0({init:false});
     
    }else if('XenL10'===jso.action){
+    
     var tt=globalGeneralSvgReferenceElement.getAttribute('d');
     if(tt && jso.indicePoint>0){
      var obj=getPointsFromSvgPath(tt);
@@ -12118,8 +12164,9 @@ function myObj1(initObj1){
        if(globalSelectionPoints.tabOriginal[globalIndicePoint][0].toUpperCase()!=='C' && globalIndicePoint>0){
         t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"enC1","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'">'+trad['X_en_C']+'</button>';
        }
-       t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"XenL10","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'">X2L'+_dssvg.parametres.diviseurDeChemin+'</button>';
+       t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"XenL10","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'">X2LP'+_dssvg.parametres.diviseurDeChemin+'</button>';
       }
+      t+='<button class="butEnabled butMenuHaut bckJaune" data-action="'+htm1('{"action":"XenLA10","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'">X2LA'+_dssvg.parametres.diviseurDeChemin+'</button>';
      }catch(egg){
      }
 
