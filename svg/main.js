@@ -879,7 +879,7 @@ function myObj1(initObj1){
   document.getElementById('enregistrerChemin').style.display='';
  }
  //========================================================================================================
- function popupeditPath1(jso){ // hugues
+ function popupeditPath1(jso){
 //  console.log('jso=',jso);
   var contentOfPopup='<h3>Editer un chemin</h3>';
   
@@ -3440,14 +3440,19 @@ function myObj1(initObj1){
      
      var xFina=null;
      var yFina=null;
-     for(var j=obj.tabAbs.length-1;j>=0 && (xFina===null || yFina===null);j--){
-      if(obj.tabAbs[j][0]==='H'){
-       xFina=obj.tabAbs[j][1]
-      }else if(obj.tabAbs[j][0]==='V'){
-       yFina=obj.tabAbs[j][1]
-      }else{
-       xFina=xFina===null?obj.tabAbs[j][obj.tabAbs[j].length-2]:xFina;
-       yFina=yFina===null?obj.tabAbs[j][obj.tabAbs[j].length-1]:yFina;
+     if(obj.tabAbs[obj.tabAbs.length-1][0].toUpperCase()==='Z'){
+      xFina=obj.tabAbs[0][1];
+      yFina=obj.tabAbs[0][2];
+     }else{
+      for(var j=obj.tabAbs.length-1;j>=0 && (xFina===null || yFina===null);j--){
+       if(obj.tabAbs[j][0]==='H'){
+        xFina=obj.tabAbs[j][1]
+       }else if(obj.tabAbs[j][0]==='V'){
+        yFina=obj.tabAbs[j][1]
+       }else{
+        xFina=xFina===null?obj.tabAbs[j][obj.tabAbs[j].length-2]:xFina;
+        yFina=yFina===null?obj.tabAbs[j][obj.tabAbs[j].length-1]:yFina;
+       }
       }
      }
      tt+=' L '+xFina+' '+yFina;
@@ -3582,6 +3587,161 @@ function myObj1(initObj1){
      _dssvg.arbre0[indA].data.label='path';
      _dssvg.arbre0[indA].data.nodeName='path';
     }
+    afficheArbre0({init:false});
+    
+   }else if('PTR2ABS'===jso.action){
+    globalGeneralSvgReferenceElement=document.querySelectorAll('[data-idarbre1="'+jso.numArbre+'"]');
+    globalGeneralSvgReferenceElement=globalGeneralSvgReferenceElement[0]; 
+    
+    var matrixRelatifVersAbsolu=refZnDessin.getScreenCTM().inverse().multiply(globalGeneralSvgReferenceElement.getScreenCTM());//.scale(_dssvg.zoom1,_dssvg.zoom1);
+    globalSelectionPoints.pathChaineD=globalGeneralSvgReferenceElement.getAttribute('d');
+    var obj=getPointsFromSvgPath(globalSelectionPoints.pathChaineD);
+    globalSelectionPoints.tabOriginal=obj.tabOri;
+    globalSelectionPoints.tabAbsolu  =obj.tabAbs;
+    
+
+    var tt='';
+    var pointFixePrecedent={x:0,y:0};
+    var pt0    = refZnDessin.createSVGPoint();
+    var ptC2   = refZnDessin.createSVGPoint();
+    var ptC1   = refZnDessin.createSVGPoint();
+    var ptPrec = refZnDessin.createSVGPoint();
+    
+    
+    for(var i=0;i<globalSelectionPoints.tabAbsolu.length;i++){
+     if(globalSelectionPoints.tabAbsolu[i][0]=='L' || globalSelectionPoints.tabAbsolu[i][0]=='M' || (globalSelectionPoints.tabAbsolu[i][0]=='m' && i==0)){
+      
+      pt0.x=globalSelectionPoints.tabAbsolu[i][1];
+      pt0.y=globalSelectionPoints.tabAbsolu[i][2];
+      pointFixePrecedent.x=pt0.x;
+      pointFixePrecedent.y=pt0.y;
+      pt0=pt0.matrixTransform(matrixRelatifVersAbsolu);
+
+      tt+=globalSelectionPoints.tabAbsolu[i][0]+' '+pt0.x+ ' ' + pt0.y+ ' ';
+      
+     }else if(globalSelectionPoints.tabAbsolu[i][0]=='A' ){
+
+      var tmpA=[0,0   , 0 ,  0 , 0 ,    0,0];
+      pt0.x=globalSelectionPoints.tabAbsolu[i][6];
+      pt0.y=globalSelectionPoints.tabAbsolu[i][7];
+      pointFixePrecedent.x=pt0.x;
+      pointFixePrecedent.y=pt0.y;
+      pt0=pt0.matrixTransform(matrixRelatifVersAbsolu);
+      tmpA[5]=pt0.x;
+      tmpA[6]=pt0.y;
+      tt+=globalSelectionPoints.tabAbsolu[i][0]+' '+globalSelectionPoints.tabAbsolu[i][1]+' '+globalSelectionPoints.tabAbsolu[i][2]+' '+globalSelectionPoints.tabAbsolu[i][3]+' '+globalSelectionPoints.tabAbsolu[i][4]+' '+globalSelectionPoints.tabAbsolu[i][5]+' '+pt0.x+ ' ' + pt0.y+ ' ' ;
+
+      
+     }else if(globalSelectionPoints.tabAbsolu[i][0]=='H' ){
+
+
+
+      // point de fin
+      pt0.x=globalSelectionPoints.tabAbsolu[i][1];
+      pt0.y=pointFixePrecedent.y;
+      pointFixePrecedent.x=pt0.x;
+      pointFixePrecedent.y=pt0.y;
+      pt0=pt0.matrixTransform(matrixRelatifVersAbsolu);
+
+      tt+='L '+pt0.x+ ' ' + pt0.y+ ' ' ;
+
+
+     }else if(globalSelectionPoints.tabAbsolu[i][0]=='V' ){
+
+      // point de fin
+      pt0.x=pointFixePrecedent.x;
+      pt0.y=globalSelectionPoints.tabAbsolu[i][1];
+      pointFixePrecedent.x=pt0.x;
+      pointFixePrecedent.y=pt0.y;
+
+      pt0=pt0.matrixTransform(matrixRelatifVersAbsolu);
+
+      tt+='L '+pt0.x+ ' ' + pt0.y+ ' ' ;
+
+     }else if(globalSelectionPoints.tabAbsolu[i][0]=='T' ){
+
+      // point de fin
+      pt0.x=globalSelectionPoints.tabAbsolu[i][1];
+      pt0.y=globalSelectionPoints.tabAbsolu[i][2];
+      pointFixePrecedent.x=pt0.x;
+      pointFixePrecedent.y=pt0.y;
+      pt0=pt0.matrixTransform(matrixRelatifVersAbsolu);
+
+      tt+=globalSelectionPoints.tabAbsolu[i][0]+' '+pt0.x+ ' ' + pt0.y+ ' ' ;
+
+     }else if(globalSelectionPoints.tabAbsolu[i][0]=='Q' || globalSelectionPoints.tabAbsolu[i][0]=='S' ){
+      
+      ptPrec.x=pointFixePrecedent.x;
+      ptPrec.y=pointFixePrecedent.y;
+      ptPrec=ptPrec.matrixTransform(matrixRelatifVersAbsolu);
+      
+      // premier point de controle
+      ptC1.x=globalSelectionPoints.tabAbsolu[i][1];
+      ptC1.y=globalSelectionPoints.tabAbsolu[i][2];
+      ptC1=ptC1.matrixTransform(matrixRelatifVersAbsolu);
+      
+      tt+=globalSelectionPoints.tabAbsolu[i][0]+' '+ptC1.x + ' ' + ptC1.y + ' ' ;
+
+      // point de fin
+      pt0.x=globalSelectionPoints.tabAbsolu[i][3];
+      pt0.y=globalSelectionPoints.tabAbsolu[i][4];
+      pointFixePrecedent.x=pt0.x;
+      pointFixePrecedent.y=pt0.y;
+      pt0=pt0.matrixTransform(matrixRelatifVersAbsolu);
+
+      tt+=' '+pt0.x + ' ' + pt0.y + ' ' ;
+
+      
+     }else if(globalSelectionPoints.tabAbsolu[i][0]=='C' ){
+      
+      ptPrec.x=pointFixePrecedent.x;
+      ptPrec.y=pointFixePrecedent.y;
+      ptPrec=ptPrec.matrixTransform(matrixRelatifVersAbsolu);
+
+      // premier point de controle
+      ptC1.x=globalSelectionPoints.tabAbsolu[i][1];
+      ptC1.y=globalSelectionPoints.tabAbsolu[i][2];
+      ptC1=ptC1.matrixTransform(matrixRelatifVersAbsolu);
+      
+      tt+=globalSelectionPoints.tabAbsolu[i][0]+' '+ptC1.x + ' ' + ptC1.y + ' ' ;
+
+      // deuxième point de controle
+      ptC2.x=globalSelectionPoints.tabAbsolu[i][3];
+      ptC2.y=globalSelectionPoints.tabAbsolu[i][4];
+      ptC2=ptC2.matrixTransform(matrixRelatifVersAbsolu);
+      
+      tt+=' '+ptC2.x + ' ' + ptC2.y + ' ' ;
+
+
+      
+      // point de fin
+      pt0.x=globalSelectionPoints.tabAbsolu[i][5];
+      pt0.y=globalSelectionPoints.tabAbsolu[i][6];
+      pointFixePrecedent.x=pt0.x;
+      pointFixePrecedent.y=pt0.y;
+      pt0=pt0.matrixTransform(matrixRelatifVersAbsolu);
+
+      tt+=' '+pt0.x + ' ' + pt0.y + ' ' ;
+
+     }else if(globalSelectionPoints.tabAbsolu[i][0]=='Z' ){
+     }else{
+      console.warn('Non traité : ' , globalSelectionPoints.tabAbsolu[i] );
+     }
+    }
+//    console.log('tt='+tt);
+    
+    globalClickDessin.tempchild=document.createElementNS("http://www.w3.org/2000/svg",'path');
+    var indA=recupereIndiceArbre(jso.numArbre);
+    globalClickDessin.tempchild.setAttribute('d',tt);
+    globalClickDessin.tempchild.setAttribute('stroke',_dssvg.strokeColor1);
+    globalClickDessin.tempchild.setAttribute('stroke-width' , _dssvg.strokeWidth1);
+    globalClickDessin.tempchild.setAttribute('fill','transparent');
+    globalClickDessin.tempchild.setAttribute('stroke-linejoin', 'round');
+    globalClickDessin.tempchild.setAttribute('stroke-linecap' , 'round');
+    
+    refZnDessin.appendChild(globalClickDessin.tempchild);
+    ajouteEntreeArbre('path',null);
+    
     afficheArbre0({init:false});
    }
    
@@ -5770,7 +5930,7 @@ function myObj1(initObj1){
     }else{
     
      laTransforlation+=globalSelectRotationAngleElement.tabTransform.tab[i][0]+'(';
-     laTransforlation+=nouvelAngle+' ';
+     laTransforlation+=arrdi10000(nouvelAngle)+' ';
      laTransforlation+=globalSelectRotationAngleElement.tabTransform.tab[i][1][1]+' ';
      laTransforlation+=globalSelectRotationAngleElement.tabTransform.tab[i][1][2]+' ';
      laTransforlation+=')';
@@ -7807,7 +7967,7 @@ function myObj1(initObj1){
     globalSelectionPoints.pathChaineD=globalGeneralSvgReferenceElement.getAttribute('d');
     var obj=getPointsFromSvgPath(globalSelectionPoints.pathChaineD);
     globalSelectionPoints.tabOriginal=obj.tabOri;
-    globalSelectionPoints.tabAbsolu  =obj.tabAbs;
+    globalSelectionPoints.tabAbsolu  =obj.tabAbs; // globalGeneralSvgReferenceElement
     affichePtsControlDetailDeElement('path');
    }else if( globalGeneralSvgReferenceElement.nodeName.toLowerCase()=='polyline'){
     globalSelectionPoints.pathChaineD=globalGeneralSvgReferenceElement.getAttribute('points');
@@ -12032,13 +12192,22 @@ function myObj1(initObj1){
     }else{
     }
    }else{
+    var trouve=false;
     for(var i=0;i<objTransform.tab.length;i++){
+     trouve=true;
      t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"supptransform1","numArbre":'+numArbre+',"numTransform":'+i+'}')+'">'+objTransform.tab[i][0]+'(';
      for(var j=0;j<objTransform.tab[i][1].length;j++){
       t+=objTransform.tab[i][1][j]+' ';
      }
      t+=')</button>';
     }
+    try{
+     if(trouve && 'setModeSaisieTranE1'===_dssvg.mode_en_cours && globalGeneralSvgReferenceElement.nodeName.toLowerCase()==='path'){
+      t+='<button class="butEnabled butMenuHaut bckJaune" data-action="'+htm1('{"action":"PTR2ABS","numArbre":'+numArbre+'}')+'">PTR2ABS</button>';
+     }
+    }catch(e){
+    }
+    
    }
     
    if((_dssvg.mode_en_cours==='setModeSaisieEditionPoin1' || 'setModeSaisieDefsPtE1'===_dssvg.mode_en_cours ) && globalIndicePoint!==null){
@@ -12167,11 +12336,14 @@ function myObj1(initObj1){
        t+='<button class="butEnabled butMenuHaut" data-action="'+htm1('{"action":"XenL10","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'">X2LP'+_dssvg.parametres.diviseurDeChemin+'</button>';
       }
       t+='<button class="butEnabled butMenuHaut bckJaune" data-action="'+htm1('{"action":"XenLA10","numArbre":'+numArbre+',"indicePoint":'+globalIndicePoint+'}')+'">X2LA'+_dssvg.parametres.diviseurDeChemin+'</button>';
+      
      }catch(egg){
      }
 
     }
    }
+
+
 
    try{
     if(
