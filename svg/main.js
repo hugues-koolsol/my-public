@@ -4998,7 +4998,6 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function zoomPlusMoins(n){
-  
   var vb=refZnDessin.getAttribute('viewBox');
   if(vb!=null){
   
@@ -5019,6 +5018,7 @@ function myObj1(initObj1){
      var x=globalDernierePositionSouris.sx-w/2;
      var y=globalDernierePositionSouris.sy-w/2;
     }
+
     setAttributeViewBox();  
     rayonPoint=_dssvg.parametres.rayonReference/_dssvg.zoom1;
     strkWiTexteSousPoignees=rayonPoint/20;
@@ -10882,8 +10882,9 @@ function myObj1(initObj1){
  }
  //========================================================================================================
  function zoomWheelSvg(e){
+//  console.log('e=',e);
   if(e.deltaY<0){
-   zoomPlusMoins(2);
+  zoomPlusMoins(2);
   }else{
    zoomPlusMoins(0.5);
   }
@@ -11087,14 +11088,14 @@ function myObj1(initObj1){
   
   
   
-  t+='<div id="zoneInput" style="border:1px red solid;margin:0 auto;position:fixed;top:'+(marginPopup+2)+';left:'+(marginPopup+2)+'px;width:'+(parseInt(w1,10)-2)+'px;background:#e8eef2;z-index:102;">';
-  t+= '<input type="text" size="7" id="colorInput" style="max-width:73px;font-family:monospace;" value=""/>';
+  t+='<div id="zoneInput" style="height:38px;border:1px red solid;margin:0 auto;position:fixed;top:'+(marginPopup+2)+';left:'+(marginPopup+2)+'px;width:'+(parseInt(w1,10)-2)+'px;background:#e8eef2;z-index:102;">';
+  t+= '<input type="text" size="7" id="colorInput" style="height:36px;max-width:73px;font-family:monospace;" value=""/>';
   t+= '<button id="copyColor" class="cmdbtn" style="lin-width:18px;min-height:24px;">⇦</button>';
   t+= '<input type="text" size="7" maxlength="7" id="colorValueChosen" disabled style="max-width:80px;font-size:0.8em;max-width:61px;font-family:monospace;" />';
-  t+= '<button class="cmdbtn cmdbtnup" id="chooseColor" style="font-size: 1em;background:yellow;margin-left:0;width:2.6em;border:2px outset white;" >✅</button>'; // LightGoldenRodYellow
+  t+= '<button class="cmdbtn cmdbtnup" id="chooseColor" style="height:34px;font-size: 1em;background:yellow;margin-left:0;width:2.6em;border:2px outset white;" >✅</button>'; // LightGoldenRodYellow
   t+= '<span id="colorName" style="font-size:0.8em;" ></span>'; // LightGoldenRodYellow
   t+='</div>';
-  t+='<div style="border:1px red solid;width:'+(largeurCanvas+2)+'px;height:'+(hauteurCanvas+2)+'px;margin:35px auto 0 auto;">';
+  t+='<div style="border:1px red solid;width:'+(largeurCanvas+2)+'px;height:'+(hauteurCanvas+2)+'px;margin:40px auto 0 auto;">';
   t+=' <canvas id="colPick1" width="'+largeurCanvas+'" height="'+hauteurCanvas+'" style="width:'+largeurCanvas+'px;height:'+hauteurCanvas+'px;"></canvas>';
   t+='</div>';
 
@@ -11359,11 +11360,11 @@ function myObj1(initObj1){
    if(navigator.language.toLowerCase().indexOf('fr')>=0){
     lang='fr';
     setTrad_fr();
-    document.querySelector('meta[name="description"]').setAttribute("content", 'editeur svg koolsol');
+    document.querySelector('meta[name="description"]').setAttribute("content", 'éditeur svg anonyme et gratuit, fonctionne sur mobile, tablette et PC, pwa fonctionne hors connexion');
    }else{
     lang='en';
     setTrad_en();
-    document.querySelector('meta[name="description"]').setAttribute("content", 'svg editor  koolsol');
+    document.querySelector('meta[name="description"]').setAttribute("content", 'anonymous and free svg editor, works on mobile, tablet and PC, pwa works offline');
     var t='';
     t+='<h1>koolsol svg editor</h1>';
     t+='<p>This editor allows you to create, import and export drawings in svg format.</p>';
@@ -11395,10 +11396,10 @@ function myObj1(initObj1){
         if(lang!==jsonDs.parametres.lang){
          if(jsonDs.parametres.lang==='fr'){
           setTrad_fr();
-          document.querySelector('meta[name="description"]').setAttribute("content", 'editeur svg koolsol');
+          document.querySelector('meta[name="description"]').setAttribute("content", 'éditeur svg anonyme et gratuit, fonctionne sur mobile, tablette et PC, pwa fonctionne hors connexion');
          }else{
           setTrad_en();
-          document.querySelector('meta[name="description"]').setAttribute("content", 'svg editor  koolsol');
+          document.querySelector('meta[name="description"]').setAttribute("content", 'anonymous and free svg editor, works on mobile, tablet and PC, pwa works offline');
          }
         }
        }
