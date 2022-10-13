@@ -9958,7 +9958,7 @@ function myObj1(initObj1){
   }
   
   var td1MaxWidth='width:15%';
-  
+  var styleTextFait=false;
   var elementsAffiches=[];
   var tt='';
   for(var i in values.attributes){
@@ -10007,12 +10007,22 @@ function myObj1(initObj1){
      tt+='</td>';
     }else{
      tt+='<td style="'+td1MaxWidth+';">'+i+'</td><td><input     data-attrib="'+i+'" value="'+values.attributes[i]+'"></td>';
+     if(branche.data.nodeName.toLowerCase()==='style' ){
+      styleTextFait=true;
+     }
     }
    }
    tt+='</tr>';
    elementsAffiches.push(i);
   }
-  if(branche.data.nodeName.toLowerCase()==='text' || branche.data.nodeName.toLowerCase()==='tspan' || branche.data.nodeName.toLowerCase()==='title' || branche.data.nodeName.toLowerCase()==='style' ){
+  if(branche.data.nodeName.toLowerCase()==='style' && styleTextFait===false ){
+   tt+='<tr>';
+   tt+='<td style="'+td1MaxWidth+';">text</td>';
+   var valeur=(branche.data[branche.data.nodeName]!==undefined?branche.data[branche.data.nodeName]:branche.data['text']);
+   tt+='<td><textarea id="idtemptext" data-attrib="'+branche.data.nodeName.toLowerCase()+'" cols="50" rows="3">'+valeur+'';
+   tt+='</textarea></td>';
+   tt+='</tr>';
+  }else if(branche.data.nodeName.toLowerCase()==='text' || branche.data.nodeName.toLowerCase()==='tspan' || branche.data.nodeName.toLowerCase()==='title' ){
    tt+='<tr>';
    tt+='<td style="'+td1MaxWidth+';">'+branche.data.nodeName.toLowerCase()+'</td>';
    var valeur=(branche.data[branche.data.nodeName]!==undefined?branche.data[branche.data.nodeName]:branche.data['text']);
@@ -10210,7 +10220,7 @@ function myObj1(initObj1){
    var lst=dogid('editTree1Table').getElementsByTagName(el[l]);
    for(var j=0;j<lst.length;j++){
     if(lst[j].getAttribute('data-attrib') && lst[j].value && lst[j].value !=''){
-     if(lst[j].getAttribute('data-attrib')=='text' || lst[j].getAttribute('data-attrib')=='tspan' || lst[j].getAttribute('data-attrib')=='title' ){
+     if(lst[j].getAttribute('data-attrib')=='text' || lst[j].getAttribute('data-attrib')=='tspan' || lst[j].getAttribute('data-attrib')=='title' || lst[j].getAttribute('data-attrib')=='style' ){
       txt=htm1(lst[j].value);
      }else{
       nouveauxAttributs[lst[j].getAttribute('data-attrib')]=htm1(lst[j].value);
