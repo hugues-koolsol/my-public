@@ -116,3 +116,5 @@ actif,cle,fr,en
 1,bouger_poignees_vertes_seulement,Bouger uniquement les poignées vertes des C dans les chemins,Move only green C handles in paths
 1,bouger_poignees_rouges_seulement,Bouger uniquement les poignées rouges des C dans les chemins,Move only red C handles in paths
 1,diviseur_de_chemin,diviseur de décomposition de chemins en lignes,divider for the path decomposition to lines
+1,nombre_de_pointsSp2,nombre de points,number of points
+1,nombre_de_tours_sp2,nombre de tours,number of laps

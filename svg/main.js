@@ -1,3 +1,4 @@
+//  M 1.526 -1.1 c 1.912 0.482 0.76 2.668 -0.604 3.112 c -4.08 1.324 -6.244 -3.962 -4.99 -7.1 c 2.506 -6.264 11.14 -5.658 14.886 -1.024 c 7.064 8.74 -2.278 19.882 -12.056 19.234 c -10.172 -0.672 -16.734 -11.14 -13.954 -20.716 c 1.786 -6.154 6.878 -10.894 13.004 -12.616 c 12.764 -3.586 25.73 6.066 26.766 19.11 c 0.82 10.316 -5.72 19.89 -15.216 23.666 c -15.446 6.14 -33.052 -3.976 -36.194 -20.15 c -1.89 -9.73 1.68 -19.864 8.962 -26.522 c 14.598 -13.348 38.452 -9.39 48.89 7.098 c 7.904 12.484 6.336 28.96 -3.278 40.066 c -3.994 4.614 -9.1 8.136 -14.818 10.266 c -5.894 2.196 -12.25 2.886 -18.48 2.018 c -23.942 -3.336 -39.098 -28.502 -31.068 -51.266 c 2.298 -6.512 6.24 -12.324 11.408 -16.9 c 5.33 -4.718 11.774 -8.01 18.708 -9.606 c 31.474 -7.244 60.082 21.146 53.138 52.694 c -1.68 7.636 -5.3 14.688 -10.486 20.536 c -5.33 6.01 -12.1 10.562 -19.658 13.28 c -34.092 12.258 -70.014 -15.452 -66.646 -51.586 c 0.81 -8.684 3.846 -16.994 8.794 -24.174 c 2.498 -3.628 5.478 -6.966 8.804 -9.856 c 3.37 -2.928 7.134 -5.454 11.122 -7.458 c 30.674 -15.408 68.592 1.014 78.34 33.944 c 2.708 9.15 3.018 18.824 0.892 28.128 c -2.166 9.486 -6.738 18.236 -13.246 25.466 c -6.666 7.404 -15.104 12.99 -24.5 16.294 c -35.826 12.598 -75.226 -10.526 -81.184 -48.17 c -0.812 -5.136 -0.974 -10.42 -0.458 -15.594 c 1.054 -10.582 4.82 -20.686 10.904 -29.404 c 6.22 -8.912 14.608 -16.08 24.344 -20.9 c 37.108 -18.37 82.844 1.514 94.412 41.366 c 1.576 5.432 2.47 11.11 2.62 16.764 c 0.306 11.53 -2.372 22.926 -7.746 33.13 c -5.482 10.41 -13.542 19.232 -23.366 25.698 c -37.466 24.656 -89.26 9.17 -107.06 -32.012 c -2.426 -5.614 -4.154 -11.584 -5.084 -17.628 c -1.89 -12.3 -0.58 -24.852 3.798 -36.5 c 2.196 -5.846 5.162 -11.458 8.758 -16.564 c 3.634 -5.16 7.952 -9.898 12.758 -13.988 c 36.796 -31.326 94.166 -21.354 118.68 20.162 c 6.758 11.444 10.486 24.414 10.788 37.706 c 0.304 13.44 -2.864 26.708 -9.172 38.578 c -6.424 12.088 -15.834 22.316 -27.29 29.8 c -36.356 23.746 -86.67 15.142 -113.224 -19.18 c -4.312 -5.574 -7.952 -11.74 -10.728 -18.218 c -2.78 -6.492 -4.754 -13.392 -5.804 -20.374 c -1.054 -7.01 -1.214 -14.214 -0.456 -21.264 c 0.762 -7.094 2.442 -14.148 4.974 -20.818 c 16.442 -43.34 64.86 -65.492 108.802 -52.428 c 29.234 8.692 52.758 32.098 61.084 61.514 c 2.056 7.262 3.4155 15.1155 3.344 22.392 
 "use strict";
 var trad={};
 //========================================================================================================
@@ -307,6 +308,169 @@ function myObj1(initObj1){
  }
  
  
+ 
+ //========================================================================================================
+ function insererUneSpirale2(){
+  closePopup();
+  
+  var contentOfPopup='<h3>'+trad['insérer_une_étoile']+'</h3>';
+  
+  contentOfPopup+='<div >';
+  contentOfPopup+='<div id="parNombreDePointsSp2Valeur" style="display:inline-block;min-width:2rem;">50</div>';
+  contentOfPopup+='<label for="parNombreDePointsSp2"> : '+trad['nombre_de_pointsSp2']+'</label>';
+  contentOfPopup+='<div>';
+   contentOfPopup+='<input id="parNombreDePointsSp2" type="range" min="50" max="1000" step="50" value="50" style="width:95%;min-width:200px;max-width:500px;user-select:auto;" />';
+  contentOfPopup+='</div>';
+  contentOfPopup+='</div>';
+  
+
+  contentOfPopup+='<div >';
+  contentOfPopup+='<div id="parNbToursSp2Valeur" style="display:inline-block;min-width:2rem;">1</div>';
+  contentOfPopup+='<label for="parNbToursSp2"> : '+trad['nombre_de_tours_sp2']+'</label>';
+  contentOfPopup+='<div>';
+  contentOfPopup+='<input id="parNbToursSp2" type="range" min="1" max="50" step="1" value="1" style="width:95%;min-width:200px;max-width:500px;user-select:auto;" />';
+  contentOfPopup+='</div>';
+  contentOfPopup+='</div>';
+  
+
+
+  contentOfPopup+='<div >';
+  contentOfPopup+='<button id="calculerEtAjouterSpirale2" class="butEnabled butMenuHaut">'+trad['insérer']+'</button>';
+  contentOfPopup+='</div>';
+  
+
+  contentOfPopup+='<div style="margin-top:20px;">';
+  contentOfPopup+='<button id="sp2_200_39" class="butEnabled butMenuHaut">200 x 39</button>';
+  contentOfPopup+='<button id="sp2_50_15" class="butEnabled butMenuHaut">50 x 15</button>';
+  contentOfPopup+='<button id="sp2_150_33" class="butEnabled butMenuHaut">150 x 33</button>';
+  contentOfPopup+='</div>';
+  
+  popupValue.innerHTML=contentOfPopup;
+  
+  ajouteListenersSpirale2();
+  showPopUp('insererUneSpirale2');  
+  
+  
+ }
+ 
+ //========================================================================================================
+ function sp2_200_39(){
+  dogid('parNombreDePointsSp2').value=200;
+  dogid('parNombreDePointsSp2Valeur').innerHTML=200;
+  
+  dogid('parNbToursSp2').value=200;
+  dogid('parNbToursSp2Valeur').innerHTML=39;
+ }
+ //========================================================================================================
+ function sp2_50_15(){
+  dogid('parNombreDePointsSp2').value=50;
+  dogid('parNombreDePointsSp2Valeur').innerHTML=50;
+  
+  dogid('parNbToursSp2').value=15;
+  dogid('parNbToursSp2Valeur').innerHTML=15;  
+ }
+ //========================================================================================================
+ function sp2_150_33(){
+  dogid('parNombreDePointsSp2').value=150;
+  dogid('parNombreDePointsSp2Valeur').innerHTML=150;
+  
+  dogid('parNbToursSp2').value=33;
+  dogid('parNbToursSp2Valeur').innerHTML=33;  
+ }
+ //========================================================================================================
+ function touchDownParNombreDePointsSp2(e){
+  e.stopPropagation();
+  actionDownParNombreDePointsSp2(e.touches[0]);
+ }
+ //========================================================================================================
+ function mouseDownParNombreDePointsSp2(e){
+  e.stopPropagation();
+  actionDownParNombreDePointsSp2();
+ }
+
+ //========================================================================================================
+ function actionDownParNombreDePointsSp2(e){
+  dogid('parNombreDePointsSp2').addEventListener('touchmove' , changeNombreDePointsSp2 , 'range');
+  dogid('parNombreDePointsSp2').addEventListener('mousemove' , changeNombreDePointsSp2 , 'range');
+  dogid('parNombreDePointsSp2').addEventListener('touchend'  , finTouchParam , 'range');
+  dogid('parNombreDePointsSp2').addEventListener('mouseup'   , finMouseParam , 'range');
+ }
+ //========================================================================================================
+ function changeNombreDePointsSp2(e){
+  e.stopPropagation();
+  dogid('parNombreDePointsSp2Valeur').innerHTML=dogid('parNombreDePointsSp2').value;
+ }
+ 
+ 
+ //========================================================================================================
+ function touchDownParNbToursSp2(e){
+  e.stopPropagation();
+  actionDownParNbToursSp2(e.touches[0]);
+ }
+ //========================================================================================================
+ function mouseDownParNbToursSp2(e){
+  e.stopPropagation();
+  actionDownParNbToursSp2();
+ }
+
+ //========================================================================================================
+ function actionDownParNbToursSp2(e){
+  dogid('parNbToursSp2').addEventListener('touchmove' , changeNbToursSp2 , 'range');
+  dogid('parNbToursSp2').addEventListener('mousemove' , changeNbToursSp2 , 'range');
+  dogid('parNbToursSp2').addEventListener('touchend'  , finTouchParam , 'range');
+  dogid('parNbToursSp2').addEventListener('mouseup'   , finMouseParam , 'range');
+ }
+ //========================================================================================================
+ function changeNbToursSp2(e){
+  e.stopPropagation();
+  dogid('parNbToursSp2Valeur').innerHTML=dogid('parNbToursSp2').value;
+ }
+ 
+ 
+ //========================================================================================================
+ function calculerEtAjouterSpirale2(){
+  var nbpt=parseInt(document.getElementById('parNombreDePointsSp2Valeur').innerHTML,10);
+  var nbto=parseInt(document.getElementById('parNbToursSp2Valeur').innerHTML,10);
+  
+  var delta=360/nbpt;
+  var tt='';
+  var x=0;
+  var y=0;
+  for(var i=0;i<360;i+=delta){
+   x=Math.cos(Math.PI/180*nbto*i)*i;
+   y=Math.sin(Math.PI/180*nbto*i)*i;
+   tt+=' '+arrdi10000(x)+' '+arrdi10000(y)+' ';
+  }
+  globalClickDessin.tempchild=document.createElementNS("http://www.w3.org/2000/svg",'polyline');
+  globalClickDessin.tempchild.setAttribute('data-type','toRemove');
+  globalClickDessin.tempchild.setAttribute( 'points'             , tt );
+  globalClickDessin.tempchild.setAttribute( 'style' , 'stroke-width:1;stroke:'+(_dssvg.strokeColor1)+';fill:transparent;');
+  refZnDessin.appendChild(globalClickDessin.tempchild);
+  ajouteEntreeArbre('polyline',null);
+  afficheArbre0({prendreTout:false});
+  closePopup();
+  
+  
+ }
+ 
+ 
+ 
+ //========================================================================================================
+ function ajouteListenersSpirale2(){
+  dogid('parNombreDePointsSp2').addEventListener('mousedown'      , mouseDownParNombreDePointsSp2    , 'range' );
+  dogid('parNombreDePointsSp2').addEventListener('touchstart'     , touchDownParNombreDePointsSp2    , 'range' );
+
+  dogid('parNbToursSp2').addEventListener('mousedown'      , mouseDownParNbToursSp2    , 'range' );
+  dogid('parNbToursSp2').addEventListener('touchstart'     , touchDownParNbToursSp2    , 'range' );
+
+  dogid('calculerEtAjouterSpirale2').addEventListener('click'      , calculerEtAjouterSpirale2    , 'range' );
+  
+  dogid('sp2_200_39').addEventListener( 'click'     , sp2_200_39    , 'button' );
+  dogid('sp2_50_15').addEventListener(  'click'     , sp2_50_15     , 'button' );
+  dogid('sp2_150_33').addEventListener( 'click'     , sp2_150_33    , 'button' );
+  
+ }
+ 
  //========================================================================================================
  function insererUneEtoile(){
   closePopup();
@@ -420,7 +584,7 @@ function myObj1(initObj1){
   closePopup();
  }
  //========================================================================================================
- function insererUneSpirale(){
+ function insererUneSpirale1(){
   globalClickDessin.tempchild=document.createElementNS("http://www.w3.org/2000/svg",'path');
   globalClickDessin.tempchild.setAttribute('data-type','toRemove');
   globalClickDessin.tempchild.setAttribute( 'd'             , 'M 0.264 1.064 c 0.028 -0.34 -0.488 2.372 1.356 0.764 c 1.232 -1.072 0.352 -2.924 -0.904 -3.496 c -2.644 -1.2 -4.976 1.68 -4.668 4.152 c 0.796 6.356 9.42 4.848 11.236 -0.024 c 3.364 -9.032 -9.068 -13.736 -15.096 -8.172 c -9.228 8.52 0.624 22.24 11.648 20.7 c 19.24 -2.692 15.94 -30.228 -2.212 -33.252 c -25.028 -4.172 -32.484 30.908 -11.4 42.304 c 14.916 8.064 33.46 -0.752 38.352 -16.564 c 3.388 -10.956 -0.016 -23.112 -8.308 -30.972 c -15.404 -14.6 -40.684 -10.088 -51.788 7.428 c -7.98 12.588 -7.36 29.068 0.964 41.328 c 14.624 21.536 46.188 22.872 64.088 4.744 c 12.932 -13.096 16.492 -33.36 9.252 -50.224 c -12.708 -29.612 -50.956 -38.348 -76.436 -19.536 c -18.636 13.76 -26.3 38.456 -19.596 60.504 c 10.88 35.78 53.512 51.488 85.948 34.22 c 24.14 -12.852 37.456 -40.388 33.412 -67.316 c -6.648 -44.276 -54.872 -69.864 -95.908 -53.88 c -31.412 12.236 -50.728 44.824 -47.748 78.2 c 4.624 51.8 57.272 84.42 106.2 69.74 c 36.356 -10.908 61.524 -45.416 62.188 -83.16 c 1.08 -61.356 -57.6 -105.632 -116.488 -92.232 c -44.028 10.02 -75.724 49.576 -77.964 94.34' );
@@ -1150,7 +1314,8 @@ function myObj1(initObj1){
     contentOfPopup+='<div>';
     contentOfPopup+='<button class="butEnabled butMenuGauche" style="min-width:35px;min-height:35px;margin:3px;" id="insererUneEtoile">'+svgEtoile+'</button>';
     contentOfPopup+='<button class="butEnabled butMenuGauche" style="min-width:35px;min-height:35px;margin:3px;" id="insererUneFleche"><svg class="svgBoutonGauche1" viewBox="-2 -1  23 18"><polygon points=" 14 1 20 8  14 15   14 11 0 11 0 5 14 5" style="stroke-width:1.5;stroke:rgb(0, 0, 255);fill:transparent;"></polygon></svg></button>';
-    contentOfPopup+='<button class="butEnabled butMenuGauche" style="min-width:35px;min-height:35px;margin:3px;" id="insererUneSpirale"><svg class="svgBoutonGauche1" viewBox="-105.608 -99.0828  202.4667 189.325"><path d=" M 0.264 1.064 c 0.028 -0.34 -0.488 2.372 1.356 0.764 c 1.232 -1.072 0.352 -2.924 -0.904 -3.496 c -2.644 -1.2 -4.976 1.68 -4.668 4.152 c 0.796 6.356 9.42 4.848 11.236 -0.024 c 3.364 -9.032 -9.068 -13.736 -15.096 -8.172 c -9.228 8.52 0.624 22.24 11.648 20.7 c 19.24 -2.692 15.94 -30.228 -2.212 -33.252 c -25.028 -4.172 -32.484 30.908 -11.4 42.304 c 14.916 8.064 33.46 -0.752 38.352 -16.564 c 3.388 -10.956 -0.016 -23.112 -8.308 -30.972 c -15.404 -14.6 -40.684 -10.088 -51.788 7.428 c -7.98 12.588 -7.36 29.068 0.964 41.328 c 14.624 21.536 46.188 22.872 64.088 4.744 c 12.932 -13.096 16.492 -33.36 9.252 -50.224 c -12.708 -29.612 -50.956 -38.348 -76.436 -19.536 c -18.636 13.76 -26.3 38.456 -19.596 60.504 c 10.88 35.78 53.512 51.488 85.948 34.22 c 24.14 -12.852 37.456 -40.388 33.412 -67.316 c -6.648 -44.276 -54.872 -69.864 -95.908 -53.88 c -31.412 12.236 -50.728 44.824 -47.748 78.2 c 4.624 51.8 57.272 84.42 106.2 69.74 c 36.356 -10.908 61.524 -45.416 62.188 -83.16 c 1.08 -61.356 -57.6 -105.632 -116.488 -92.232 c -44.028 10.02 -75.724 49.576 -77.964 94.34" style="fill:transparent;stroke:#0080cc;stroke-width:8;" transform=""></path></svg>';
+    contentOfPopup+='<button class="butEnabled butMenuGauche" style="min-width:35px;min-height:35px;margin:3px;" id="insererUneSpirale1"><svg class="svgBoutonGauche1" viewBox="-105.608 -99.0828  202.4667 189.325"><path d=" M 0.264 1.064 c 0.028 -0.34 -0.488 2.372 1.356 0.764 c 1.232 -1.072 0.352 -2.924 -0.904 -3.496 c -2.644 -1.2 -4.976 1.68 -4.668 4.152 c 0.796 6.356 9.42 4.848 11.236 -0.024 c 3.364 -9.032 -9.068 -13.736 -15.096 -8.172 c -9.228 8.52 0.624 22.24 11.648 20.7 c 19.24 -2.692 15.94 -30.228 -2.212 -33.252 c -25.028 -4.172 -32.484 30.908 -11.4 42.304 c 14.916 8.064 33.46 -0.752 38.352 -16.564 c 3.388 -10.956 -0.016 -23.112 -8.308 -30.972 c -15.404 -14.6 -40.684 -10.088 -51.788 7.428 c -7.98 12.588 -7.36 29.068 0.964 41.328 c 14.624 21.536 46.188 22.872 64.088 4.744 c 12.932 -13.096 16.492 -33.36 9.252 -50.224 c -12.708 -29.612 -50.956 -38.348 -76.436 -19.536 c -18.636 13.76 -26.3 38.456 -19.596 60.504 c 10.88 35.78 53.512 51.488 85.948 34.22 c 24.14 -12.852 37.456 -40.388 33.412 -67.316 c -6.648 -44.276 -54.872 -69.864 -95.908 -53.88 c -31.412 12.236 -50.728 44.824 -47.748 78.2 c 4.624 51.8 57.272 84.42 106.2 69.74 c 36.356 -10.908 61.524 -45.416 62.188 -83.16 c 1.08 -61.356 -57.6 -105.632 -116.488 -92.232 c -44.028 10.02 -75.724 49.576 -77.964 94.34" style="fill:transparent;stroke:#0080cc;stroke-width:8;" transform=""></path></svg>';
+    contentOfPopup+='<button class="butEnabled butMenuGauche" style="min-width:35px;min-height:35px;margin:3px;" id="insererUneSpirale2"><svg class="svgBoutonGauche1" viewBox="-85.9351 -89.7296  180.6778 171.4323"><path d=" M 1.526 -1.1 c 1.912 0.482 0.76 2.668 -0.604 3.112 c -4.08 1.324 -6.244 -3.962 -4.99 -7.1 c 2.506 -6.264 11.14 -5.658 14.886 -1.024 c 7.064 8.74 -2.278 19.882 -12.056 19.234 c -10.172 -0.672 -16.734 -11.14 -13.954 -20.716 c 1.786 -6.154 6.878 -10.894 13.004 -12.616 c 12.764 -3.586 25.73 6.066 26.766 19.11 c 0.82 10.316 -5.72 19.89 -15.216 23.666 c -15.446 6.14 -33.052 -3.976 -36.194 -20.15 c -1.89 -9.73 1.68 -19.864 8.962 -26.522 c 14.598 -13.348 38.452 -9.39 48.89 7.098 c 7.904 12.484 6.336 28.96 -3.278 40.066 c -3.994 4.614 -9.1 8.136 -14.818 10.266 c -5.894 2.196 -12.25 2.886 -18.48 2.018 c -23.942 -3.336 -39.098 -28.502 -31.068 -51.266 c 2.298 -6.512 6.24 -12.324 11.408 -16.9 c 5.33 -4.718 11.774 -8.01 18.708 -9.606 c 31.474 -7.244 60.082 21.146 53.138 52.694 c -1.68 7.636 -5.3 14.688 -10.486 20.536 c -5.33 6.01 -12.1 10.562 -19.658 13.28 c -34.092 12.258 -70.014 -15.452 -66.646 -51.586 c 0.81 -8.684 3.846 -16.994 8.794 -24.174 c 2.498 -3.628 5.478 -6.966 8.804 -9.856 c 3.37 -2.928 7.134 -5.454 11.122 -7.458 c 30.674 -15.408 68.592 1.014 78.34 33.944 c 2.708 9.15 3.018 18.824 0.892 28.128 c -2.166 9.486 -6.738 18.236 -13.246 25.466 c -6.666 7.404 -15.104 12.99 -24.5 16.294 c -35.826 12.598 -75.226 -10.526 -81.184 -48.17 c -0.812 -5.136 -0.974 -10.42 -0.458 -15.594 c 1.054 -10.582 4.82 -20.686 10.904 -29.404 c 6.22 -8.912 14.608 -16.08 24.344 -20.9 c 37.108 -18.37 82.844 1.514 94.412 41.366 c 1.576 5.432 2.47 11.11 2.62 16.764 c 0.306 11.53 -2.372 22.926 -7.746 33.13 c -5.482 10.41 -13.542 19.232 -23.366 25.698 c -37.466 24.656 -89.26 9.17 -107.06 -32.012 c -2.426 -5.614 -4.154 -11.584 -5.084 -17.628 c -1.89 -12.3 -0.58 -24.852 3.798 -36.5 c 2.196 -5.846 5.162 -11.458 8.758 -16.564 c 3.634 -5.16 7.952 -9.898 12.758 -13.988 c 36.796 -31.326 94.166 -21.354 118.68 20.162 c 6.758 11.444 10.486 24.414 10.788 37.706 c 0.304 13.44 -2.864 26.708 -9.172 38.578 c -6.424 12.088 -15.834 22.316 -27.29 29.8 c -36.356 23.746 -86.67 15.142 -113.224 -19.18 c -4.312 -5.574 -7.952 -11.74 -10.728 -18.218 c -2.78 -6.492 -4.754 -13.392 -5.804 -20.374 c -1.054 -7.01 -1.214 -14.214 -0.456 -21.264 c 0.762 -7.094 2.442 -14.148 4.974 -20.818 c 16.442 -43.34 64.86 -65.492 108.802 -52.428 c 29.234 8.692 52.758 32.098 61.084 61.514 c 2.056 7.262 3.4155 15.1155 3.344 22.392 " stroke-linejoin="round" stroke-linecap="round" style="stroke:rgb(0, 0, 0);fill:transparent;stroke-width:3;"></path></svg>';
 //     
     contentOfPopup+='</div>';
   contentOfPopup+='</fieldset>';
@@ -1181,7 +1346,8 @@ function myObj1(initObj1){
   
   document.getElementById('insererUneEtoile').addEventListener('click',insererUneEtoile,'button');
   document.getElementById('insererUneFleche').addEventListener('click',insererUneFleche,'button');
-  document.getElementById('insererUneSpirale').addEventListener('click',insererUneSpirale,'button');
+  document.getElementById('insererUneSpirale1').addEventListener('click',insererUneSpirale1,'button');
+  document.getElementById('insererUneSpirale2').addEventListener('click',insererUneSpirale2,'button');
   document.getElementById('insererUnPatern').addEventListener('click',insererUnPatern,'button');
   document.getElementById('insererUnFiltre').addEventListener('click',insererUnFiltre,'button'); //<defs><filter id="__filtered-3" height="220%"><feFlood flood-color="#551C0B" result="COLOR-outline"></feFlood><feMorphology operator="dilate" radius="0.3" in="SourceAlpha" result="OUTLINE_10"></feMorphology><feComposite operator="in" in="COLOR-outline" in2="OUTLINE_10" result="OUTLINE_20"></feComposite><feGaussianBlur stdDeviation="4" in="SourceAlpha" result="LIGHTING-EFFECTS_10"></feGaussianBlur><feSpecularLighting surfaceScale="5" specularConstant="0.5" specularExponent="7.5" lighting-color="#white" in="LIGHTING-EFFECTS_10" result="LIGHTING-EFFECTS_20"><fePointLight x="750" y="-50" z="300"></fePointLight></feSpecularLighting><feComposite in2="SourceAlpha" operator="in" in="LIGHTING-EFFECTS_20" result="LIGHTING-EFFECTS_30"></feComposite><feComposite operator="arithmetic" k1="0" k2="1" k3="1" k4="0" in="SourceGraphic" in2="LIGHTING-EFFECTS_30" result="LIGHTING-EFFECTS_40"></feComposite><feComponentTransfer in="LIGHTING-EFFECTS_40" result="COLOR-EFFECTS_10"><feFuncR type="gamma" offset="-1.3" amplitude="10" exponent="4.84"></feFuncR><feFuncB type="gamma" offset="-1.3" amplitude="10.1" exponent="40.84"></feFuncB></feComponentTransfer><feMerge><feMergeNode in="OUTLINE_20"></feMergeNode><feMergeNode in="COLOR-EFFECTS_10"></feMergeNode></feMerge></filter></defs>
   
@@ -2142,6 +2308,8 @@ function myObj1(initObj1){
   removeListeners();
   if('insererUneEtoile'===popUpIsDisplayed1){
    ajouteListenersEtoile();
+  }else if('insererUneSpirale2'===popUpIsDisplayed1){
+   ajouteListenersSpirale2();
   }else if('popupParametres1'){
    ajouteListenersParam();
   }
