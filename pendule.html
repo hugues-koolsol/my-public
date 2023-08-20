@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+ <head>
+  <meta charset="utf-8" />
+  <title>double pendule</title>
+  <link rel="stylesheet" href="" />
+  <style type="text/css">
+  *{margin:0;padding:0;border:0;box-sizing:border-box;}
+  </style>
+ </head>
+ <body>
+ <a href="javascript:init()">init</a><span id="spand1"></span>https://fr.wikipedia.org/wiki/Pendule_double
+ <br>
+<script>
+
+var taille=200; // 200 -> 450
+var marge=2;
+var nbCan=6;
+var canvasLst=[];
+var spand1=document.getElementById('spand1');
+var g=0.6;
+
+for(var i=0;i<nbCan;i++){
+ canvasLst[i]=document.createElement('canvas');
+ canvasLst[i].id='dp'+i;
+ canvasLst[i].width=(taille+2*marge);
+ canvasLst[i].height=(taille+2*marge);
+ canvasLst[i].style.border='1px #ccc solid';
+ canvasLst[i].style.display='inline-block';
+ document.body.appendChild(canvasLst[i]);
+}
+if(taille>450){
+ taille=450;
+}
+
+if(taille<200){
+ taille=200;
+}
+
+var r1=taille/4,r2=taille/4-2;
+var m1=5,m2=2;
+var kx1=taille/2+marge,ky1=taille/2+marge;
+var nbBoucles=10000000;
+
+var a1=[]; //180/360*2*Math.PI;
+var a2=[]; //0/360*2*Math.PI;
+var px1=[],py1=[];
+var px2=[],py2=[];
+var a1_v=[],a2_v=[];
+var a1_a=[],a2_a=[];
+
+var canvas=[];
+var ctx=[];
+for(var i=0;i<nbCan;i++){
+ canvas[i] = document.getElementById('dp'+i);
+ ctx[i] = canvas[i].getContext('2d');
+}
+
+var nbTab=2000;
+var pos2=[];
+var ep0=[]; // energie potentielle initiale
+var ec1=[]; // energie cinetique
+var ep1=[]; // energie potentielle dynamique
+var j=0,k=0;
+var count=nbBoucles;
+var eminmax=297; // 323
+var rap1=0;
+var newV=0;
+var a1max=0;
+var a2max=0;
+var v1max=0;
+var v2max=0;
+var hasMicrotime=(typeof performance !== 'undefined');
+console.log('hasMicrotime=',hasMicrotime);
+
+function sinMicrotime(){
+  var s, now, multiplier;
+
+  if(hasMicrotime) {
+      now = (performance.now() + performance.timing.navigationStart) / 1000;
+      multiplier = 1e6; // 1,000,000 for microseconds
+  }else {
+      now = (Date.now ? Date.now() : new Date().getTime()) / 1000;
+      multiplier = 1e3; // 1,000
+  }
+
+  return Math.sin(now);
+}
+
+function init(){
+ count=nbBoucles;
+ j=0;
+ k=0;
+ for(var i=0;i<nbCan;i++){
+  pos2[i]=[];
+ }
+ for(var i=0;i<nbCan;i++){
+  for(var j=0;j<nbTab;j++){
+   pos2[i][j]=[-1,-1];
+  }
+  a1[i]=179/360*2*Math.PI;
+  a2[i]=179/360*2*Math.PI;
+  px1[i]=0,py1[i]=0;
+  px2[i]=0,py2[i]=0;
+  a1_v[i]=0.1,a2_v[i]=0;
+  a1_a[i]=0.1,a2_a[i]=0;
+  ep0[i]=-g*m1*2*r1*Math.cos(179/360*2*Math.PI)-g*m2*2*r2*Math.cos(179/360*2*Math.PI);
+  eminmax=ep0[i]*3/4; // 3/4 ou 4/5 = bon
+  ep1[i]=ep0[i];
+  ec1[i]=0;
+  a1max=0;
+  a2max=0;
+  v1max=0;
+  v2max=0;
+ }
+}
+var count2=100;
+function draw(){
+ 
+ for(var i=0;i<nbCan;i++){
+  ctx[i].clearRect(0,0,taille+2*marge,taille+2*marge);
+  
+//  spand1.innerHTML=' a1[0] : '+a1[0]+'';   
+
+  if(a1[i]>2*Math.PI){
+   a1[i]-=2*Math.PI;
+  }
+  
+  if(a2[i]>2*Math.PI){
+   a2[i]-=2*Math.PI;
+  }
+/*  
+  if(a1[i]>6){//(5/360*2*Math.PI)){
+   alert(a1_v[i]);
+   bug();
+  }
+*/  
+  var vmax=0.17993;  // original = 0.17, 0.17995 = la vitesse devient instable
+  if(a1_v[i]>vmax){
+   a1_v[i]=vmax;
+  }
+
+  var num1 = -g * (2 * m1 + m2) * Math.sin(a1[i]);
+  var num2 = -m2 * g * Math.sin(a1[i] - 2 * a2[i]);
+  var num3 = -2 * Math.sin(a1[i] - a2[i]) * m2;
+  var num4 = a2_v[i] * a2_v[i] * r2 + a1_v[i] * a1_v[i] * r1 * Math.cos(a1[i] - a2[i]);
+  var den = r1 * (2 * m1 + m2 - m2 * Math.cos(2 * a1[i] - 2 * a2[i]));
+  a1_a[i] = (num1 + num2 + num3 * num4) / den;
+
+  num1 = 2 * Math.sin(a1[i] - a2[i]);
+  num2 = (a1_v[i] * a1_v[i] * r1 * (m1 + m2));
+  num3 = g * (m1 + m2) * Math.cos(a1[i]);
+  num4 = a2_v[i] * a2_v[i] * r2 * m2 * Math.cos(a1[i] - a2[i]);
+  den = r2 * (2 * m1 + m2 - m2 * Math.cos(2 * a1[i] - 2 * a2[i]));
+  a2_a[i] = (num1 * (num2 + num3 + num4)) / den; 
+  
+  if(a1max<a1_a[i]){a1max=a1_a[i];}
+  if(a2max<a2_a[i]){a2max=a2_a[i];}
+  
+  px1[i]=r1*Math.sin(a1[i]);
+  py1[i]=r1*Math.cos(a1[i]);
+  
+  ctx[i].beginPath();
+  ctx[i].moveTo(taille/2+marge,taille/2+marge);
+  ctx[i].lineTo(px1[i]+kx1,py1[i]+ky1);
+  ctx[i].stroke();
+  
+  ctx[i].beginPath();
+  ctx[i].arc(px1[i]+kx1,py1[i]+ky1,m1,0,7);
+  ctx[i].stroke();
+  
+  px2[i]=r2*Math.sin(a2[i]);
+  py2[i]=r2*Math.cos(a2[i]);
+  
+  ctx[i].beginPath();
+  ctx[i].moveTo(px1[i]+kx1,py1[i]+ky1);
+  ctx[i].lineTo(px1[i]+kx1+px2[i],py1[i]+ky1+py2[i]);
+  ctx[i].stroke();
+  
+  ctx[i].beginPath();
+  ctx[i].arc(px1[i]+kx1+px2[i],py1[i]+ky1+py2[i],m2,0,7);
+  ctx[i].stroke();
+  
+  
+//  ctx[i].stroke();
+  
+  a1_v[i]+=a1_a[i]*(1-1e-15*Math.random()*sinMicrotime()); // frottement
+  a2_v[i]+=a2_a[i]*(1-1e-15*Math.random()*sinMicrotime()); // frottement
+  a1[i]+=a1_v[i];
+  a2[i]+=a2_v[i];
+  if(v1max<a1_v[i]){a1max=a1_v[i];}
+  if(v2max<a2_v[i]){a2max=a2_v[i];}
+  
+
+
+  if(Math.abs(a2_v[i])>=Math.abs(v2max*0.8)&count2<=0){
+   ep1[i]=g*m1*2*r1*(1-Math.cos(a1[i]))+g*m2*2*r2*(1-Math.cos(a2[i]));
+   ec1[i]=1/2*m1*r1*r1*a1_v[i]*a1_v[i]+1/2*m2*(a1_v[i]*a1_v[i]*r2*r1 + a2_v[i]*a2_v[i]*r2*r2 + Math.abs(2*r1*r2*a1_v[i]*a2_v[i]*Math.cos(a1[i]-a2[i]))  );
+   if((ep1[i]+ec1[i])<eminmax){
+    a2_v[i]*=1.05+sinMicrotime()/100;
+    count2=49;
+//    spand1.innerHTML=' Nombre de boucles : '+(nbBoucles-count)+', a1max='+a1max+', a2max='+a2max+'';   
+   }
+  }
+  count2--;
+  if(a1[i]>170&&a2[i]>170){
+   a1_v[i]=0;a2_v[i]=0;
+   a1_a[i]=0;a2_a[i]=0;
+  }
+   
+  indice=count%nbTab;
+  pos2[i][indice]=[px1[i]+kx1+px2[i],py1[i]+ky1+py2[i]];
+  if(count!=nbBoucles){
+   for(var n=indice+1;n<indice+nbTab;n++){
+    j=n%nbTab;
+    k=(n-1)%nbTab;
+    if(pos2[i][j][0]>0 && pos2[i][k][0]>0){
+     ctx[i].beginPath();
+     ctx[i].strokeStyle="#dddddd";
+     ctx[i].moveTo(pos2[i][k][0],pos2[i][k][1]);
+     ctx[i].lineTo(pos2[i][j][0],pos2[i][j][1]);
+     ctx[i].stroke();
+    }
+   }
+  }
+  ctx[i].strokeStyle="#000000";
+ }
+/* 
+ if(Math.abs(a1[0])<0.05 && Math.abs(a2[0])<0.05){
+  spand1.innerHTML=' a1='+a1[0]+' , a2='+a2[0]+' ep0[0]='+(ep0[0])+' , ep1[0]='+(ep1[0])+' , ec1[0]='+ec1[0];
+  bug();
+ }
+*/ 
+// bug();
+ 
+ if(nbCan>1 && count%100==0){
+  if(nbBoucles-count<3500){
+//   spand1.innerHTML=' Nombre de boucles : '+(nbBoucles-count)+' : attendez jusqu\'à 2000 boucles pour constater une différence.';
+  }else{
+//   spand1.innerHTML=' Nombre de boucles : '+(nbBoucles-count)+'';
+  }
+ }
+ 
+ count--;
+ if(count>0){
+  requestAnimationFrame(draw);
+ }
+}
+init();
+draw();
+</script>  
+ </body>
+</html>

@@ -1,4 +1,3 @@
-//  M 1.526 -1.1 c 1.912 0.482 0.76 2.668 -0.604 3.112 c -4.08 1.324 -6.244 -3.962 -4.99 -7.1 c 2.506 -6.264 11.14 -5.658 14.886 -1.024 c 7.064 8.74 -2.278 19.882 -12.056 19.234 c -10.172 -0.672 -16.734 -11.14 -13.954 -20.716 c 1.786 -6.154 6.878 -10.894 13.004 -12.616 c 12.764 -3.586 25.73 6.066 26.766 19.11 c 0.82 10.316 -5.72 19.89 -15.216 23.666 c -15.446 6.14 -33.052 -3.976 -36.194 -20.15 c -1.89 -9.73 1.68 -19.864 8.962 -26.522 c 14.598 -13.348 38.452 -9.39 48.89 7.098 c 7.904 12.484 6.336 28.96 -3.278 40.066 c -3.994 4.614 -9.1 8.136 -14.818 10.266 c -5.894 2.196 -12.25 2.886 -18.48 2.018 c -23.942 -3.336 -39.098 -28.502 -31.068 -51.266 c 2.298 -6.512 6.24 -12.324 11.408 -16.9 c 5.33 -4.718 11.774 -8.01 18.708 -9.606 c 31.474 -7.244 60.082 21.146 53.138 52.694 c -1.68 7.636 -5.3 14.688 -10.486 20.536 c -5.33 6.01 -12.1 10.562 -19.658 13.28 c -34.092 12.258 -70.014 -15.452 -66.646 -51.586 c 0.81 -8.684 3.846 -16.994 8.794 -24.174 c 2.498 -3.628 5.478 -6.966 8.804 -9.856 c 3.37 -2.928 7.134 -5.454 11.122 -7.458 c 30.674 -15.408 68.592 1.014 78.34 33.944 c 2.708 9.15 3.018 18.824 0.892 28.128 c -2.166 9.486 -6.738 18.236 -13.246 25.466 c -6.666 7.404 -15.104 12.99 -24.5 16.294 c -35.826 12.598 -75.226 -10.526 -81.184 -48.17 c -0.812 -5.136 -0.974 -10.42 -0.458 -15.594 c 1.054 -10.582 4.82 -20.686 10.904 -29.404 c 6.22 -8.912 14.608 -16.08 24.344 -20.9 c 37.108 -18.37 82.844 1.514 94.412 41.366 c 1.576 5.432 2.47 11.11 2.62 16.764 c 0.306 11.53 -2.372 22.926 -7.746 33.13 c -5.482 10.41 -13.542 19.232 -23.366 25.698 c -37.466 24.656 -89.26 9.17 -107.06 -32.012 c -2.426 -5.614 -4.154 -11.584 -5.084 -17.628 c -1.89 -12.3 -0.58 -24.852 3.798 -36.5 c 2.196 -5.846 5.162 -11.458 8.758 -16.564 c 3.634 -5.16 7.952 -9.898 12.758 -13.988 c 36.796 -31.326 94.166 -21.354 118.68 20.162 c 6.758 11.444 10.486 24.414 10.788 37.706 c 0.304 13.44 -2.864 26.708 -9.172 38.578 c -6.424 12.088 -15.834 22.316 -27.29 29.8 c -36.356 23.746 -86.67 15.142 -113.224 -19.18 c -4.312 -5.574 -7.952 -11.74 -10.728 -18.218 c -2.78 -6.492 -4.754 -13.392 -5.804 -20.374 c -1.054 -7.01 -1.214 -14.214 -0.456 -21.264 c 0.762 -7.094 2.442 -14.148 4.974 -20.818 c 16.442 -43.34 64.86 -65.492 108.802 -52.428 c 29.234 8.692 52.758 32.098 61.084 61.514 c 2.056 7.262 3.4155 15.1155 3.344 22.392 
 "use strict";
 var trad={};
 //========================================================================================================
@@ -2257,6 +2256,32 @@ function myObj1(initObj1){
   r.send();
  }
  //========================================================================================================
+ function _chargerUrlSvg(url){
+//  alert(url);
+  var r = new XMLHttpRequest();
+  r.open("GET",url,true);
+  r.timeout=6000;
+  r.onreadystatechange = function () {
+   if (r.readyState != 4 || r.status != 200) return;
+   try{
+    var ret=r.responseText;
+    document.getElementById('contenuSvg').value=ret;
+    importerSvgEtFermer();
+   }catch(e){
+    console.error(e,r);
+    return;
+   }
+  };
+  r.onerror=function(e){
+   console.error('e=',e);
+   /* whatever(); */    
+   return;
+  }
+  r.ontimeout=function(e){console.error('e=',e); /* whatever(); */    return;}
+  r.send();
+  
+ }
+ //========================================================================================================
  function popupImportSvg1(){
   var contentOfPopup='<h3>'+trad['importer_un_svg']+'</h3>';
 //  contentOfPopup+='Url : <input id="urlAImporter" style="max-width:80%;border: 3px #eee inset;" />';
@@ -2267,6 +2292,7 @@ function myObj1(initObj1){
   contentOfPopup+=' <button id="importerSvgEtFermer"  class="butEnabled butMenuHaut">'+trad['importer_en_écrasant']+'</button>';
   contentOfPopup+=' <button id="importerEnAjoutant"   class="butEnabled butMenuHaut">'+trad['importer_en_ajoutant']+'</button>';
   contentOfPopup+=' <br />';
+  contentOfPopup+=' <br />Tests';
   // zzvin.svg , zzSimplificationChemin.svg zzSVG_Logo-svgomg.svg zzsagami_single-svgomg.svg zztest-car-lite.svg
 //  contentOfPopup+=' <br /><br /><button id="test20"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4.8229 -4.8229  224.8229 106.4479"><defs><pattern id="pat01" viewBox="0,0,14,14" width="20%" height="20%"><g fill="blue" stroke="red" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 5.5 5.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d=" M -1.5 5.5   a 2 2 0 1 0 0 3   a 2 2 0 0 1 3 0   a 2 2 0 1 0 0 -3   a 2 2 0 0 1 -3 0  "></path><path d="M 12.5 5.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M 5.5 -1.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M 5.5 12.5 a 2 2 0 1 0 0 3 a 2 2 0 0 1 3 0 a 2 2 0 1 0 0 -3 a 2 2 0 0 1 -3 0 "></path><path d="M -1.5 -1.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M 12.5 -1.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M 12.5 12.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path><path d="M -1.5 12.5 a 2 2 0 0 1 0 3 a 2 2 0 1 0 3 0 a 2 2 0 0 1 0 -3 a 2 2 0 1 0 -3 0 "></path></g></pattern></defs><circle cx="71.6876" cy="51.625" r="50" fill="url(#pat01)"></circle><circle cx="180" cy="50" r="40" fill="none" stroke-width="30" stroke="url(#pat01)"></circle></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test20 pattern</button>';
   contentOfPopup+=' <br /><br /><button id="test21"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"    xmlns:xlink="http://www.w3.org/1999/xlink">  <style>    .classA {      fill: red;    }  </style>  <defs>    <g id="Port">      <circle style="fill: inherit;" r="10"/>    </g>  </defs>  <text y="15">black</text>  <use x="50" y="10" href="#Port" />  <text y="35">red</text>  <use x="50" y="30" href="#Port" class="classA"/>  <text y="55">blue</text>  <use x="50" y="50" href="#Port" style="fill: blue;"/></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test21 use &amp; style </button>';
@@ -2278,6 +2304,12 @@ function myObj1(initObj1){
   contentOfPopup+=' <br /><br /><button id="test14"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="0 0  7.14109992980957 15.984700202941895"><defs><radialGradient id="a" cx="3.9321" cy="2.3306" r="3.0394" gradientUnits="userSpaceOnUse" ><stop offset="0" stop-color="#e7e7e7"></stop><stop offset="1" stop-color="#565656"></stop></radialGradient></defs><ellipse cx="3.8754" cy="8.3128" rx="3.2657" ry="7.6719" stroke="rgb(0, 0, 0)" fill="transparent" style="stroke:rgb(0, 0, 0);fill:url(#a);stroke-width:0.1;stroke-opacity:1;fill-opacity:1;"></ellipse></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test14 radial gradient</button>';
   contentOfPopup+=' <br /><br /><button id="test04"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<svg viewBox="0 4  554.4265 390.0948"><g transform="   "><g transform="translate(200,0) scale(2) "><rect x="50" y="50" width="30" height="30" stroke="black" fill="transparent" stroke-width="5" transform=" rotate(45 50 50) "></rect><g transform="translate(100,0)"><rect x="50" y="50" width="30" height="30" stroke="black" fill="blue" stroke-width="5" transform=" rotate(45 50 50) "></rect></g></g><g transform=""><rect x="6" y="27" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"></rect><rect x="60" y="10" rx="5" ry="10" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"></rect><circle cx="25" cy="75" r="20" stroke="red" fill="transparent" stroke-width="5"></circle><ellipse cx="75" cy="75" rx="20" ry="5" stroke="red" fill="transparent" stroke-width="5"></ellipse><line x1="10" x2="50" y1="110" y2="150" stroke="orange" stroke-width="5"></line><polyline points="60 110 65 120 70 115 75 130 80 125 85 140 90 135 95 150 100 145" stroke="orange" fill="transparent" stroke-width="5"></polyline><polygon points="50 160 55 180 70 180 60 190 65 205 50 195 35 205 40 190 30 180 45 180" stroke="green" fill="transparent" stroke-width="5"></polygon><path d="M20,230 Q40,205 50,230 T90,230" fill="none" stroke="blue" stroke-width="5"></path><path d="M 40,260   A 40,60  0 1 0 60,260" fill="none" stroke="blue" stroke-width="5"></path></g></g></svg>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test04 petits éléments</button>';
   contentOfPopup+=' <br /><br /><button id="test03"  class="butEnabled butMenuHaut" onclick="document.getElementById(\'contenuSvg\').value=\''+htm1('<path d=" M 21 10 L 20 64 L 21 121 M 97 16 Q 66 46 100 63 Q 133 88 105 114 T 105 166 T 103 221 T 106 275 M 180 16 M 230 13 C 176 63 183 106 228 48 C 273 74 278 122 228 86 C 179 149 180 188 228 125 C 285 159 278 183 229 161 M 327 33 L 370 78  L 341 137 L 342 208 H 395 V 251 H 338 V 302 M 526 36 A 50 40 0 1 0 529 79 V 134 A 50 25 -120 0 1 533 185 A 50 25 120 1 0 534 236 V 288 A 20 30 21.6783 1 1 537 350 A 20 47.4513 30 0 0 533 409" style="stroke:black;stroke-width:1;fill:transparent;"></path>')+'\';'+global_variable_name+'.importerSvgEtFermer();">test03 chemin complet</button>';
+  contentOfPopup+=' <br />';
+  contentOfPopup+=' <br />Demos<br /><br />';
+  var tbDemo=['peano.svg','tiger.svg']; // =================== NE PAS OUBLIER LE SERVICE WORKER ========================
+  for(var i=0;i<tbDemo.length;i++){
+   contentOfPopup+=' <button class="butEnabled butMenuHaut" onclick="'+global_variable_name+'.chargerUrlSvg(\'_demo/'+tbDemo[i]+'\');">'+tbDemo[i]+'</button>';
+  }
   contentOfPopup+='</div>';
 
   popupValue.innerHTML=contentOfPopup;
@@ -10378,6 +10410,7 @@ function myObj1(initObj1){
   
   var elt=dogid(e.target.id);
   var idArbre=parseInt(elt.getAttribute('data-idarbre'),10);
+  var indiceArbre=recupereIndiceArbre(idArbre);
   var newValues=[];
   var el=['input','textarea','td'];
   var txt='';
@@ -10388,10 +10421,14 @@ function myObj1(initObj1){
    var lst=dogid('editTree1Table').getElementsByTagName(el[l]);
    for(var j=0;j<lst.length;j++){
     if(lst[j].getAttribute('data-attrib') && lst[j].value && lst[j].value !=''){
-     if(lst[j].getAttribute('data-attrib')=='text' || lst[j].getAttribute('data-attrib')=='tspan' || lst[j].getAttribute('data-attrib')=='title' || lst[j].getAttribute('data-attrib')=='style' ){
+     if(lst[j].getAttribute('data-attrib')=='text' || lst[j].getAttribute('data-attrib')=='tspan' || lst[j].getAttribute('data-attrib')=='title'  ){
       txt=htm1(lst[j].value);
      }else{
-      nouveauxAttributs[lst[j].getAttribute('data-attrib')]=htm1(lst[j].value);
+      if(_dssvg.arbre0[indiceArbre].data.nodeName.toLowerCase()==='style'){
+       txt=htm1(lst[j].value);
+      }else{
+       nouveauxAttributs[lst[j].getAttribute('data-attrib')]=htm1(lst[j].value);
+      }
      }
     }else if(lst[j].getAttribute('data-attrib') && lst[j].getAttribute('data-value') && lst[j].getAttribute('data-value')!=='' ){
      nouveauxAttributs[lst[j].getAttribute('data-attrib')]=htm1(lst[j].getAttribute('data-value'));
@@ -13525,6 +13562,7 @@ function myObj1(initObj1){
  init(global_version_number);
  //========================================================================================================
  return {
+  chargerUrlSvg       : function(a){ return _chargerUrlSvg(a);},
   selColor1           : function(a){ return _selColor1(a);},
   importerSvgEtFermer : function(){importerSvgEtFermer();},
   chargerTest         : function(i){_chargerTest(i);},
